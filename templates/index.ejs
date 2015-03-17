@@ -1,4 +1,5 @@
 <% articles.forEach(function (article) { %>
+  <% if (article.hidden) return %>
   <div class="article">
     <div class="title">
       <h1><a href="<%= article.route %>"><%= article.title %></a></h1>

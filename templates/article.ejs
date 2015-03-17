@@ -1,6 +1,6 @@
 <article class="article">
   <header class="title">
-    <% if (date) { %>
+    <% if ((typeof timeless === "undefined" || !timeless) && date) { %>
       <div class="date">
         <%= strftime('%B %d, %Y', date) %>
       </div>
@@ -14,6 +14,9 @@
   </section>
 
   <footer class="more details">
-    <a href="/">&laquo; home</a>
+    --
+    <br>
+    <br>
+    <a href="/">&laquo; back to home</a>
   </footer>
 </article>
