@@ -1,0 +1,15 @@
+<% articles.forEach(function (article) { %>
+  <div class="article">
+    <div class="title">
+      <h1><a href="<%= article.route %>"><%= article.title %></a></h1>
+    </div>
+
+    <div class="content">
+      <p><%- article.summary %></p>
+    </div>
+
+    <div class="more">
+      <a href="<%= article.route %>">read on &raquo;</a>
+    </div>
+  </div>
+<% }) %>

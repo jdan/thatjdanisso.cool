@@ -1,0 +1,91 @@
+body {
+  color: #222;
+  background-color: #ffffff;
+  font-size: 20px;
+}
+
+body, code {
+  font-family: 'Inconsolata';
+}
+
+h1 a:visited {
+  color: inherit;
+}
+
+h1, h2 {
+  font-size: inherit;
+  display: inline;
+  font-weight: bold;
+}
+
+h2::before {
+  content: "## ";
+}
+h2::after {
+  display: block;
+  content: "--";
+}
+
+hr {
+  margin: 0;
+  border: none;
+  height: 1px;
+  background-color: #aaa;
+}
+
+.main {
+  width: 590px;
+  padding: 30px;
+  margin: 40px auto;
+}
+
+.blog-title {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 40px;
+}
+
+h1 a, .article h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.article {
+  margin: 50px 0;
+}
+
+header a, header a:visited,
+.article a, .article a:visited {
+  color: #9d261d;
+  text-decoration: none;
+}
+
+header a:hover, .article a:hover,
+header a:focus, .article a:focus {
+  text-decoration: underline;
+}
+
+.article .date {
+  float: right;
+  color: #999;
+  font-style: italic;
+}
+
+.article .content {
+  line-height: 1.6;
+}
+
+code {
+  background-color: #f9f9f9;
+}
+
+pre {
+  border-left: 1px solid #d9d9d9;
+  position: relative;
+  left: -20px;
+  padding-left: 20px;
+}
+
+pre code {
+  background-color: #ffffff;
+  display: block;
+}

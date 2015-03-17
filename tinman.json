@@ -1,0 +1,10 @@
+{
+  "title": "monospace",
+
+  "articles": "articles",
+  "public": "public",
+
+  "template": "templates/article.ejs",
+  "index": "templates/index.ejs",
+  "layout": "templates/layout.ejs"
+}

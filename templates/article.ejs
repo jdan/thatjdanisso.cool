@@ -1,0 +1,19 @@
+<article class="article">
+  <header class="title">
+    <% if (date) { %>
+      <div class="date">
+        <%= strftime('%B %d, %Y', date) %>
+      </div>
+    <% } %>
+    <h1><%= title %></h1>
+    <br>
+  </header>
+
+  <section class="content">
+    <%- body %>
+  </section>
+
+  <footer class="more details">
+    <a href="/">&laquo; home</a>
+  </footer>
+</article>
