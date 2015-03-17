@@ -44,11 +44,6 @@ hr {
   margin-bottom: 40px;
 }
 
-h1 a, .article h1 a {
-  text-decoration: none;
-  color: inherit;
-}
-
 .article {
   margin: 50px 0;
 }
