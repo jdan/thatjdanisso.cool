@@ -89,3 +89,33 @@ pre code {
   background-color: #ffffff;
   display: block;
 }
+
+
+.flash-item {
+  animation: flash 8s linear 0s infinite;
+  -webkit-animation: flash 8s linear 0s infinite;
+  -moz-animation: flash 8s linear 0s infinite;
+  -o-animation: flash 8s linear 0s infinite;
+}
+
+
+@keyframes flash {
+  0%   {opacity: 1.0;}
+  10%  {opacity: 0.1;}
+  20%  {opacity: 1.0;}
+}
+@-webkit-keyframes flash {
+  0%   {opacity: 1.0;}
+  10%  {opacity: 0.1;}
+  20%  {opacity: 1.0;}
+}
+@-moz-keyframes flash {
+  0%   {opacity: 1.0;}
+  10%  {opacity: 0.1;}
+  20%  {opacity: 1.0;}
+}
+@-o-keyframes flash {
+  0%   {opacity: 1.0;}
+  10%  {opacity: 0.1;}
+  20%  {opacity: 1.0;}
+}
