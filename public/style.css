@@ -26,6 +26,10 @@ h2::after {
   content: "--";
 }
 
+h3::before {
+  content: "### ";
+}
+
 hr {
   margin: 0;
   border: none;
@@ -78,6 +82,7 @@ pre {
   position: relative;
   left: -20px;
   padding-left: 20px;
+  overflow-x: scroll;
 }
 
 pre code {
