@@ -107,7 +107,7 @@ This article will be accessible at the url `/hello-world` by default
 * Setting the `slug` property, making the article accessible at
   `/your-slug-here`
 * Setting the `route` property, and completely overriding the slug (i.e.
-  `route: /2014/06/24/musings/my-article`
+  `route: /2014/06/24/musings/my-article`)
 
 You can include any custom options you'd like (i.e. `color: red`) in
 your YAML Front Matter, and recall it from a custom template.
