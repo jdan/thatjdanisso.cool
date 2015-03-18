@@ -6,5 +6,9 @@
 
   "template": "templates/article.ejs",
   "index": "templates/index.ejs",
-  "layout": "templates/layout.ejs"
+  "layout": "templates/layout.ejs",
+
+  "plugins": {
+    "tweet": "./plugins/tweet"
+  }
 }

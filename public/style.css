@@ -64,14 +64,18 @@ header a:focus, .article a:focus {
   text-decoration: underline;
 }
 
-.article .date {
+.date {
   float: right;
   color: #999;
   font-style: italic;
 }
 
-.article .content {
+.content {
   line-height: 1.6;
+}
+
+.tweet {
+  float: right;
 }
 
 code {
@@ -137,7 +141,7 @@ pre code {
     margin-top: 30px;
   }
 
-  .article .date {
+  .date {
     float: none;
     display: block;
   }
