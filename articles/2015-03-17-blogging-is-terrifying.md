@@ -7,7 +7,7 @@ I've been meaning to write more things. Not just [any things](https://medium.com
 
 Blogging is terrifying.
 
-Really, it is. It's terrifying to put yourself and your thoughts out there, I mean, what if people actually *read* this post? What if I make some sort of grammatical mistake; or use a semicolon incorrectly? What if my sentences are too short? What if I say something wrong, and someone comes in and corrects me? Even worse, what if people like it?
+Really, it is. It's terrifying to put yourself and your thoughts out there, I mean, what if people actually *read* this post? What if I make some sort of grammatical mistake; or use a semicolon incorrectly? What if my sentences are too short? What if I say something wrong, and someone comes along and corrects me? Even worse, what if people like it?
 
 What if people like it so much that they read my other posts? What if they like those and share them with their followers? Now even *more* people will read my stuff, more people to find errors in my writing. What if something I write really strikes a chord with someone, and makes their day better? What if they rely on me to make their day better all the time?
 
