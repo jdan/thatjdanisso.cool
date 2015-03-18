@@ -38,7 +38,8 @@ hr {
 }
 
 .main {
-  width: 590px;
+  box-sizing: border-box;
+  width: 650px;
   padding: 30px;
   margin: 40px auto;
 }
@@ -118,4 +119,34 @@ pre code {
   0%   {opacity: 1.0;}
   10%  {opacity: 0.1;}
   20%  {opacity: 1.0;}
+}
+
+@media (max-width: 650px) {
+  body {
+    font-size: 24px;
+    line-height: 1.4;
+  }
+
+  .main {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0;
+  }
+
+  .article {
+    margin-top: 30px;
+  }
+
+  .article .date {
+    float: none;
+    display: block;
+  }
+
+  .sep {
+    display: none;
+  }
+
+  header a {
+    display: block;
+  }
 }
