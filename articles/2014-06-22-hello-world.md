@@ -1,5 +1,6 @@
 ---
 title: Hello, World!
+hidden: true
 ---
 
 Tinman is a tiny static-ready blog engine based on the
