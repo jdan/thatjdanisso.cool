@@ -1,0 +1,58 @@
+#div-mouse-example {
+    padding: 40px 0;
+    flex-flow: row wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+#div-mouse-example .button {
+    text-align: center;
+    margin-right: 20px;
+    width: 100px;
+    color: white;
+    padding: 15px 25px;
+    background-color: #0074F6;
+
+    transition: background-color 50ms linear;
+}
+
+#div-mouse-example.active .button {
+    background-color: #004A93;
+}
+
+#div-mouse-example .output {
+    width: 200px;
+    padding: 15px;
+    background-color: #e9e9e9;
+}
+
+#div-mouse-example .mouse-pointer {
+    transform: rotateZ(-20deg);
+    position: relative;
+    width: 0;
+    top: 27px;
+    right: 45px;
+
+    transition: top 50ms linear;
+}
+
+#div-mouse-example.active .mouse-pointer {
+    top: 29px;
+}
+
+#div-mouse-example .mouse-pointer .head {
+    border-left: 7px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 16px solid white;
+    width: 0;
+    height: 0;
+}
+
+#div-mouse-example .mouse-pointer .tail {
+    width: 3px;
+    height: 8px;
+    position: relative;
+    left: 5px;
+    top: -1px;
+    background-color: #ffffff;
+}

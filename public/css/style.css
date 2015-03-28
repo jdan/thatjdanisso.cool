@@ -21,10 +21,6 @@ h1, h2, h3 {
 h2::before {
   content: "## ";
 }
-h2::after {
-  display: block;
-  content: "--";
-}
 
 h3::before {
   content: "### ";
@@ -95,6 +91,19 @@ pre code {
   display: block;
 }
 
+.flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.demo {
+  border: 2px solid #000;
+  box-sizing: border-box;
+  margin: 20px 0;
+  padding: 8px;
+}
 
 .flash-item {
   animation: flash 8s linear 0s infinite;
@@ -102,7 +111,6 @@ pre code {
   -moz-animation: flash 8s linear 0s infinite;
   -o-animation: flash 8s linear 0s infinite;
 }
-
 
 @keyframes flash {
   0%   {opacity: 1.0;}
@@ -124,6 +132,7 @@ pre code {
   10%  {opacity: 0.1;}
   20%  {opacity: 1.0;}
 }
+
 
 @media (max-width: 650px) {
   body {
