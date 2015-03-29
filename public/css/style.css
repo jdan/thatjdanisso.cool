@@ -96,10 +96,11 @@ img {
 }
 
 .flex {
-  display: -webkit-box;
+  display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
 }
 
 .demo {
@@ -114,6 +115,17 @@ img {
   -webkit-animation: flash 8s linear 0s infinite;
   -moz-animation: flash 8s linear 0s infinite;
   -o-animation: flash 8s linear 0s infinite;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0,0,0,0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 @keyframes flash {

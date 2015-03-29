@@ -1,5 +1,9 @@
 .a11y-onclick {
     padding: 40px 0;
+}
+
+.a11y-onclick.flex,
+.a11y-onclick > .flex {
     flex-flow: row wrap;
     -webkit-justify-content: center;
     justify-content: center;
@@ -27,6 +31,10 @@
 }
 
 .a11y-onclick .mouse-pointer {
+    -webkit-transform: rotateZ(-20deg);
+    -moz-transform: rotateZ(-20deg);
+    -ms-transform: rotateZ(-20deg);
+    -o-transform: rotateZ(-20deg);
     transform: rotateZ(-20deg);
     position: relative;
     width: 0;
@@ -36,7 +44,7 @@
     transition: top 50ms linear;
 }
 
-.a11y-onclick .active .mouse-pointer {
+.a11y-onclick.active .mouse-pointer {
     top: 29px;
 }
 

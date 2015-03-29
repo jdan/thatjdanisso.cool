@@ -51,7 +51,11 @@ Consider the following `<div>` with an `onclick` event handler.
 </script>
 ```
 
-<div class="a11y-onclick demo flex" aria-hidden="true" aria-label="showing onclick events with a div and mouse pointer">
+<span class="sr-only">
+    Depicted below is a demo of the code above interacting with a mouse
+    pointer. The button works as expected.
+</span>
+<div class="a11y-onclick demo flex" aria-hidden="true">
     <div class="button">Display</div>
     <div class="mouse-pointer">
         <div class="head"></div>
@@ -84,12 +88,18 @@ enter key (just as we would on a hyperlink or form).
 <div id="action-button" tabindex="0">Display</div>
 ```
 
-<div class="a11y-onclick demo flex no-active no-output" aria-hidden="true" aria-label="attempting to fire an onclick with a div and a keyboard">
+<span class="sr-only">
+    Depicted below is the same demo as before, this time interacting with
+    the enter key. The button does not seem to do anything.
+</span>
+<div class="a11y-onclick demo no-active no-output" aria-hidden="true">
     <div class="row">
         <div class="enter-key">enter</div>
     </div>
-    <div class="button focused">Display</div>
-    <div class="output">&nbsp;</div>
+    <div class="flex">
+        <div class="button focused">Display</div>
+        <div class="output">&nbsp;</div>
+    </div>
 </div>
 
 Unfortunately, nothing happens :( Our "button" is listening for a click event,
@@ -121,12 +131,18 @@ Let's try and fix this by adding a `keypress` event handler.
 </script>
 ```
 
-<div class="a11y-onclick demo flex no-active" aria-hidden="true" aria-label="an example with a div and an onkeypress event">
+<span class="sr-only">
+    Depicted below is a demo of the code above interacting with the enter key.
+    The button now works similarly to the mouse point example before.
+</span>
+<div class="a11y-onclick demo no-active" aria-hidden="true">
     <div class="row">
         <div class="enter-key">enter</div>
     </div>
-    <div class="button focused">Display</div>
-    <div class="output">&nbsp;</div>
+    <div class="flex">
+        <div class="button focused">Display</div>
+        <div class="output">&nbsp;</div>
+    </div>
 </div>
 
 I'll call that a success, sort of! The code's a bit longer now (even after
@@ -164,7 +180,11 @@ it.
 </script>
 ```
 
-<div class="a11y-onclick demo flex" aria-hidden="true" aria-label="showing onclick events with a div and mouse pointer">
+<span class="sr-only">
+    Depicted below is a demo of the code above interacting with both a mouse
+    pointer and the enter key. Both of these interactions work.
+</span>
+<div class="a11y-onclick demo flex" aria-hidden="true">
     <div class="button">Display</div>
     <div class="mouse-pointer">
         <div class="head"></div>
@@ -173,12 +193,14 @@ it.
     <div class="output">&nbsp;</div>
 </div>
 
-<div class="a11y-onclick demo flex no-active" aria-hidden="true" aria-label="an example with a div and an onkeypress event">
+<div class="a11y-onclick demo no-active" aria-hidden="true" aria-label="an example with a div and an onkeypress event">
     <div class="row">
         <div class="enter-key">enter</div>
     </div>
-    <div class="button focused">Display</div>
-    <div class="output">&nbsp;</div>
+    <div class="flex">
+        <div class="button focused">Display</div>
+        <div class="output">&nbsp;</div>
+    </div>
 </div>
 
 Excellent! Now that we are using the semantic `<button>` tag, **we get a click
@@ -198,10 +220,10 @@ instance, a copy of VoiceOver on OSX will display the following:
 ![VoiceOver for Mac describing the button as "Display, button"](/img/voiceover.png)
 
 Letting users with screen readers know that "Display" corresponds to a button
-that they can then activate with either their enter key or space bar.
+that can be activated with either their enter key or space bar.
 
 So go forth and prevent your contemporaries from skipping the semantic markup,
 make sure your buttons play nicely with the keyboard, and stop trying to copy
-behavior provided to you **for free**.
+browser behavior provided to you **for free**.
 
 It doesn't take much, but it makes a big difference.
