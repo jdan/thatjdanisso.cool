@@ -26,6 +26,10 @@ h3::before {
   content: "### ";
 }
 
+p {
+  margin: 30px 0;
+}
+
 hr {
   margin: 0;
   border: none;
@@ -47,6 +51,7 @@ hr {
 
 .article {
   margin: 50px 0;
+  line-height: 1.6;
 }
 
 header a, header a:visited,
@@ -64,10 +69,6 @@ header a:focus, .article a:focus {
   float: right;
   color: #999;
   font-style: italic;
-}
-
-.content {
-  line-height: 1.6;
 }
 
 .tweet {
