@@ -16,8 +16,6 @@
     color: white;
     padding: 15px 25px;
     background-color: #0074F6;
-
-    transition: background-color 50ms linear;
 }
 
 .a11y-onclick.active:not(.no-active) .button {
@@ -40,8 +38,6 @@
     width: 0;
     top: 27px;
     right: 45px;
-
-    transition: top 50ms linear;
 }
 
 .a11y-onclick.active .mouse-pointer {
@@ -78,8 +74,6 @@
     text-align: right;
     border-radius: 7px;
     border-bottom: 5px solid #666666;
-
-    transition: all 50ms linear;
 }
 
 .a11y-onclick.active .enter-key {
