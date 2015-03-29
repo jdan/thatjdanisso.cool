@@ -1,30 +1,35 @@
 ---
 title: Clicking with a Keyboard
 route: /a11y/clicking-with-a-keyboard
-hidden: true
+description: The importance of semantic markup, and getting keyboard accessibility for free. After all, not everyone can use a mouse.
 ---
 
 Not everyone can use a mouse.
 
 Across the spectrum of disabilities, different types of users rely on different
 mechanisms for navigating around a webpage. In many of these cases a pointing
-device such as a mouse or trackpad is simply not an option, either due to
+device such as a mouse or trackpad is simply not an option, due to either
 insufficient motor skills, or being unable to see.
 
-Beyond this, there is also the power user who prefers to stick to their
-keyboard while using your website.
+In fact, a [2003 study of accessible technology potential](http://www.microsoft.com/enable/research/phase1.aspx)
+commissioned by Microsoft found that an estimated *"7% (or 12 million) of
+working-age adults have a severe dexterity difficulty or impairment,"* one that
+would likely prevent them from using a mouse or trackpad.
 
-Not everyone *wants* to use a mouse.
+It's tough to say how many are attempting use *your* website, of course, but
+there is also the power user who prefers to stick to their keyboard while
+using your website.
 
-Yet, the web is full of interactive elements which require a mouse. Why is
-that? The most frequent offender is the common `<div>`. Now, the `<div>`
+Not everyone *wants* to use a mouse. Still, the web is full of interactive elements which require a mouse. Why is that?
+
+Let's talk about the most common offender - the `<div>`. Now, the `<div>`
 itself is very useful, but it's vague. It's a broad container of sorts. Not a
 button, not a navbar, not an image - just a big ol' rectangle taking up a few
 rows in our webpage.
 
-But, many still try to *make* it one of those things and, rather
-unfortunately, miss out on all the cool things that happen when we use the
-**right tag for the job**.
+Yet, many try to *make* it one of those things and, rather unfortunately, miss
+out on all the cool things that would happen if we had used the **right tag
+for the job**.
 
 ## Let's talk about clicking
 
@@ -46,7 +51,7 @@ Consider the following `<div>` with an `onclick` event handler.
 </script>
 ```
 
-<div id="div-mouse-example" class="a11y-onclick demo flex" aria-hidden="true" aria-label="showing onclick events with a div and mouse pointer">
+<div class="a11y-onclick demo flex" aria-hidden="true" aria-label="showing onclick events with a div and mouse pointer">
     <div class="button">Display</div>
     <div class="mouse-pointer">
         <div class="head"></div>
@@ -79,7 +84,7 @@ enter key (just as we would on a hyperlink or form).
 <div id="action-button" tabindex="0">Display</div>
 ```
 
-<div id="div-keyboard-example" class="a11y-onclick demo flex" aria-hidden="true" aria-label="attempting to fire an onclick with a div and a keyboard">
+<div class="a11y-onclick demo flex no-active no-output" aria-hidden="true" aria-label="attempting to fire an onclick with a div and a keyboard">
     <div class="row">
         <div class="enter-key">enter</div>
     </div>
@@ -90,7 +95,7 @@ enter key (just as we would on a hyperlink or form).
 Unfortunately, nothing happens :( Our "button" is listening for a click event,
 but we're attempting to activate it with a keyboard.
 
-Let's fix this by adding a `keypress` event handler.
+Let's try and fix this by adding a `keypress` event handler.
 
 ```
 <div id="action-button" tabindex="0">Display</div>
@@ -116,7 +121,7 @@ Let's fix this by adding a `keypress` event handler.
 </script>
 ```
 
-<div id="div-keyboard-example-2" class="a11y-onclick demo flex" aria-hidden="true" aria-label="an example with a div and an onkeypress event">
+<div class="a11y-onclick demo flex no-active" aria-hidden="true" aria-label="an example with a div and an onkeypress event">
     <div class="row">
         <div class="enter-key">enter</div>
     </div>
@@ -126,7 +131,7 @@ Let's fix this by adding a `keypress` event handler.
 
 I'll call that a success, sort of! The code's a bit longer now (even after
 a bit of refactoring), but it definitely works - our "button" can be
-activated with both a mouse and a keyboard, just like a real button!
+activated with both a mouse and a keyboard, just like a real button.
 
 But hold on a second, why don't we just *use* a real button?
 
@@ -136,11 +141,12 @@ As I briefly mentioned earlier, there's nothing special about a `<div>`. It
 doesn't have any magical behavior, it's just a container. We can shape it,
 paint it, and make it *look* like a button, but it's not a button.
 
-We write some extra JavaScript to make it *act* like a button, but it's **not
-a button**.
+We can write some extra JavaScript to make it *act* like a button, but it's
+**not a button**.
 
 In fact, we're doing all this extra work (and often skipping it), when in
-reality we could just a real button. Let's try it.
+reality we could just a real button, the semantic `<button>` tag. Let's try
+it.
 
 ```
 <button id="action-button">Display</button>
@@ -158,10 +164,44 @@ reality we could just a real button. Let's try it.
 </script>
 ```
 
-<div id="div-keyboard-example-3" class="a11y-onclick demo flex" aria-hidden="true" aria-label="an example with a div and an onkeypress event">
+<div class="a11y-onclick demo flex" aria-hidden="true" aria-label="showing onclick events with a div and mouse pointer">
+    <div class="button">Display</div>
+    <div class="mouse-pointer">
+        <div class="head"></div>
+        <div class="tail"></div>
+    </div>
+    <div class="output">&nbsp;</div>
+</div>
+
+<div class="a11y-onclick demo flex no-active" aria-hidden="true" aria-label="an example with a div and an onkeypress event">
     <div class="row">
         <div class="enter-key">enter</div>
     </div>
     <div class="button focused">Display</div>
     <div class="output">&nbsp;</div>
 </div>
+
+Excellent! Now that we are using the semantic `<button>` tag, **we get a click
+event for free**. No need to track both a `click` and `keypress` handler here,
+just a `click` will do.
+
+**It turns out that in order to make our button accessible, we don't have to
+do much.** In fact, the *only* difference between our first example and this
+one is that we've replaced the `<div>` with a `<button>` - seriously!
+
+## Sane markup goes a long way
+
+Beyond the obvious markup clarity and keyboard accessibility gains, we also
+unlock a few bonus features when we use a `<button>` instead of a `<div>`. For
+instance, a copy of VoiceOver on OSX will display the following:
+
+![VoiceOver for Mac describing the button as "Display, button"](/img/voiceover.png)
+
+Letting users with screen readers know that "Display" corresponds to a button
+that they can then activate with either their enter key or space bar.
+
+So go forth and prevent your contemporaries from skipping the semantic markup,
+make sure your buttons play nicely with the keyboard, and stop trying to copy
+behavior provided to you **for free**.
+
+It doesn't take much, but it makes a big difference.

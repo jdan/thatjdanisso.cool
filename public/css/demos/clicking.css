@@ -16,8 +16,7 @@
     transition: background-color 50ms linear;
 }
 
-#div-mouse-example.active .button,
-#div-keyboard-example-2.active .button {
+.a11y-onclick.active:not(.no-active) .button {
     background-color: #004A93;
 }
 
@@ -37,7 +36,7 @@
     transition: top 50ms linear;
 }
 
-#div-mouse-example.active .mouse-pointer {
+.a11y-onclick .active .mouse-pointer {
     top: 29px;
 }
 

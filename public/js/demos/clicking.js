@@ -1,29 +1,22 @@
 var examples = [].slice.call(document.querySelectorAll(".a11y-onclick"));
-var liveOutputs = [
-    document.querySelector("#div-mouse-example .output"),
-    document.querySelector("#div-keyboard-example-2 .output")
-];
+var outputs = [].slice.call(document.querySelectorAll(".a11y-onclick:not(.no-output) .output"));
 
 setInterval(function() {
-    var output = document.querySelector("#div-mouse-example .output");
+    examples.forEach(function(el) {
+        el.classList.add("active");
+    });
 
-    setTimeout(function() {
-        examples.forEach(function(el) {
-            el.classList.add("active");
-        });
-
-        liveOutputs.forEach(function(o) {
-            o.innerHTML = "Clicked!";
-        });
-    }, 1000);
+    outputs.forEach(function(o) {
+        o.innerHTML = "Clicked!";
+    });
 
     setTimeout(function() {
         examples.forEach(function(el) {
             el.classList.remove("active");
         });
 
-        liveOutputs.forEach(function(o) {
+        outputs.forEach(function(o) {
             o.innerHTML = " ";
         });
-    }, 2000);
+    }, 1000);
 }, 2500);
