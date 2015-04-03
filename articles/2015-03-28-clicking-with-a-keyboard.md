@@ -133,7 +133,7 @@ Let's try and fix this by adding a `keypress` event handler.
 
 <span class="sr-only">
     Depicted below is a demo of the code above interacting with the enter key.
-    The button now works similarly to the mouse point example before.
+    The button now works similarly to the mouse pointer example before.
 </span>
 <div class="a11y-onclick demo no-active" aria-hidden="true">
     <div class="row">

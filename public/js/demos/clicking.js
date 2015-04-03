@@ -1,7 +1,8 @@
-var examples = [].slice.call(document.querySelectorAll(".a11y-onclick"));
-var outputs = [].slice.call(document.querySelectorAll(".a11y-onclick:not(.no-output) .output"));
-
 setInterval(function() {
+    var examples = [].slice.call(document.querySelectorAll(".a11y-onclick"));
+    var outputs = [].slice.call(
+        document.querySelectorAll(".a11y-onclick:not(.no-output) .output"));
+
     examples.forEach(function(el) {
         el.classList.add("active");
     });

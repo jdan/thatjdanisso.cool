@@ -1,14 +1,3 @@
-.a11y-onclick {
-    padding: 40px 0;
-}
-
-.a11y-onclick.flex,
-.a11y-onclick > .flex {
-    flex-flow: row wrap;
-    -webkit-justify-content: center;
-    justify-content: center;
-}
-
 .a11y-onclick .button {
     text-align: center;
     margin-right: 20px;
@@ -28,37 +17,8 @@
     background-color: #e9e9e9;
 }
 
-.a11y-onclick .mouse-pointer {
-    -webkit-transform: rotateZ(-20deg);
-    -moz-transform: rotateZ(-20deg);
-    -ms-transform: rotateZ(-20deg);
-    -o-transform: rotateZ(-20deg);
-    transform: rotateZ(-20deg);
-    position: relative;
-    width: 0;
-    top: 27px;
-    right: 45px;
-}
-
 .a11y-onclick.active .mouse-pointer {
     top: 29px;
-}
-
-.a11y-onclick .mouse-pointer .head {
-    border-left: 7px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 16px solid white;
-    width: 0;
-    height: 0;
-}
-
-.a11y-onclick .mouse-pointer .tail {
-    width: 3px;
-    height: 8px;
-    position: relative;
-    left: 5px;
-    top: -1px;
-    background-color: #ffffff;
 }
 
 .a11y-onclick .row {
