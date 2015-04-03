@@ -58,7 +58,7 @@ on focused elements - the items on the page that keyboards can highlight with
 subsequent presses of the tab key.
 
 **All we need to do is add the `:focus` selector**, so that it is applied in
-addition to the hover selector.
+addition to the hover styles.
 
 ```
 .nav-link:hover, .nav-link:focus {
