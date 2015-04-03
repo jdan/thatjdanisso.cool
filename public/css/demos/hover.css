@@ -30,6 +30,7 @@
     40%  {-webkit-transform: translateX(300px) rotateZ(-20deg) translateY(10px);}
     45%  {-webkit-transform: translateX(300px) rotateZ(-20deg) translateY(10px);}
     80%  {-webkit-transform: translateX(30px) rotateZ(-20deg);}
+    100% {-webkit-transform: translateX(30px) rotateZ(-20deg);}
 }
 
 @-moz-keyframes mousepos {
@@ -39,6 +40,7 @@
     40%  {-moz-transform: translateX(300px) rotateZ(-20deg) translateY(10px);}
     45%  {-moz-transform: translateX(300px) rotateZ(-20deg) translateY(10px);}
     80%  {-moz-transform: translateX(30px) rotateZ(-20deg);}
+    100% {-moz-transform: translateX(30px) rotateZ(-20deg);}
 }
 
 @-o-keyframes mousepos {
@@ -48,6 +50,7 @@
     40%  {-o-transform: translateX(300px) rotateZ(-20deg) translateY(10px);}
     45%  {-o-transform: translateX(300px) rotateZ(-20deg) translateY(10px);}
     80%  {-o-transform: translateX(30px) rotateZ(-20deg);}
+    100% {-o-transform: translateX(30px) rotateZ(-20deg);}
 }
 
 @keyframes mousepos {
@@ -57,4 +60,5 @@
     40%  {transform: translateX(300px) rotateZ(-20deg) translateY(10px);}
     45%  {transform: translateX(300px) rotateZ(-20deg) translateY(10px);}
     80%  {transform: translateX(30px) rotateZ(-20deg);}
+    100% {transform: translateX(30px) rotateZ(-20deg);}
 }
