@@ -21,6 +21,8 @@ on elements under a mouse cursor.
 ```
 
 <span class="sr-only">
+    The following example shows a mouse cursor hovering over various items
+    in a navigation bar which highlight as the mouse passes over them.
 </span>
 <div class="demo hover-a11y" aria-hidden="true">
     <div class="row flex">
@@ -40,6 +42,8 @@ with an unfortunate short-coming.
 Nothing happens.
 
 <span class="sr-only">
+    The following example is just a navigation bar with three links and no
+    animation, because we did not declare our styles correctly.
 </span>
 <div class="demo hover-a11y no-active" aria-hidden="true">
     <div class="row flex">
@@ -67,6 +71,8 @@ a mouse! **This helps users keep track of their location in their page**, and
 also presents the same information that a mouse-wielding user would receive.
 
 <span class="sr-only">
+    The example below shows three links on a nav bar highlighting in sequence
+    as a theoretical keyboard tabs to each of them.
 </span>
 <div class="demo hover-a11y" aria-hidden="true">
     <div class="row flex">
@@ -93,6 +99,10 @@ this on focus for visitors using the keyboard.
 }
 ```
 
+<span class="sr-only">
+    The following example is the same as the previous example, but the links
+    also have an underline when focused.
+</span>
 <div class="demo hover-a11y with-underline" aria-hidden="true">
     <div class="row flex">
         <div class="button">Home</div>
