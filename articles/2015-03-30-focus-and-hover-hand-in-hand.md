@@ -86,8 +86,9 @@ We can do still do better, though. Many of your visitors will be unable to
 detect subtle color changes (and, in some cases, very obvious ones!), so we'll
 add an underline to the link.
 
-It's okay if you don't want this on hover, but it's pretty essential to do
-this on focus for visitors using the keyboard.
+It's okay if you don't want this on hover - since a mouse cursor is a good
+visual indicator in and of itself - but it's pretty essential to do this on
+focus for visitors using the keyboard.
 
 ```
 .nav-link:hover, .nav-link:focus {
