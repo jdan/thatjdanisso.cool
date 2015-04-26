@@ -8,10 +8,6 @@ body, code {
     font-family: 'Inconsolata';
 }
 
-h1 a:visited {
-    color: inherit;
-}
-
 h1, h2, h3 {
     font-size: inherit;
     display: inline;
@@ -64,15 +60,20 @@ hr {
     line-height: 1.6;
 }
 
-header a, header a:visited,
-.article a, .article a:visited {
+a, a:visited {
     color: #9d261d;
     text-decoration: none;
 }
 
-header a:hover, .article a:hover,
-header a:focus, .article a:focus {
+a:hover {
     text-decoration: underline;
+}
+
+a:focus {
+    background-color: #9d261d;
+    color: #fff;
+    outline: none;
+    text-decoration: none;
 }
 
 .date {
