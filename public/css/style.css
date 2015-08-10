@@ -5,7 +5,7 @@ body {
 }
 
 body, code {
-    font-family: 'Inconsolata';
+    font-family: "Inconsolata", monospace;
 }
 
 h1, h2, h3 {
