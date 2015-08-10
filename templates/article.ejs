@@ -1,5 +1,12 @@
 <article class="article">
   <header class="title">
+    <% if (typeof hidden !== "undefined" && hidden) { %>
+      <p>
+        <strong>Note:</strong>
+        This article is hidden and is only available to those with a link.
+      </p>
+    <% } %>
+
     <% if ((typeof timeless === "undefined" || !timeless) && date) { %>
       <div class="date">
         <%= strftime('%B %d, %Y', date) %>
