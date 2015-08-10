@@ -39,8 +39,12 @@ p.listing {
 hr {
     margin: 0;
     border: none;
-    height: 1px;
-    background-color: #aaa;
+}
+
+hr::after {
+    content: "---";
+    display: block;
+    text-align: center;
 }
 
 .main {
@@ -104,6 +108,7 @@ pre code {
 }
 
 img {
+    border: 2px solid black;
     width: 100%;
 }
 
