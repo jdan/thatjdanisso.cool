@@ -39,7 +39,7 @@ So I played around with [OSX's built-in screen reader](https://www.apple.com/voi
 
 I started making blanket statements such as "These things can be completed in about a day" and "These things may take a week or more to fix." They were broad guesses, I had no idea what I was doing, and I was loving every minute of it. **Here I was, once again feeling my way around a new world of software development.** One day I'd think I knew something and the next I'd learn I was wrong.
 
-But I pushed forward and completed a write-up (My a11y puns have gotten way better since).
+But I pushed forward and completed a write-up (my a11y puns have gotten way better since).
 
 ![Google doc: Accessicademy: on improving the accessibility (a11y) efforts at Khan Academy (k11y)](/img/accessicademy.png)
 
@@ -74,7 +74,7 @@ The response was minimal, a few bites on social media at first, but people seeme
 
 Interestingly enough, tota11y was posted again (by someone else) to Hacker News a few weeks later, making its way to the top on a Monday morning and staying there until late in the evening.
 
-It's incredibly energizing to see so many folks talking about accessibility, many of whom were in the same boat as I was - web developers who knew it was a *thing* but weren't sure how to approach the problem. But among those web developers were many who knew *a lot* about accessibility. They spread the word, offered advice, and provided tons of motivating feedback.
+It was incredibly energizing to see so many folks talking about accessibility, many of whom were in the same boat as I was - web developers who knew it was a *thing* but weren't sure how to approach the problem. But among those web developers were many who knew *a lot* about accessibility. They spread the word, offered advice, and provided tons of motivating feedback.
 
 I learned a lot more from them as I went along, the most important lesson being that **everyone in this space is *so friggin' nice*. Like, seriously, *so nice*.** A bunch of approachable folks, eager to answer any question you throw at them. In my (admittedly short few) years in software, I've never come across a community as kind and welcoming.
 
@@ -86,6 +86,6 @@ And it makes sense, given the work that they do, but it's just such a pleasant s
 
 I get an incredible sense of satisfaction doing this work - whether it's running a screen reader on a new interface, adding a new feature to tota11y, or just interacting with folks in [the web-a11y slack channel](https://twitter.com/ryanflorence/status/578240236267773952). Each day brings a new challenge, and I feel empowered (and *excited*) to tackle it.
 
-It's pretty nifty to look back twelve months and realize how quickly new interests can come forward and how, with time and care, you can learn a lot about new things. I'm still brand new to this field, and there's *so much* more to learn, but I can't even begin to describe how excited I am for whatever's next.
+Looking back on the past twelve months, I realize how quickly new interests can come forward and how, with time and care, you can learn a lot about new things. I'm still brand new to this field, and there's *so much* more to learn, but I can't even begin to describe how excited I am for whatever's next.
 
 I've fallen in love with web development all over again.
