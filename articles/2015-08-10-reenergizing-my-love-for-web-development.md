@@ -21,7 +21,7 @@ As I got into the groove of things at work, time passed, and my interests wander
 
 **Because at the end of a long day of coding, writing more code isn't the most appealing thing in the world, and that's okay**. The unfortunate side-effect is that the way I used to learn technology - reckless experimentation - no longer held a significant presence in my day-to-day.
 
-My work projects were still very interesting, and offered me the opportunity to [use cool technologies](http://facebook.github.io/react/) and learn fun web things, but it was *different*. At work I had to follow style guidelines and deal with deadlines, while in college I'd spend three hours reading a rails tutorial and writing a blog engine I would never use.
+Work was going well - really well in fact. I had the opportunity to <a href="http://facebook.github.io/react/" aria-label="use cool technologies like React">use cool technologies</a> and solve interesting problems, but I wanted to make sure I still had opportunities to learn something *completely* new. At work I had to follow style guidelines and deal with deadlines, while in college I'd spend three hours reading a rails tutorial and writing a blog engine I would never use.
 
 So, I was in a bit of a funk. I found myself reluctant to work on side projects, and was worried I wouldn't be leaving my comfort zone enough at work. I was hungry to attack something I had *zero* experience with, just like I did in between classes in college.
 
@@ -49,7 +49,7 @@ Fun fact, not only was I terrible at accessibility, but I was also terrible at n
 
 Thus began a few weeks of accessibility fixes: trying to fix things, not fixing them correctly, then learning and re-fixing. Each day my colleague [John](http://ejohn.org) and I would share links in our "Accessibility" HipChat room, and attempt to answer each other's questions.
 
-I realized that this sliver of software development was *far* larger than I originally thought, and it was full of well-thought-out standards as well as many unknowns. Lots of work to be done, and I was excited to dive in head-first. I started <a href="/a11y/clicking-with-a-keyboard/" aria-label="blogging, link: Clicking with a Keyboard - thatjdanisso.cool">blogging</a> <a href="/a11y/focus-vs-hover/" aria-label="again, link: Focus vs. Hover - thatjdanisso.cool">again</a>, and became overwhelmingly excited to learn and share.
+I realized that this sliver of software development was *far* larger than I originally thought, and it was full of well-thought-out standards as well as many unknowns. Lots of work to be done, and I was excited to dive in head-first. I started <a href="/a11y/clicking-with-a-keyboard/" aria-label="blogging: Clicking with a Keyboard - thatjdanisso.cool">blogging</a> <a href="/a11y/focus-vs-hover/" aria-label="again: Focus vs. Hover - thatjdanisso.cool">again</a>, and became overwhelmingly excited to learn and share.
 
 We built some testing infrastructure using [Accessibility Developer Tools](https://github.com/GoogleChrome/accessibility-developer-tools), caught some bugs, caught some things that *seemed* like bugs, and started off on the monumental task of evangelizing web accessibility at Khan Academy.
 
