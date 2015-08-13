@@ -1,7 +1,6 @@
 ---
 title: Falling in Love with Web Development Again
 slug: loving-web-development-again
-hidden: true
 description: "\"I've had a growing interest in accessibility lately. Screen readers, Braille keyboards, that sort of thing,\" I said, offhand."
 ---
 
@@ -11,7 +10,7 @@ During one of our weekly 1-on-1's, my manager [Marcia](https://twitter.com/marci
 
 My pal [Cassidy](https://twitter.com/cassidoo) had recently given a talk on accessibility, and I had been poking around Bootstrap's source code - seeing various mentions of this "aria" thing. It all seemed pretty nifty, but admittedly I knew *nothing* about it, just that it helped people use the software I was writing.
 
-"Oh cool, I'll keep that in mind," replied Marcia, although it was probably more enthusiastic than I can convey in a blog post. The rest of the walk was pretty normal - I think we saw some chickens that day.
+"Oh cool, I'll keep that in mind," replied Marcia (it was more enthusiastic than I can convey in a blog post). The rest of the walk was pretty normal - I think we saw some chickens that day.
 
 ---
 
