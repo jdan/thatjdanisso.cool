@@ -56,7 +56,7 @@ Alternatively, you can use the following userscript.
   })
 ```
 
-Copy and paste the above code into your favorite editor and save it as **remove-collab-spam.user.js**. In Chrome, you can simply drag this file into [chrome://extensions/](chrome://extensions/).
+Copy and paste the above code into your favorite editor and save it as **remove-collab-spam.user.js**. In Chrome, you can simply drag this file into **chrome://extensions**.
 
 On Firefox, install [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) and navigate to the Greasemonkey "User scripts" tab of **about:addons**.
 
