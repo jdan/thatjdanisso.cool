@@ -8,7 +8,7 @@ I'm sick of seeing this garbage on GitHub.
 
 ![A series of items on the GitHub activity feed in the form of "X added Y to Z"](/img/github-spam.png)
 
-Project owners shamelessly adding dozens upon dozens of famous open source developers, in an attempt to get a link to their project on as many GitHub feeds as possible (while [chalking it up to "username errors"](https://github.com/joni2back/angular-filemanager/issues/59)). To be honest, I don't really care what repos my friends get added to - even if legitimately - and the feature has never proven useful to me.
+Project owners shamelessly adding dozens upon dozens of famous open source developers, in an attempt to get a link to their project on as many GitHub feeds as possible (while [chalking it up to "username errors"](https://github.com/joni2back/angular-filemanager/issues/59)). To be honest, I don't really care what repositories my friends get added to - even if legitimately. The feature has never proven useful to me.
 
 **Here's how to get rid of it.**
 
