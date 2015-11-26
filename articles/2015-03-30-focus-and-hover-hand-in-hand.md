@@ -10,7 +10,7 @@ Visual interactions should never require a mouse.
 Consider the ever-popular `:hover` selector, which is used to declare styles
 on elements under a mouse cursor.
 
-```
+```css
 .nav-link {
     color: #ffffff;
 }
@@ -60,7 +60,7 @@ subsequent presses of the tab key.
 **All we need to do is add the `:focus` selector**, so that it is applied in
 addition to the hover styles.
 
-```
+```css
 .nav-link:hover, .nav-link:focus {
     opacity: 0.8;
 }
@@ -90,7 +90,7 @@ It's okay if you don't want this on hover - since a mouse cursor is a good
 visual indicator in and of itself - but it's pretty essential to do this on
 focus for visitors using the keyboard.
 
-```
+```css
 .nav-link:hover, .nav-link:focus {
     opacity: 0.8;
 }

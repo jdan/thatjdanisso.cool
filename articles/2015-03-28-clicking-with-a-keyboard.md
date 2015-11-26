@@ -35,7 +35,7 @@ for the job**.
 
 Consider the following `<div>` with an `onclick` event handler.
 
-```
+```html
 <div id="action-button">Display</div>
 <span id="output"></span>
 <script>
@@ -84,7 +84,7 @@ In the following example we've tabbed to the button and focused it (as shown
 by the black outline), and now we'll attempt to activate the button using the
 enter key (just as we would on a hyperlink or form).
 
-```
+```html
 <div id="action-button" tabindex="0">Display</div>
 ```
 
@@ -107,7 +107,7 @@ but we're attempting to activate it with a keyboard.
 
 Let's try and fix this by adding a `keypress` event handler.
 
-```
+```html
 <div id="action-button" tabindex="0">Display</div>
 <span id="output"></span>
 <script>
@@ -164,7 +164,7 @@ In fact, we're doing all this extra work (and often skipping it), when in
 reality we could just a real button, the semantic `<button>` tag. Let's try
 it.
 
-```
+```html
 <button id="action-button">Display</button>
 <span id="output"></span>
 <script>

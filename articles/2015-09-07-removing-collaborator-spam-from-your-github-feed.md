@@ -38,7 +38,7 @@ Refresh your GitHub tab, and rejoice in your spam-free activity feed.
 
 Alternatively, you can use the following userscript.
 
-```
+```js
 // ==UserScript==
 // @name          Remove collab spam
 // @description   Removes "X added Y to Z" spam from the GitHub activity feed
@@ -68,7 +68,7 @@ Drag the file here, then accept the following confirmation dialog.
 
 You can even customize the userscript to remove/keep elements containing particular usernames if you're into that sort of thing.
 
-```
+```js
 // Always show tj-related activity items
 if (!/\/tj/.test(item.innerHTML)) {
     item.remove()
