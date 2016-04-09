@@ -1,13 +1,13 @@
 <article class="article">
   <header class="title">
-    <% if (typeof hidden !== "undefined" && hidden) { %>
+    <% if (!timeless && hidden) { %>
       <p>
         <strong>Note:</strong>
         This article is hidden and is only available to those with a link.
       </p>
     <% } %>
 
-    <% if ((typeof timeless === "undefined" || !timeless) && date) { %>
+    <% if (!timeless && date) { %>
       <div class="date">
         <%= date %>
       </div>

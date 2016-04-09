@@ -31,17 +31,24 @@ function loadArticle(filename) {
             }
 
             var rawDate = article.attributes.date;
-            ["FullYear", "Month", "Date", "Hours"].forEach((field) => {
-                rawDate["set" + field](rawDate["getUTC" + field]())
-            })
+            var date = null
 
-            var date = strftime("%B %d, %Y", rawDate)
+            if (rawDate) {
+                ["FullYear", "Month", "Date", "Hours"].forEach((field) => {
+                    rawDate["set" + field](rawDate["getUTC" + field]())
+                })
+
+                date = strftime("%B %d, %Y", rawDate)
+            }
+
             var tweetUrl = makeTweetUrl(article)
+            var defaults = { hidden: false, timeless: false }
 
-            resolve(Object.assign({}, article.attributes, {
+            resolve(Object.assign({}, defaults, article.attributes, {
                 filename,
                 summary,
                 date,
+                rawDate,
                 tweetUrl,
                 body: marked(article.body),
             }))

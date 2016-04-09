@@ -21,6 +21,7 @@ function saveArticle(article) {
                     title: article.title + " | jordan scales",
                     body: articleBodyHTML,
                 })
+
                 var articlePath = path.join("build", article.route)
 
                 mkdirp(articlePath, (err) => {
