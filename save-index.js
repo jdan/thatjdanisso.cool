@@ -24,7 +24,7 @@ function saveIndex(articles) {
                     body: indexBodyHTML,
                 })
 
-                fs.writeFile("build/index.html", indexHTML, (err) => {
+                fs.writeFile("output/index.html", indexHTML, (err) => {
                     if (err) {
                         return reject(err)
                     }

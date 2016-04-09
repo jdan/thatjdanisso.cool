@@ -2,6 +2,7 @@
 title: Ask Me Anything!
 route: /ask-me-anything
 date: 2015-10-15
+hidden: true
 ---
 
 Inspired by [Sindre Sorhus](https://github.com/sindresorhus/ama), I've decided

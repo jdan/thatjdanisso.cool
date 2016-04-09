@@ -22,7 +22,7 @@ function saveArticle(article) {
                     body: articleBodyHTML,
                 })
 
-                var articlePath = path.join("build", article.route)
+                var articlePath = path.join("output", article.route)
 
                 mkdirp(articlePath, (err) => {
                     if (err) {
