@@ -9,7 +9,7 @@
 
     <% if ((typeof timeless === "undefined" || !timeless) && date) { %>
       <div class="date">
-        <%= strftime('%B %d, %Y', date) %>
+        <%= date %>
       </div>
     <% } %>
     <h1><%= title %></h1>
@@ -23,7 +23,7 @@
   <footer class="more details">
     --
     <br><br>
-    <a target="_blank" href="<%= plugins.tweet(title, route) %>" class="tweet">tweet this</a>
+    <a target="_blank" href="<%= tweetUrl %>" class="tweet">tweet this</a>
     <a href="/">&laquo; back to home</a>
   </footer>
 </article>
