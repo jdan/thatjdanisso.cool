@@ -1,6 +1,7 @@
 ---
 title: Removing "Collaborator Spam" from Your GitHub Feed
-slug: github-collaborator-spam
+route: /github-collaborator-spam
+date: 2015-09-07
 description: Devious GitHub users are adding prominent members as collaborators to their repositories in an attempt to gain exposure. Here's how to stop it.
 ---
 

@@ -1,5 +1,7 @@
 ---
 title: Seriously, The Reflog Isn't That Scary
+date: 2013-08-05
+route: /seriously-the-reflog-isnt-that-scary
 color: green
 description: demystifying git-reflog
 hidden: true

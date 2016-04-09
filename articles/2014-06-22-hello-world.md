@@ -1,5 +1,7 @@
 ---
 title: Hello, World!
+date: 2014-06-22
+route: /hello-world
 hidden: true
 ---
 

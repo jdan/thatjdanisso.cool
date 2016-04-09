@@ -1,6 +1,7 @@
 ---
 title: Ask Me Anything!
-slug: ask-me-anything
+route: /ask-me-anything
+date: 2015-10-15
 ---
 
 Inspired by [Sindre Sorhus](https://github.com/sindresorhus/ama), I've decided

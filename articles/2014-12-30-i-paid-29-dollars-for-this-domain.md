@@ -1,6 +1,7 @@
 ---
 title: I Paid $29 For This Domain
-slug: i-paid-29-dollars-for-this-domain
+date: 2014-12-30
+route: /i-paid-29-dollars-for-this-domain
 description: The extra push I needed to get back into blogging
 hidden: true
 ---

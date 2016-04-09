@@ -1,6 +1,7 @@
 ---
 title: Blogging is Terrifying
-slug: blogging-is-terrifying
+date: 2015-03-17
+route: /blogging-is-terrifying
 ---
 
 I've been meaning to write more things. Not just [any things](https://medium.com/friendship-dot-js), but [meaningful things](https://medium.com/@jdan/my-first-six-weeks-at-khan-academy-19a40bc8136a). So I sat down, fired up my text editor, forked over $29 for a domain I'll regret in a year, and got to it. But all the preparation in the world can't overcome one thing.
