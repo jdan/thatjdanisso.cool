@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <title>jordan scales</title>
+    <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/tomorrow.min.css">
+<link rel="stylesheet" href="/css/demos/clicking.css">
+<link rel="stylesheet" href="/css/demos/hover.css">
+<link rel="stylesheet" href="/css/demos/shared.css">
+    <link href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet"type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=480">
+    <link rel="Shortcut Icon" type="image/x-icon" href="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+</head>
+<body>
+    <div class="main">
+        <header>
+            <span class="flash" aria-hidden="true">////////</span>
+            <strong>jordan scales</strong>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/">home</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/projects">projects</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="http://twitter.com/jdan">twitter</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="http://github.com/jdan">github</a>
+        </header>
+
+        <article class="article">
+  <header class="title">
+    
+
+    
+      <div class="date">
+        September 07, 2015
+      </div>
+    
+    <h1>Removing &quot;Collaborator Spam&quot; from Your GitHub Feed</h1>
+    <br>
+  </header>
+
+  <section class="content">
+    <p>I&#39;m sick of seeing this garbage on GitHub.</p>
+<p><img src="/img/github-spam.png" alt="A series of items on the GitHub activity feed in the form of &quot;X added Y to Z&quot;"></p>
+<p>Project owners shamelessly adding dozens upon dozens of famous open source developers, in an attempt to get a link to their project on as many GitHub feeds as possible (while <a href="https://github.com/joni2back/angular-filemanager/issues/59">chalking it up to &quot;username errors&quot;</a>). To be honest, I don&#39;t really care what repositories my friends get added to - even if legitimately. The feature has never proven useful to me.</p>
+<p><strong>Here&#39;s how to get rid of it.</strong></p>
+<h2 id="using-adblock-plus-https-adblockplus-org-">Using <a href="https://adblockplus.org/">AdBlock Plus</a></h2>
+<p>We can remove the spammy elements from the page using a custom AdBlock filter. First, open up your extension settings (I&#39;m using Chrome):</p>
+<p><img src="/img/extension-settings.png" alt="Chrome&#39;s extension settings page, showing the options for the AdBlock Plus extension"></p>
+<p>Then, click the &quot;Add your own filters&quot; tab, enter the following filter string, and click &quot;Add Filter&quot;:</p>
+<pre><code>github.com##.alert.member_add
+</code></pre><p><img src="/img/custom-filters.png" alt="The &quot;Add your own filters&quot; tab of AdBlock Plus&#39;s extension settings, showing the string &quot;github.com##.alert.member_add&quot; entered in an input box."></p>
+<p>This filter is made up of three parts:</p>
+<ul>
+<li><code>github.com</code> - the domain on which to filter</li>
+<li><code>##</code> - a separator</li>
+<li><code>.alert.member_add</code> - the CSS selector, matching the various <code>&lt;div class=&quot;alert member_add simple&quot;&gt;</code> elements containing the spam</li>
+</ul>
+<p>Refresh your GitHub tab, and rejoice in your spam-free activity feed.</p>
+<h2 id="using-a-custom-userscript">Using a custom userscript</h2>
+<p>Alternatively, you can use the following userscript.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// ==UserScript==</span>
+<span class="hljs-comment">// @name          Remove collab spam</span>
+<span class="hljs-comment">// @description   Removes "X added Y to Z" spam from the GitHub activity feed</span>
+<span class="hljs-comment">// @include       https://github.com/*</span>
+<span class="hljs-comment">// ==/UserScript==</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// by @jdan &lt;http://thatjdanisso.cool&gt;</span>
+<span class="hljs-comment">// MIT Licensed</span>
+
+[].slice.call(
+    <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">".alert.member_add"</span>)
+  )
+  .forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>{
+    item.remove()
+  })
+</code></pre>
+<p>Copy and paste the above code into your favorite editor and save it as <strong>remove-collab-spam.user.js</strong>. In Chrome, you can simply drag this file into <strong>chrome://extensions</strong>.</p>
+<p>On Firefox, install <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">Greasemonkey</a> and navigate to the Greasemonkey &quot;User scripts&quot; tab of <strong>about:addons</strong>.</p>
+<p><img src="/img/greasemonkey.png" alt="Firefox&#39;s about:addons page, showing a selected &quot;User scripts&quot; tab on the left, with a drag-and-drop area on the right"></p>
+<p>Drag the file here, then accept the following confirmation dialog.</p>
+<p><img src="/img/greasemonkey-confirm.png" alt="A confirmation dialog from Greasemonkey for installing the userscript. The confirmation includes the title and description of the userscript"></p>
+<p>You can even customize the userscript to remove/keep elements containing particular usernames if you&#39;re into that sort of thing.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Always show tj-related activity items</span>
+<span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/\/tj/</span>.test(item.innerHTML)) {
+    item.remove()
+}
+</code></pre>
+<p>But I think we can safely remove &#39;em all :)</p>
+
+  </section>
+
+  <footer class="more details">
+    --
+    <br><br>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9CRemoving%20%22Collaborator%20Spam%22%20from%20Your%20GitHub%20Feed%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fgithub-collaborator-spam" class="tweet">tweet this</a>
+    <a href="/">&laquo; back to home</a>
+  </footer>
+</article>
+
+    </div>
+
+    <script src="/js/flasher.js"></script>
+<script src="/js/demos/clicking.js"></script>
+<script src="/js/demos/hover.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-60897046-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+</html>
