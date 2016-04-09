@@ -1,12 +1,14 @@
 <!doctype html>
 <html>
 <head>
-    <title>jordan scales</title>
+    <title>Hello, World! | jordan scales</title>
+
     <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/tomorrow.min.css">
-<link rel="stylesheet" href="/css/demos/clicking.css">
-<link rel="stylesheet" href="/css/demos/hover.css">
-<link rel="stylesheet" href="/css/demos/shared.css">
+    <link rel="stylesheet" href="/css/tomorrow.min.css">
+    <link rel="stylesheet" href="/css/demos/clicking.css">
+    <link rel="stylesheet" href="/css/demos/hover.css">
+    <link rel="stylesheet" href="/css/demos/shared.css">
+
     <link href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet"type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=480">
@@ -48,14 +50,14 @@
   <section class="content">
     <p>Tinman is a tiny static-ready blog engine based on the
 <a href="http://github.com/cloudhead/toto">toto</a> library.</p>
-<pre><code>npm install -g tinman
+<pre><code>npm <span class="hljs-keyword">install</span> -g tinman
 </code></pre><h2 id="what-is-tinman-">What is Tinman?</h2>
 <p>A basic tinman blog looks like this:</p>
-<pre><code>example
-├── articles
-│   └── 2014-06-22-hello-world.md
-└── public
-    └── style.css
+<pre><code><span class="hljs-selector-tag">example</span>
+├── <span class="hljs-selector-tag">articles</span>
+│   └── 2014<span class="hljs-selector-tag">-06-22-hello-world</span><span class="hljs-selector-class">.md</span>
+└── <span class="hljs-selector-tag">public</span>
+    └── <span class="hljs-selector-tag">style</span><span class="hljs-selector-class">.css</span>
 </code></pre><p>Some features include:</p>
 <ul>
 <li>Generate a simple blog with nothing but a few markdown files</li>
@@ -72,48 +74,48 @@ will sort them such that the most recent article is listed first. It
 will also set the article&#39;s date property for you.</p>
 <h2 id="usage">Usage</h2>
 <h4 id="create-a-new-blog">Create a new blog</h4>
-<pre><code class="lang-bash">$ tinman create
-B<span class="hljs-built_in">log</span> title: myblog
+<pre><code class="lang-bash">$ tinman <span class="hljs-keyword">create</span>
+Blog title: myblog
 
-  Your blog is ready! To get started:
+  Your blog <span class="hljs-keyword">is</span> ready! <span class="hljs-keyword">To</span> <span class="hljs-keyword">get</span> started:
 
-    <span class="hljs-built_in">cd</span> myblog/
-    tinman server
+    cd myblog/
+    tinman <span class="hljs-keyword">server</span>
 
-$ tinman create myblog
+$ tinman <span class="hljs-keyword">create</span> myblog
 
-<span class="hljs-comment"># Generate example templates to play with as well</span>
-$ tinman create myblog --with-templates
+# Generate example templates <span class="hljs-keyword">to</span> play <span class="hljs-keyword">with</span> <span class="hljs-keyword">as</span> well
+$ tinman <span class="hljs-keyword">create</span> myblog <span class="hljs-comment">--with-templates</span>
 </code></pre>
 <h4 id="generate-a-new-article">Generate a new article</h4>
 <pre><code class="lang-bash">$ tinman new
-Title: This is my first blog post
+Title: This <span class="hljs-keyword">is</span> <span class="hljs-keyword">my</span> <span class="hljs-keyword">first</span> blog post
 
-  Article generated at: articles/<span class="hljs-number">2014</span>-<span class="hljs-number">07</span>-<span class="hljs-number">05</span>-this-is-my-first-blog-post.md
+  Article generated <span class="hljs-keyword">at</span>: articles/<span class="hljs-number">2014</span><span class="hljs-number">-07</span><span class="hljs-number">-05</span>-this-<span class="hljs-keyword">is</span>-<span class="hljs-keyword">my</span>-<span class="hljs-keyword">first</span>-blog-post.md
 </code></pre>
 <h4 id="run-your-blog-on-a-local-webserver">Run your blog on a local webserver</h4>
-<pre><code class="lang-bash">$ tinman server
-Server listening on port <span class="hljs-number">3000</span>...
+<pre><code class="lang-bash"><span class="hljs-symbol">$</span> tinman server
+<span class="hljs-function"><span class="hljs-title">Server</span></span> listening on port <span class="hljs-number">3000.</span>..
 
-$ tinman server --port <span class="hljs-number">1337</span>
-Server listening on port <span class="hljs-number">1337</span>...
+<span class="hljs-symbol">$</span> tinman server --port <span class="hljs-number">1337</span>
+<span class="hljs-function"><span class="hljs-title">Server</span></span> listening on port <span class="hljs-number">1337.</span>..
 </code></pre>
 <h4 id="build-your-blog-as-a-static-site">Build your blog as a static site</h4>
-<pre><code class="lang-bash">$ tinman build
+<pre><code class="lang-bash">$ tinman <span class="hljs-keyword">build
+</span>
+  <span class="hljs-keyword">Blog </span>successfully <span class="hljs-keyword">built </span>to: <span class="hljs-keyword">build/
+</span>
+$ tinman <span class="hljs-keyword">build </span>--output-<span class="hljs-keyword">dir </span>www
 
-  B<span class="hljs-built_in">log</span> successfully built to: build/
-
-$ tinman build --output-dir www
-
-  B<span class="hljs-built_in">log</span> successfully built to: www
+  <span class="hljs-keyword">Blog </span>successfully <span class="hljs-keyword">built </span>to: www
 </code></pre>
 <h2 id="writing-articles">Writing Articles</h2>
 <p>Articles are written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a>
 and use YAML Front Matter to set various options.</p>
-<pre><code class="lang-markdown"><span class="hljs-horizontal_rule">---</span>
-title: Hello, World!
-<span class="hljs-header">date: 2014-06-22
----</span>
+<pre><code class="lang-markdown"><span class="hljs-meta">---</span>
+<span class="hljs-attr">title:</span> Hello, World!
+<span class="hljs-attr">date:</span> <span class="hljs-number">2014</span><span class="hljs-bullet">-06</span><span class="hljs-bullet">-22</span>
+<span class="hljs-meta">---</span>
 
 Once upon a time...
 </code></pre>
@@ -141,19 +143,19 @@ following:</p>
 
   Your blog is ready! To get started:
 
-    <span class="hljs-built_in">cd</span> myblog/
+    cd myblog/
     tinman server
 
 $ tree myblog
 myblog
 ├── articles
-│   └── <span class="hljs-number">2014</span>-<span class="hljs-number">06</span>-<span class="hljs-number">22</span>-hello-world.md
+│   └── <span class="hljs-number">2014</span>-<span class="hljs-number">06</span>-<span class="hljs-number">22</span>-hello-world<span class="hljs-selector-class">.md</span>
 ├── public
-│   └── style.css
+│   └── style<span class="hljs-selector-class">.css</span>
 ├── templates
-│   ├── article.ejs
-│   ├── index.ejs
-│   └── layout.ejs
+│   ├── <span class="hljs-selector-tag">article</span><span class="hljs-selector-class">.ejs</span>
+│   ├── index<span class="hljs-selector-class">.ejs</span>
+│   └── layout<span class="hljs-selector-class">.ejs</span>
 └── tinman.json
 </code></pre>
 <p>Beyond the articles directory and sample stylesheet, the
@@ -181,12 +183,12 @@ generated automatically based on the contents of your public directory.</p>
 <p>Tinman will automatically copy static assets (images, stylesheets,
 javascripts) from the &quot;public&quot; directory (default: <code>public/</code>).</p>
 <p>For instance, you can write the following to <strong>public/css/colors/main.css</strong>:</p>
-<pre><code class="lang-css"><span class="hljs-tag">body</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#222222</span></span></span>;
-}</span>
+<pre><code class="lang-css"><span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#222222</span>;
+}
 </code></pre>
 <p>And access it like so:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/css/colors/main.css"</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/css/colors/main.css"</span>&gt;</span>
 </code></pre>
 <p>You can follow the same pattern for including images in your articles,
 or even serving static HTML documents.</p>
@@ -210,8 +212,8 @@ javascripts or stylesheets.</strong></p>
     </div>
 
     <script src="/js/flasher.js"></script>
-<script src="/js/demos/clicking.js"></script>
-<script src="/js/demos/hover.js"></script>
+    <script src="/js/demos/clicking.js"></script>
+    <script src="/js/demos/hover.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
