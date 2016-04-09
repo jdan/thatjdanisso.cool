@@ -1,7 +1,7 @@
 ---
 title: Building jQuery Elements with JSX
 date: 2015-07-28
-slug: jquery-and-jsx
+route: /jquery-and-jsx
 hidden: true
 ---
 
