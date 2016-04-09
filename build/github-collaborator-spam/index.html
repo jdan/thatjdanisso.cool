@@ -1,12 +1,14 @@
 <!doctype html>
 <html>
 <head>
-    <title>jordan scales</title>
+    <title>Removing &#34;Collaborator Spam&#34; from Your GitHub Feed | jordan scales</title>
+
     <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/tomorrow.min.css">
-<link rel="stylesheet" href="/css/demos/clicking.css">
-<link rel="stylesheet" href="/css/demos/hover.css">
-<link rel="stylesheet" href="/css/demos/shared.css">
+    <link rel="stylesheet" href="/css/tomorrow.min.css">
+    <link rel="stylesheet" href="/css/demos/clicking.css">
+    <link rel="stylesheet" href="/css/demos/hover.css">
+    <link rel="stylesheet" href="/css/demos/shared.css">
+
     <link href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet"type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=480">
@@ -36,7 +38,7 @@
         September 07, 2015
       </div>
     
-    <h1>Removing &quot;Collaborator Spam&quot; from Your GitHub Feed</h1>
+    <h1>Removing &#34;Collaborator Spam&#34; from Your GitHub Feed</h1>
     <br>
   </header>
 
@@ -49,7 +51,7 @@
 <p>We can remove the spammy elements from the page using a custom AdBlock filter. First, open up your extension settings (I&#39;m using Chrome):</p>
 <p><img src="/img/extension-settings.png" alt="Chrome&#39;s extension settings page, showing the options for the AdBlock Plus extension"></p>
 <p>Then, click the &quot;Add your own filters&quot; tab, enter the following filter string, and click &quot;Add Filter&quot;:</p>
-<pre><code>github.com##.alert.member_add
+<pre><code><span class="hljs-selector-tag">github</span><span class="hljs-selector-class">.com</span>##<span class="hljs-selector-class">.alert</span><span class="hljs-selector-class">.member_add</span>
 </code></pre><p><img src="/img/custom-filters.png" alt="The &quot;Add your own filters&quot; tab of AdBlock Plus&#39;s extension settings, showing the string &quot;github.com##.alert.member_add&quot; entered in an input box."></p>
 <p>This filter is made up of three parts:</p>
 <ul>
@@ -69,11 +71,11 @@
 <span class="hljs-comment">// by @jdan &lt;http://thatjdanisso.cool&gt;</span>
 <span class="hljs-comment">// MIT Licensed</span>
 
-[].slice.call(
-    <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">".alert.member_add"</span>)
+<span class="hljs-selector-attr">[]</span><span class="hljs-selector-class">.slice</span><span class="hljs-selector-class">.call</span>(
+    document.querySelectorAll(<span class="hljs-string">".alert.member_add"</span>)
   )
-  .forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>{
-    item.remove()
+  <span class="hljs-selector-class">.forEach</span>(function(item) {
+    item<span class="hljs-selector-class">.remove</span>()
   })
 </code></pre>
 <p>Copy and paste the above code into your favorite editor and save it as <strong>remove-collab-spam.user.js</strong>. In Chrome, you can simply drag this file into <strong>chrome://extensions</strong>.</p>
@@ -83,8 +85,8 @@
 <p><img src="/img/greasemonkey-confirm.png" alt="A confirmation dialog from Greasemonkey for installing the userscript. The confirmation includes the title and description of the userscript"></p>
 <p>You can even customize the userscript to remove/keep elements containing particular usernames if you&#39;re into that sort of thing.</p>
 <pre><code class="lang-js"><span class="hljs-comment">// Always show tj-related activity items</span>
-<span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/\/tj/</span>.test(item.innerHTML)) {
-    item.remove()
+<span class="hljs-selector-tag">if</span> (!/\/tj/.test(item.innerHTML)) {
+    item<span class="hljs-selector-class">.remove</span>()
 }
 </code></pre>
 <p>But I think we can safely remove &#39;em all :)</p>
@@ -102,8 +104,8 @@
     </div>
 
     <script src="/js/flasher.js"></script>
-<script src="/js/demos/clicking.js"></script>
-<script src="/js/demos/hover.js"></script>
+    <script src="/js/demos/clicking.js"></script>
+    <script src="/js/demos/hover.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -1,12 +1,14 @@
 <!doctype html>
 <html>
 <head>
-    <title>jordan scales</title>
+    <title>Seriously, The Reflog Isn&#39;t That Scary | jordan scales</title>
+
     <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/tomorrow.min.css">
-<link rel="stylesheet" href="/css/demos/clicking.css">
-<link rel="stylesheet" href="/css/demos/hover.css">
-<link rel="stylesheet" href="/css/demos/shared.css">
+    <link rel="stylesheet" href="/css/tomorrow.min.css">
+    <link rel="stylesheet" href="/css/demos/clicking.css">
+    <link rel="stylesheet" href="/css/demos/hover.css">
+    <link rel="stylesheet" href="/css/demos/shared.css">
+
     <link href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet"type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=480">
@@ -56,23 +58,23 @@
 <h3 id="what-is-the-reflog-">What is the reflog?</h3>
 <p>The <a href="https://www.kernel.org/pub/software/scm/git/docs/git-reflog.html">reflog</a> is a special mechanism (which acts very similarly to a branch) that contains any changes to the data in your repository. This includes commiting changes, creating and checking out branches, and even hard resets. It&#39;s a handy timeline, going a step further from the usual history tree, that you can use to recover any data you may have misplaced.</p>
 <p>Let&#39;s walk through a couple of use-cases on a <a href="https://github.com/jdan/reflog-example">real repository</a>.</p>
-<pre><code>$ git init
-Initialized empty Git repository in /Users/jordan/Projects/reflog-example/.git/
-$ echo &quot;Hello, world&quot; &gt; hello.txt
-$ git add .
-$ git commit -m &quot;initial commit.&quot;
-[master (root-commit) 9056e55] initial commit.
- 1 file changed, 1 insertion(+)
- create mode 100644 hello.txt
+<pre><code><span class="hljs-variable">$ </span>git init
+Initialized empty Git repository <span class="hljs-keyword">in</span> /Users/jordan/Projects/reflog-example/.git/
+<span class="hljs-variable">$ </span>echo <span class="hljs-string">"Hello, world"</span> &gt; hello.txt
+<span class="hljs-variable">$ </span>git add .
+<span class="hljs-variable">$ </span>git commit -m <span class="hljs-string">"initial commit."</span>
+[master (root-commit) <span class="hljs-number">9056</span>e55] initial commit.
+ <span class="hljs-number">1</span> file changed, <span class="hljs-number">1</span> insertion(+)
+ create mode <span class="hljs-number">100644</span> hello.txt
 </code></pre><p><a id="undo-amend"></a></p>
 <h3 id="example-a-undoing-an-amended-commit">Example A: Undoing an Amended Commit</h3>
 <p><code>git commit --amend</code> is a great way to consolidate your work. Missed a semicolon? No need to make an entirely new commit for that, just amend the previous one! But, what if we want to <strong>undo</strong> an amend to a commit? We can&#39;t revert a particular commit, since we only want to remove <em>some</em> of the changes in a commit. Seems tricky, but it really isn&#39;t. Let&#39;s start by amending our initial commit.</p>
-<pre><code>$ echo &quot;Goodnight, moon&quot; &gt;&gt; hello.txt
+<pre><code>$ echo <span class="hljs-string">"Goodnight, moon"</span> <span class="hljs-meta">&gt;&gt; </span>hello.txt
 $ git add .
 $ git commit --amend
 [master e1a2208] initial commit.
- 1 file changed, 2 insertions(+)
- create mode 100644 hello.txt
+ <span class="hljs-number">1</span> file changed, <span class="hljs-number">2</span> insertions(+)
+ create mode <span class="hljs-number">100644</span> hello.txt
 </code></pre><p>Now if we view our commit, we&#39;ll see two additions at the bottom.</p>
 <pre><code>$ git show HEAD
 commit e1a22086fda87daff79fe2bf179372a46abc3044
@@ -84,156 +86,156 @@ Date:   Sun Aug 4 22:46:34 2013 -0700
 diff --git a/hello.txt b/hello.txt
 new file mode 100644
 index 0000000..f48e806
---- /dev/null
-+++ b/hello.txt
-@@ -0,0 +1,2 @@
-+Hello, world
-+Goodnight, moon
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/hello.txt</span>
+<span class="hljs-meta">@@ -0,0 +1,2 @@</span>
+<span class="hljs-addition">+Hello, world</span>
+<span class="hljs-addition">+Goodnight, moon</span>
 </code></pre><p>But what if we wanted to split this up into two commits? This example is trivial, but in the real world you may accidentally amend 100 changes to a previous commit (with 100 changes of its own!) We don&#39;t want them combined, so how can we separate them? <strong>This is where the reflog comes into play</strong>. Let&#39;s see what we get when we run <code>git reflog</code>.</p>
 <pre><code>$ git log
-commit e1a22086fda87daff79fe2bf179372a46abc3044
+<span class="hljs-keyword">commit</span> e1a22086fda87daff79fe2bf179372a46abc3044
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:46:34 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    initial commit.
+    <span class="hljs-keyword">initial</span> commit.
 $ git reflog
-e1a2208 HEAD@{0}: commit (amend): initial commit.
-9056e55 HEAD@{1}: commit (initial): initial commit.
+e1a2208 <span class="hljs-keyword">HEAD</span>@{<span class="hljs-number">0</span>}: <span class="hljs-keyword">commit</span> (amend): <span class="hljs-keyword">initial</span> commit.
+<span class="hljs-number">9056e55</span> <span class="hljs-keyword">HEAD</span>@{<span class="hljs-number">1</span>}: <span class="hljs-keyword">commit</span> (<span class="hljs-keyword">initial</span>): <span class="hljs-keyword">initial</span> commit.
 </code></pre><p>While <code>git log</code> only has one entry (which makes sense considering we only have one commit), <code>git reflog</code> actually consists of <em>two</em> entries. This is awesome, we now have some extra material to work with. Notice how the left column looks suspiciously similar to a log? Instead of commits, we&#39;re dealing with <strong>reflog entries</strong>, but they behave just like commits on a branch. To demonstrate this, let&#39;s go ahead and do a soft reset.</p>
-<pre><code>$ git reset --soft 9056e55
+<pre><code>$ git reset --soft <span class="hljs-number">9056</span>e55
 $ git diff --staged
-diff --git a/hello.txt b/hello.txt
-index a5c1966..f48e806 100644
---- a/hello.txt
-+++ b/hello.txt
-@@ -1 +1,2 @@
+diff --git a/hello<span class="hljs-selector-class">.txt</span> b/hello<span class="hljs-selector-class">.txt</span>
+index a5c1966.<span class="hljs-selector-class">.f48e806</span> <span class="hljs-number">100644</span>
+--- a/hello<span class="hljs-selector-class">.txt</span>
++++ b/hello<span class="hljs-selector-class">.txt</span>
+@@ -<span class="hljs-number">1</span> +<span class="hljs-number">1</span>,<span class="hljs-number">2</span> @@
  Hello, world
 +Goodnight, moon
 </code></pre><p>Awesome. Now our staged changes consist of just the second addition we made on the master branch. Let&#39;s verify that our first change is still in tact.</p>
-<pre><code>$ git show HEAD
-commit 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
+<pre><code>$ git <span class="hljs-keyword">show</span> <span class="hljs-keyword">HEAD</span>
+<span class="hljs-keyword">commit</span> <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:46:34 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    initial commit.
+    <span class="hljs-keyword">initial</span> commit.
 
-diff --git a/hello.txt b/hello.txt
-new file mode 100644
-index 0000000..a5c1966
---- /dev/null
+diff <span class="hljs-comment">--git a/hello.txt b/hello.txt</span>
+<span class="hljs-keyword">new</span> <span class="hljs-keyword">file</span> <span class="hljs-keyword">mode</span> <span class="hljs-number">100644</span>
+<span class="hljs-keyword">index</span> <span class="hljs-number">0000000.</span>.a5c1966
+<span class="hljs-comment">--- /dev/null</span>
 +++ b/hello.txt
-@@ -0,0 +1 @@
+@@ <span class="hljs-number">-0</span>,<span class="hljs-number">0</span> +<span class="hljs-number">1</span> @@
 +Hello, world
 </code></pre><p>Now, let&#39;s go ahead and commit our changes.</p>
-<pre><code>$ git commit -m &quot;Second commit&quot;
-[master d9b0af2] Second commit
- 1 file changed, 1 insertion(+)
-$ git log
-commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+<pre><code>$ git <span class="hljs-keyword">commit</span> -m <span class="hljs-string">"Second commit"</span>
+[<span class="hljs-keyword">master</span> d9b0af2] <span class="hljs-keyword">Second</span> <span class="hljs-keyword">commit</span>
+ <span class="hljs-number">1</span> <span class="hljs-keyword">file</span> <span class="hljs-keyword">changed</span>, <span class="hljs-number">1</span> insertion(+)
+$ git <span class="hljs-keyword">log</span>
+<span class="hljs-keyword">commit</span> d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:58:55 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    Second commit
+    <span class="hljs-keyword">Second</span> <span class="hljs-keyword">commit</span>
 
-commit 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
+<span class="hljs-keyword">commit</span> <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:46:34 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    initial commit.
+    <span class="hljs-keyword">initial</span> commit.
 </code></pre><p>We&#39;ve successfully separated an amended commit into two separate commits.</p>
 <p>You&#39;ll notice that the reflog itself reflects the changes we&#39;ve just made, in case we want to go back yet again.</p>
 <pre><code>$ git reflog
 d9b0af2 HEAD@{0}: commit: Second commit
-9056e55 HEAD@{1}: reset: moving to 9056e55
+<span class="hljs-number">9056</span>e55 HEAD@{1}: <span class="hljs-keyword">reset</span>: moving to <span class="hljs-number">9056</span>e55
 e1a2208 HEAD@{2}: commit (amend): initial commit.
-9056e55 HEAD@{3}: commit (initial): initial commit.
+<span class="hljs-number">9056</span>e55 HEAD@{3}: commit (initial): initial commit.
 </code></pre><p><a id="undo-merge"></a></p>
 <h3 id="example-b-rolling-back-a-bad-merge">Example B: Rolling Back a Bad Merge</h3>
 <p>Let&#39;s say we&#39;ve merged some changes from a branch. If our correspondent worked alongside master for quite some time and never <a href="http://blog.steveklabnik.com/posts/2012-11-08-how-to-squash-commits-in-a-github-pull-request">cleaned up</a> his or her changes, we could be dealing with a messy rollback. Let&#39;s see how we would resolve this issue using the reflog.</p>
-<pre><code>$ git merge my-awesome-branch
-Updating d9b0af2..29ef6ec
-Fast-forward
- hello.txt | 3 +++
- 1 file changed, 3 insertions(+)
-$ git log
-commit 29ef6ec17401576b7be9ecfd3cf8eeecb8e26288
+<pre><code>$ git <span class="hljs-keyword">merge</span> my-awesome-branch
+Updating d9b0af2.<span class="hljs-number">.29</span>ef6ec
+<span class="hljs-keyword">Fast</span>-forward
+ hello.txt | <span class="hljs-number">3</span> +++
+ <span class="hljs-number">1</span> <span class="hljs-keyword">file</span> <span class="hljs-keyword">changed</span>, <span class="hljs-number">3</span> insertions(+)
+$ git <span class="hljs-keyword">log</span>
+<span class="hljs-keyword">commit</span> <span class="hljs-number">29</span>ef6ec17401576b7be9ecfd3cf8eeecb8e26288
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 23:07:41 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">23</span>:<span class="hljs-number">07</span>:<span class="hljs-number">41</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    Changes on another branch
+    Changes <span class="hljs-keyword">on</span> another branch
     ...
 </code></pre><p>Looking at reflog we should see a nice summary of our recent activity.</p>
-<pre><code>$ git branch -D my-awesome-branch
-Deleted branch my-awesome-branch (was 29ef6ec).
+<pre><code>$ git branch -D <span class="hljs-keyword">my</span>-awesome-branch
+Deleted branch <span class="hljs-keyword">my</span>-awesome-branch (was <span class="hljs-number">29</span>ef6ec).
 $ git reflog
-29ef6ec HEAD@{0}: merge my-awesome-branch: Fast-forward
-d9b0af2 HEAD@{1}: checkout: moving from my-awesome-branch to master
-29ef6ec HEAD@{2}: commit: Changes on another branch
-d9b0af2 HEAD@{3}: checkout: moving from master to my-awesome-branch
+<span class="hljs-number">29</span>ef6ec HEAD@{0}: merge <span class="hljs-keyword">my</span>-awesome-branch: Fast-forward
+d9b0af2 HEAD@{1}: checkout: moving from <span class="hljs-keyword">my</span>-awesome-branch to master
+<span class="hljs-number">29</span>ef6ec HEAD@{2}: commit: Changes on another branch
+d9b0af2 HEAD@{3}: checkout: moving from master to <span class="hljs-keyword">my</span>-awesome-branch
 d9b0af2 HEAD@{4}: commit: Second commit
-9056e55 HEAD@{5}: reset: moving to 9056e55
+<span class="hljs-number">9056</span>e55 HEAD@{5}: <span class="hljs-keyword">reset</span>: moving to <span class="hljs-number">9056</span>e55
 e1a2208 HEAD@{6}: commit (amend): initial commit.
-9056e55 HEAD@{7}: commit (initial): initial commit.
+<span class="hljs-number">9056</span>e55 HEAD@{7}: commit (initial): initial commit.
 </code></pre><p>We have a few options here. We can revert back to a time before the branch was even created, when the commit was made on the branch, or just before we merged into master. For our use-case, we simply want to undo our merge. <code>d9b0af2</code> looks promising (but there are other equally good choices here). This time, we&#39;ll do a <em>hard</em> reset, since we don&#39;t need to stage any changes before a merge.</p>
-<pre><code>$ git reset --hard d9b0af2
-HEAD is now at d9b0af2 Second commit
-$ git log
-commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+<pre><code>$ git <span class="hljs-keyword">reset</span> <span class="hljs-comment">--hard d9b0af2</span>
+<span class="hljs-keyword">HEAD</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">now</span> <span class="hljs-keyword">at</span> d9b0af2 <span class="hljs-keyword">Second</span> <span class="hljs-keyword">commit</span>
+$ git <span class="hljs-keyword">log</span>
+<span class="hljs-keyword">commit</span> d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:58:55 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    Second commit
+    <span class="hljs-keyword">Second</span> <span class="hljs-keyword">commit</span>
 
-commit 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
+<span class="hljs-keyword">commit</span> <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:46:34 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    initial commit.
+    <span class="hljs-keyword">initial</span> commit.
 </code></pre><p>Looks good! But now, what if we wanted to go back to our deleted branch?</p>
 <pre><code>$ git branch
 * master
-$ git co my-awesome-branch
-error: pathspec &#39;my-awesome-branch&#39; did not match any file(s) known to git.
+$ git co <span class="hljs-keyword">my</span>-awesome-branch
+<span class="hljs-keyword">error</span>: pathspec '<span class="hljs-keyword">my</span>-awesome-branch' did <span class="hljs-keyword">not</span> match any <span class="hljs-built_in">file</span>(s) known <span class="hljs-keyword">to</span> git.
 </code></pre><p>Well that&#39;s kind of a bummer. According to our previous example, we expect the reflog to indicate a point in time where we were working on a separate unmerged branch. What gives? Let&#39;s take another gander at the reflog.</p>
 <pre><code>$ git reflog
-d9b0af2 HEAD@{0}: reset: moving to d9b0af2
-29ef6ec HEAD@{1}: merge my-awesome-branch: Fast-forward
-d9b0af2 HEAD@{2}: checkout: moving from my-awesome-branch to master
-29ef6ec HEAD@{3}: commit: Changes on another branch
-d9b0af2 HEAD@{4}: checkout: moving from master to my-awesome-branch
+d9b0af2 HEAD@{0}: <span class="hljs-keyword">reset</span>: moving to d9b0af2
+<span class="hljs-number">29</span>ef6ec HEAD@{1}: merge <span class="hljs-keyword">my</span>-awesome-branch: Fast-forward
+d9b0af2 HEAD@{2}: checkout: moving from <span class="hljs-keyword">my</span>-awesome-branch to master
+<span class="hljs-number">29</span>ef6ec HEAD@{3}: commit: Changes on another branch
+d9b0af2 HEAD@{4}: checkout: moving from master to <span class="hljs-keyword">my</span>-awesome-branch
 d9b0af2 HEAD@{5}: commit: Second commit
-9056e55 HEAD@{6}: reset: moving to 9056e55
+<span class="hljs-number">9056</span>e55 HEAD@{6}: <span class="hljs-keyword">reset</span>: moving to <span class="hljs-number">9056</span>e55
 e1a2208 HEAD@{7}: commit (amend): initial commit.
-9056e55 HEAD@{8}: commit (initial): initial commit.
+<span class="hljs-number">9056</span>e55 HEAD@{8}: commit (initial): initial commit.
 </code></pre><p>Hm, <code>29ef6ec</code> indicates a commit on our branch. Let&#39;s explore.</p>
-<pre><code>$ git co 29ef6ec
-Note: checking out &#39;29ef6ec&#39;.
-  ...
-HEAD is now at 29ef6ec... Changes on another branch
-$ git log
-commit 29ef6ec17401576b7be9ecfd3cf8eeecb8e26288
+<pre><code>$ git co <span class="hljs-number">29</span>ef6ec
+Note: checking out <span class="hljs-string">'29ef6ec'</span>.
+  <span class="hljs-attr">...</span>
+HEAD is now at <span class="hljs-number">29</span>ef6ec<span class="hljs-attr">...</span> Changes <span class="hljs-keyword">on</span> another branch
+$ git <span class="hljs-keyword">log</span>
+commit <span class="hljs-number">29</span>ef6ec17401576b7be9ecfd3cf8eeecb8e26288
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 23:07:41 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">23</span>:<span class="hljs-number">07</span>:<span class="hljs-number">41</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    Changes on another branch
-    ...
+    Changes <span class="hljs-keyword">on</span> another branch
+    <span class="hljs-attr">...</span>
 </code></pre><p>This looks promising! Let&#39;s go ahead and make a branch here.</p>
-<pre><code>$ git co -b my-awesome-branch
-Switched to a new branch &#39;my-awesome-branch&#39;
+<pre><code>$ git co -<span class="hljs-keyword">b </span>my-awesome-<span class="hljs-keyword">branch
+</span><span class="hljs-keyword">Switched </span>to a new <span class="hljs-keyword">branch </span><span class="hljs-string">'my-awesome-branch'</span>
 $ git log
-commit 29ef6ec17401576b7be9ecfd3cf8eeecb8e26288
-Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 23:07:41 2013 -0700
+commit <span class="hljs-number">29</span>ef6ec<span class="hljs-number">17401576b</span><span class="hljs-number">7b</span>e9ecfd3cf8eeecb8e26288
+<span class="hljs-symbol">Author:</span> <span class="hljs-keyword">Jordan </span><span class="hljs-keyword">Scales </span>&lt;<span class="hljs-keyword">scalesjordan@gmail.com&gt;
+</span><span class="hljs-symbol">Date:</span>   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">23</span>:<span class="hljs-number">07</span>:<span class="hljs-number">41</span> <span class="hljs-number">2013</span> -<span class="hljs-number">0700</span>
 
-    Changes on another branch
-    ...
+    Changes on another <span class="hljs-keyword">branch
+</span>    ...
 </code></pre><p>Success! We&#39;ve now successfully recovered our branch. How about master? Is our rogue commit still separate from the master branch?</p>
-<pre><code>$ git co master
-Switched to branch &#39;master&#39;
+<pre><code>$ git co <span class="hljs-keyword">master</span>
+<span class="hljs-title">Switched</span> to branch '<span class="hljs-literal">master</span>'
 $ git log
 commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
-Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:58:55 2013 -0700
+Author: Jordan Scales <span class="hljs-tag">&lt;scalesjordan@gmail.com&gt;</span>
+<span class="hljs-keyword">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> -<span class="hljs-number">0700</span>
 
     Second commit
 </code></pre><p>Yep.</p>
@@ -241,55 +243,55 @@ Date:   Sun Aug 4 22:58:55 2013 -0700
 <h3 id="example-c-recovering-from-a-hard-reset">Example C: Recovering from a Hard Reset</h3>
 <p>At this point you should be fairly comfortable with the reflog, and can now apply it to many different situations. To really nail it down, let&#39;s go through one more common example: recovering the data from a hard reset. Just as a refresher, consider the state of our master branch.</p>
 <pre><code>$ git log
-commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+<span class="hljs-keyword">commit</span> d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:58:55 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    Second commit
+    <span class="hljs-keyword">Second</span> <span class="hljs-keyword">commit</span>
 
-commit 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
+<span class="hljs-keyword">commit</span> <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:46:34 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    initial commit.
+    <span class="hljs-keyword">initial</span> commit.
 </code></pre><p>If we wanted to completely wipe the most recent commit - &quot;Second commit&quot; - we can do that rather easily.</p>
-<pre><code>$ git reset --hard 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
-HEAD is now at 9056e55 initial commit.
-$ git log
-commit 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
+<pre><code>$ git <span class="hljs-keyword">reset</span> <span class="hljs-comment">--hard 9056e55e384cbae33a0aaf9b2a861cb20c20ace0</span>
+<span class="hljs-keyword">HEAD</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">now</span> <span class="hljs-keyword">at</span> <span class="hljs-number">9056e55</span> <span class="hljs-keyword">initial</span> commit.
+$ git <span class="hljs-keyword">log</span>
+<span class="hljs-keyword">commit</span> <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:46:34 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    initial commit.
+    <span class="hljs-keyword">initial</span> commit.
 </code></pre><p>And voilà, it&#39;s gone. But, what if that commit had some important data in it? What if we were careless with our hard resets, and accidentally removed important changes? Sometimes this really happens, and we can use the reflog to our advantage and recover the lost changes.</p>
 <p>Once again, let&#39;s consult the reflog.</p>
 <pre><code>$ git reflog
-9056e55 HEAD@{0}: reset: moving to 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
-d9b0af2 HEAD@{1}: checkout: moving from save-branch to master
-29ef6ec HEAD@{2}: checkout: moving from 29ef6ec17401576b7be9ecfd3cf8eeecb8e26288 to save-branch
-29ef6ec HEAD@{3}: checkout: moving from master to 29ef6ec
-d9b0af2 HEAD@{4}: reset: moving to d9b0af2
-29ef6ec HEAD@{5}: checkout: moving from my-awesome-branch to master
+<span class="hljs-number">9056</span>e55 HEAD@{<span class="hljs-number">0</span>}: rese<span class="hljs-variable">t:</span> moving <span class="hljs-keyword">to</span> <span class="hljs-number">9056</span>e55e384cbae33a0aaf9b2a861cb20c20ace0
+d9b0af2 HEAD@{<span class="hljs-number">1</span>}: checkou<span class="hljs-variable">t:</span> moving from save-branch <span class="hljs-keyword">to</span> master
+<span class="hljs-number">29</span>ef6ec HEAD@{<span class="hljs-number">2</span>}: checkou<span class="hljs-variable">t:</span> moving from <span class="hljs-number">29</span>ef6ec17401576b7be9ecfd3cf8eeecb8e26288 <span class="hljs-keyword">to</span> save-branch
+<span class="hljs-number">29</span>ef6ec HEAD@{<span class="hljs-number">3</span>}: checkou<span class="hljs-variable">t:</span> moving from master <span class="hljs-keyword">to</span> <span class="hljs-number">29</span>ef6ec
+d9b0af2 HEAD@{<span class="hljs-number">4</span>}: rese<span class="hljs-variable">t:</span> moving <span class="hljs-keyword">to</span> d9b0af2
+<span class="hljs-number">29</span>ef6ec HEAD@{<span class="hljs-number">5</span>}: checkou<span class="hljs-variable">t:</span> moving from my-awesome-branch <span class="hljs-keyword">to</span> master
 ...
 </code></pre><p>Here we&#39;ll see lots of data, but we&#39;re only considered with the first two entries: the current state, and the previous checkout.</p>
 <blockquote>
 <p>As a sidenode, feel free to check out <a href="http://gitready.com/intermediate/2009/02/09/reflog-your-safety-net.html">reflog, your safety net</a> on git ready, which goes on to explain how to clean up old entries in your reflog.</p>
 </blockquote>
 <p>Now, all we need to do is trek back to that previous entry. Easy stuff.</p>
-<pre><code>$ git reset --hard d9b0af2
-HEAD is now at d9b0af2 Second commit
-$ git log
-commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+<pre><code>$ git <span class="hljs-keyword">reset</span> <span class="hljs-comment">--hard d9b0af2</span>
+<span class="hljs-keyword">HEAD</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">now</span> <span class="hljs-keyword">at</span> d9b0af2 <span class="hljs-keyword">Second</span> <span class="hljs-keyword">commit</span>
+$ git <span class="hljs-keyword">log</span>
+<span class="hljs-keyword">commit</span> d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:58:55 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    Second commit
+    <span class="hljs-keyword">Second</span> <span class="hljs-keyword">commit</span>
 
-commit 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
+<span class="hljs-keyword">commit</span> <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
 Author: Jordan Scales &lt;scalesjordan@gmail.com&gt;
-Date:   Sun Aug 4 22:46:34 2013 -0700
+<span class="hljs-built_in">Date</span>:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
 
-    initial commit.
+    <span class="hljs-keyword">initial</span> commit.
 </code></pre><p>And there you have it, we&#39;ve successfully recovered data from a hard reset.</p>
 <p><a id="closing-notes"></a></p>
 <h3 id="closing-notes">Closing Notes</h3>
@@ -312,8 +314,8 @@ Date:   Sun Aug 4 22:46:34 2013 -0700
     </div>
 
     <script src="/js/flasher.js"></script>
-<script src="/js/demos/clicking.js"></script>
-<script src="/js/demos/hover.js"></script>
+    <script src="/js/demos/clicking.js"></script>
+    <script src="/js/demos/hover.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
