@@ -3,6 +3,7 @@ title: Clicking with a Keyboard
 date: 2015-03-28
 route: /a11y/clicking-with-a-keyboard
 description: The importance of semantic markup, and getting keyboard accessibility for free. After all, not everyone can use a mouse.
+tags: a11y
 ---
 
 Not everyone can use a mouse.

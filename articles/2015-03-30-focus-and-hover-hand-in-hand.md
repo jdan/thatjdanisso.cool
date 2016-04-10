@@ -3,6 +3,7 @@ title: Focus vs. Hover
 route: /a11y/focus-vs-hover
 date: 2015-04-03
 description: Visual interactions should never require a mouse, but a common CSS pattern leaves many keyboard-wielding visitors in the dark.
+tags: a11y
 ---
 
 Visual interactions should never require a mouse.

@@ -1,8 +1,9 @@
 var glob = require("glob")
 
-var saveIndex = require("./save-index.js")
+var generateTags = require("./generate-tags.js")
 var loadArticle = require("./load-article.js")
 var saveArticle = require("./save-article.js")
+var saveIndex = require("./save-index.js")
 
 glob("articles/*.md", (err, articles) => {
     if (err) {
@@ -13,11 +14,13 @@ glob("articles/*.md", (err, articles) => {
         .all(articles.map(loadArticle))
         .then((articles) => {
             var promises = articles.map(saveArticle)
-            promises.push(saveIndex(articles))
+
+            promises.push(saveIndex(articles, "output/index.html"))
+            promises.push(generateTags(articles))
 
             return Promise.all(promises)
         })
         .then(
-            () => console.log('cool!'),
+            () => console.log('All done!'),
             (err) => console.log(err))
 })

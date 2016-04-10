@@ -1,7 +1,7 @@
 var ejs = require("ejs")
 var fs = require("fs")
 
-function saveIndex(articles) {
+function saveIndex(articles, outputFile, title, banner) {
     articles.sort((a, b) => {
         return (b.rawDate || 0) - (a.rawDate || 0)
     })
@@ -16,15 +16,16 @@ function saveIndex(articles) {
                 articles: articles.filter((article) => {
                     return !article.hidden
                 }),
+                banner,
             })
 
             fs.readFile("templates/layout.ejs", (err, data) => {
                 var indexHTML = ejs.render(data.toString(), {
-                    title: "jordan scales",
+                    title: title || "jordan scales",
                     body: indexBodyHTML,
                 })
 
-                fs.writeFile("output/index.html", indexHTML, (err) => {
+                fs.writeFile(outputFile, indexHTML, (err) => {
                     if (err) {
                         return reject(err)
                     }

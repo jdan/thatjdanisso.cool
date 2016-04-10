@@ -3,6 +3,7 @@ title: Falling in Love with Web Development Again
 route: /loving-web-development-again
 description: "\"I've had a growing interest in accessibility lately. Screen readers, Braille keyboards, that sort of thing,\" I said, offhand."
 date: 2015-08-10
+tags: a11y
 ---
 
 During one of our weekly 1-on-1's, my manager [Marcia](https://twitter.com/marcia_lee) and I were speaking casually about some of the things I was interested in pursuing. I was a few months into my new job at [Khan Academy](https://khanacademy.org), building tools for teachers and parents.

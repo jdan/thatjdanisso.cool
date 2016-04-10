@@ -13,7 +13,17 @@
       </div>
     <% } %>
     <h1><%= title %></h1>
-    <br>
+
+    <% if (tags.length) { %>
+      <div>
+        <span class="posted-in">Posted in: </span>
+        <span>
+          <% tags.forEach(function(tag, i) { %>
+            <a href="/tags/<%= tag %>"><%= tag %></a><% if (i !== tags.length - 1) { %>, <% } %>
+          <% }) %>
+        </span>
+      </div>
+    <% } %>
   </header>
 
   <section class="content">

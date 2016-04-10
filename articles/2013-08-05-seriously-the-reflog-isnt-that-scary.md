@@ -5,6 +5,7 @@ route: /seriously-the-reflog-isnt-that-scary
 color: green
 description: demystifying git-reflog
 hidden: true
+tags: git
 ---
 
 I know, I know - changing history can be scary. Rebasing, squashing, and loads of force pushing can worry any junior engineer such as myself, but it really shouldn't. Truth is, these are powerful tools that you should have on your toolbelt and, contrary to what you may believe, it's very difficult to actually mess things up.
