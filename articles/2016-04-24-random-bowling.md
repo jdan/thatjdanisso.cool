@@ -1,5 +1,5 @@
 ---
-title: Let's go bowling
+title: Let's Go Bowling
 route: /toyshop/bowling
 date: 2016-04-24
 description: An experiment in scoring random bowling games.
