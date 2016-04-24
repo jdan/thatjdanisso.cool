@@ -1,0 +1,169 @@
+button {
+    color: #9d261d;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    border: 3px solid #9d261d;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    color: #fff;
+    background-color: #9d261d;
+    cursor: pointer;
+}
+
+#demo {
+    margin: 40px auto;
+    position: relative;
+}
+
+#stats {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.stats-label {
+    width: 80px;
+}
+
+#scoreboard {
+    height: 76px;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.scoreboard-half {
+    display: flex;
+    flex-grow: 15;
+}
+
+.scoreboard-half:first-of-type .frame:last-child {
+    border-right: none;
+}
+
+.scoreboard-half:nth-of-type(2) {
+    flex-grow: 16;
+}
+
+.frame {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 2;
+    height: 76px;
+    border: 3px solid #222;
+    border-right: none;
+
+}
+
+.frame:last-child {
+    flex-grow: 3;
+    border-right: 3px solid #222;
+}
+
+.square {
+    border-bottom: 3px solid #222;
+    border-left: 3px solid #222;
+    width: 23px;
+    height: 23px;
+    line-height: 23px;
+
+    text-align: center;
+}
+
+.square:first-of-type {
+    border: none;
+}
+
+.score {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+#graph {
+    display: flex;
+    height: 300px;
+    align-items: flex-end;
+}
+
+.bar {
+    background-color: #9d261d;
+    flex-grow: 1;
+    margin-right: 1px;
+}
+
+#controls {
+    display: flex;
+}
+
+#throw,
+#game {
+    flex-grow: 3;
+    margin-right: 10px;
+}
+
+#many-games {
+    flex-grow: 4;
+}
+
+.mobile-spacer {
+    display: none;
+}
+
+@media (max-width: 650px) {
+    #demo {
+        margin: 20px auto;
+    }
+
+    button:after {
+        clear: both;
+    }
+
+    #stats {
+        font-size: 16px;
+    }
+
+    .bar {
+        margin: 0;
+    }
+
+    #scoreboard {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    #graph {
+        height: 200px;
+    }
+
+    .scoreboard-half:first-of-type .frame:nth-of-type(5) {
+        border-right: 3px solid #222;
+    }
+
+    .frame {
+        flex-basis: 0;
+    }
+
+    .scoreboard-half:first-of-type .frame {
+        border-bottom: none;
+        flex-grow: 2;
+    }
+
+    .mobile-spacer {
+        display: block;
+        flex-grow: 1;
+    }
+
+    #controls {
+        flex-wrap: wrap;
+    }
+
+    #controls button {
+        margin: 0 0 10px;
+    }
+}

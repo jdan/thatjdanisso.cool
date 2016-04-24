@@ -4,6 +4,7 @@ var generateTags = require("./generate-tags.js")
 var loadArticle = require("./load-article.js")
 var saveArticle = require("./save-article.js")
 var saveIndex = require("./save-index.js")
+var saveStaticFile = require("./save-static-file.js")
 
 glob("articles/*.md", (err, articles) => {
     if (err) {
@@ -21,6 +22,23 @@ glob("articles/*.md", (err, articles) => {
             return Promise.all(promises)
         })
         .then(
-            () => console.log('All done!'),
-            (err) => console.log(err))
+            () => console.log('Pages built.'),
+            (err) => {
+                console.log("Error building pages")
+                console.log(err)
+            })
+})
+
+glob("public/**/*", (err, staticFiles) => {
+    if (err) {
+        throw err
+    }
+
+    Promise.all(staticFiles.map(saveStaticFile))
+        .then(
+            () => console.log('Static files saved.'),
+            (err) => {
+                console.log("Error saving static files")
+                console.log(err)
+            })
 })
