@@ -166,4 +166,14 @@ button:hover {
     #controls button {
         margin: 0 0 10px;
     }
+
+    button#throw {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    button#throw {
+        margin-right: 0;
+    }
 }

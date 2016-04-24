@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ].join("</div><div>") + "</div>"
     }
 
-    window.scores = []
+    var scores = []
     var game = generateEmptyGame()
     renderScoreBoard(game)
 
@@ -335,7 +335,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var gameButton = document.getElementById("game")
     var manyGamesButton = document.getElementById("many-games")
 
-    throwButton.addEventListener("click", function() {
+    function handleThrowClick(e) {
+        e.preventDefault()
+
         if (game.isComplete) {
             game = generateEmptyGame()
         }
@@ -350,7 +352,7 @@ document.addEventListener("DOMContentLoaded", function() {
             renderGraph(graph)
             renderStats(stats)
         }
-    })
+    }
 
     function simulateGame() {
         game = generateEmptyGame()
@@ -366,11 +368,14 @@ document.addEventListener("DOMContentLoaded", function() {
         renderGraph(graph)
     }
 
-    gameButton.addEventListener("click", function() {
+    function handleGameClick(e) {
+        e.preventDefault()
         simulateGame()
         renderStats(stats)
-    })
-    manyGamesButton.addEventListener("click", function() {
+    }
+
+    function handleManyClick(e) {
+        e.preventDefault()
         var simulations = 0;
 
         (function run() {
@@ -382,5 +387,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 setTimeout(run, 5)
             }
         })()
-    })
+    }
+
+    throwButton.addEventListener("click", handleThrowClick)
+    throwButton.addEventListener("touchend", handleThrowClick)
+
+    gameButton.addEventListener("click", handleGameClick)
+    gameButton.addEventListener("touchend", handleGameClick)
+
+    manyGamesButton.addEventListener("click", handleManyClick)
+    manyGamesButton.addEventListener("touchend", handleManyClick)
 })
