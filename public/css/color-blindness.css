@@ -1,4 +1,4 @@
-.demo-content {
+body {
     filter: url("#color-filter");
     -webkit-filter: url("#color-filter");
 }

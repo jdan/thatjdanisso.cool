@@ -1,8 +1,8 @@
 ---
 title: Color Blindness Simulator
 route: /toyshop/color-blindness
-description: An experiment in scoring random bowling games.
-date: 2016-04-24
+description: An experiment with color blindness simulation.
+date: 2016-05-27
 hidden: true
 ---
 
