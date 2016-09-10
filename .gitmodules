@@ -1,3 +1,6 @@
 [submodule "output"]
 	path = output
 	url = git@github.com:thatjdanissocool/thatjdanissocool.github.io
+[submodule "32x32"]
+	path = 32x32
+	url = https://github.com/jdan/32x32
