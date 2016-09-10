@@ -5,6 +5,7 @@ var loadArticle = require("./load-article.js")
 var saveArticle = require("./save-article.js")
 var saveIndex = require("./save-index.js")
 var saveStaticFile = require("./save-static-file.js")
+var save32x32 = require("./save-32x32.js")
 
 glob("articles/*.md", (err, articles) => {
     if (err) {
@@ -35,6 +36,7 @@ glob("public/**/*", (err, staticFiles) => {
     }
 
     Promise.all(staticFiles.map(saveStaticFile))
+        .then(save32x32)
         .then(
             () => console.log('Static files saved.'),
             (err) => {
