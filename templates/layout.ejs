@@ -1,7 +1,10 @@
 <!doctype html>
 <html>
+
 <head>
-    <title><%= title %></title>
+    <title>
+        <%= title %>
+    </title>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/tomorrow.min.css">
@@ -9,11 +12,16 @@
     <link rel="stylesheet" href="/css/demos/hover.css">
     <link rel="stylesheet" href="/css/demos/shared.css">
 
-    <link href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet"type="text/css">
+    <% if (typeof isEditor !== "undefined" && isEditor) { %>
+        <link rel="stylesheet" href="/editor/editor.css">
+    <% } %>
+
+    <link href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=480">
     <link rel="Shortcut Icon" type="image/x-icon" href="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
 </head>
+
 <body>
     <div class="main">
         <header>
@@ -30,6 +38,23 @@
         </header>
 
         <%- body %>
+
+        <% if (typeof isEditor !== "undefined" && isEditor) { %>
+            <div id="editor">
+                <div>
+                    <label>Title</label>
+                    <input type="text" id="editor-title" />
+                </div>
+
+                <div>
+                    <label>Content</label>
+                    <br />
+                    <textarea id="editor-content">
+
+                    </textarea>
+                </div>
+            </div>
+        <% } %>
     </div>
 
     <script src="/js/flasher.js"></script>
@@ -40,9 +65,13 @@
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
         ga('create', 'UA-60897046-1', 'auto');
         ga('send', 'pageview');
     </script>
+
+    <% if (typeof isEditor !== "undefined" && isEditor) { %>
+        <script src="/editor/editor.js"></script>
+    <% } %>
 </body>
+
 </html>

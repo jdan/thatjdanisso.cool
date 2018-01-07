@@ -8,5 +8,13 @@
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "strftime": "^0.9.2"
+  },
+  "devDependencies": {
+    "express": "^4.16.2",
+    "nodemon": "^1.14.8"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "editor": "nodemon editor/editor.js"
   }
 }
