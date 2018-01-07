@@ -28,5 +28,10 @@ $content.addEventListener("keydown", e => {
 })
 
 $date.addEventListener("keyup", e => {
-  $outputDate.innerHTML = e.target.value
+  const rawDate = new Date(e.target.value)
+  ;["FullYear", "Month", "Date", "Hours"].forEach(field => {
+    rawDate["set" + field](rawDate["getUTC" + field]())
+  })
+
+  $outputDate.innerHTML = strftime("%B %d, %Y", rawDate)
 })

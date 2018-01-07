@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
           {
             timeless: false,
             hidden: false,
-            date: "Jan 1, 1970",
+            date: "January 1, 1970",
             title: "New post",
             tags: [],
             body: "<p>Start writing...</p>",

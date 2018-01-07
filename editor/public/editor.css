@@ -8,12 +8,21 @@
   top: 0; bottom: 0;
   right: 0;
   width: 500px;
-  padding: 30px;
+  padding: 10px;
 }
 
-textarea {
+#editor input,
+#editor textarea,
+#editor-save-button {
   width: 100%;
-  height: 560px;
   font-family: "Inconsolata", monospace;
   font-size: 20px;
+}
+
+#editor textarea {
+  height: 410px;
+}
+
+#editor-save-button {
+  height: 40px;
 }
