@@ -17,6 +17,16 @@ $content.addEventListener("keyup", e => {
   $outputContent.innerHTML = marked(e.target.value)
 })
 
+$content.addEventListener("keydown", e => {
+  if (9 === e.keyCode) {
+    e.preventDefault()
+    const textarea = e.target
+    const pos = textarea.selectionStart
+    textarea.value =
+      textarea.value.slice(0, pos) + "  " + textarea.value.slice(pos)
+  }
+})
+
 $date.addEventListener("keyup", e => {
   $outputDate.innerHTML = e.target.value
 })
