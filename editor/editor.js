@@ -13,9 +13,23 @@ app.get("/", (req, res) => {
     ejs.render(
       fs.readFileSync(path.join(__dirname, "../templates/layout.ejs"), "utf-8"),
       {
-        title: "New post",
+        title: "New post | jordan scales",
         isEditor: true,
-        body: "",
+        body: ejs.render(
+          fs.readFileSync(
+            path.join(__dirname, "../templates/article.ejs"),
+            "utf-8"
+          ),
+          {
+            timeless: false,
+            hidden: false,
+            date: "Jan 1, 1970",
+            title: "New post",
+            tags: [],
+            body: "<p>Start writing...</p>",
+            tweetUrl: "",
+          }
+        ),
       }
     )
   )

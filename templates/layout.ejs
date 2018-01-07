@@ -43,15 +43,18 @@
             <div id="editor">
                 <div>
                     <label>Title</label>
-                    <input type="text" id="editor-title" />
+                    <input type="text" id="editor-title" value="New post" />
+                </div>
+
+                <div>
+                    <label>Date</label>
+                    <input type="text" id="editor-date" value="Jan 1, 1970" />
                 </div>
 
                 <div>
                     <label>Content</label>
                     <br />
-                    <textarea id="editor-content">
-
-                    </textarea>
+                    <textarea id="editor-content">Start writing...</textarea>
                 </div>
             </div>
         <% } %>
@@ -70,6 +73,8 @@
     </script>
 
     <% if (typeof isEditor !== "undefined" && isEditor) { %>
+        <script src="/editor/ejs.min.js"></script>
+        <script src="/editor/marked.min.js"></script>
         <script src="/editor/editor.js"></script>
     <% } %>
 </body>
