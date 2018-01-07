@@ -1,6 +1,7 @@
 const express = require("express")
 const ejs = require("ejs")
 const fs = require("fs")
+const multer = require("multer")
 const path = require("path")
 
 const app = express()
@@ -23,7 +24,7 @@ app.get("/", (req, res) => {
           {
             timeless: false,
             hidden: false,
-            date: "January 1, 1970",
+            date: "January 01, 1970",
             title: "New post",
             tags: [],
             body: "<p>Start writing...</p>",
@@ -32,6 +33,31 @@ app.get("/", (req, res) => {
         ),
       }
     )
+  )
+})
+
+const upload = multer()
+app.post("/save", upload.array(), (req, res) => {
+  const fileContents = [
+    "---",
+    `title: ${req.body.title}`,
+    `route: ${req.body.route}`,
+    `date: ${req.body.date}`,
+    "---",
+    "",
+    req.body.content,
+  ].join("\n")
+
+  fs.writeFile(
+    path.join(__dirname, "../articles", req.body.filename),
+    fileContents,
+    (err, data) => {
+      if (err) {
+        res.sendStatus(500)
+        res.end("Sorry :(")
+      }
+      res.end("Saved!")
+    }
   )
 })
 

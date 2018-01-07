@@ -35,3 +35,11 @@ $date.addEventListener("keyup", e => {
 
   $outputDate.innerHTML = strftime("%B %d, %Y", rawDate)
 })
+
+$editor.addEventListener("submit", e => {
+  e.preventDefault()
+  fetch("/save", {
+    method: "POST",
+    body: new FormData($editor),
+  })
+})

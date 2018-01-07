@@ -40,34 +40,34 @@
         <%- body %>
 
         <% if (typeof isEditor !== "undefined" && isEditor) { %>
-            <div id="editor">
+            <form id="editor">
                 <table cellspacing="20">
                     <tr>
                         <td>
                             <label>Title</label>
-                            <input type="text" id="editor-title" value="New post" />
+                            <input type="text" name="title" id="editor-title" value="New post" />
                         </td>
 
                         <td>
                             <label>Date</label>
-                            <input type="text" id="editor-date" value="1970-01-01" />
+                            <input type="text" name="date" id="editor-date" value="1970-01-01" />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label>Route</label>
-                            <input type="text" id="editor-route" value="/hello-world" />
+                            <input type="text" name="route" id="editor-route" value="/hello-world" />
                         </td>
                         <td>
                             <label>Filename</label>
-                            <input type="text" id="editor-filename" value="yyyy-mm-dd-hello-world.md" />
+                            <input type="text" name="filename" id="editor-filename" value="yyyy-mm-dd-hello-world.md" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <label>Content</label>
                             <br />
-                            <textarea id="editor-content">Start writing...</textarea>
+                            <textarea name="content" id="editor-content">Start writing...</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -76,7 +76,7 @@
                         </td>
                     </tr>
                 </table>
-            </div>
+            </form>
         <% } %>
     </div>
 
