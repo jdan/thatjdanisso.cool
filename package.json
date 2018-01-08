@@ -16,6 +16,8 @@
   },
   "scripts": {
     "start": "node index.js",
+    "build": "node index.js",
+    "publish": "./publish.sh",
     "editor": "nodemon editor/editor.js"
   }
 }
