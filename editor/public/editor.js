@@ -22,6 +22,8 @@ $loader.addEventListener("change", e => {
     $content.value = article.rawBody
     $outputContent.innerHTML = article.body
 
+    document.getElementById("editor-description").value = article.description
+
     // Hax!!! Get rid of the "articles/" prefix
     document.getElementById("editor-filename").value = article.filename.replace(
       /^articles\//,

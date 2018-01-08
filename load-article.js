@@ -18,7 +18,7 @@ function loadArticle(filename) {
       }
 
       var article = fm(data.toString())
-      var rawBody = article.body
+      var rawBody = article.body.slice(1, -1)
       var body = marked(rawBody)
 
       var summary = article.attributes.summary

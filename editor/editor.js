@@ -57,6 +57,7 @@ app.post("/save", upload.array(), (req, res) => {
     `title: ${req.body.title}`,
     `route: ${req.body.route}`,
     `date: ${req.body.date}`,
+    `description: ${req.body.description}`,
     "---",
     "",
     req.body.content,
