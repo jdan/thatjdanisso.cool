@@ -2,7 +2,7 @@
 title: Hello, J - The Fibonacci Numbers
 route: /j-fibonacci
 date: 2018-01-07
-description: Today we're going to write the Fibonacci sequence using a fun language called J.
+description: Today we're going to compute the Fibonacci numbers using a fun language called J.
 ---
 
 Today we're going to compute the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) using a [fun language called J](https://en.wikipedia.org/wiki/J_(programming_language).
