@@ -3,6 +3,7 @@
 }
 
 #editor {
+  font-size: 16px;
   border-left: 1px solid black;
   position: fixed;
   top: 0; bottom: 0;
@@ -13,14 +14,15 @@
 
 #editor input,
 #editor textarea,
-#editor-save-button {
+#editor button,
+#editor select {
   width: 100%;
   font-family: "Inconsolata", monospace;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 #editor textarea {
-  height: 410px;
+  height: 418px;
 }
 
 #editor-save-button {

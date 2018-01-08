@@ -2,12 +2,34 @@ const $editor = document.getElementById("editor")
 const $title = document.getElementById("editor-title")
 const $date = document.getElementById("editor-date")
 const $content = document.getElementById("editor-content")
+const $loader = document.getElementById("editor-loader")
 
 const $outputTitle = document.querySelector(".title h1")
 const $outputDate = document.querySelector(".date")
 const $outputContent = document.querySelector(".content")
 
-// TODO: Prob want ejs idk
+$loader.addEventListener("change", e => {
+  if (e.target.value) {
+    const article = JSON.parse(e.target.value)
+
+    $title.value = article.title
+    $outputTitle.innerHTML = article.title
+
+    $date.value = strftime("%F", new Date(article.rawDate))
+    $outputDate.innerHTML = article.date
+
+    $content.value = article.rawBody
+    $outputContent.innerHTML = article.body
+
+    // Hax!!! Get rid of the "articles/" prefix
+    document.getElementById("editor-filename").value = article.filename.replace(
+      /^articles\//,
+      ""
+    )
+    document.getElementById("editor-route").value = article.route
+  }
+})
+
 $title.addEventListener("keyup", e => {
   document.title = e.target.value + " | jordan scales"
   $outputTitle.innerHTML = e.target.value

@@ -1,5 +1,4 @@
 var glob = require("glob")
-
 var generateTags = require("./generate-tags.js")
 var loadArticle = require("./load-article.js")
 var saveArticle = require("./save-article.js")

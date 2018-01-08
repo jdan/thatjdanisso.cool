@@ -1,6 +1,8 @@
 const express = require("express")
 const ejs = require("ejs")
 const fs = require("fs")
+const glob = require("glob")
+const loadArticle = require("../load-article.js")
 const multer = require("multer")
 const path = require("path")
 
@@ -10,30 +12,42 @@ app.use("/editor", express.static(path.join(__dirname, "public")))
 app.use(express.static(path.join(__dirname, "../public")))
 
 app.get("/", (req, res) => {
-  res.end(
-    ejs.render(
-      fs.readFileSync(path.join(__dirname, "../templates/layout.ejs"), "utf-8"),
-      {
-        title: "New post | jordan scales",
-        isEditor: true,
-        body: ejs.render(
+  glob("articles/*.md", (err, articles) => {
+    if (err) {
+      throw err
+    }
+
+    Promise.all(articles.map(loadArticle)).then(articles => {
+      res.end(
+        ejs.render(
           fs.readFileSync(
-            path.join(__dirname, "../templates/article.ejs"),
+            path.join(__dirname, "../templates/layout.ejs"),
             "utf-8"
           ),
           {
-            timeless: false,
-            hidden: false,
-            date: "January 01, 1970",
-            title: "New post",
-            tags: [],
-            body: "<p>Start writing...</p>",
-            tweetUrl: "",
+            articles: articles,
+            title: "New post | jordan scales",
+            isEditor: true,
+            body: ejs.render(
+              fs.readFileSync(
+                path.join(__dirname, "../templates/article.ejs"),
+                "utf-8"
+              ),
+              {
+                timeless: false,
+                hidden: false,
+                date: "January 01, 1970",
+                title: "New post",
+                tags: [],
+                body: "<p>Start writing...</p>",
+                tweetUrl: "",
+              }
+            ),
           }
-        ),
-      }
-    )
-  )
+        )
+      )
+    })
+  })
 })
 
 const upload = multer()

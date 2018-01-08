@@ -41,7 +41,20 @@
 
         <% if (typeof isEditor !== "undefined" && isEditor) { %>
             <form id="editor">
-                <table cellspacing="20">
+                <table cellspacing="12">
+                    <tr>
+                        <td colspan="2">
+                            <label>Load post</label>
+                            <select id="editor-loader">
+                                <option value="">Select an article</option>
+                                <% articles.reverse().forEach((article) => { %>
+                                    <option value='<%= JSON.stringify(article) %>'>
+                                        <%= article.filename.replace(/^articles\//, "") %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <label>Title</label>
