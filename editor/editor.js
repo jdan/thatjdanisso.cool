@@ -60,7 +60,7 @@ app.post("/save", upload.array(), (req, res) => {
     `description: ${req.body.description}`,
     "---",
     "",
-    req.body.content,
+    req.body.content.replace(/\r\n/g, "\n"),
   ].join("\n")
 
   fs.writeFile(
