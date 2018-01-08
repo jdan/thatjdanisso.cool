@@ -3,6 +3,7 @@ const $title = document.getElementById("editor-title")
 const $date = document.getElementById("editor-date")
 const $content = document.getElementById("editor-content")
 const $loader = document.getElementById("editor-loader")
+const $save = document.getElementById("editor-save-button")
 
 const $outputTitle = document.querySelector(".title h1")
 const $outputDate = document.querySelector(".date")
@@ -60,8 +61,20 @@ $date.addEventListener("keyup", e => {
 
 $editor.addEventListener("submit", e => {
   e.preventDefault()
+  $save.innerHTML = "Saving..."
+
   fetch("/save", {
     method: "POST",
     body: new FormData($editor),
+  }).then(res => {
+    if (res.status === 200) {
+      $save.innerHTML = "Saved!"
+    } else {
+      $save.innerHTML = "Error :( Try again"
+    }
+
+    setTimeout(() => {
+      $save.innerHTML = "Save"
+    }, 1500)
   })
 })
