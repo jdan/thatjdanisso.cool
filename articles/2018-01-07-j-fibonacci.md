@@ -1,15 +1,17 @@
 ---
-title: Hello, J - The Fibonacci Sequence
+title: Hello, J - The Fibonacci Numbers
 route: /j-fibonacci
 date: 2018-01-07
 description: Today we're going to write the Fibonacci sequence using a fun language called J.
 ---
 
-Today we're going to write the [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number) using a [fun language called J](https://en.wikipedia.org/wiki/J_(programming_language).
+Today we're going to compute the [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) using a [fun language called J](https://en.wikipedia.org/wiki/J_(programming_language).
 
 You are welcome to [skip right to the action](#all-together-now-fibonacci) to see what this post is all about, but the following few paragraphs will introduce some J basics.
 
 ## Hello, REPL!
+
+First thing's first, [go ahead and install J](http://code.jsoftware.com/wiki/System/Installation/All-in-One). I tend to run my code in `jconsole`, but `jqt` gives you a nice GUI with a package manager.
 
 In this post you'll find a number of code blocks. These represent lines from the J REPL. The top line, indented by two spaces, is our input. The line beneath is our output.
 

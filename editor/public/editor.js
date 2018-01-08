@@ -14,6 +14,7 @@ $loader.addEventListener("change", e => {
     const article = JSON.parse(e.target.value)
 
     $title.value = article.title
+    document.title = article.title + " | jordan scales"
     $outputTitle.innerHTML = article.title
 
     $date.value = strftime("%F", new Date(article.rawDate))

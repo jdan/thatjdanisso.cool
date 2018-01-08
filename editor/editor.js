@@ -27,6 +27,7 @@ app.get("/", (req, res) => {
           {
             articles: articles,
             title: "New post | jordan scales",
+            description: "A new post",
             isEditor: true,
             body: ejs.render(
               fs.readFileSync(
