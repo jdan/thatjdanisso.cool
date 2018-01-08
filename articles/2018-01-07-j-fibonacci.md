@@ -28,7 +28,7 @@ Easy enough, right?
 
 ## Lists lists and more lists
 
-J really shines when it comes to lists - and we'll use 'em to build our sequence. You can built lists just by writing the elements separated with whitespace. Seriously.
+J really shines when it comes to lists - and we'll use 'em to build our sequence. You can build lists just by writing the elements separated with whitespace. Seriously.
 
 ```
   1 2 3
