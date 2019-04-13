@@ -2,8 +2,7 @@
 title: A Frontend Programmer's Guide to Languages
 route: /programming-languages
 date: 2019-04-13
-description:
-hidden: true
+description: Today, we're going to make a programming language. No, it won't take a PhD, or years of your time (or even days for that matter). You and I, together, are going to learn what a programming language is and actually build one that can evaluate programs.
 ---
 
 Today, we're going to make a programming language.
@@ -11,6 +10,8 @@ Today, we're going to make a programming language.
 No, it won't take a PhD, or years of your time (or even days for that matter). You and I, together, are going to learn what a programming language _is_ and actually build one that can evaluate programs.
 
 By the end of this post we'll have written a JavaScript function, `evaluate`, which interprets a small programming language with strings and variables. You won't be going off and rewriting your stack in it (though you're certainly welcome to try!), but I hope it's a fun exercise.
+
+I encourage you to copy the code examples in your editor of choice and actually run them. You should be able to make it through this post in a single listen of [Lights - Little Machines](https://open.spotify.com/album/1u8OmwItT46Y1gD2xKAK9D?si=CcY4GgT4TGyOa7eNcnLqTA).
 
 ## Hello, world!
 
@@ -105,7 +106,7 @@ Some initial observations:
 - We introduce "Excite" which adds exclamation points to expressions.
 - We introduce "Append," which also contains expressions in its definition - two of 'em in fact!
 
-Let's start off by creating an **evaluator** to operate "String" expressions.
+Let's start off by creating an **evaluator** to operate on "String" expressions.
 
 ```js
 function evaluate(node) {
@@ -122,7 +123,7 @@ Great, so we replace "HelloWorld" with "String" as the node's type - and return 
 
 **_You just wrote a programming language with strings, let's celebrate!_**
 
-But if we continue with our desired code above, we see the following:
+But if we continue with our desired goal above, we see the following:
 
 ```
 Apple
@@ -143,7 +144,7 @@ So how might we evaluate "Excite" expressions? Based on how it produces "Banana!
 }
 ```
 
-The "expression" field of our Excite expression node isn't a string per-se, but an expression in the HelloStrings language! **Our expression contains an expression inside of it!** (Are you beginning to see why our evaluator accepts a `node` as in "nodes of a tree"?)
+The "expression" field of our Excite expression node isn't a string per se, but an expression in the HelloStrings language! **Our expression contains an expression inside of it!** (Are you beginning to see why our evaluator accepts a `node` as in "nodes of a tree"?)
 
 To illustrate this further, allow me to propose the following, _valid_ program for the HelloStrings language.
 
@@ -162,7 +163,7 @@ console.log(
 );
 ```
 
-In the above example, we'll evaluate the string "Banana" - excite it to get "Banana!" - than excite _that_ to get "Banana!!" (how exciting!)
+In the above example, we'll evaluate the string "Banana" - excite it to get "Banana!" - than excite _that_ to get "Banana!!" (how very exciting!)
 
 Let's begin adding Excite expressions to our language.
 
@@ -190,7 +191,7 @@ case "Excite":
   return evaluate(node.expression) + "!";
 ```
 
-`evaluate` is now a recursive function which operates on String and Excite expressions. Here's the function in all its beauty and invitation to implement `Append` yourself.
+`evaluate` is now a recursive function which operates on String and Excite expressions. Here's the function in all its glory and an invitation to implement `Append` yourself.
 
 ```js
 function evaluate(node) {
@@ -207,3 +208,303 @@ function evaluate(node) {
   }
 }
 ```
+
+## Variables
+
+At this point we have a small language which can produce strings with "Excite" and "Append" statements. Nice job if you've made it this far!
+
+Let's use this momentum and expand our language to support a very popular language construct - **variables**.
+
+By the end of this section, we'll have a language which can declare and retrieve the value of variables in HelloStrings expressions.
+
+```js
+console.log(
+  evaluate(
+    {
+      type: "Let",
+      name: "x",
+      value: {
+        type: "String",
+        content: "Hello, world"
+      },
+      expression: {
+        type: "Excite",
+        expression: {
+          type: "Variable",
+          name: "x"
+        }
+      }
+    },
+    {}
+  )
+);
+// => Hello, world!
+```
+
+There's a lot there, so let's break it down.
+
+- `evaluate` now takes a second argument (_dramatic foreshadowing_)
+- We introduce a new "Variable" expression, which will **lookup** a variable by its name.
+- We introduce a "Let" expression, which makes a new variable with a "name" and a "value" (the value being an expression in our language!), and uses that when evaluating an inner **expression**.
+
+In our case, we're setting "x" to the evaluation of a "Hello, world" String, then retrieving the value of "x" to Excite it.
+
+Let's start by adding "Variable" expressions to `evaluate`.
+
+```js
+function evaluate(node) {
+  switch (node.type) {
+    case "Variable":
+      // We have `node.name`, but what to do with it?
+    ...
+  }
+}
+```
+
+Consider the following code:
+
+```js
+evaluate({ type: "Variable", name: "x" });
+```
+
+Here we want to evaluate the variable `x`, but there doesn't seem to be much to work with. In a typical programming language, what we might we do with a variable?
+
+We look it up!
+
+```js
+function evaluate(node) {
+  switch (node.type) {
+    case "Variable":
+      return lookup(node.name);
+    ...
+  }
+}
+
+```
+
+In order for `lookup` to do anything meaningful, we need to provide it with some sort of **environment** - a collection of variable names and values. We'll call this `env`.
+
+```js
+function evaluate(node) {
+  switch (node.type) {
+    case "Variable":
+      return lookup(node.name, env);
+    ...
+  }
+}
+
+```
+
+And where does `env` come from? Rather unfortunately we can't make it out of thin air (believe me, I tried for many hours), but we _can_ **pass it in to our evaluator.**
+
+```js
+function evaluate(node, env) {
+  switch (node.type) {
+    case "Variable":
+      return lookup(node.name, env);
+    case "String":
+      return node.content;
+    case "Excite":
+      return evaluate(node.expression, env) + "!";
+    case "Append":
+    // Left as an exercise to the reader
+    default:
+      throw `evaluate -- unknown node type ${node.type}`;
+  }
+}
+```
+
+_Remember to add `env` to our recursive calls in Excite and Append (you did implement Append, right?)_
+
+Let's define `lookup`. For simplicity's sake, we'll say an environment is a JavaScript object with `name` keys and `value` values.
+
+```js
+function lookup(env, name) {
+  return env[name];
+}
+```
+
+Simple, right?
+
+```js
+console.log(evaluate({ type: "Variable", name: "x" }, { x: "Hello, world!" }));
+// => Hello, world!
+```
+
+**Congratulations you just added variables to your language!**
+
+Last but not least, we'll want an easy way to create new variables. Without this, we'll be evaluating Excite's and Append's with nothing more than a bunch of global variables - and the marketing department _definitely_ doesn't want that.
+
+Let's start by listing what a "Let" expression actually contains:
+
+```js
+{
+  type: "Let",
+  name: "x",
+  value: {
+    type: "String",
+    content: "Hello, world"
+  },
+  expression: {
+    type: "Excite",
+    expression: {
+      type: "Variable",
+      name: "x"
+    }
+  }
+}
+```
+
+- A "Let" type
+- A "name" field for naming our new variable
+- A "value" field for giving our new variable a value
+- An "expression" field to use our new variable in!
+
+Excellent, now let's get started on implementing the thing.
+
+```js
+function evaluate(node, env) {
+  switch (node.type) {
+    case "Variable":
+      return lookup(env, node.name);
+    case "Let":
+      let newEnv = ???
+      return evaluate(node.expression, newEnv);
+    ...
+  }
+}
+```
+
+We'll be **adding a new variable to our environment**, and using that to evaluate our expression. For simplicity's sake, let's give ourselves an `extendEnv` function to do this.
+
+```js
+function evaluate(node, env) {
+  switch (node.type) {
+    case "Variable":
+      return lookup(env, node.name);
+    case "Let":
+      let name = ???
+      let value = ???
+      let newEnv = extendEnv(env, name, value)
+      return evaluate(node.expression, newEnv);
+    ...
+  }
+}
+```
+
+`name` is simple, that's just `node.name`. For `value`, however, we'll be given a _HelloStrings expression_ to evaluate.
+
+```js
+{
+  type: "Let",
+  name: "x",
+  value: {
+    type: "String",
+    content: "Hello, world"
+  },
+  ...
+}
+```
+
+Still, it's not much code :)
+
+```js
+function evaluate(node, env) {
+  switch (node.type) {
+    case "Variable":
+      return lookup(env, node.name);
+    case "Let":
+      let name = node.name;
+      let value = evaluate(node.value, env);
+      let newEnv = extendEnv(env, name, value);
+      return evaluate(node.expression, newEnv);
+    ...
+  }
+}
+```
+
+Finally, `extendEnv`.
+
+Our `env` is a simple JavaScript object that maps `names` to `values`. We'll need to extend an `env` with a _new_ name and value pair. We can do so with `Object.assign`:
+
+```js
+function extendEnv(env, name, value) {
+  let envAddition = {};
+  envAddition[name] = value;
+
+  return Object.assign({}, env, envAddition);
+}
+```
+
+Or, using some of the latest and greatest JavaScript features:
+
+```js
+function extendEnv(env, name, value) {
+  return {
+    ...env,
+    [name]: value
+  };
+}
+```
+
+Putting it all together, the combination of `lookup`, `extendEnv`, and `evaluate` completes the language.
+
+```js
+function lookup(env, name) {
+  return env[name];
+}
+
+function extendEnv(env, name, value) {
+  return {
+    ...env,
+    [name]: value
+  };
+}
+
+function evaluate(node, env) {
+  switch (node.type) {
+    case "String":
+      return node.content;
+    case "Excite":
+      return evaluate(node.expression, env) + "!";
+    case "Append":
+    // Left as an exercise to the reader
+    case "Variable":
+      return lookup(env, node.name);
+    case "Let":
+      let inner = node.expression;
+      let value = evaluate(node.value, env);
+      let newEnv = extendEnv(env, node.name, value);
+      return evaluate(node.expression, newEnv);
+    default:
+      throw `evaluate -- unknown node type ${node.type}`;
+  }
+}
+```
+
+## Closing notes and things to ponder
+
+If you made it to the end of this post, congratulations and thank you :)
+
+We developed a language and an evaluator that processes [Abstract Syntax Trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree) (or ASTs for short, but I just called 'em nodes for simplicity). Our language has [constants](https://en.wikipedia.org/wiki/Constant_(computer_programming), some small expressions to operate on strings, and [variables](https://en.wikipedia.org/wiki/Variable_(computer_science).
+
+But this is only the beginning! You are ending this article with an `evaluate` function that can grow to support all sorts of common language features (numbers, comments, functions), the only limit is your imagination.
+
+I'd like to leave you with a few concrete exercises, should you wish to revisit your new language on a rainy day:
+
+- How might we add Numbers to our language? How about operations to Add and Multiply them? What about _rational_ numbers (fractions with a numerator and a denominator)?
+- As we saw earlier, we can kickstart our `env` by populating it with global values. Could we add functions to this environment? How might we call them from our language?
+- Can we take our abstract syntax tree and use it to generate JavaScript code? How about Ruby code?
+
+I'll also go ahead and plug some of my favorite resources on Programming Languages.
+
+- Dan Grossman's [Programming Languages on Coursera](https://www.coursera.org/learn/programming-languages) is an entirely free, entirely amazing three-part course for learning the ins and outs of different types of programming languages. I can't recommend it enough.
+- This article is inspired in no short part by [@jamiebuilds's super tiny compiler](https://github.com/jamiebuilds/the-super-tiny-compiler). I encourage you to check out the code to see some of the concepts introduced in this article in more detail.
+- [Crafting Interpreters](https://craftinginterpreters.com/) is an effort to build "a handbook for making programming languages." An ambitious goal, but it's completely free and chock full of different interpreter concepts.
+
+That's all for now. If you liked this article feel free to share it and follow me on Twitter while you're at it: [@jdan](https://twitter.com/jdan).
+
+You should also come work with me at [Stripe](https://stripe.com). My team is [currently hiring in Seattle](https://stripe.com/jobs/search?q=support+products).
+
+Thanks again for reading,
+Jordan
