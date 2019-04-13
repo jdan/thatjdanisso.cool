@@ -41,3 +41,15 @@ function evaluate(node) {
   }
 }
 ```
+
+This function is not terribly interesting, but I'd like to call out a few details.
+
+* Our function accepts a parameter that we call `node` as in, a **node** of a tree. (_dramatic foreshadowing_)
+* The crux of this function is a single `switch` statement that operates on the `type` field of our node. Our language is very simple, so we only have a single "node type."
+* For the "HelloWorld" **expression** - we return a string containing "Hello, world!"
+* If we see something we don't recognize - we throw an error. The programmer (us) messed up!
+
+At this point we have 8 lines of code that evaluate a simple HelloWorld language. I'll emphasize the _simple_ here, there are no variables, no loops, no modules, not even numbers - but it's a language. Our language has a very small **grammar**, but it's a language.
+
+Let's make things more interesting.
+
