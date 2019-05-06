@@ -29,7 +29,7 @@ glob("articles/*.md", (err, articles) => {
     )
 })
 
-glob("public/**/*", (err, staticFiles) => {
+glob("public/**/*.*", (err, staticFiles) => {
   if (err) {
     throw err
   }
