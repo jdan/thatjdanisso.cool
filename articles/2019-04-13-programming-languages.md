@@ -508,7 +508,7 @@ I'll also go ahead and plug some of my favorite resources on Programming Languag
 
 That's all for now. If you liked this article feel free to share it and follow me on Twitter while you're at it: [@jdan](https://twitter.com/jdan).
 
-You should also come work with me at [Stripe](https://stripe.com). My team is [currently hiring in Seattle](https://stripe.com/jobs/search?q=support+products).
+You should also come work with me at [Stripe](https://stripe.com). My team is [currently hiring in Seattle and remotely in North America](https://stripe.com/jobs/listing/full-stack-engineer-support-products/1662755).
 
 Thanks again for reading,<br />
 Jordan
