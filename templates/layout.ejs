@@ -13,17 +13,18 @@
     <link rel="stylesheet" href="/css/demos/shared.css">
 
     <% if (typeof isEditor !== "undefined" && isEditor) { %>
-        <link rel="stylesheet" href="/editor/editor.css">
+    <link rel="stylesheet" href="/editor/editor.css">
     <% } %>
 
-    <link href="http://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=480">
-    <link rel="Shortcut Icon" type="image/x-icon" href="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+    <link rel="Shortcut Icon" type="image/x-icon"
+        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
 
     <meta property="og:title" content="<%= title %>" />
     <meta property="og:description" content="<%= description %>" />
-    <meta property="og:image" content="http://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
 
 </head>
 
@@ -37,65 +38,65 @@
             <span class="sep" aria-hidden="true">.</span>
             <a href="/projects">projects</a>
             <span class="sep" aria-hidden="true">.</span>
-            <a href="http://twitter.com/jdan">twitter</a>
+            <a href="https://twitter.com/jdan">twitter</a>
             <span class="sep" aria-hidden="true">.</span>
-            <a href="http://github.com/jdan">github</a>
+            <a href="https://github.com/jdan">github</a>
         </header>
 
         <%- body %>
 
         <% if (typeof isEditor !== "undefined" && isEditor) { %>
-            <form id="editor">
-                <input type="hidden" name="description" id="editor-description" />
-                <table cellspacing="12">
-                    <tr>
-                        <td colspan="2">
-                            <label>Load post</label>
-                            <select id="editor-loader">
-                                <option value="">Select an article</option>
-                                <% articles.reverse().forEach((article) => { %>
-                                    <option value='<%= JSON.stringify(article) %>'>
-                                        <%= article.filename.replace(/^articles\//, "") %>
-                                    </option>
-                                <% }) %>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Title</label>
-                            <input type="text" name="title" id="editor-title" value="New post" />
-                        </td>
+        <form id="editor">
+            <input type="hidden" name="description" id="editor-description" />
+            <table cellspacing="12">
+                <tr>
+                    <td colspan="2">
+                        <label>Load post</label>
+                        <select id="editor-loader">
+                            <option value="">Select an article</option>
+                            <% articles.reverse().forEach((article) => { %>
+                            <option value='<%= JSON.stringify(article) %>'>
+                                <%= article.filename.replace(/^articles\//, "") %>
+                            </option>
+                            <% }) %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Title</label>
+                        <input type="text" name="title" id="editor-title" value="New post" />
+                    </td>
 
-                        <td>
-                            <label>Date</label>
-                            <input type="text" name="date" id="editor-date" value="1970-01-01" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label>Route</label>
-                            <input type="text" name="route" id="editor-route" value="/hello-world" />
-                        </td>
-                        <td>
-                            <label>Filename</label>
-                            <input type="text" name="filename" id="editor-filename" value="yyyy-mm-dd-hello-world.md" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <label>Content</label>
-                            <br />
-                            <textarea name="content" id="editor-content">Start writing...</textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <button id="editor-save-button">Save</button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+                    <td>
+                        <label>Date</label>
+                        <input type="text" name="date" id="editor-date" value="1970-01-01" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Route</label>
+                        <input type="text" name="route" id="editor-route" value="/hello-world" />
+                    </td>
+                    <td>
+                        <label>Filename</label>
+                        <input type="text" name="filename" id="editor-filename" value="yyyy-mm-dd-hello-world.md" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label>Content</label>
+                        <br />
+                        <textarea name="content" id="editor-content">Start writing...</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button id="editor-save-button">Save</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
         <% } %>
     </div>
 
@@ -103,19 +104,21 @@
     <script src="/js/demos/clicking.js"></script>
     <script src="/js/demos/hover.js"></script>
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-60897046-1', 'auto');
         ga('send', 'pageview');
     </script>
 
     <% if (typeof isEditor !== "undefined" && isEditor) { %>
-        <script src="/editor/ejs.min.js"></script>
-        <script src="/editor/strftime.min.js"></script>
-        <script src="/editor/marked.min.js"></script>
-        <script src="/editor/editor.js"></script>
+    <script src="/editor/ejs.min.js"></script>
+    <script src="/editor/strftime.min.js"></script>
+    <script src="/editor/marked.min.js"></script>
+    <script src="/editor/editor.js"></script>
     <% } %>
 </body>
 
