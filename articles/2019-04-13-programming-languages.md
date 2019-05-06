@@ -288,7 +288,7 @@ In order for `lookup` to do anything meaningful, we need to provide it with some
 function evaluate(node) {
   switch (node.type) {
     case "Variable":
-      return lookup(node.name, env);
+      return lookup(env, node.name);
     ...
   }
 }
@@ -301,7 +301,7 @@ And where does `env` come from? Rather unfortunately we can't make it out of thi
 function evaluate(node, env) {
   switch (node.type) {
     case "Variable":
-      return lookup(node.name, env);
+      return lookup(env, node.name);
     case "String":
       return node.content;
     case "Excite":
@@ -327,7 +327,10 @@ function lookup(env, name) {
 Simple, right?
 
 ```js
-console.log(evaluate({ type: "Variable", name: "x" }, { x: "Hello, world!" }));
+console.log(evaluate(
+  { type: "Variable", name: "x" },
+  { x: "Hello, world!" }
+));
 // => Hello, world!
 ```
 
@@ -495,6 +498,7 @@ I'd like to leave you with a few concrete exercises, should you wish to revisit 
 - How might we add Numbers to our language? How about operations to Add and Multiply them? What about _rational_ numbers (fractions with a numerator and a denominator)?
 - As we saw earlier, we can kickstart our `env` by populating it with global values. Could we add functions to this environment? How might we call them from our language?
 - Can we take our abstract syntax tree and use it to generate JavaScript code? How about Ruby code?
+- Writing our programs in as JavaScript objects doesn't seem to scale well. How might we go about creating a **syntax** for our language and converting that to an AST?
 
 I'll also go ahead and plug some of my favorite resources on Programming Languages.
 
@@ -506,5 +510,5 @@ That's all for now. If you liked this article feel free to share it and follow m
 
 You should also come work with me at [Stripe](https://stripe.com). My team is [currently hiring in Seattle](https://stripe.com/jobs/search?q=support+products).
 
-Thanks again for reading,
+Thanks again for reading,<br />
 Jordan
