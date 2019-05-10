@@ -2,7 +2,6 @@
 title: Operating on Infinite Lists
 route: /infinite-lists
 date: 2019-05-10
-hidden: true
 ---
 
 Today we're going to step through one of my favorite exercises in composing functions - building and operating on infinite streams of data.
@@ -87,7 +86,7 @@ length(ll)
 
 ## The Infinite
 
-Conceptually, an infinite list is a like a finite list. We'll want a way to get an item, and a way to get the rest. Let's kick things off by building a stream of ones: 
+Conceptually, an infinite list is a lot like a finite list. We'll want a way to get an item, and a way to get the rest. Let's kick things off by building a stream of ones: 
 
 ```js
 1, 1, 1, 1, ...
@@ -152,7 +151,7 @@ RangeError: Maximum call stack size exceeded
 
 Uh oh. When creating our stream, `ones` is **eagerly** making subsequent calls to itself over and over again - never coming up for air before our JavaScript console lets us know we probably messed up.
 
-Instead, let's making our implementation **lazier** by returning the `ones` function and calling it when we need it.
+Instead, let's make our implementation **lazier** by returning the `ones` function and calling it when we need it.
 
 ```js
 function ones() {
@@ -429,7 +428,8 @@ take(map(n => 2 * n, nums), 5)
 Using this, we can define functions to operate on streams:
 
 ```js
-const double = (stream) => map(n => 2 * n, stream)
+const double =
+  (stream) => map(n => 2 * n, stream)
 take(double(nums), 5)
 // => [0, 2, 4, 6, 8]
 ```
