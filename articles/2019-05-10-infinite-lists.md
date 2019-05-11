@@ -380,11 +380,11 @@ odds
 
 squares
   first: n * n,
-  rest: () => odds(n + 1),
+  rest: () => squares(n + 1),
 
 flipFlop
   first: n % 2,
-  rest: () => odds(n + 1),
+  rest: () => flipFlop(n + 1),
 ```
 
 Interestingly, our three streams share the same `rest`! And the `first` is just a function of `n`. 
