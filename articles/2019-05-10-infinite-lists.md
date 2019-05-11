@@ -249,7 +249,9 @@ function take(stream, n) {
     return []
   } else {
     const {first, rest} = stream()
-    return [first].concat(take(rest, n - 1));
+    return [first].concat(
+      take(rest, n - 1)
+    );
   }
 }
 
@@ -653,7 +655,9 @@ _Hint #2: You do not need to use the input stream's values._
 
 <pre><code>function fib() {
   return {
-    // 
+    // `reduce` will consume the first
+    // 0, so we'll manually put it
+    // at the front
     first: 0,
     rest: map(
       pair => pair[0],
