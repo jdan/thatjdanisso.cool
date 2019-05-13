@@ -22,9 +22,7 @@ function loadArticle(filename) {
       }
 
       var article = fm(data.toString())
-      var rawBody = article.body.slice(1)
-
-      var body = marked(rawBody)
+      var body = marked(article.body)
 
       var summary = article.attributes.summary
       if (!summary) {
@@ -64,7 +62,7 @@ function loadArticle(filename) {
           rawDate,
           tweetUrl,
           tags,
-          rawBody,
+          rawBody: article.body,
           body,
         })
       )
