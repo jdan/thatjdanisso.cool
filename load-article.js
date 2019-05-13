@@ -7,7 +7,11 @@ var strftime = require("strftime")
 
 marked.setOptions({
   gfm: true,
-  highlight: code => hljs.highlightAuto(code).value,
+  highlight: (code, lang) => {
+    return lang
+      ? hljs.highlight(lang, code).value
+      : hljs.highlightAuto(code).value
+  },
 })
 
 function loadArticle(filename) {
@@ -19,18 +23,6 @@ function loadArticle(filename) {
 
       var article = fm(data.toString())
       var rawBody = article.body.slice(1)
-
-      if (/j\-fibonacci/.test(filename)) {
-        marked.setOptions({
-          gfm: true,
-          highlight: false,
-        })
-      } else {
-        marked.setOptions({
-          gfm: true,
-          highlight: code => hljs.highlightAuto(code).value,
-        })
-      }
 
       var body = marked(rawBody)
 
