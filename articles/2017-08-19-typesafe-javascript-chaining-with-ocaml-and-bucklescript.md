@@ -103,8 +103,7 @@ That’s a lot to unpack, so let’s demonstrate how to get from A to B in code.
     listen g 1337;;
 
 So what’s different here? First, we changed the return type of `get` from a
-`unit` to an `app`. Next we remove the definition for `app` and inline `express
-()` in `f` directly.
+`unit` to an `app`. Next we remove the definition for `app` and inline `express ()` in `f` directly.
 
 Then, instead of using `app` as the first argument for our second call to `get`,
 we pass in `f`. This is type-safe (remember: `f`, `g`, and `express ()` all have
@@ -208,8 +207,7 @@ One way to fix this? **Just make **`price`** the first argument!**
 
 #### Step 3: Save the app for last
 
-If we were to redefine `apply_discount` from `group -> price -> total` to `price
--> group -> total`, we could then remove our parentheses entirely:
+If we were to redefine `apply_discount` from `group -> price -> total` to `price -> group -> total`, we could then remove our parentheses entirely:
 
     ... |> get_age_group |> apply_discount price
 
@@ -310,13 +308,11 @@ Okay so that was a lot of words to tell you how `@@bs.send.pipe` works, but I
 hope this post gave you a bit of intuition for why it exists and why you may
 want to use it. With that, here a few more questions to ponder on:
 
-* You may have noticed that the type of the callback for `get` is `req -> res ->
-  res`. Why the second `res`? Well, express has
+- You may have noticed that the type of the callback for `get` is `req -> res -> res`. Why the second `res`? Well, express has
   [operations](https://expressjs.com/en/4x/api.html#res.append) on `res` like
   `send`, `status`, and `cookie` which are also chainable (they return a `res`
   type). **Write chainable bindings for these methods.**
-* Imagine `@@bs.send.pipe` did not exist and we were stuck with our old
+- Imagine `@@bs.send.pipe` did not exist and we were stuck with our old
   definitions of `get` and `listen`: could we create a function called
-  `make_chainable` where `make_chainable get === get_` and `make_chainable
-  listen === listen_`? **Why or why not?** _(As a hint: what if _`get`_ and
+  `make_chainable` where `make_chainable get === get_` and `make_chainable listen === listen_`? **Why or why not?** _(As a hint: what if _`get`_ and
   _`listen`_ both had three arguments, could we do it then?)_

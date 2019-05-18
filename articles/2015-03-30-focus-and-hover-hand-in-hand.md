@@ -13,11 +13,11 @@ on elements under a mouse cursor.
 
 ```css
 .nav-link {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .nav-link:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 ```
 
@@ -62,8 +62,9 @@ subsequent presses of the tab key.
 addition to the hover styles.
 
 ```css
-.nav-link:hover, .nav-link:focus {
-    opacity: 0.8;
+.nav-link:hover,
+.nav-link:focus {
+  opacity: 0.8;
 }
 ```
 
@@ -92,12 +93,13 @@ visual indicator in and of itself - but it's pretty essential to do this on
 focus for visitors using the keyboard.
 
 ```css
-.nav-link:hover, .nav-link:focus {
-    opacity: 0.8;
+.nav-link:hover,
+.nav-link:focus {
+  opacity: 0.8;
 }
 
 .nav-link:focus {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 ```
 
@@ -113,7 +115,7 @@ focus for visitors using the keyboard.
     </div>
 </div>
 
-**Side note**: While browsers like Chrome *will* declare a
+**Side note**: While browsers like Chrome _will_ declare a
 `focus-ring-color` outline for focused elements by default (a glowing blue
 outline), it's far too easy to accidentally remove these - and sadly many do!
 

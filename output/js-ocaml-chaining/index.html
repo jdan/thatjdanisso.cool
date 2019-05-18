@@ -127,8 +127,7 @@ a function (which takes a request and response), and returns a no-op (type
 let f: app = get (express ()) <span class="hljs-string">"/"</span> index;;
 let g: app = get f <span class="hljs-string">"/about"</span> about;;
 listen g <span class="hljs-number">1337</span>;;</code></pre><p>So what’s different here? First, we changed the return type of <code>get</code> from a
-<code>unit</code> to an <code>app</code>. Next we remove the definition for <code>app</code> and inline <code>express
-()</code> in <code>f</code> directly.</p>
+<code>unit</code> to an <code>app</code>. Next we remove the definition for <code>app</code> and inline <code>express ()</code> in <code>f</code> directly.</p>
 <p>Then, instead of using <code>app</code> as the first argument for our second call to <code>get</code>,
 we pass in <code>f</code>. This is type-safe (remember: <code>f</code>, <code>g</code>, and <code>express ()</code> all have
 the same type) and sure enough if we compile this script and run it — we get a
@@ -190,8 +189,7 @@ argument to <code>apply_discount</code>. This means we need some parentheses (te
 you could use OCaml’s <code>@@</code>, but hold your horses), which we are trying to avoid!</p>
 <pre><code>(... |<span class="hljs-type">&gt; get_age_group</span> |<span class="hljs-type">&gt; apply_discount</span>) price</code></pre><p>One way to fix this? <strong>Just make **<code>price</code></strong> the first argument!**</p>
 <h4 id="step-3-save-the-app-for-last">Step 3: Save the app for last</h4>
-<p>If we were to redefine <code>apply_discount</code> from <code>group -&gt; price -&gt; total</code> to <code>price
--&gt; group -&gt; total</code>, we could then remove our parentheses entirely:</p>
+<p>If we were to redefine <code>apply_discount</code> from <code>group -&gt; price -&gt; total</code> to <code>price -&gt; group -&gt; total</code>, we could then remove our parentheses entirely:</p>
 <pre><code>... |<span class="hljs-type">&gt; get_age_group</span> |<span class="hljs-type">&gt; apply_discount</span> price</code></pre><p>Now price is used as the first argument, and second argument (the age group)
 makes its way to <code>apply_discount</code> from the pipeline.</p>
 <p>“Jordan this is great but I don’t really care about discounts and age groups,
@@ -254,15 +252,13 @@ counterparts.</p>
 hope this post gave you a bit of intuition for why it exists and why you may
 want to use it. With that, here a few more questions to ponder on:</p>
 <ul>
-<li>You may have noticed that the type of the callback for <code>get</code> is <code>req -&gt; res -&gt;
-res</code>. Why the second <code>res</code>? Well, express has
+<li>You may have noticed that the type of the callback for <code>get</code> is <code>req -&gt; res -&gt; res</code>. Why the second <code>res</code>? Well, express has
 <a href="https://expressjs.com/en/4x/api.html#res.append">operations</a> on <code>res</code> like
 <code>send</code>, <code>status</code>, and <code>cookie</code> which are also chainable (they return a <code>res</code>
 type). <strong>Write chainable bindings for these methods.</strong></li>
 <li>Imagine <code>@@bs.send.pipe</code> did not exist and we were stuck with our old
 definitions of <code>get</code> and <code>listen</code>: could we create a function called
-<code>make_chainable</code> where <code>make_chainable get === get_</code> and <code>make_chainable
-listen === listen_</code>? <strong>Why or why not?</strong> <em>(As a hint: what if _<code>get</code></em> and
+<code>make_chainable</code> where <code>make_chainable get === get_</code> and <code>make_chainable listen === listen_</code>? <strong>Why or why not?</strong> <em>(As a hint: what if _<code>get</code></em> and
 <em><code>listen</code></em> both had three arguments, could we do it then?)_</li>
 </ul>
 

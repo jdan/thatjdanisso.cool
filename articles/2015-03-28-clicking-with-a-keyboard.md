@@ -14,22 +14,22 @@ device such as a mouse or trackpad is simply not an option, due to either
 insufficient motor skills, or being unable to see.
 
 In fact, a [2003 study of accessible technology potential](http://www.microsoft.com/enable/research/phase1.aspx)
-commissioned by Microsoft found that an estimated *"7% (or 12 million) of
-working-age adults have a severe dexterity difficulty or impairment,"* one that
+commissioned by Microsoft found that an estimated _"7% (or 12 million) of
+working-age adults have a severe dexterity difficulty or impairment,"_ one that
 would likely prevent them from using a mouse or trackpad.
 
-It's tough to say how many are attempting use *your* website, of course, but
+It's tough to say how many are attempting use _your_ website, of course, but
 there is also the power user who prefers to stick to their keyboard while
 using your website.
 
-Not everyone *wants* to use a mouse. Still, the web is full of interactive elements which require a mouse. Why is that?
+Not everyone _wants_ to use a mouse. Still, the web is full of interactive elements which require a mouse. Why is that?
 
 Let's talk about the most common offender - the `<div>`. Now, the `<div>`
 itself is very useful, but it's vague. It's a broad container of sorts. Not a
 button, not a navbar, not an image - just a big ol' rectangle taking up a few
 rows in our webpage.
 
-Yet, many try to *make* it one of those things and, rather unfortunately, miss
+Yet, many try to _make_ it one of those things and, rather unfortunately, miss
 out on all the cool things that would happen if we had used the **right tag
 for the job**.
 
@@ -41,15 +41,15 @@ Consider the following `<div>` with an `onclick` event handler.
 <div id="action-button">Display</div>
 <span id="output"></span>
 <script>
-    var btn = document.getElementById("action-button");
-    var display = document.getElementById("output");
+  var btn = document.getElementById("action-button")
+  var display = document.getElementById("output")
 
-    btn.onclick = function() {
-        display.innerHTML = "Clicked!";
-        setTimeout(function() {
-            display.innerHTML = "";
-        }, 1000);
-    };
+  btn.onclick = function() {
+    display.innerHTML = "Clicked!"
+    setTimeout(function() {
+      display.innerHTML = ""
+    }, 1000)
+  }
 </script>
 ```
 
@@ -113,23 +113,23 @@ Let's try and fix this by adding a `keypress` event handler.
 <div id="action-button" tabindex="0">Display</div>
 <span id="output"></span>
 <script>
-    var btn = document.getElementById("action-button");
-    var display = document.getElementById("output");
+  var btn = document.getElementById("action-button")
+  var display = document.getElementById("output")
 
-    var activate = function() {
-        display.innerHTML = "Clicked!";
-        setTimeout(function() {
-            display.innerHTML = "";
-        }, 1000);
-    };
+  var activate = function() {
+    display.innerHTML = "Clicked!"
+    setTimeout(function() {
+      display.innerHTML = ""
+    }, 1000)
+  }
 
-    btn.onclick = activate;
-    btn.onkeypress = function(e) {
-        // enter key
-        if (e.keyCode === 13) {
-            activate();
-        }
-    };
+  btn.onclick = activate
+  btn.onkeypress = function(e) {
+    // enter key
+    if (e.keyCode === 13) {
+      activate()
+    }
+  }
 </script>
 ```
 
@@ -151,15 +151,15 @@ I'll call that a success, sort of! The code's a bit longer now (even after
 a bit of refactoring), but it definitely works - our "button" can be
 activated with both a mouse and a keyboard, just like a real button.
 
-But hold on a second, why don't we just *use* a real button?
+But hold on a second, why don't we just _use_ a real button?
 
 ## Semantic buttons
 
 As I briefly mentioned earlier, there's nothing special about a `<div>`. It
 doesn't have any magical behavior, it's just a container. We can shape it,
-paint it, and make it *look* like a button, but it's not a button.
+paint it, and make it _look_ like a button, but it's not a button.
 
-We can write some extra JavaScript to make it *act* like a button, but it's
+We can write some extra JavaScript to make it _act_ like a button, but it's
 **not a button**.
 
 In fact, we're doing all this extra work (and often skipping it), when in
@@ -170,15 +170,15 @@ it.
 <button id="action-button">Display</button>
 <span id="output"></span>
 <script>
-    var btn = document.getElementById("action-button");
-    var display = document.getElementById("output");
+  var btn = document.getElementById("action-button")
+  var display = document.getElementById("output")
 
-    btn.onclick = function() {
-        display.innerHTML = "Clicked!";
-        setTimeout(function() {
-            display.innerHTML = "";
-        }, 1000);
-    };
+  btn.onclick = function() {
+    display.innerHTML = "Clicked!"
+    setTimeout(function() {
+      display.innerHTML = ""
+    }, 1000)
+  }
 </script>
 ```
 
@@ -210,7 +210,7 @@ event for free**. No need to track both a `click` and `keypress` handler here,
 just a `click` will do.
 
 **It turns out that in order to make our button accessible, we don't have to
-do much.** In fact, the *only* difference between our first example and this
+do much.** In fact, the _only_ difference between our first example and this
 one is that we've replaced the `<div>` with a `<button>` - seriously!
 
 ## Sane markup goes a long way

@@ -230,8 +230,7 @@ server.listen(<span class="hljs-number">1337</span>);
 exports.server = server;
 <span class="hljs-comment">/* server Not a pure module */</span></code></pre><p>Now let’s run <code>npm start</code> and visit <code>localhost:1337</code> .</p>
 <p><img src="https://cdn-images-1.medium.com/max/1600/1*MNeQbgDiAklOzLuQMwlrIA.png" alt="A screenshot of a web browser showing a document with the text &quot;Hello, world!&quot;"></p>
-<p>Better yet, we can install <a href="https://github.com/zeit/now">now</a> (<code>npm install -g
-now</code>) and deploy our site instantly (simply by typing <code>now</code> in our terminal).</p>
+<p>Better yet, we can install <a href="https://github.com/zeit/now">now</a> (<code>npm install -g now</code>) and deploy our site instantly (simply by typing <code>now</code> in our terminal).</p>
 <p><img src="https://cdn-images-1.medium.com/max/1600/1*jIDDvhlUevt-3yRUKr6HlA.png" alt="A screenshot of a web browser showing a document with the text &quot;Hello, world!&quot;"></p>
 <p>And Voila! A “web-server” written in OCaml, compiled down to JavaScript. It’s
 not much, but it’s a straight spike through a variety of technologies. Hopefully
@@ -245,8 +244,7 @@ and exploring.</p>
 about extracting the URL and displaying a different message?</strong></li>
 <li>If we surround <code>Hello, world!</code> with <code>&lt;strong&gt;&lt;/strong&gt;</code>, we see that our
 browser renders an HTML document. <strong>Experiment with creating various
-“template” functions</strong> to build a Real Website™. (i.e. <code>fun req -&gt; fun res -&gt;
-layout req</code>)</li>
+“template” functions</strong> to build a Real Website™. (i.e. <code>fun req -&gt; fun res -&gt; layout req</code>)</li>
 <li>Instead of returning a string, <strong>use various methods on the **<code>res</code></strong>
 parameter**, which is an instance of <code>http.ServerResponse</code>.</li>
 </ul>

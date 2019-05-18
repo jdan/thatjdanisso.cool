@@ -66,22 +66,22 @@
 <p>tota11y is built with webpack, and written in ES6 using the wonderful Babel library. Its UI is mostly powered by jQuery. Now you&#39;re almost up to speed - that wasn&#39;t so bad, was it?</p>
 <p>Well, my jQuery chops are not very good, and tota11y rather quickly devolved into jQuery soup. tota11y is modular, meaning that each &quot;plugin&quot; lives in its own directory that encapsulates its logic, templates, and styling. It&#39;s clean and provides a lot of flexibility, but the boundaries between these modules is where things get a little suspicious.</p>
 <p>##</p>
-<pre><code class="language-js"><span class="hljs-keyword">let</span> $toolbar = $(toolbarTemplate());
-$(<span class="hljs-string">"body"</span>).append($toolbar);
+<pre><code class="language-js"><span class="hljs-keyword">let</span> $toolbar = $(toolbarTemplate())
+$(<span class="hljs-string">"body"</span>).append($toolbar)
 
-$toolbar.find(<span class="hljs-string">".tota11y-toolbar-toggle"</span>).click(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
-    e.preventDefault();
-    e.stopPropagation();
-    $toolbar.toggleClass(<span class="hljs-string">"tota11y-expanded"</span>);
-});</code></pre>
+$toolbar.find(<span class="hljs-string">".tota11y-toolbar-toggle"</span>).click(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> {
+  e.preventDefault()
+  e.stopPropagation()
+  $toolbar.toggleClass(<span class="hljs-string">"tota11y-expanded"</span>)
+})</code></pre>
 <p>Where <code>toolbarTemplate</code> corresponds to the following handlebars template.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y tota11y-toolbar"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-toolbar-body"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-plugins"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-toolbar-toggle"</span>&gt;</span>
-        Open
-    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-toolbar-body"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-plugins"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-toolbar-toggle"</span>&gt;</span>
+    Open
+  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 
   </section>

@@ -29,9 +29,9 @@ github.com##.alert.member_add
 
 This filter is made up of three parts:
 
-* `github.com` - the domain on which to filter
-* `##` - a separator
-* `.alert.member_add` - the CSS selector, matching the various `<div class="alert member_add simple">` elements containing the spam
+- `github.com` - the domain on which to filter
+- `##` - a separator
+- `.alert.member_add` - the CSS selector, matching the various `<div class="alert member_add simple">` elements containing the spam
 
 Refresh your GitHub tab, and rejoice in your spam-free activity feed.
 
@@ -49,9 +49,8 @@ Alternatively, you can use the following userscript.
 // by @jdan <http://thatjdanisso.cool>
 // MIT Licensed
 
-[].slice.call(
-    document.querySelectorAll(".alert.member_add")
-  )
+;[].slice
+  .call(document.querySelectorAll(".alert.member_add"))
   .forEach(function(item) {
     item.remove()
   })
@@ -72,7 +71,7 @@ You can even customize the userscript to remove/keep elements containing particu
 ```js
 // Always show tj-related activity items
 if (!/\/tj/.test(item.innerHTML)) {
-    item.remove()
+  item.remove()
 }
 ```
 

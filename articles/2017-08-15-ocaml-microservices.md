@@ -131,12 +131,12 @@ _(also known as FFIs).
 
 Simply put, FFIs let BuckleScript know:
 
-* **The type definitions of our foreign objects**. This allows us to treat these
+- **The type definitions of our foreign objects**. This allows us to treat these
   objects as first class citizens, passing them to and from other functions in
   our codebase. (For example, `micro` will provide us with “request” and
   “response” objects. We can type these so later on we can write functions such
   as `renderIndexPage : res -> string -> unit`).
-* **What type of syntax our OCaml code should compile down to. **In other words,
+- **What type of syntax our OCaml code should compile down to. **In other words,
   should `fillStyle ctx "blue"` compile down to `ctx.fillStyle("blue")` or
   `ctx.fillStyle = "blue"`?
 
@@ -151,19 +151,19 @@ introduce what one of these bindings looks like.
 
 Let’s break this down.
 
-* First we define a few types. Now we can create functions that consume/return a
+- First we define a few types. Now we can create functions that consume/return a
   “thing” of type `req`, `res`, and `server`.
-* `external` is a keyword used for defining FFIs in OCaml. You’ll see this a lot
+- `external` is a keyword used for defining FFIs in OCaml. You’ll see this a lot
   when working with BuckleScript
-* `micro` and `listen` will correspond to functions we can now use in our OCaml
+- `micro` and `listen` will correspond to functions we can now use in our OCaml
   code. Thanks to the type definitions next to them (after the colon), they are
   typesafe and will let your program compile (as well as make tooling such as
   [merlin](https://github.com/ocaml/merlin) infinitely more useful).
-* The strings `"micro"` and `"listen"`, somewhat confusingly, correspond to the
+- The strings `"micro"` and `"listen"`, somewhat confusingly, correspond to the
   JavaScript identifiers that BuckleScript will output. We can technically leave
   these out (and instead specify `""`) since they are equal to the function
   names we are binding to.
-* Finally, the items in the square brackets (namely `bs.module` and `bs.send`)
+- Finally, the items in the square brackets (namely `bs.module` and `bs.send`)
   let BuckleScript know what sort of JavaScript expression we want our new
   `micro` and `listen` functions to compile to.
 
@@ -254,8 +254,7 @@ Now let’s run `npm start` and visit `localhost:1337` .
 
 ![A screenshot of a web browser showing a document with the text "Hello, world!"](https://cdn-images-1.medium.com/max/1600/1*MNeQbgDiAklOzLuQMwlrIA.png)
 
-Better yet, we can install [now](https://github.com/zeit/now) (`npm install -g
-now`) and deploy our site instantly (simply by typing `now` in our terminal).
+Better yet, we can install [now](https://github.com/zeit/now) (`npm install -g now`) and deploy our site instantly (simply by typing `now` in our terminal).
 
 ![A screenshot of a web browser showing a document with the text "Hello, world!"](https://cdn-images-1.medium.com/max/1600/1*jIDDvhlUevt-3yRUKr6HlA.png)
 
@@ -268,14 +267,13 @@ and exploring.
 
 Here are some more questions to ponder on.
 
-* Using micro, the first argument represents an instance of
+- Using micro, the first argument represents an instance of
   `http.IncomingMessage`. This instance has a `url` property — **how would we go
   about extracting the URL and displaying a different message?**
-* If we surround `Hello, world!` with `<strong></strong>`, we see that our
+- If we surround `Hello, world!` with `<strong></strong>`, we see that our
   browser renders an HTML document. **Experiment with creating various
-  “template” functions** to build a Real Website™. (i.e. `fun req -> fun res ->
-  layout req`)
-* Instead of returning a string, **use various methods on the **`res`**
+  “template” functions** to build a Real Website™. (i.e. `fun req -> fun res -> layout req`)
+- Instead of returning a string, **use various methods on the **`res`**
   parameter**, which is an instance of `http.ServerResponse`.
 
 You may also be interested in [Reason](http://facebook.github.io/reason/): a new

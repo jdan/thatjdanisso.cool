@@ -64,8 +64,8 @@
 <h2 id="hello-world">Hello, world!</h2>
 <p>To kick things off, we&#39;ll write an interpreter for a new HelloWorld language, and use it write a <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">Hello, world! program</a>.</p>
 <p>Here&#39;s our goal:</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> program = { <span class="hljs-attr">type</span>: <span class="hljs-string">"HelloWorld"</span> };
-<span class="hljs-built_in">console</span>.log(evaluate(program));
+<pre><code class="language-js"><span class="hljs-keyword">const</span> program = { <span class="hljs-attr">type</span>: <span class="hljs-string">"HelloWorld"</span> }
+<span class="hljs-built_in">console</span>.log(evaluate(program))
 <span class="hljs-comment">// =&gt; Hello, world!</span></code></pre>
 <p>I&#39;m sure you have questions. <em>Real quick</em>, let&#39;s introduce some terms that we&#39;ll more clearly define as we go.</p>
 <ul>
@@ -77,9 +77,9 @@
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">evaluate</span>(<span class="hljs-params">node</span>) </span>{
   <span class="hljs-keyword">switch</span> (node.type) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">"HelloWorld"</span>:
-      <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, world!"</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, world!"</span>
     <span class="hljs-keyword">default</span>:
-      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>;
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>
   }
 }</code></pre>
 <p>This function is not terribly interesting, but I&#39;d like to call out a few details.</p>
@@ -97,9 +97,9 @@
 <pre><code class="language-js"><span class="hljs-built_in">console</span>.log(
   evaluate({
     <span class="hljs-attr">type</span>: <span class="hljs-string">"String"</span>,
-    <span class="hljs-attr">content</span>: <span class="hljs-string">"Apple"</span>
+    <span class="hljs-attr">content</span>: <span class="hljs-string">"Apple"</span>,
   })
-);
+)
 <span class="hljs-comment">// =&gt; Apple</span>
 
 <span class="hljs-built_in">console</span>.log(
@@ -107,10 +107,10 @@
     <span class="hljs-attr">type</span>: <span class="hljs-string">"Excite"</span>,
     <span class="hljs-attr">expression</span>: {
       <span class="hljs-attr">type</span>: <span class="hljs-string">"String"</span>,
-      <span class="hljs-attr">content</span>: <span class="hljs-string">"Banana"</span>
-    }
+      <span class="hljs-attr">content</span>: <span class="hljs-string">"Banana"</span>,
+    },
   })
-);
+)
 <span class="hljs-comment">// =&gt; Banana!</span>
 
 <span class="hljs-built_in">console</span>.log(
@@ -118,17 +118,17 @@
     <span class="hljs-attr">type</span>: <span class="hljs-string">"Append"</span>,
     <span class="hljs-attr">first</span>: {
       <span class="hljs-attr">type</span>: <span class="hljs-string">"String"</span>,
-      <span class="hljs-attr">content</span>: <span class="hljs-string">"Apple"</span>
+      <span class="hljs-attr">content</span>: <span class="hljs-string">"Apple"</span>,
     },
     <span class="hljs-attr">second</span>: {
       <span class="hljs-attr">type</span>: <span class="hljs-string">"Excite"</span>,
       <span class="hljs-attr">expression</span>: {
         <span class="hljs-attr">type</span>: <span class="hljs-string">"String"</span>,
-        <span class="hljs-attr">content</span>: <span class="hljs-string">"Banana"</span>
-      }
-    }
+        <span class="hljs-attr">content</span>: <span class="hljs-string">"Banana"</span>,
+      },
+    },
   })
-);
+)
 <span class="hljs-comment">// =&gt; AppleBanana!</span></code></pre>
 <p>Some initial observations:</p>
 <ul>
@@ -140,9 +140,9 @@
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">evaluate</span>(<span class="hljs-params">node</span>) </span>{
   <span class="hljs-keyword">switch</span> (node.type) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">"String"</span>:
-      <span class="hljs-keyword">return</span> node.content;
+      <span class="hljs-keyword">return</span> node.content
     <span class="hljs-keyword">default</span>:
-      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>;
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>
   }
 }</code></pre>
 <p>Great, so we replace &quot;HelloWorld&quot; with &quot;String&quot; as the node&#39;s type - and return its &quot;content&quot; value instead of the string &quot;Hello, world!&quot;</p>
@@ -167,11 +167,11 @@ evaluate -- unknown node<span class="hljs-built_in"> type </span>Excite</code></
       <span class="hljs-attr">type</span>: <span class="hljs-string">"Excite"</span>,
       <span class="hljs-attr">expression</span>: {
         <span class="hljs-attr">type</span>: <span class="hljs-string">"String"</span>,
-        <span class="hljs-attr">content</span>: <span class="hljs-string">"Banana"</span>
-      }
-    }
+        <span class="hljs-attr">content</span>: <span class="hljs-string">"Banana"</span>,
+      },
+    },
   })
-);</code></pre>
+)</code></pre>
 <p>In the above example, we&#39;ll evaluate the string &quot;Banana&quot; - excite it to get &quot;Banana!&quot; - than excite <em>that</em> to get &quot;Banana!!&quot; (how very exciting!)</p>
 <p>Let&#39;s begin adding Excite expressions to our language.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">evaluate</span>(<span class="hljs-params">node</span>) </span>{
@@ -194,14 +194,14 @@ evaluate -- unknown node<span class="hljs-built_in"> type </span>Excite</code></
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">evaluate</span>(<span class="hljs-params">node</span>) </span>{
   <span class="hljs-keyword">switch</span> (node.type) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">"String"</span>:
-      <span class="hljs-keyword">return</span> node.content;
+      <span class="hljs-keyword">return</span> node.content
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Excite"</span>:
-      <span class="hljs-keyword">return</span> evaluate(node.expression) + <span class="hljs-string">"!"</span>;
+      <span class="hljs-keyword">return</span> evaluate(node.expression) + <span class="hljs-string">"!"</span>
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Append"</span>:
     <span class="hljs-comment">// Now it's your turn, how might we evaluate</span>
     <span class="hljs-comment">// Append expressions?</span>
     <span class="hljs-keyword">default</span>:
-      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>;
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>
   }
 }</code></pre>
 <h2 id="variables">Variables</h2>
@@ -215,19 +215,19 @@ evaluate -- unknown node<span class="hljs-built_in"> type </span>Excite</code></
       <span class="hljs-attr">name</span>: <span class="hljs-string">"x"</span>,
       <span class="hljs-attr">value</span>: {
         <span class="hljs-attr">type</span>: <span class="hljs-string">"String"</span>,
-        <span class="hljs-attr">content</span>: <span class="hljs-string">"Hello, world"</span>
+        <span class="hljs-attr">content</span>: <span class="hljs-string">"Hello, world"</span>,
       },
       <span class="hljs-attr">expression</span>: {
         <span class="hljs-attr">type</span>: <span class="hljs-string">"Excite"</span>,
         <span class="hljs-attr">expression</span>: {
           <span class="hljs-attr">type</span>: <span class="hljs-string">"Variable"</span>,
-          <span class="hljs-attr">name</span>: <span class="hljs-string">"x"</span>
-        }
-      }
+          <span class="hljs-attr">name</span>: <span class="hljs-string">"x"</span>,
+        },
+      },
     },
     {}
   )
-);
+)
 <span class="hljs-comment">// =&gt; Hello, world!</span></code></pre>
 <p>There&#39;s a lot there, so let&#39;s break it down.</p>
 <ul>
@@ -245,7 +245,7 @@ evaluate -- unknown node<span class="hljs-built_in"> type </span>Excite</code></
   }
 }</code></pre>
 <p>Consider the following code:</p>
-<pre><code class="language-js">evaluate({ <span class="hljs-attr">type</span>: <span class="hljs-string">"Variable"</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">"x"</span> });</code></pre>
+<pre><code class="language-js">evaluate({ <span class="hljs-attr">type</span>: <span class="hljs-string">"Variable"</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">"x"</span> })</code></pre>
 <p>Here we want to evaluate the variable <code>x</code>, but there doesn&#39;t seem to be much to work with. In a typical programming language, what we might we do with a variable?</p>
 <p>We look it up!</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">evaluate</span>(<span class="hljs-params">node</span>) </span>{
@@ -269,27 +269,24 @@ evaluate -- unknown node<span class="hljs-built_in"> type </span>Excite</code></
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">evaluate</span>(<span class="hljs-params">node, env</span>) </span>{
   <span class="hljs-keyword">switch</span> (node.type) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Variable"</span>:
-      <span class="hljs-keyword">return</span> lookup(env, node.name);
+      <span class="hljs-keyword">return</span> lookup(env, node.name)
     <span class="hljs-keyword">case</span> <span class="hljs-string">"String"</span>:
-      <span class="hljs-keyword">return</span> node.content;
+      <span class="hljs-keyword">return</span> node.content
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Excite"</span>:
-      <span class="hljs-keyword">return</span> evaluate(node.expression, env) + <span class="hljs-string">"!"</span>;
+      <span class="hljs-keyword">return</span> evaluate(node.expression, env) + <span class="hljs-string">"!"</span>
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Append"</span>:
     <span class="hljs-comment">// Left as an exercise to the reader</span>
     <span class="hljs-keyword">default</span>:
-      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>;
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>
   }
 }</code></pre>
 <p><em>Remember to add <code>env</code> to our recursive calls in Excite and Append (you did implement Append, right?)</em></p>
 <p>Let&#39;s define <code>lookup</code>. For simplicity&#39;s sake, we&#39;ll say an environment is a JavaScript object with <code>name</code> keys and <code>value</code> values.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lookup</span>(<span class="hljs-params">env, name</span>) </span>{
-  <span class="hljs-keyword">return</span> env[name];
+  <span class="hljs-keyword">return</span> env[name]
 }</code></pre>
 <p>Simple, right?</p>
-<pre><code class="language-js"><span class="hljs-built_in">console</span>.log(evaluate(
-  { <span class="hljs-attr">type</span>: <span class="hljs-string">"Variable"</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">"x"</span> },
-  { <span class="hljs-attr">x</span>: <span class="hljs-string">"Hello, world!"</span> }
-));
+<pre><code class="language-js"><span class="hljs-built_in">console</span>.log(evaluate({ <span class="hljs-attr">type</span>: <span class="hljs-string">"Variable"</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">"x"</span> }, { <span class="hljs-attr">x</span>: <span class="hljs-string">"Hello, world!"</span> }))
 <span class="hljs-comment">// =&gt; Hello, world!</span></code></pre>
 <p><strong>Congratulations you just added variables to your language!</strong></p>
 <p>Last but not least, we&#39;ll want an easy way to create new variables. Without this, we&#39;ll be evaluating Excite&#39;s and Append&#39;s with nothing more than a bunch of global variables - and the marketing department <em>definitely</em> doesn&#39;t want that.</p>
@@ -365,47 +362,47 @@ evaluate -- unknown node<span class="hljs-built_in"> type </span>Excite</code></
 <p>Finally, <code>extendEnv</code>.</p>
 <p>Our <code>env</code> is a simple JavaScript object that maps <code>names</code> to <code>values</code>. We&#39;ll need to extend an <code>env</code> with a <em>new</em> name and value pair. We can do so with <code>Object.assign</code>:</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">extendEnv</span>(<span class="hljs-params">env, name, value</span>) </span>{
-  <span class="hljs-keyword">let</span> envAddition = {};
-  envAddition[name] = value;
+  <span class="hljs-keyword">let</span> envAddition = {}
+  envAddition[name] = value
 
-  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, env, envAddition);
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, env, envAddition)
 }</code></pre>
 <p>Or, using some of the latest and greatest JavaScript features:</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">extendEnv</span>(<span class="hljs-params">env, name, value</span>) </span>{
   <span class="hljs-keyword">return</span> {
     ...env,
-    [name]: value
-  };
+    [name]: value,
+  }
 }</code></pre>
 <p>Putting it all together, the combination of <code>lookup</code>, <code>extendEnv</code>, and <code>evaluate</code> completes the language.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lookup</span>(<span class="hljs-params">env, name</span>) </span>{
-  <span class="hljs-keyword">return</span> env[name];
+  <span class="hljs-keyword">return</span> env[name]
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">extendEnv</span>(<span class="hljs-params">env, name, value</span>) </span>{
   <span class="hljs-keyword">return</span> {
     ...env,
-    [name]: value
-  };
+    [name]: value,
+  }
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">evaluate</span>(<span class="hljs-params">node, env</span>) </span>{
   <span class="hljs-keyword">switch</span> (node.type) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">"String"</span>:
-      <span class="hljs-keyword">return</span> node.content;
+      <span class="hljs-keyword">return</span> node.content
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Excite"</span>:
-      <span class="hljs-keyword">return</span> evaluate(node.expression, env) + <span class="hljs-string">"!"</span>;
+      <span class="hljs-keyword">return</span> evaluate(node.expression, env) + <span class="hljs-string">"!"</span>
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Append"</span>:
     <span class="hljs-comment">// Left as an exercise to the reader</span>
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Variable"</span>:
-      <span class="hljs-keyword">return</span> lookup(env, node.name);
+      <span class="hljs-keyword">return</span> lookup(env, node.name)
     <span class="hljs-keyword">case</span> <span class="hljs-string">"Let"</span>:
-      <span class="hljs-keyword">let</span> inner = node.expression;
-      <span class="hljs-keyword">let</span> value = evaluate(node.value, env);
-      <span class="hljs-keyword">let</span> newEnv = extendEnv(env, node.name, value);
-      <span class="hljs-keyword">return</span> evaluate(node.expression, newEnv);
+      <span class="hljs-keyword">let</span> inner = node.expression
+      <span class="hljs-keyword">let</span> value = evaluate(node.value, env)
+      <span class="hljs-keyword">let</span> newEnv = extendEnv(env, node.name, value)
+      <span class="hljs-keyword">return</span> evaluate(node.expression, newEnv)
     <span class="hljs-keyword">default</span>:
-      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>;
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">`evaluate -- unknown node type <span class="hljs-subst">${node.type}</span>`</span>
   }
 }</code></pre>
 <h2 id="closing-notes-and-things-to-ponder">Closing notes and things to ponder</h2>

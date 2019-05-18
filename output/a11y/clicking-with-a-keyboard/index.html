@@ -72,8 +72,8 @@ mechanisms for navigating around a webpage. In many of these cases a pointing
 device such as a mouse or trackpad is simply not an option, due to either
 insufficient motor skills, or being unable to see.</p>
 <p>In fact, a <a href="http://www.microsoft.com/enable/research/phase1.aspx">2003 study of accessible technology potential</a>
-commissioned by Microsoft found that an estimated *&quot;7% (or 12 million) of
-working-age adults have a severe dexterity difficulty or impairment,&quot;* one that
+commissioned by Microsoft found that an estimated <em>&quot;7% (or 12 million) of
+working-age adults have a severe dexterity difficulty or impairment,&quot;</em> one that
 would likely prevent them from using a mouse or trackpad.</p>
 <p>It&#39;s tough to say how many are attempting use <em>your</em> website, of course, but
 there is also the power user who prefers to stick to their keyboard while
@@ -91,15 +91,15 @@ for the job</strong>.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-    <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>);
-    <span class="hljs-keyword">var</span> display = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"output"</span>);
+  <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>)
+  <span class="hljs-keyword">var</span> display = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"output"</span>)
 
-    btn.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-        display.innerHTML = <span class="hljs-string">"Clicked!"</span>;
-        setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-            display.innerHTML = <span class="hljs-string">""</span>;
-        }, <span class="hljs-number">1000</span>);
-    };
+  btn.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    display.innerHTML = <span class="hljs-string">"Clicked!"</span>
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      display.innerHTML = <span class="hljs-string">""</span>
+    }, <span class="hljs-number">1000</span>)
+  }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <span class="sr-only">
     Depicted below is a demo of the code above interacting with a mouse
@@ -150,23 +150,23 @@ but we&#39;re attempting to activate it with a keyboard.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-    <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>);
-    <span class="hljs-keyword">var</span> display = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"output"</span>);
+  <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>)
+  <span class="hljs-keyword">var</span> display = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"output"</span>)
 
-    <span class="hljs-keyword">var</span> activate = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-        display.innerHTML = <span class="hljs-string">"Clicked!"</span>;
-        setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-            display.innerHTML = <span class="hljs-string">""</span>;
-        }, <span class="hljs-number">1000</span>);
-    };
+  <span class="hljs-keyword">var</span> activate = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    display.innerHTML = <span class="hljs-string">"Clicked!"</span>
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      display.innerHTML = <span class="hljs-string">""</span>
+    }, <span class="hljs-number">1000</span>)
+  }
 
-    btn.onclick = activate;
-    btn.onkeypress = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
-        <span class="hljs-comment">// enter key</span>
-        <span class="hljs-keyword">if</span> (e.keyCode === <span class="hljs-number">13</span>) {
-            activate();
-        }
-    };
+  btn.onclick = activate
+  btn.onkeypress = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+    <span class="hljs-comment">// enter key</span>
+    <span class="hljs-keyword">if</span> (e.keyCode === <span class="hljs-number">13</span>) {
+      activate()
+    }
+  }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <span class="sr-only">
     Depicted below is a demo of the code above interacting with the enter key.
@@ -198,15 +198,15 @@ it.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-    <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>);
-    <span class="hljs-keyword">var</span> display = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"output"</span>);
+  <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>)
+  <span class="hljs-keyword">var</span> display = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"output"</span>)
 
-    btn.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-        display.innerHTML = <span class="hljs-string">"Clicked!"</span>;
-        setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-            display.innerHTML = <span class="hljs-string">""</span>;
-        }, <span class="hljs-number">1000</span>);
-    };
+  btn.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    display.innerHTML = <span class="hljs-string">"Clicked!"</span>
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      display.innerHTML = <span class="hljs-string">""</span>
+    }, <span class="hljs-number">1000</span>)
+  }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <span class="sr-only">
     Depicted below is a demo of the code above interacting with both a mouse

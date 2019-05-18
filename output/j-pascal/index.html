@@ -58,7 +58,7 @@
 
   <section class="content">
     <p>Following <a href="/j-fibonacci">my previous post on the Fibonacci numbers</a>, here&#39;s a quick post on generating another famous mathematical sequence - <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal&#39;s Triangle</a>.</p>
-<pre><code>    <span class="hljs-number">1</span> 
+<pre><code>    <span class="hljs-number">1</span>
    <span class="hljs-number">1</span> <span class="hljs-number">1</span>
   <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span>
  <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span>
@@ -105,10 +105,10 @@
   +/ <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>
 <span class="hljs-number">9</span></code></pre><p>Similarly, we can do this pairwise.</p>
 <pre><code>  <span class="hljs-number">2</span> +/\ i<span class="hljs-number">.5</span>
-<span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span> <span class="hljs-number">7</span></code></pre><p>Pretty nifty right? </p>
+<span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span> <span class="hljs-number">7</span></code></pre><p>Pretty nifty right?</p>
 <h2 id="row-after-row">Row after row</h2>
 <p>So why is this useful? Well, if we take another look at our triangle:</p>
-<pre><code>    <span class="hljs-number">1</span> 
+<pre><code>    <span class="hljs-number">1</span>
    <span class="hljs-number">1</span> <span class="hljs-number">1</span>
   <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span>
  <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span>
@@ -127,7 +127,7 @@
   <span class="hljs-number">2</span> +/\ <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
   <span class="hljs-number">2</span> +/\ <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
-<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre><p>Much better. So how do we surround with 0s automatically? </p>
+<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre><p>Much better. So how do we surround with 0s automatically?</p>
 <p>The <a href="http://www.jsoftware.com/help/dictionary/d320.htm">append verb <code>,</code></a> is used to join items and lists.</p>
 <pre><code>  <span class="hljs-number">0</span> , <span class="hljs-number">1</span>
 <span class="hljs-number">0</span> <span class="hljs-number">1</span>

@@ -84,9 +84,8 @@
 <span class="hljs-comment">// by @jdan &lt;http://thatjdanisso.cool&gt;</span>
 <span class="hljs-comment">// MIT Licensed</span>
 
-[].slice.call(
-    <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">".alert.member_add"</span>)
-  )
+;[].slice
+  .call(<span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">".alert.member_add"</span>))
   .forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>{
     item.remove()
   })</code></pre>
@@ -98,7 +97,7 @@
 <p>You can even customize the userscript to remove/keep elements containing particular usernames if you&#39;re into that sort of thing.</p>
 <pre><code class="language-js"><span class="hljs-comment">// Always show tj-related activity items</span>
 <span class="hljs-keyword">if</span> (!<span class="hljs-regexp">/\/tj/</span>.test(item.innerHTML)) {
-    item.remove()
+  item.remove()
 }</code></pre>
 <p>But I think we can safely remove &#39;em all :)</p>
 

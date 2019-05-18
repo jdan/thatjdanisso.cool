@@ -52,7 +52,7 @@ const ll = {
       first: 2,
       rest: null,
     },
-  }
+  },
 }
 ```
 
@@ -116,7 +116,7 @@ You'll quickly find however, that we can't just define a variable in terms of it
 ReferenceError: ones is not defined
 ```
 
-What *can* we define in terms of itself? Functions! Remember `length` from above?
+What _can_ we define in terms of itself? Functions! Remember `length` from above?
 
 ```js
 function length(ll) {
@@ -172,7 +172,9 @@ ones().first
 // => 1
 ones().rest().first
 // => 1
-ones().rest().rest().first
+ones()
+  .rest()
+  .rest().first
 // => 1
 ```
 
@@ -197,7 +199,9 @@ twos().first
 // => 2
 twos().rest().first
 // => 2
-twos().rest().rest().first
+twos()
+  .rest()
+  .rest().first
 // => 2
 ```
 
@@ -211,7 +215,7 @@ function nums(n) {
     first: n,
     // Remember, rest is a stream,
     // and streams are functions.
-    rest: () => nums(n + 1)
+    rest: () => nums(n + 1),
   }
 }
 
@@ -219,7 +223,9 @@ nums(1).first
 // => 1
 nums(1).rest().first
 // => 2
-nums(1).rest().rest().first
+nums(1)
+  .rest()
+  .rest().first
 // => 3
 nums(999).first
 // => 999
@@ -233,7 +239,7 @@ function nums(n = 1) {
     first: n,
     // Remember, rest is a stream,
     // and streams are functions.
-    rest: () => nums(n + 1)
+    rest: () => nums(n + 1),
   }
 }
 
@@ -248,10 +254,8 @@ function take(stream, n) {
   if (n <= 0) {
     return []
   } else {
-    const {first, rest} = stream()
-    return [first].concat(
-      take(rest, n - 1)
-    );
+    const { first, rest } = stream()
+    return [first].concat(take(rest, n - 1))
   }
 }
 
@@ -414,7 +418,7 @@ We can think of this as a "map" equivalent for streams. Here's how we might do i
 ```js
 function map(f, stream) {
   return () => {
-    const {first, rest} = stream()
+    const { first, rest } = stream()
 
     return {
       first: f(first),
@@ -430,8 +434,7 @@ take(map(n => 2 * n, nums), 5)
 Using this, we can define functions to operate on streams:
 
 ```js
-const double =
-  (stream) => map(n => 2 * n, stream)
+const double = stream => map(n => 2 * n, stream)
 take(double(nums), 5)
 // => [0, 2, 4, 6, 8]
 ```
@@ -458,7 +461,7 @@ If the test does not pass, we'll just filter the `tail` and ignore the `first`. 
 
 ```js
 function filter(f, stream) {
-  const {first, rest} = stream()
+  const { first, rest } = stream()
   if (f(first)) {
     // Streams are functions
     return () => ({
@@ -514,7 +517,7 @@ take(fizzbuzz, 5)
 **Using `map` and `nums`, write a function that takes two values and produces a stream that toggles between them.**
 
 ```js
-take(toggle('hi', 'ho'), 5)
+take(toggle("hi", "ho"), 5)
 // => ['hi', 'ho', 'hi', 'ho', 'hi']
 ```
 
@@ -534,7 +537,7 @@ take(toggle('hi', 'ho'), 5)
 **Using `map` and `nums`, write a function that takes an array of values and produces a stream that cycles between them.**
 
 ```js
-take(cycle(['a', 'b', 'c']), 5)
+take(cycle(["a", "b", "c"]), 5)
 // => ['a', 'b', 'c', 'a', 'b']
 ```
 
@@ -607,17 +610,9 @@ _Hint: give `total` a second argument that defaults to 0_
 `reduce` should take a 2-argument accumulator function, an initial value, and a stream.
 
 ```js
-take(reduce(
-  (acc, value) => acc + value,
-  0,
-  nums
-), 6)
+take(reduce((acc, value) => acc + value, 0, nums), 6)
 // => [1, 3, 6, 10, 15, 21]
-take(reduce(
-  (acc, value) => acc * value,
-  1,
-  nums
-), 6)
+take(reduce((acc, value) => acc * value, 1, nums), 6)
 // => [1, 2, 6, 24, 120, 720]
 ```
 
@@ -680,8 +675,8 @@ Thanks for reading this post, and an extra special thanks if you took the time t
 
 It would be a mistake to leave you without some links for further reading.
 
-* [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html#%_toc_start) is my favorite text on how to write and compose programs. Specifically, [Section 3.5](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-24.html#%_sec_3.5) talk about streams that look eerily similar to the ones in this post. That's no accident!
-* My first introduction to this data structure was in Dan Grossman's [Programming Languages course on Coursera](https://www.coursera.org/learn/programming-languages). I had an absolute blast with this one, and learned a ton about FP, OOP, and type systems. I _highly_ recommend it.
-* Lastly, if you like the idea of infinite sequences but want to use more modern JS instead of first principles, [Reginald Braithwaite has written extensively on the topic](https://raganwald.com/2019/03/11/enumerations-denumerables-recursion-infinity.html).
+- [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html#%_toc_start) is my favorite text on how to write and compose programs. Specifically, [Section 3.5](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-24.html#%_sec_3.5) talk about streams that look eerily similar to the ones in this post. That's no accident!
+- My first introduction to this data structure was in Dan Grossman's [Programming Languages course on Coursera](https://www.coursera.org/learn/programming-languages). I had an absolute blast with this one, and learned a ton about FP, OOP, and type systems. I _highly_ recommend it.
+- Lastly, if you like the idea of infinite sequences but want to use more modern JS instead of first principles, [Reginald Braithwaite has written extensively on the topic](https://raganwald.com/2019/03/11/enumerations-denumerables-recursion-infinity.html).
 
 That's all I have for you now. Thanks again for reading, feel free to share on social media, and [come work with me at Stripe (we're hiring almost everywhere!)](https://stripe.com/jobs)

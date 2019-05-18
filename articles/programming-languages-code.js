@@ -79,43 +79,43 @@ console.log(
 */
 
 function lookup(env, name) {
-  return env[name];
+  return env[name]
 }
 
 function extendEnv(env, name, value) {
   return {
     ...env,
-    [name]: value
-  };
+    [name]: value,
+  }
 }
 
 function evaluate(node, env) {
   switch (node.type) {
     case "String":
-      return node.content;
+      return node.content
     case "Excite":
-      return evaluate(node.expression, env) + "!";
+      return evaluate(node.expression, env) + "!"
     case "Append":
-      return evaluate(node.first, env) + evaluate(node.second, env);
+      return evaluate(node.first, env) + evaluate(node.second, env)
     case "Variable":
-      return lookup(env, node.name);
+      return lookup(env, node.name)
     case "Let":
-      let inner = node.expression;
-      let value = evaluate(node.value, env);
-      let newEnv = extendEnv(env, node.name, value);
+      let inner = node.expression
+      let value = evaluate(node.value, env)
+      let newEnv = extendEnv(env, node.name, value)
 
-      return evaluate(node.expression, newEnv);
+      return evaluate(node.expression, newEnv)
     default:
-      throw `evaluate -- unknown node type ${node.type}`;
+      throw `evaluate -- unknown node type ${node.type}`
   }
 }
 
 console.log(
   evaluate({
     type: "String",
-    content: "Apple"
+    content: "Apple",
   })
-);
+)
 // => Apple
 
 console.log(
@@ -123,10 +123,10 @@ console.log(
     type: "Excite",
     expression: {
       type: "String",
-      content: "Banana"
-    }
+      content: "Banana",
+    },
   })
-);
+)
 // => Banana!
 
 console.log(
@@ -134,17 +134,17 @@ console.log(
     type: "Append",
     first: {
       type: "String",
-      content: "Apple"
+      content: "Apple",
     },
     second: {
       type: "Excite",
       expression: {
         type: "String",
-        content: "Banana"
-      }
-    }
+        content: "Banana",
+      },
+    },
   })
-);
+)
 // => AppleBanana!
 
 console.log(
@@ -154,19 +154,19 @@ console.log(
       name: "x",
       value: {
         type: "String",
-        content: "Hello, world"
+        content: "Hello, world",
       },
       expression: {
         type: "Excite",
         expression: {
           type: "Variable",
-          name: "x"
-        }
-      }
+          name: "x",
+        },
+      },
     },
     {}
   )
-);
+)
 // => Hello, world!
 
 console.log(
@@ -176,8 +176,8 @@ console.log(
       type: "Excite",
       expression: {
         type: "String",
-        content: "Banana"
-      }
-    }
+        content: "Banana",
+      },
+    },
   })
-);
+)

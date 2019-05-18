@@ -20,8 +20,8 @@ To kick things off, we'll write an interpreter for a new HelloWorld language, an
 Here's our goal:
 
 ```js
-const program = { type: "HelloWorld" };
-console.log(evaluate(program));
+const program = { type: "HelloWorld" }
+console.log(evaluate(program))
 // => Hello, world!
 ```
 
@@ -37,9 +37,9 @@ Now let's build our **evaluator**.
 function evaluate(node) {
   switch (node.type) {
     case "HelloWorld":
-      return "Hello, world!";
+      return "Hello, world!"
     default:
-      throw `evaluate -- unknown node type ${node.type}`;
+      throw `evaluate -- unknown node type ${node.type}`
   }
 }
 ```
@@ -65,9 +65,9 @@ Here's our goal for this section:
 console.log(
   evaluate({
     type: "String",
-    content: "Apple"
+    content: "Apple",
   })
-);
+)
 // => Apple
 
 console.log(
@@ -75,10 +75,10 @@ console.log(
     type: "Excite",
     expression: {
       type: "String",
-      content: "Banana"
-    }
+      content: "Banana",
+    },
   })
-);
+)
 // => Banana!
 
 console.log(
@@ -86,17 +86,17 @@ console.log(
     type: "Append",
     first: {
       type: "String",
-      content: "Apple"
+      content: "Apple",
     },
     second: {
       type: "Excite",
       expression: {
         type: "String",
-        content: "Banana"
-      }
-    }
+        content: "Banana",
+      },
+    },
   })
-);
+)
 // => AppleBanana!
 ```
 
@@ -112,9 +112,9 @@ Let's start off by creating an **evaluator** to operate on "String" expressions.
 function evaluate(node) {
   switch (node.type) {
     case "String":
-      return node.content;
+      return node.content
     default:
-      throw `evaluate -- unknown node type ${node.type}`;
+      throw `evaluate -- unknown node type ${node.type}`
   }
 }
 ```
@@ -156,11 +156,11 @@ console.log(
       type: "Excite",
       expression: {
         type: "String",
-        content: "Banana"
-      }
-    }
+        content: "Banana",
+      },
+    },
   })
-);
+)
 ```
 
 In the above example, we'll evaluate the string "Banana" - excite it to get "Banana!" - than excite _that_ to get "Banana!!" (how very exciting!)
@@ -197,14 +197,14 @@ case "Excite":
 function evaluate(node) {
   switch (node.type) {
     case "String":
-      return node.content;
+      return node.content
     case "Excite":
-      return evaluate(node.expression) + "!";
+      return evaluate(node.expression) + "!"
     case "Append":
     // Now it's your turn, how might we evaluate
     // Append expressions?
     default:
-      throw `evaluate -- unknown node type ${node.type}`;
+      throw `evaluate -- unknown node type ${node.type}`
   }
 }
 ```
@@ -225,19 +225,19 @@ console.log(
       name: "x",
       value: {
         type: "String",
-        content: "Hello, world"
+        content: "Hello, world",
       },
       expression: {
         type: "Excite",
         expression: {
           type: "Variable",
-          name: "x"
-        }
-      }
+          name: "x",
+        },
+      },
     },
     {}
   )
-);
+)
 // => Hello, world!
 ```
 
@@ -264,7 +264,7 @@ function evaluate(node) {
 Consider the following code:
 
 ```js
-evaluate({ type: "Variable", name: "x" });
+evaluate({ type: "Variable", name: "x" })
 ```
 
 Here we want to evaluate the variable `x`, but there doesn't seem to be much to work with. In a typical programming language, what we might we do with a variable?
@@ -301,15 +301,15 @@ And where does `env` come from? Rather unfortunately we can't make it out of thi
 function evaluate(node, env) {
   switch (node.type) {
     case "Variable":
-      return lookup(env, node.name);
+      return lookup(env, node.name)
     case "String":
-      return node.content;
+      return node.content
     case "Excite":
-      return evaluate(node.expression, env) + "!";
+      return evaluate(node.expression, env) + "!"
     case "Append":
     // Left as an exercise to the reader
     default:
-      throw `evaluate -- unknown node type ${node.type}`;
+      throw `evaluate -- unknown node type ${node.type}`
   }
 }
 ```
@@ -320,17 +320,14 @@ Let's define `lookup`. For simplicity's sake, we'll say an environment is a Java
 
 ```js
 function lookup(env, name) {
-  return env[name];
+  return env[name]
 }
 ```
 
 Simple, right?
 
 ```js
-console.log(evaluate(
-  { type: "Variable", name: "x" },
-  { x: "Hello, world!" }
-));
+console.log(evaluate({ type: "Variable", name: "x" }, { x: "Hello, world!" }))
 // => Hello, world!
 ```
 
@@ -432,10 +429,10 @@ Our `env` is a simple JavaScript object that maps `names` to `values`. We'll nee
 
 ```js
 function extendEnv(env, name, value) {
-  let envAddition = {};
-  envAddition[name] = value;
+  let envAddition = {}
+  envAddition[name] = value
 
-  return Object.assign({}, env, envAddition);
+  return Object.assign({}, env, envAddition)
 }
 ```
 
@@ -445,8 +442,8 @@ Or, using some of the latest and greatest JavaScript features:
 function extendEnv(env, name, value) {
   return {
     ...env,
-    [name]: value
-  };
+    [name]: value,
+  }
 }
 ```
 
@@ -454,33 +451,33 @@ Putting it all together, the combination of `lookup`, `extendEnv`, and `evaluate
 
 ```js
 function lookup(env, name) {
-  return env[name];
+  return env[name]
 }
 
 function extendEnv(env, name, value) {
   return {
     ...env,
-    [name]: value
-  };
+    [name]: value,
+  }
 }
 
 function evaluate(node, env) {
   switch (node.type) {
     case "String":
-      return node.content;
+      return node.content
     case "Excite":
-      return evaluate(node.expression, env) + "!";
+      return evaluate(node.expression, env) + "!"
     case "Append":
     // Left as an exercise to the reader
     case "Variable":
-      return lookup(env, node.name);
+      return lookup(env, node.name)
     case "Let":
-      let inner = node.expression;
-      let value = evaluate(node.value, env);
-      let newEnv = extendEnv(env, node.name, value);
-      return evaluate(node.expression, newEnv);
+      let inner = node.expression
+      let value = evaluate(node.value, env)
+      let newEnv = extendEnv(env, node.name, value)
+      return evaluate(node.expression, newEnv)
     default:
-      throw `evaluate -- unknown node type ${node.type}`;
+      throw `evaluate -- unknown node type ${node.type}`
   }
 }
 ```

@@ -189,7 +189,6 @@ We can extract our argument using a fork to simplify our expression.
 
 We can stack our verbs multiple times.
 
-
 ```
   ({: , +/) 1 2
 2 3

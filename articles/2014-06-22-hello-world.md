@@ -26,12 +26,12 @@ example
 
 Some features include:
 
-* Generate a simple blog with nothing but a few markdown files
-* Serve anything static by placing it in the *public/* directory
-* A comprehensive CLI to handle best-practices for you
-* Customize templates to your heart's desire
-* Run your blog as web server or export it as a static site
-* Add any CSS or JavaScript and have it just work
+- Generate a simple blog with nothing but a few markdown files
+- Serve anything static by placing it in the _public/_ directory
+- A comprehensive CLI to handle best-practices for you
+- Customize templates to your heart's desire
+- Run your blog as web server or export it as a static site
+- Add any CSS or JavaScript and have it just work
 
 #### What do I get?
 
@@ -107,9 +107,9 @@ Once upon a time...
 This article will be accessible at the url `/hello-world` by default
 (based on the article's title). You can customize this option by either:
 
-* Setting the `slug` property, making the article accessible at
+- Setting the `slug` property, making the article accessible at
   `/your-slug-here`
-* Setting the `route` property, and completely overriding the slug (i.e.
+- Setting the `route` property, and completely overriding the slug (i.e.
   `route: /2014/06/24/musings/my-article`)
 
 You can include any custom options you'd like (i.e. `color: red`) in
@@ -120,9 +120,9 @@ your YAML Front Matter, and recall it from a custom template.
 Tinman uses [EJS](http://embeddedjs.com/) templates and includes the
 following:
 
-* **article.ejs** for templating an individual article
-* **index.ejs** for the article index page
-* **layout.ejs** which wraps around the other two and renders asset tags
+- **article.ejs** for templating an individual article
+- **index.ejs** for the article index page
+- **layout.ejs** which wraps around the other two and renders asset tags
 
 To customize these templates, pass the `--with-templates` option to
 `tinman create`:
@@ -159,9 +159,9 @@ The **article template** receives all properties of the article as defined in
 the YAML Front Matter. The content of the article is stored as `body`. Some
 extra fields include:
 
-* **summary**: the first paragraph of the rendered article
-* **filename**: self-explanatory
-* **date**: the date either extracted from the filename or from the
+- **summary**: the first paragraph of the rendered article
+- **filename**: self-explanatory
+- **date**: the date either extracted from the filename or from the
   `date` property of the article's Front Matter
 
 The **index template** has access to the array `articles`, which holds
@@ -189,7 +189,7 @@ body {
 And access it like so:
 
 ```html
-<link rel="stylesheet" href="/css/colors/main.css">
+<link rel="stylesheet" href="/css/colors/main.css" />
 ```
 
 You can follow the same pattern for including images in your articles,
@@ -197,7 +197,7 @@ or even serving static HTML documents.
 
 In addition, Tinman scans for javascripts (`*.js`) and stylesheets (`*.css`)
 and automatically generates resource tags which are placed in the layout
-template (*layout.ejs* is sent both a *scripts* and *stylesheets*
+template (_layout.ejs_ is sent both a _scripts_ and _stylesheets_
 string). **You do not need to edit any templates after writing
 javascripts or stylesheets.**
 

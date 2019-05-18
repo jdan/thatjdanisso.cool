@@ -14,27 +14,25 @@ Well, my jQuery chops are not very good, and tota11y rather quickly devolved int
 ##
 
 ```js
-let $toolbar = $(toolbarTemplate());
-$("body").append($toolbar);
+let $toolbar = $(toolbarTemplate())
+$("body").append($toolbar)
 
-$toolbar.find(".tota11y-toolbar-toggle").click((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    $toolbar.toggleClass("tota11y-expanded");
-});
+$toolbar.find(".tota11y-toolbar-toggle").click(e => {
+  e.preventDefault()
+  e.stopPropagation()
+  $toolbar.toggleClass("tota11y-expanded")
+})
 ```
 
 Where `toolbarTemplate` corresponds to the following handlebars template.
 
 ```html
 <div class="tota11y tota11y-toolbar">
-    <div class="tota11y-toolbar-body">
-        <div class="tota11y-plugins"></div>
-    </div>
-    <a href="#" class="tota11y-toolbar-toggle">
-        Open
-    </a>
+  <div class="tota11y-toolbar-body">
+    <div class="tota11y-plugins"></div>
+  </div>
+  <a href="#" class="tota11y-toolbar-toggle">
+    Open
+  </a>
 </div>
 ```
-
-

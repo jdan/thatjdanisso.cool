@@ -12,9 +12,9 @@ I know, I know - changing history can be scary. Rebasing, squashing, and loads o
 
 This guide exhibits my own experience with using the reflog to fix stupid mistakes I've made on the command line, and is divided into three sections.
 
-* [Undoing amended commits](#undo-amend)
-* [Reverting bad merges](#undo-merge)
-* [Recovering hard resets](#undo-hard-reset)
+- [Undoing amended commits](#undo-amend)
+- [Reverting bad merges](#undo-merge)
+- [Recovering hard resets](#undo-hard-reset)
 
 ### What is the reflog?
 
@@ -32,9 +32,10 @@ Let's walk through a couple of use-cases on a [real repository](https://github.c
      create mode 100644 hello.txt
 
 <a id="undo-amend"></a>
+
 ### Example A: Undoing an Amended Commit
 
-`git commit --amend` is a great way to consolidate your work. Missed a semicolon? No need to make an entirely new commit for that, just amend the previous one! But, what if we want to **undo** an amend to a commit? We can't revert a particular commit, since we only want to remove *some* of the changes in a commit. Seems tricky, but it really isn't. Let's start by amending our initial commit.
+`git commit --amend` is a great way to consolidate your work. Missed a semicolon? No need to make an entirely new commit for that, just amend the previous one! But, what if we want to **undo** an amend to a commit? We can't revert a particular commit, since we only want to remove _some_ of the changes in a commit. Seems tricky, but it really isn't. Let's start by amending our initial commit.
 
     $ echo "Goodnight, moon" >> hello.txt
     $ git add .
@@ -73,7 +74,7 @@ But what if we wanted to split this up into two commits? This example is trivial
     e1a2208 HEAD@{0}: commit (amend): initial commit.
     9056e55 HEAD@{1}: commit (initial): initial commit.
 
-While `git log` only has one entry (which makes sense considering we only have one commit), `git reflog` actually consists of *two* entries. This is awesome, we now have some extra material to work with. Notice how the left column looks suspiciously similar to a log? Instead of commits, we're dealing with **reflog entries**, but they behave just like commits on a branch. To demonstrate this, let's go ahead and do a soft reset.
+While `git log` only has one entry (which makes sense considering we only have one commit), `git reflog` actually consists of _two_ entries. This is awesome, we now have some extra material to work with. Notice how the left column looks suspiciously similar to a log? Instead of commits, we're dealing with **reflog entries**, but they behave just like commits on a branch. To demonstrate this, let's go ahead and do a soft reset.
 
     $ git reset --soft 9056e55
     $ git diff --staged
@@ -131,6 +132,7 @@ You'll notice that the reflog itself reflects the changes we've just made, in ca
     9056e55 HEAD@{3}: commit (initial): initial commit.
 
 <a id="undo-merge"></a>
+
 ### Example B: Rolling Back a Bad Merge
 
 Let's say we've merged some changes from a branch. If our correspondent worked alongside master for quite some time and never [cleaned up](http://blog.steveklabnik.com/posts/2012-11-08-how-to-squash-commits-in-a-github-pull-request) his or her changes, we could be dealing with a messy rollback. Let's see how we would resolve this issue using the reflog.
@@ -162,7 +164,7 @@ Looking at reflog we should see a nice summary of our recent activity.
     e1a2208 HEAD@{6}: commit (amend): initial commit.
     9056e55 HEAD@{7}: commit (initial): initial commit.
 
-We have a few options here. We can revert back to a time before the branch was even created, when the commit was made on the branch, or just before we merged into master. For our use-case, we simply want to undo our merge. `d9b0af2` looks promising (but there are other equally good choices here). This time, we'll do a *hard* reset, since we don't need to stage any changes before a merge.
+We have a few options here. We can revert back to a time before the branch was even created, when the commit was made on the branch, or just before we merged into master. For our use-case, we simply want to undo our merge. `d9b0af2` looks promising (but there are other equally good choices here). This time, we'll do a _hard_ reset, since we don't need to stage any changes before a merge.
 
     $ git reset --hard d9b0af2
     HEAD is now at d9b0af2 Second commit
@@ -239,6 +241,7 @@ Success! We've now successfully recovered our branch. How about master? Is our r
 Yep.
 
 <a id="undo-hard-reset"></a>
+
 ### Example C: Recovering from a Hard Reset
 
 At this point you should be fairly comfortable with the reflog, and can now apply it to many different situations. To really nail it down, let's go through one more common example: recovering the data from a hard reset. Just as a refresher, consider the state of our master branch.
@@ -304,9 +307,10 @@ Now, all we need to do is trek back to that previous entry. Easy stuff.
 And there you have it, we've successfully recovered data from a hard reset.
 
 <a id="closing-notes"></a>
+
 ### Closing Notes
 
-I hope you found this little guide useful, and I bet you are now more than capable of solving a variety of problems using the reflog. You may have noticed that git tries really, *really* hard not to lose your data and includes [many other](https://www.kernel.org/pub/software/scm/git/docs/git-fsck.html) beautiful utilities to recover lost changes (tools that exceed the scope of this introductory article).
+I hope you found this little guide useful, and I bet you are now more than capable of solving a variety of problems using the reflog. You may have noticed that git tries really, _really_ hard not to lose your data and includes [many other](https://www.kernel.org/pub/software/scm/git/docs/git-fsck.html) beautiful utilities to recover lost changes (tools that exceed the scope of this introductory article).
 
 Once you start rebasing and changing history, recovering that seemingly lost data becomes more and more important. A good understanding of the reflog can relieve your headache when things go wrong.
 
