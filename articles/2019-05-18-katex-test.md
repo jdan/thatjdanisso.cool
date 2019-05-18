@@ -7,4 +7,9 @@ hidden: true
 
 Just testing server-side https://katex.org/.
 
-$$ c = \sqrt{a^2 + b^2} $$
+$$
+\begin{aligned}
+    z_0(n) &= n + 1 \\
+    z_0^n(n) &= z_1(n) = 2n
+\end{aligned}
+$$

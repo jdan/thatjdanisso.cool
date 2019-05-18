@@ -25,7 +25,7 @@ function loadArticle(filename) {
       var article = fm(data.toString())
       var body = marked(
         article.body.replace(
-          /\$\$(.*)\$\$/g,
+          /\$\$([^$]*)\$\$/g,
           (_, tex) => katex.renderToString(tex)
         )
       )
