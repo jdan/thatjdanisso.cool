@@ -29,7 +29,7 @@ function loadArticle(filename) {
         )
       )
 
-      let summary = article.attributes.summary
+      let summary = article.attributes.description
       if (!summary) {
         const paragraphBreak = article.body.match(/\r?\n\r?\n/)
         if (paragraphBreak) {

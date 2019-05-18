@@ -19,7 +19,7 @@ function saveArticle(article) {
         const articleHTML = ejs.render(layoutTemplate.toString(), {
           title: article.title + " | jordan scales",
           body: articleBodyHTML,
-          description: article.description,
+          description: article.description || article.summary,
         })
 
         const articlePath = path.join("output", article.route)
