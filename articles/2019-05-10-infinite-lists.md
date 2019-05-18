@@ -86,7 +86,7 @@ length(ll)
 
 ## The Infinite
 
-Conceptually, an infinite list is a lot like a finite list. We'll want a way to get an item, and a way to get the rest. Let's kick things off by building a stream of ones: 
+Conceptually, an infinite list is a lot like a finite list. We'll want a way to get an item, and a way to get the rest. Let's kick things off by building a stream of ones:
 
 ```js
 1, 1, 1, 1, ...
@@ -271,14 +271,14 @@ nth(nums, 100)
 
 <pre><code>function nth(stream, n) {
   if (n < 0) return null
-  
+
   const {first, rest} = stream()
   if (n === 0) {
     return first
   } else {
     return nth(rest, n - 1)
   }
-} 
+}
 </code></pre>
 </details>
 
@@ -367,7 +367,7 @@ take(sevens, 5)
 // => [7, 7, 7, 7, 7]
 ```
 
-Our pattern here is a little different than the `ones` and `twos` from earlier - in particular we're **returning a function** instead of an object with `first` and `rest`. 
+Our pattern here is a little different than the `ones` and `twos` from earlier - in particular we're **returning a function** instead of an object with `first` and `rest`.
 
 Additionally, our value for `rest` is a little simpler since `fixed(n)` returns a function (we don't need to make a new one inline like before).
 
@@ -387,7 +387,7 @@ flipFlop
   rest: () => flipFlop(n + 1),
 ```
 
-Interestingly, our three streams share the same `rest`! And the `first` is just a function of `n`. 
+Interestingly, our three streams share the same `rest`! And the `first` is just a function of `n`.
 
 Let's materialize this some more, by building a function `funcStream` to generalize our three examples.
 
@@ -485,7 +485,7 @@ take(filter(_ => Math.random() < 0.05, nums), 5)
 
 ## Closing Exercises
 
-Before you go, try your hand at the following exercises. 
+Before you go, try your hand at the following exercises.
 
 **Using `map`, create a [FizzBuzz](https://en.wikipedia.org/wiki/Fizz_buzz) stream.**
 
@@ -564,7 +564,7 @@ take(interleave(fixed(0), fixed(9)), 5)
 <pre><code>function interleave(a, b) {
   const aPair = a()
   const bPair = b()
-  
+
   return () => ({
     first: aPair.first,
     rest: () => ({
@@ -682,6 +682,6 @@ It would be a mistake to leave you without some links for further reading.
 
 * [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html#%_toc_start) is my favorite text on how to write and compose programs. Specifically, [Section 3.5](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-24.html#%_sec_3.5) talk about streams that look eerily similar to the ones in this post. That's no accident!
 * My first introduction to this data structure was in Dan Grossman's [Programming Languages course on Coursera](https://www.coursera.org/learn/programming-languages). I had an absolute blast with this one, and learned a ton about FP, OOP, and type systems. I _highly_ recommend it.
-* Lastly, if you like the idea of infinite sequences but want to use more modern JS instead of first principles, [Reginald Braithwaite has written extensively on the topic](https://raganwald.com/2019/03/11/enumerations-denumerables-recursion-infinity.html). 
+* Lastly, if you like the idea of infinite sequences but want to use more modern JS instead of first principles, [Reginald Braithwaite has written extensively on the topic](https://raganwald.com/2019/03/11/enumerations-denumerables-recursion-infinity.html).
 
 That's all I have for you now. Thanks again for reading, feel free to share on social media, and [come work with me at Stripe (we're hiring almost everywhere!)](https://stripe.com/jobs)

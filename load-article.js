@@ -26,9 +26,9 @@ function loadArticle(filename) {
 
       var summary = article.attributes.summary
       if (!summary) {
-        var paragraphBreak = article.body.indexOf("\n\n")
-        if (paragraphBreak > -1) {
-          summary = marked(article.body.slice(0, paragraphBreak))
+        var paragraphBreak = article.body.match(/\r?\n\r?\n/)
+        if (paragraphBreak) {
+          summary = marked(article.body.slice(0, paragraphBreak.index))
         } else {
           summary = article.body
         }
