@@ -1,10 +1,10 @@
-var glob = require("glob")
-var generateTags = require("./generate-tags.js")
-var loadArticle = require("./load-article.js")
-var saveArticle = require("./save-article.js")
-var saveIndex = require("./save-index.js")
-var saveStaticFile = require("./save-static-file.js")
-var save32x32 = require("./save-32x32.js")
+const glob = require("glob")
+const generateTags = require("./generate-tags.js")
+const loadArticle = require("./load-article.js")
+const saveArticle = require("./save-article.js")
+const saveIndex = require("./save-index.js")
+const saveStaticFile = require("./save-static-file.js")
+const save32x32 = require("./save-32x32.js")
 
 glob("articles/*.md", (err, articles) => {
   if (err) {
@@ -13,7 +13,7 @@ glob("articles/*.md", (err, articles) => {
 
   Promise.all(articles.map(loadArticle))
     .then(articles => {
-      var promises = articles.map(saveArticle)
+      const promises = articles.map(saveArticle)
 
       promises.push(saveIndex(articles, "output/index.html"))
       promises.push(generateTags(articles))

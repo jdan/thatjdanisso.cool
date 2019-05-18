@@ -1,10 +1,10 @@
-var fm = require("front-matter")
-var fs = require("fs")
-var hljs = require("highlight.js")
-var katex = require("katex")
-var makeTweetUrl = require("./make-tweet-url.js")
-var marked = require("marked")
-var strftime = require("strftime")
+const fm = require("front-matter")
+const fs = require("fs")
+const hljs = require("highlight.js")
+const katex = require("katex")
+const makeTweetUrl = require("./make-tweet-url.js")
+const marked = require("marked")
+const strftime = require("strftime")
 
 marked.setOptions({
   gfm: true,
@@ -22,17 +22,17 @@ function loadArticle(filename) {
         return reject(err)
       }
 
-      var article = fm(data.toString())
-      var body = marked(
+      const article = fm(data.toString())
+      const body = marked(
         article.body.replace(
           /\$\$([^$]*)\$\$/g,
           (_, tex) => katex.renderToString(tex)
         )
       )
 
-      var summary = article.attributes.summary
+      let summary = article.attributes.summary
       if (!summary) {
-        var paragraphBreak = article.body.match(/\r?\n\r?\n/)
+        const paragraphBreak = article.body.match(/\r?\n\r?\n/)
         if (paragraphBreak) {
           summary = marked(article.body.slice(0, paragraphBreak.index))
         } else {
@@ -40,8 +40,8 @@ function loadArticle(filename) {
         }
       }
 
-      var rawDate = article.attributes.date
-      var date = null
+      const rawDate = article.attributes.date
+      let date = null
 
       if (rawDate) {
         ;["FullYear", "Month", "Date", "Hours"].forEach(field => {
@@ -51,8 +51,8 @@ function loadArticle(filename) {
         date = strftime("%B %d, %Y", rawDate)
       }
 
-      var tweetUrl = makeTweetUrl(article)
-      var defaults = { hidden: false, timeless: false }
+      const tweetUrl = makeTweetUrl(article)
+      const defaults = { hidden: false, timeless: false }
 
       const tags = article.attributes.tags ? article.attributes.tags.split(", ") : []
 

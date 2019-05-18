@@ -1,11 +1,11 @@
-var ncp = require("ncp")
-var path = require("path")
-var mkdirp = require("mkdirp")
+const ncp = require("ncp")
+const path = require("path")
+const mkdirp = require("mkdirp")
 
 function saveStaticFile(filePath) {
     return new Promise((resolve, reject) => {
-        var relativePath = path.relative("public", filePath)
-        var destination = path.join("output", relativePath)
+        const relativePath = path.relative("public", filePath)
+        const destination = path.join("output", relativePath)
 
         mkdirp(path.dirname(destination), err => {
             if (err) {

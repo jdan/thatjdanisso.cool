@@ -1,9 +1,9 @@
 function makeTweetUrl(article) {
-    var title = article.attributes.title
-    var route = article.attributes.route
+    const title = article.attributes.title
+    const route = article.attributes.route
 
-    var baseUrl = "https://twitter.com/intent/tweet"
-    var text = "“" + title + "” by @jdan – http://thatjdanisso.cool" + route
+    const baseUrl = "https://twitter.com/intent/tweet"
+    const text = "“" + title + "” by @jdan – http://thatjdanisso.cool" + route
 
     return baseUrl + "?text=" + encodeURIComponent(text)
 }

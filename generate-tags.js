@@ -1,10 +1,10 @@
-var mkdirp = require("mkdirp")
-var path = require("path")
+const mkdirp = require("mkdirp")
+const path = require("path")
 
-var saveIndex = require("./save-index.js")
+const saveIndex = require("./save-index.js")
 
 function generateTags(articles) {
-    var articlesByTag = {}
+    const articlesByTag = {}
     articles.forEach((article) => {
         article.tags.forEach((tag) => {
             if (!articlesByTag[tag]) {
@@ -17,12 +17,12 @@ function generateTags(articles) {
 
     const promises = Object.keys(articlesByTag).map((tag) =>
         new Promise((resolve, reject) => {
-            var articles = articlesByTag[tag]
+            const articles = articlesByTag[tag]
             articles.sort((a, b) => {
                 return (b.rawDate || 0) - (a.rawDate || 0)
             })
 
-            var tagPath = path.join("output", "tags", tag)
+            const tagPath = path.join("output", "tags", tag)
             mkdirp(tagPath, (err) => {
                 if (err) {
                     return reject(err)

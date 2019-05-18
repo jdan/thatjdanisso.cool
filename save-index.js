@@ -1,5 +1,5 @@
-var ejs = require("ejs")
-var fs = require("fs")
+const ejs = require("ejs")
+const fs = require("fs")
 
 function saveIndex(articles, outputFile, title, banner) {
   articles.sort((a, b) => {
@@ -12,7 +12,7 @@ function saveIndex(articles, outputFile, title, banner) {
         return reject(err)
       }
 
-      var indexBodyHTML = ejs.render(data.toString(), {
+      const indexBodyHTML = ejs.render(data.toString(), {
         articles: articles.filter(article => {
           return !article.hidden
         }),
@@ -20,7 +20,7 @@ function saveIndex(articles, outputFile, title, banner) {
       })
 
       fs.readFile("templates/layout.ejs", (err, data) => {
-        var indexHTML = ejs.render(data.toString(), {
+        const indexHTML = ejs.render(data.toString(), {
           title: title || "jordan scales",
           description: "jdan's thoughts and things",
           body: indexBodyHTML,

@@ -1,7 +1,7 @@
-var ejs = require("ejs")
-var fs = require("fs")
-var mkdirp = require("mkdirp")
-var path = require("path")
+const ejs = require("ejs")
+const fs = require("fs")
+const mkdirp = require("mkdirp")
+const path = require("path")
 
 function saveArticle(article) {
   return new Promise((resolve, reject) => {
@@ -15,14 +15,14 @@ function saveArticle(article) {
           return reject(err)
         }
 
-        var articleBodyHTML = ejs.render(articleTemplate.toString(), article)
-        var articleHTML = ejs.render(layoutTemplate.toString(), {
+        const articleBodyHTML = ejs.render(articleTemplate.toString(), article)
+        const articleHTML = ejs.render(layoutTemplate.toString(), {
           title: article.title + " | jordan scales",
           body: articleBodyHTML,
           description: article.description,
         })
 
-        var articlePath = path.join("output", article.route)
+        const articlePath = path.join("output", article.route)
 
         mkdirp(articlePath, err => {
           if (err) {
