@@ -1,30 +1,30 @@
 body {
-    filter: url("#color-filter");
-    -webkit-filter: url("#color-filter");
+  filter: url("#color-filter");
+  -webkit-filter: url("#color-filter");
 }
 
 #controls {
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 img {
-    border: none;
-    width: 50%;
-    float: left;
+  border: none;
+  width: 50%;
+  float: left;
 }
 
 svg {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 
 .control .label-text {
-    display: inline-block;
-    width: 40px;
+  display: inline-block;
+  width: 40px;
 }
 
 .control .label-value {
-    display: inline-block;
-    text-align: right;
-    width: 70px;
+  display: inline-block;
+  text-align: right;
+  width: 70px;
 }
