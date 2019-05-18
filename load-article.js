@@ -1,6 +1,7 @@
 var fm = require("front-matter")
 var fs = require("fs")
 var hljs = require("highlight.js")
+var katex = require("katex")
 var makeTweetUrl = require("./make-tweet-url.js")
 var marked = require("marked")
 var strftime = require("strftime")
@@ -22,7 +23,12 @@ function loadArticle(filename) {
       }
 
       var article = fm(data.toString())
-      var body = marked(article.body)
+      var body = marked(
+        article.body.replace(
+          /\$\$(.*)\$\$/g,
+          (_, tex) => katex.renderToString(tex)
+        )
+      )
 
       var summary = article.attributes.summary
       if (!summary) {

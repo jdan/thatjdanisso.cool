@@ -4,6 +4,7 @@
     "front-matter": "^3.0.2",
     "glob": "^7.1.4",
     "highlight.js": "^9.3.0",
+    "katex": "^0.10.2",
     "marked": "^0.6.2",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
@@ -25,7 +26,7 @@
     "ignore": [
       "output/*"
     ],
-    "ext": "js,md"
+    "ext": "js,md,css,ejs"
   },
   "name": "thatjdanisso.cool",
   "description": "This is a collection of node scripts to build my blog - https://thatjdanisso.cool",
