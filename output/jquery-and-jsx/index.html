@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>
+        Building jQuery Elements with JSX | jordan scales
+    </title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/tomorrow.min.css">
+    <link rel="stylesheet" href="/css/demos/clicking.css">
+    <link rel="stylesheet" href="/css/demos/hover.css">
+    <link rel="stylesheet" href="/css/demos/shared.css">
+    <link rel="stylesheet" href="/css/katex.min.css">
+
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=480">
+    <link rel="Shortcut Icon" type="image/x-icon"
+        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+
+    <meta property="og:title" content="Building jQuery Elements with JSX | jordan scales" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+
+</head>
+
+<body>
+    <div class="main">
+        <header>
+            <span class="flash" aria-hidden="true">////////</span>
+            <strong>jordan scales</strong>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/">home</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/projects">projects</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="https://twitter.com/jdan">twitter</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="https://github.com/jdan">github</a>
+        </header>
+
+        <article class="article">
+  <header class="title">
+    
+      <p>
+        <strong>Note:</strong>
+        This article is hidden and is only available to those with a link.
+      </p>
+    
+
+    
+      <div class="date">
+        July 28, 2015
+      </div>
+    
+    <h1>Building jQuery Elements with JSX</h1>
+
+    
+  </header>
+
+  <section class="content">
+    <p>I&#39;ve been spending a good amount of time with <a href="https://khan.github.io/tota11y">tota11y</a>, an accessibility visualization tool we shipped last month at Khan Academy. Specifically, spending time doing code cleanup to make it easier for contributors to wrap their head around how the tool works.</p>
+<p>tota11y is built with webpack, and written in ES6 using the wonderful Babel library. Its UI is mostly powered by jQuery. Now you&#39;re almost up to speed - that wasn&#39;t so bad, was it?</p>
+<p>Well, my jQuery chops are not very good, and tota11y rather quickly devolved into jQuery soup. tota11y is modular, meaning that each &quot;plugin&quot; lives in its own directory that encapsulates its logic, templates, and styling. It&#39;s clean and provides a lot of flexibility, but the boundaries between these modules is where things get a little suspicious.</p>
+<p>##</p>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> $toolbar = $(toolbarTemplate());
+$(<span class="hljs-string">"body"</span>).append($toolbar);
+
+$toolbar.find(<span class="hljs-string">".tota11y-toolbar-toggle"</span>).click(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    e.preventDefault();
+    e.stopPropagation();
+    $toolbar.toggleClass(<span class="hljs-string">"tota11y-expanded"</span>);
+});</code></pre>
+<p>Where <code>toolbarTemplate</code> corresponds to the following handlebars template.</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y tota11y-toolbar"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-toolbar-body"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-plugins"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"tota11y-toolbar-toggle"</span>&gt;</span>
+        Open
+    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+  </section>
+
+  <footer class="more details">
+    --
+    <br><br>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9CBuilding%20jQuery%20Elements%20with%20JSX%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fjquery-and-jsx" class="tweet">tweet this</a>
+    <a href="/">&laquo; back to home</a>
+  </footer>
+</article>
+
+
+        
+    </div>
+
+    <script src="/js/flasher.js"></script>
+    <script src="/js/demos/clicking.js"></script>
+    <script src="/js/demos/hover.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-60897046-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    
+</body>
+
+</html>

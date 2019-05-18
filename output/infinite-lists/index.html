@@ -1,0 +1,582 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>
+        Operating on Infinite Lists | jordan scales
+    </title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/tomorrow.min.css">
+    <link rel="stylesheet" href="/css/demos/clicking.css">
+    <link rel="stylesheet" href="/css/demos/hover.css">
+    <link rel="stylesheet" href="/css/demos/shared.css">
+    <link rel="stylesheet" href="/css/katex.min.css">
+
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=480">
+    <link rel="Shortcut Icon" type="image/x-icon"
+        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+
+    <meta property="og:title" content="Operating on Infinite Lists | jordan scales" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+
+</head>
+
+<body>
+    <div class="main">
+        <header>
+            <span class="flash" aria-hidden="true">////////</span>
+            <strong>jordan scales</strong>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/">home</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/projects">projects</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="https://twitter.com/jdan">twitter</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="https://github.com/jdan">github</a>
+        </header>
+
+        <article class="article">
+  <header class="title">
+    
+
+    
+      <div class="date">
+        May 10, 2019
+      </div>
+    
+    <h1>Operating on Infinite Lists</h1>
+
+    
+  </header>
+
+  <section class="content">
+    <p>Today we&#39;re going to step through one of my favorite exercises in composing functions - building and operating on infinite streams of data.</p>
+<p>The question we&#39;ll be answering is: How might you represent the following operations?</p>
+<pre><code class="language-js">nums
+<span class="hljs-comment">// =&gt;  1, 2, 3, 4, ...</span>
+double(nums)
+<span class="hljs-comment">// =&gt;  2, 4, 6, 8, ...</span>
+fib
+<span class="hljs-comment">// =&gt;  0, 1, 1, 2, 3, 5, 8, ...</span></code></pre>
+<p>This post contains code written in JavaScript, but the ideas here apply to any language with functions and lists.</p>
+<h2 id="the-finite">The Finite</h2>
+<p>We can build a finite list in JavaScript like so:</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> ls = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+<span class="hljs-comment">// =&gt; [1, 2, 3, 4, 5]</span></code></pre>
+<p>We can access any element inside of it as well as its length:</p>
+<pre><code class="language-js">ls[<span class="hljs-number">0</span>]
+<span class="hljs-comment">// =&gt; 1</span>
+ls[<span class="hljs-number">10</span>]
+<span class="hljs-comment">// =&gt; undefined</span>
+ls.length
+<span class="hljs-comment">// =&gt; 5</span></code></pre>
+<p>Alternatively, we can self-referentially represent lists as <strong>an element, followed by a list</strong>. This is commonly referred to as a &quot;linked list.&quot; (You&#39;re welcome to scroll to the next section if this is familiar to you. You&#39;re welcome either way I guess, I&#39;m not a cop.)</p>
+<p>In this data structure we&#39;ll use an object with a <code>first</code> field for the element and a <code>rest</code> field for the rest of the list. We&#39;ll use <code>null</code> for the empty list - where our list ends.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> ll = {
+  <span class="hljs-attr">first</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">rest</span>: {
+    <span class="hljs-attr">first</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">rest</span>: {
+      <span class="hljs-attr">first</span>: <span class="hljs-number">2</span>,
+      <span class="hljs-attr">rest</span>: <span class="hljs-literal">null</span>,
+    },
+  }
+}</code></pre>
+<p>This is conceptually simpler, but pretty awkward (imagine if you had to use this instead of <code>[...]</code>!). Still, we can access elements inside of it:</p>
+<pre><code class="language-js">ll.first
+<span class="hljs-comment">// =&gt; 0</span>
+ll.rest.first
+<span class="hljs-comment">// =&gt; 1</span>
+ll.rest.rest.first
+<span class="hljs-comment">// =&gt; 2</span></code></pre>
+<p>And we can compute its length using recursion (where our function is defined in terms of itself):</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">length</span>(<span class="hljs-params">ll</span>) </span>{
+  <span class="hljs-keyword">if</span> (ll === <span class="hljs-literal">null</span>) {
+    <span class="hljs-comment">// empty list has length 0</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// its length is 1 (the item)</span>
+    <span class="hljs-comment">// plus the length of the rest</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + length(ll.rest)
+  }
+}
+length(ll)
+<span class="hljs-comment">// =&gt; 3</span></code></pre>
+<h2 id="the-infinite">The Infinite</h2>
+<p>Conceptually, an infinite list is a lot like a finite list. We&#39;ll want a way to get an item, and a way to get the rest. Let&#39;s kick things off by building a stream of ones:</p>
+<pre><code class="language-js"><span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, ...</code></pre>
+<p>Our <code>first</code> will be a single piece of data in our stream - in this case, the number 1.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> ones = {
+  <span class="hljs-attr">first</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">rest</span>: ???,
+}</code></pre>
+<p>In our linked list above, our <code>rest</code> was also a linked list. Similarly, the <code>rest</code> of our stream will be... a stream!</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> ones = {
+  <span class="hljs-attr">first</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">rest</span>: ones,
+}</code></pre>
+<p>You&#39;ll quickly find however, that we can&#39;t just define a variable in terms of itself. In JavaScript, we&#39;ll receive the following from our console:</p>
+<pre><code>ReferenceError: ones <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> defined</code></pre><p>What <em>can</em> we define in terms of itself? Functions! Remember <code>length</code> from above?</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">length</span>(<span class="hljs-params">ll</span>) </span>{
+  <span class="hljs-keyword">if</span> (ll === <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + length(ll.rest)
+  }
+}</code></pre>
+<p>So...<strong>let&#39;s switch <code>ones</code> to be a function</strong>:</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ones</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">first</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">rest</span>: ones(),
+  }
+}</code></pre>
+<p>But, we&#39;re not in the clear just yet:</p>
+<pre><code class="language-js">&gt; ones()
+<span class="hljs-built_in">RangeError</span>: Maximum call stack size exceeded
+    at ones (repl:<span class="hljs-number">1</span>:<span class="hljs-number">14</span>)
+    at ones (repl:<span class="hljs-number">4</span>:<span class="hljs-number">11</span>)
+    at ones (repl:<span class="hljs-number">4</span>:<span class="hljs-number">11</span>)</code></pre>
+<p>Uh oh. When creating our stream, <code>ones</code> is <strong>eagerly</strong> making subsequent calls to itself over and over again - never coming up for air before our JavaScript console lets us know we probably messed up.</p>
+<p>Instead, let&#39;s make our implementation <strong>lazier</strong> by returning the <code>ones</code> function and calling it when we need it.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ones</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">first</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">rest</span>: ones,
+  }
+}
+
+ones()
+<span class="hljs-comment">// =&gt; { first: 1, rest: [Function: ones] }</span></code></pre>
+<p>No infinite loops! We can create a ones stream, and gather elements from it like so:</p>
+<pre><code class="language-js">ones().first
+<span class="hljs-comment">// =&gt; 1</span>
+ones().rest().first
+<span class="hljs-comment">// =&gt; 1</span>
+ones().rest().rest().first
+<span class="hljs-comment">// =&gt; 1</span></code></pre>
+<h2 id="defining-and-building-streams">Defining and Building Streams</h2>
+<p>Taking a step back, we can define a <strong>stream</strong> as a function which returns two things:</p>
+<p>(1) an item<br>
+(2) a stream</p>
+<p>We can define a <code>twos</code> stream similarly to our <code>ones</code>:</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">twos</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">first</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">rest</span>: twos,
+  }
+}
+
+twos().first
+<span class="hljs-comment">// =&gt; 2</span>
+twos().rest().first
+<span class="hljs-comment">// =&gt; 2</span>
+twos().rest().rest().first
+<span class="hljs-comment">// =&gt; 2</span></code></pre>
+<p>Still, these streams don&#39;t seem particularly <em>useful</em>. One potential smell is our streams are functions, but so far they haven&#39;t taken any arguments. What if they did?</p>
+<p>Let&#39;s kick things off with a stream of the natural numbers.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">nums</span>(<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">first</span>: n,
+    <span class="hljs-comment">// Remember, rest is a stream,</span>
+    <span class="hljs-comment">// and streams are functions.</span>
+    rest: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> nums(n + <span class="hljs-number">1</span>)
+  }
+}
+
+nums(<span class="hljs-number">1</span>).first
+<span class="hljs-comment">// =&gt; 1</span>
+nums(<span class="hljs-number">1</span>).rest().first
+<span class="hljs-comment">// =&gt; 2</span>
+nums(<span class="hljs-number">1</span>).rest().rest().first
+<span class="hljs-comment">// =&gt; 3</span>
+nums(<span class="hljs-number">999</span>).first
+<span class="hljs-comment">// =&gt; 999</span></code></pre>
+<p>An initial argument for <code>nums</code> doesn&#39;t seem particuarly useful, so let&#39;s use a default.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">nums</span>(<span class="hljs-params">n = <span class="hljs-number">1</span></span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">first</span>: n,
+    <span class="hljs-comment">// Remember, rest is a stream,</span>
+    <span class="hljs-comment">// and streams are functions.</span>
+    rest: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> nums(n + <span class="hljs-number">1</span>)
+  }
+}
+
+nums().first
+<span class="hljs-comment">// =&gt; 1</span></code></pre>
+<p>All these <code>.rest()</code>/<code>.first</code> chains are becoming cumbersome, so let&#39;s take a second and define a function to grab the first <code>n</code> elements of a stream.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">take</span>(<span class="hljs-params">stream, n</span>) </span>{
+  <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> []
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">const</span> {first, rest} = stream()
+    <span class="hljs-keyword">return</span> [first].concat(
+      take(rest, n - <span class="hljs-number">1</span>)
+    );
+  }
+}
+
+take(nums, <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [1, 2, 3, 4, 5]</span></code></pre>
+<p><strong>Exercise: Write a function to grab the <code>nth</code> item of a stream</strong></p>
+<pre><code class="language-js">nth(nums, <span class="hljs-number">100</span>)
+<span class="hljs-comment">// =&gt; 101</span></code></pre>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function nth(stream, n) {
+  if (n < 0) return null
+
+  const {first, rest} = stream()
+  if (n === 0) {
+    return first
+  } else {
+    return nth(rest, n - 1)
+  }
+}
+</code></pre>
+</details>
+
+<p>At this point we have a stream with some interesting data in it.</p>
+<p>Now it&#39;s your turn. Try the following examples on your own machine. The solutions can be expanded if you get stuck (and it&#39;s okay if you do!)</p>
+<p><strong>Define a stream which returns the odd numbers.</strong></p>
+<pre><code><span class="hljs-function"><span class="hljs-title">take</span><span class="hljs-params">(odds, <span class="hljs-number">5</span>)</span></span>
+<span class="hljs-comment">// =&gt; [1, 3, 5, 7, 9]</span></code></pre><details>
+<summary>Solution</summary>
+<pre><code>function odds(n = 0) {
+  return {
+    first: 2 * n + 1,
+    rest: () => odds(n + 1),
+  }
+}
+</code></pre>
+</details>
+
+<p><strong>Define a stream which returns the square numbers.</strong></p>
+<pre><code class="language-js">take(squares, <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [1, 4, 9, 16, 25]</span></code></pre>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function squares(n = 1) {
+  return {
+    first: n * n,
+    rest: () => squares(n + 1),
+  }
+}
+</code></pre>
+</details>
+
+<p><strong>Define a stream which loops between 0 and 1.</strong></p>
+<pre><code class="language-js">take(flipFlop, <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [0, 1, 0, 1, 0]</span></code></pre>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function flipFlop(n = 0) {
+  return {
+    first: n % 2,
+    rest: () => flipFlop(n + 1),
+  }
+}
+</code></pre>
+</details>
+
+<p>Right on. Feel free to take a break, refill your water, and we&#39;ll continue onto the next section - writing functions to operate on our streams.</p>
+<h2 id="streams-out--streams-in">Streams Out / Streams In</h2>
+<p>Now that we&#39;re comfortable creating streams, let&#39;s start writing functions that can create streams for us.</p>
+<p>To kick things off, let&#39;s write a function that takes in a number and <strong>returns a stream</strong> of that number.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fixed</span>(<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-comment">// Streams are functions</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-comment">// Which return an item...</span>
+    first: n,
+
+    <span class="hljs-comment">// ...and a stream</span>
+    rest: fixed(n),
+  })
+}
+
+<span class="hljs-keyword">const</span> sevens = fixed(<span class="hljs-number">7</span>)
+take(sevens, <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [7, 7, 7, 7, 7]</span></code></pre>
+<p>Our pattern here is a little different than the <code>ones</code> and <code>twos</code> from earlier - in particular we&#39;re <strong>returning a function</strong> instead of an object with <code>first</code> and <code>rest</code>.</p>
+<p>Additionally, our value for <code>rest</code> is a little simpler since <code>fixed(n)</code> returns a function (we don&#39;t need to make a new one inline like before).</p>
+<p>For our next example, let&#39;s recall our definitions for <code>odds</code>, <code>squares</code>, and <code>flipFlop</code>. Specifically, just the <code>first</code> and <code>rest</code> parts of each.</p>
+<pre><code>odds
+  first: <span class="hljs-number">2</span> * n + <span class="hljs-number">1</span>,
+  rest: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> odds(n + <span class="hljs-number">1</span>),
+
+squares
+  first: n * n,
+  rest: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> squares(n + <span class="hljs-number">1</span>),
+
+flipFlop
+  first: n % <span class="hljs-number">2</span>,
+  rest: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> flipFlop(n + <span class="hljs-number">1</span>),</code></pre><p>Interestingly, our three streams share the same <code>rest</code>! And the <code>first</code> is just a function of <code>n</code>.</p>
+<p>Let&#39;s materialize this some more, by building a function <code>funcStream</code> to generalize our three examples.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">funcStream</span>(<span class="hljs-params">f, n = <span class="hljs-number">0</span></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+    <span class="hljs-attr">first</span>: f(n),
+    <span class="hljs-attr">rest</span>: funcStream(f, n + <span class="hljs-number">1</span>),
+  })
+}
+
+take(funcStream(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-number">2</span> * n + <span class="hljs-number">1</span>), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [1, 3, 5, 7, 9]</span>
+take(funcStream(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n * n), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [0, 1, 4, 9, 16]</span>
+take(funcStream(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n % <span class="hljs-number">2</span>), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [0, 1, 0, 1, 0]</span></code></pre>
+<p>Not bad - but we can do better. <code>funcStream</code> still needs to keep track of its own <code>n</code> and update it appropriately, but <code>nums</code> can do that for us. <strong>What if our function operated on <code>nums</code>, or <em>any stream</em> for that matter?</strong></p>
+<p>We can think of this as a &quot;map&quot; equivalent for streams. Here&#39;s how we might do it:</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">map</span>(<span class="hljs-params">f, stream</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> {first, rest} = stream()
+
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">first</span>: f(first),
+      <span class="hljs-attr">rest</span>: map(f, rest),
+    }
+  }
+}
+
+take(map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-number">2</span> * n, nums), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [0, 2, 4, 6, 8]</span></code></pre>
+<p>Using this, we can define functions to operate on streams:</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> double =
+  <span class="hljs-function">(<span class="hljs-params">stream</span>) =&gt;</span> map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-number">2</span> * n, stream)
+take(double(nums), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [0, 2, 4, 6, 8]</span></code></pre>
+<p>Better yet, these functions can <strong>compose</strong>.</p>
+<pre><code class="language-js">take(double(double(nums)), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [0, 4, 8, 12, 16]</span></code></pre>
+<p>Let&#39;s take stock. <code>nums</code> is an <strong>infinite stream of numbers</strong>, and we&#39;re able to apply a function to it. Under the hood, this function is <strong>lazily</strong> invoked when we need it - such as when we display the output with <code>take</code>.</p>
+<p>But mapping isn&#39;t the only thing we do with finite lists, so it shouldn&#39;t be the only thing we do with streams. <strong>What if we wanted to filter a stream?</strong></p>
+<pre><code class="language-js">take(filter(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n % <span class="hljs-number">3</span> &gt; <span class="hljs-number">0</span>, nums), <span class="hljs-number">6</span>)
+<span class="hljs-comment">// =&gt; [1, 2, 4, 5, 7, 8]</span></code></pre>
+<p>When filtering a stream, we&#39;ll grab it&#39;s <code>first</code> and <code>rest</code>, then test <code>first</code>. If the test passes (and the function passed into <code>filter</code> returns true), we&#39;ll make sure to include that in the stream.</p>
+<p>If the test does not pass, we&#39;ll just filter the <code>tail</code> and ignore the <code>first</code>. Let&#39;s turn this into code:</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">filter</span>(<span class="hljs-params">f, stream</span>) </span>{
+  <span class="hljs-keyword">const</span> {first, rest} = stream()
+  <span class="hljs-keyword">if</span> (f(first)) {
+    <span class="hljs-comment">// Streams are functions</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({
+      <span class="hljs-attr">first</span>: first,
+      <span class="hljs-attr">rest</span>: filter(f, rest),
+    })
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Ignore first, filter rest</span>
+    <span class="hljs-keyword">return</span> filter(f, rest)
+  }
+}</code></pre>
+<p>And just like that, we now have a <code>filter</code> that operates on an infinite stream of data.</p>
+<pre><code class="language-js">take(filter(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n % <span class="hljs-number">2</span> &gt; <span class="hljs-number">0</span>, nums), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [1, 3, 5, 7, 9]</span>
+take(filter(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> <span class="hljs-literal">true</span>, nums), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [0, 1, 2, 3, 4]</span>
+take(filter(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> <span class="hljs-built_in">Math</span>.random() &lt; <span class="hljs-number">0.05</span>, nums), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [28, 31, 33, 37, 54]</span></code></pre>
+<h2 id="closing-exercises">Closing Exercises</h2>
+<p>Before you go, try your hand at the following exercises.</p>
+<p><strong>Using <code>map</code>, create a <a href="https://en.wikipedia.org/wiki/Fizz_buzz">FizzBuzz</a> stream.</strong></p>
+<pre><code class="language-js">take(fizzbuzz, <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [1, 2, 'Fizz', 4, 'Buzz']</span></code></pre>
+<details>
+<summary>Solution</summary>
+
+<pre><code>const fizzbuzz = map(n => {
+  if (n % 15 === 0) {
+    return 'FizzBuzz'
+  } else if (n % 3 === 0) {
+    return 'Fizz'
+  } else if (n % 5 === 0) {
+    return 'Buzz'
+  } else {
+    return n
+  }
+}, nums)
+</code></pre>
+</details>
+
+<p><strong>Using <code>map</code> and <code>nums</code>, write a function that takes two values and produces a stream that toggles between them.</strong></p>
+<pre><code class="language-js">take(toggle(<span class="hljs-string">'hi'</span>, <span class="hljs-string">'ho'</span>), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; ['hi', 'ho', 'hi', 'ho', 'hi']</span></code></pre>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function toggle(a, b) {
+  return map(
+    // nums starts at 1
+    n => (n - 1) % 2 === 0 ? a : b,
+    nums
+  )
+}
+</code></pre>
+</details>
+
+<p><strong>Using <code>map</code> and <code>nums</code>, write a function that takes an array of values and produces a stream that cycles between them.</strong></p>
+<pre><code class="language-js">take(cycle([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; ['a', 'b', 'c', 'a', 'b']</span></code></pre>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function cycle(items) {
+  return map(
+    // nums starts at 1
+    n => items[(n - 1) % items.length],
+    nums
+  )
+}
+</code></pre>
+</details>
+
+<p><strong>Write a function that takes two streams and interleaves them.</strong></p>
+<pre><code class="language-js">take(interleave(fixed(<span class="hljs-number">0</span>), fixed(<span class="hljs-number">9</span>)), <span class="hljs-number">5</span>)
+<span class="hljs-comment">// =&gt; [0, 9, 0, 9, 0]</span></code></pre>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function interleave(a, b) {
+  const aPair = a()
+  const bPair = b()
+
+  return () => ({
+    first: aPair.first,
+    rest: () => ({
+      first: bPair.first,
+      rest: interleave(aPair.rest, bPair.rest),
+    })
+  })
+}
+</code></pre>
+</details>
+
+<p><strong>Write a function which accepts a stream and returns a new stream whose values are a running total of the original stream.</strong></p>
+<p>For <code>nums</code>: return 1, then 1 + 2, then 1 + 2 + 3, then 1 + 2 + 3 + 4, etc.</p>
+<pre><code class="language-js">take(total(nums), <span class="hljs-number">6</span>)
+<span class="hljs-comment">// =&gt; [1, 3, 6, 10, 15, 21]</span></code></pre>
+<p><em>Hint: give <code>total</code> a second argument that defaults to 0</em></p>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function total(stream, value = 0) {
+  return () => {
+    const pair = stream()
+    return {
+      first: value + pair.first,
+      rest: total(pair.rest, value + pair.first),
+    }
+  }
+}
+</code></pre>
+</details>
+
+<p><strong>Write <code>reduce</code> for streams.</strong></p>
+<p><code>reduce</code> should take a 2-argument accumulator function, an initial value, and a stream.</p>
+<pre><code class="language-js">take(reduce(
+  <span class="hljs-function">(<span class="hljs-params">acc, value</span>) =&gt;</span> acc + value,
+  <span class="hljs-number">0</span>,
+  nums
+), <span class="hljs-number">6</span>)
+<span class="hljs-comment">// =&gt; [1, 3, 6, 10, 15, 21]</span>
+take(reduce(
+  <span class="hljs-function">(<span class="hljs-params">acc, value</span>) =&gt;</span> acc * value,
+  <span class="hljs-number">1</span>,
+  nums
+), <span class="hljs-number">6</span>)
+<span class="hljs-comment">// =&gt; [1, 2, 6, 24, 120, 720]</span></code></pre>
+<p><em>Hint: Generalize your solution for <code>total</code>.</em></p>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function reduce(fn, init, stream) {
+  return () => {
+    const pair = stream()
+    const newValue = fn(init, pair.first)
+    return {
+      first: newValue,
+      rest: reduce(fn, newValue, pair.rest),
+    }
+  }
+}
+</code></pre>
+</details>
+
+<p><strong>Using <code>map</code> and <code>reduce</code>, create a stream of the <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a>.</strong></p>
+<pre><code class="language-js">take(fib, <span class="hljs-number">8</span>)
+<span class="hljs-comment">// =&gt; [0, 1, 1, 2, 3, 5, 8, 13]</span></code></pre>
+<p><em>Hint #1: Your initial value should be the first <strong>two</strong> values of the sequence.</em></p>
+<p><em>Hint #2: You do not need to use the input stream&#39;s values.</em></p>
+<details>
+<summary>Solution</summary>
+
+<pre><code>function fib() {
+  return {
+    // `reduce` will consume the first
+    // 0, so we'll manually put it
+    // at the front
+    first: 0,
+    rest: map(
+      pair => pair[0],
+      reduce(
+        ([a, b], _) => [b, a + b],
+        [0, 1],
+        fixed('foobar')
+      )
+    )
+  }
+}
+</code></pre>
+</details><br>
+
+<h2 id="🎉🎉">🎉🎉</h2>
+<p>Using nothing but functions and some JavaScript objects, we were able to create and modify infinite sequences of data - and we did it all without making our computer cry!</p>
+<p>Thanks for reading this post, and an extra special thanks if you took the time to go through the exercises I put together after lots of editing. I really appreciate it. If not, you may want to try them out on a rainy day, I bet you&#39;ll learn something!</p>
+<p>It would be a mistake to leave you without some links for further reading.</p>
+<ul>
+<li><a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html#%_toc_start">Structure and Interpretation of Computer Programs</a> is my favorite text on how to write and compose programs. Specifically, <a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-24.html#%_sec_3.5">Section 3.5</a> talk about streams that look eerily similar to the ones in this post. That&#39;s no accident!</li>
+<li>My first introduction to this data structure was in Dan Grossman&#39;s <a href="https://www.coursera.org/learn/programming-languages">Programming Languages course on Coursera</a>. I had an absolute blast with this one, and learned a ton about FP, OOP, and type systems. I <em>highly</em> recommend it.</li>
+<li>Lastly, if you like the idea of infinite sequences but want to use more modern JS instead of first principles, <a href="https://raganwald.com/2019/03/11/enumerations-denumerables-recursion-infinity.html">Reginald Braithwaite has written extensively on the topic</a>.</li>
+</ul>
+<p>That&#39;s all I have for you now. Thanks again for reading, feel free to share on social media, and <a href="https://stripe.com/jobs">come work with me at Stripe (we&#39;re hiring almost everywhere!)</a></p>
+
+  </section>
+
+  <footer class="more details">
+    --
+    <br><br>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9COperating%20on%20Infinite%20Lists%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Finfinite-lists" class="tweet">tweet this</a>
+    <a href="/">&laquo; back to home</a>
+  </footer>
+</article>
+
+
+        
+    </div>
+
+    <script src="/js/flasher.js"></script>
+    <script src="/js/demos/clicking.js"></script>
+    <script src="/js/demos/hover.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-60897046-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    
+</body>
+
+</html>

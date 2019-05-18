@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>
+        Typesafe JavaScript Chaining with OCaml and BuckleScript | jordan scales
+    </title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/tomorrow.min.css">
+    <link rel="stylesheet" href="/css/demos/clicking.css">
+    <link rel="stylesheet" href="/css/demos/hover.css">
+    <link rel="stylesheet" href="/css/demos/shared.css">
+    <link rel="stylesheet" href="/css/katex.min.css">
+
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=480">
+    <link rel="Shortcut Icon" type="image/x-icon"
+        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+
+    <meta property="og:title" content="Typesafe JavaScript Chaining with OCaml and BuckleScript | jordan scales" />
+    <meta property="og:description" content="Let&#39;s write some concise OCaml code to interface with JavaScript libraries that have a chainable API." />
+    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+
+</head>
+
+<body>
+    <div class="main">
+        <header>
+            <span class="flash" aria-hidden="true">////////</span>
+            <strong>jordan scales</strong>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/">home</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/projects">projects</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="https://twitter.com/jdan">twitter</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="https://github.com/jdan">github</a>
+        </header>
+
+        <article class="article">
+  <header class="title">
+    
+
+    
+      <div class="date">
+        August 19, 2017
+      </div>
+    
+    <h1>Typesafe JavaScript Chaining with OCaml and BuckleScript</h1>
+
+    
+  </header>
+
+  <section class="content">
+    <p><img src="https://cdn-images-1.medium.com/max/1600/1*JE53vATHfCSAXLXrXSvgKA.png" alt="OCaml code: express () |&gt; get &quot;/&quot; index |&gt; get &quot;/about&quot; about |&gt; listen 1337"></p>
+<p>In my <a href="/js-ocaml-microservices">previous article</a>, we explored how BuckleScript
+allows you to turn OCaml code into readable JavaScript, and how to interface
+with other modules in the JavaScript ecosystem.</p>
+<p>Today I’d like to continue on this path and show you the awesome
+<code>@@bs.send.pipe</code> binding attribute, which enables us to write concise OCaml code
+to interface with JavaScript libraries that have a chainable API.</p>
+<hr>
+<h3 id="exhibit-a-express">Exhibit A: Express</h3>
+<p>To interface with the <a href="https://expressjs.com/">express</a> Node.js web framework,
+we may write the following bindings in <code>src/FFI/Express.ml</code>. <em>(NOTE: Remember to
+include _<code>src/FFI</code></em> in the <em><code>sources</code></em> field of <em><code>bsconfig.json</code></em>!)_</p>
+<pre><code><span class="hljs-keyword">type</span> app
+<span class="hljs-keyword">external</span> express : <span class="hljs-built_in">unit</span> -&gt; app = <span class="hljs-string">""</span> [@@bs.<span class="hljs-keyword">module</span>]
+<span class="hljs-keyword">external</span> listen : app -&gt; <span class="hljs-built_in">int</span> -&gt; <span class="hljs-built_in">unit</span> = <span class="hljs-string">""</span> [@@bs.send]
+
+<span class="hljs-keyword">type</span> req
+<span class="hljs-keyword">type</span> res
+<span class="hljs-keyword">external</span> get : app -&gt; <span class="hljs-built_in">string</span> -&gt; (req -&gt; res -&gt; res) -&gt; <span class="hljs-built_in">unit</span> = <span class="hljs-string">""</span> [@@bs.send]
+<span class="hljs-keyword">external</span> send : res -&gt; <span class="hljs-built_in">string</span> -&gt; res = <span class="hljs-string">""</span> [@@bs.send]</code></pre><p>Then, in <code>src/index.ml</code> we could use this code as follows:</p>
+<pre><code>open Express
+
+let app = express ();;
+
+get app <span class="hljs-string">"/"</span> (<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">_</span></span> -&gt; <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">res</span></span> -&gt;
+    send res <span class="hljs-string">"Hello, world! &lt;a href='/page'&gt;Page 2&lt;/a&gt;"</span>);;
+
+get app <span class="hljs-string">"/page"</span> (<span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">_</span></span> -&gt; <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">res</span></span> -&gt;
+    send res <span class="hljs-string">"Hey &lt;a href='/'&gt;Go back&lt;/a&gt;"</span>);;
+
+listen app <span class="hljs-number">1337</span>;;</code></pre><p>Running <code>bsb</code> results in the following <code>lib/js/src/index.js</code>:</p>
+<pre><code><span class="hljs-comment">// Generated by BUCKLESCRIPT VERSION 1.8.2, PLEASE EDIT WITH CARE</span>
+<span class="hljs-meta">'use strict'</span>;
+
+<span class="hljs-keyword">var</span> Express = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>);
+
+<span class="hljs-keyword">var</span> app = Express();
+
+app.get(<span class="hljs-string">"/"</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, res</span>) </span>{
+        <span class="hljs-keyword">return</span> res.send(<span class="hljs-string">"Hello, world! &lt;a href='/page'&gt;Page 2&lt;/a&gt;"</span>);
+      }));
+
+app.get(<span class="hljs-string">"/page"</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">_, res</span>) </span>{
+        <span class="hljs-keyword">return</span> res.send(<span class="hljs-string">"Hey &lt;a href='/'&gt;Go back&lt;/a&gt;"</span>);
+      }));
+
+app.listen(<span class="hljs-number">1337</span>);
+
+exports.app = app;
+<span class="hljs-comment">/* app Not a pure module */</span></code></pre><p>Nice! We can run <code>node lib/js/src/index.js</code> and get ourselves a running express
+server.</p>
+<h3 id="the-chaining-express-api">The Chaining Express API</h3>
+<p>Consider the type we wrote for the <code>Express.get</code> function:</p>
+<pre><code><span class="hljs-function"><span class="hljs-title">external</span> get : app -&gt;</span> <span class="hljs-function"><span class="hljs-title">string</span> -&gt;</span> (<span class="hljs-function"><span class="hljs-title">req</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">res</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">res</span>) -&gt;</span> unit = <span class="hljs-string">""</span> [@@bs.send]</code></pre><p><code>get</code> takes an <code>app</code> representing our express instance, a <code>string</code> for the path,
+a function (which takes a request and response), and returns a no-op (type
+<code>unit</code>).</p>
+<p>However — did you know we can <em>chain</em> this API like so? In JavaScript:</p>
+<pre><code>app
+  .get(<span class="hljs-string">"/"</span>, <span class="hljs-function"><span class="hljs-params">(req, res)</span> =&gt;</span> res.send(<span class="hljs-string">"Hello, world!"</span>))
+  .get(<span class="hljs-string">"/about"</span>, <span class="hljs-function"><span class="hljs-params">(req, res)</span> =&gt;</span> res.send(<span class="hljs-string">"About ..."</span>))
+  .listen(<span class="hljs-number">1337</span>)</code></pre><p>This pattern is very common in JS, and works in the following way: instead of
+<code>get</code> accepting an <code>app</code> and returning a <code>unit</code> (or no-op), we return another
+<code>app</code> which we can then use on a subsequent <code>get</code>!</p>
+<p>That’s a lot to unpack, so let’s demonstrate how to get from A to B in code.</p>
+<h4 id="step-1-take-an-app-return-an-app">Step 1: Take an app, return an app</h4>
+<pre><code><span class="hljs-function"><span class="hljs-title">external</span> get : app -&gt;</span> <span class="hljs-function"><span class="hljs-title">string</span> -&gt;</span> (<span class="hljs-function"><span class="hljs-title">req</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">res</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">res</span>) -&gt;</span> app = <span class="hljs-string">""</span> [@@bs.send]
+
+let f: app = get (express ()) <span class="hljs-string">"/"</span> index;;
+let g: app = get f <span class="hljs-string">"/about"</span> about;;
+listen g <span class="hljs-number">1337</span>;;</code></pre><p>So what’s different here? First, we changed the return type of <code>get</code> from a
+<code>unit</code> to an <code>app</code>. Next we remove the definition for <code>app</code> and inline <code>express
+()</code> in <code>f</code> directly.</p>
+<p>Then, instead of using <code>app</code> as the first argument for our second call to <code>get</code>,
+we pass in <code>f</code>. This is type-safe (remember: <code>f</code>, <code>g</code>, and <code>express ()</code> all have
+the same type) and sure enough if we compile this script and run it — we get a
+working Express app!</p>
+<p>In fact, if we wanted to, we could start combining some of these lines by
+inlining the definition for <code>f</code> entirely like so:</p>
+<pre><code><span class="hljs-built_in">let</span> g: app = <span class="hljs-built_in">get</span> (<span class="hljs-built_in">get</span> (<span class="hljs-built_in">express</span> ()) <span class="hljs-string">"/"</span> index) <span class="hljs-string">"/about"</span> about;;
+listen g <span class="hljs-number">1337</span>;;</code></pre><p>Or a step further, inlining <code>g</code> as well:</p>
+<pre><code>listen
+  (<span class="hljs-name">get</span>
+    (<span class="hljs-name">get</span> (<span class="hljs-name">express</span> ()) <span class="hljs-string">"/"</span> index)
+    <span class="hljs-string">"/about"</span>
+    about)
+  <span class="hljs-number">1337</span></code></pre><p>These two examples are <em>identical</em> to the first, but notice that <code>app</code> is only
+referenced once in our code. Let’s peek at BuckleScript’s output
+<code>lib/js/src/index.js</code>:</p>
+<pre><code><span class="hljs-selector-tag">Express</span>()<span class="hljs-selector-class">.get</span>(<span class="hljs-string">"/"</span>, index)<span class="hljs-selector-class">.get</span>(<span class="hljs-string">"/about"</span>, about)<span class="hljs-selector-class">.listen</span>(<span class="hljs-number">1337</span>);</code></pre><p>🔗🔗🔗🔗🔗🔗🔗🔗!!!</p>
+<p>See, once we smush together our <code>get</code> and <code>listen</code> calls, there’s no need for
+temporary variables like <code>f</code> and <code>g</code>. BuckleScript knows this, and merely puts
+everything inline for us — in a “chained” manner.</p>
+<p>This may start to look a little LISP-y to you, and that’s fair — this syntax is
+not easier to read than our original example which specifies <code>app</code> multiple
+times. Let’s move on and see how we can clean up this code a little.</p>
+<h4 id="step-2-some-light-plumbing-and-a-leak">Step 2: Some light plumbing, and a leak</h4>
+<p>As we start composing functions (like we did by inlining <code>f</code> and <code>g</code> in the
+previous section), we’ll start to see quite a bit of parentheses. Consider the
+following bit of code:</p>
+<pre><code>apply_discount(
+  (<span class="hljs-name">get_age_group</span>(<span class="hljs-name">get_age</span>(<span class="hljs-name">user_from_id</span>(<span class="hljs-name">id</span>))))
+  price)</code></pre><p>Sure we can dress this up with further indentation, but developers reading this
+code will still construct a sort of “stack” in their head as they read the
+subsequent functions from left to right (<em>“Okay apply discount of the age group
+of the age of the…”</em>)</p>
+<p>To remedy this, OCaml provides the infix <code>|&gt;</code> (or “pipe”) operator. We can
+inspect its type via <code>utop</code> :</p>
+<pre><code>utop # (|&gt;);;
+- : <span class="hljs-string">'a -&gt; ('</span>a -&gt; <span class="hljs-string">'b) -&gt; '</span>b = &lt;<span class="hljs-function"><span class="hljs-keyword">fun</span>&gt;</span></code></pre><p>We see that we take an item of type <code>a</code>, a function from <code>a</code> to <code>b</code> and return
+an item of type <code>b</code>. *<em>Exhale</em> *In code:</p>
+<pre><code>f(<span class="hljs-symbol">x</span>) === <span class="hljs-symbol">x</span> |&gt; f</code></pre><p>And if we were to use this pipe multiple times:</p>
+<pre><code>f(g(x)) === x |<span class="hljs-type">&gt; g</span> |<span class="hljs-type">&gt; f</span></code></pre><p>We can see here how the pipe operator (<code>|&gt;</code>) allows us to unfold various layers
+of function composition. It’s quite neat, and leads to some very readable code.
+Let’s use it with our example above:</p>
+<pre><code>apply_discount(
+  (<span class="hljs-name">get_age_group</span>(<span class="hljs-name">get_age</span>(<span class="hljs-name">user_from_id</span>(<span class="hljs-name">id</span>))))
+  price)
+
+(<span class="hljs-name">*</span> turns into... *)
+
+apply_discount(
+  (id |&gt; user_from_id |&gt; get_age |&gt; get_age_group)
+  price)</code></pre><p>How about that last layer? What if we wanted to unfold <code>apply_discount</code> as well?</p>
+<pre><code><span class="hljs-keyword">let</span> f = id |<span class="hljs-type">&gt; user_from_id</span> |<span class="hljs-type">&gt; get_age</span> |<span class="hljs-type">&gt; get_age_group</span> |<span class="hljs-type">&gt; apply_discount</span>;;
+
+f price;;</code></pre><p>Decent! However we hit a snag. <code>apply_discount</code> takes <em>two</em> arguments, the
+user’s age group, and a price (<code>group -&gt; price -&gt; total</code>). If we were to write
+our code like so:</p>
+<pre><code>... |<span class="hljs-type">&gt; get_age_group</span> |<span class="hljs-type">&gt; apply_discount</span> price</code></pre><p>We would receive a type error because <code>price</code> would be used as the <em>first</em>
+argument to <code>apply_discount</code>. This means we need some parentheses (technically
+you could use OCaml’s <code>@@</code>, but hold your horses), which we are trying to avoid!</p>
+<pre><code>(... |<span class="hljs-type">&gt; get_age_group</span> |<span class="hljs-type">&gt; apply_discount</span>) price</code></pre><p>One way to fix this? <strong>Just make **<code>price</code></strong> the first argument!**</p>
+<h4 id="step-3-save-the-app-for-last">Step 3: Save the app for last</h4>
+<p>If we were to redefine <code>apply_discount</code> from <code>group -&gt; price -&gt; total</code> to <code>price
+-&gt; group -&gt; total</code>, we could then remove our parentheses entirely:</p>
+<pre><code>... |<span class="hljs-type">&gt; get_age_group</span> |<span class="hljs-type">&gt; apply_discount</span> price</code></pre><p>Now price is used as the first argument, and second argument (the age group)
+makes its way to <code>apply_discount</code> from the pipeline.</p>
+<p>“Jordan this is great but I don’t really care about discounts and age groups,
+I’m trying to write a web server before my startup goes under.”</p>
+<p>Well fear no more, let’s return to our express example from earlier.</p>
+<pre><code>listen
+  (<span class="hljs-name">get</span>
+    (<span class="hljs-name">get</span> (<span class="hljs-name">express</span> ()) <span class="hljs-string">"/"</span> index)
+    <span class="hljs-string">"/about"</span>
+    about)
+  <span class="hljs-number">1337</span></code></pre><p>If we were to swap in some <code>|&gt;</code> operators, we’ll quickly run into the same exact
+problem we had with <code>apply_discount</code>:</p>
+<pre><code>(((<span class="hljs-name">express</span> () |&gt; get) <span class="hljs-string">"/"</span> index |&gt; get) <span class="hljs-string">"/about"</span> about |&gt; listen) <span class="hljs-number">1337</span></code></pre><p>Notice how <code>|&gt;</code> doesn’t really buy us much. Since an <code>app</code> type must be the
+first argument to <code>get</code> and <code>listen</code>, we’re left with a confusing mix of
+parentheses and <code>|&gt;</code> operators.</p>
+<p>As we learned in the previous section, our solution is to <strong>move this argument
+to the end</strong>. Let’s try it with some helper functions:</p>
+<pre><code>let get_<span class="hljs-built_in"> route </span>handler app = <span class="hljs-builtin-name">get</span> app<span class="hljs-built_in"> route </span>handler
+let listen_<span class="hljs-built_in"> port </span>app = listen app port</code></pre><p>And use ’em like so:</p>
+<pre><code>express () <span class="hljs-string">|&gt;</span>
+
+get_ <span class="hljs-string">"/"</span> index <span class="hljs-string">|&gt;</span>
+get_ <span class="hljs-string">"/about"</span> about <span class="hljs-string">|&gt;</span>
+
+listen_ <span class="hljs-number">1337</span></code></pre><p>And voila! An <code>app</code> type makes it way from <code>express ()</code>, through the pipe and
+onto the end of <code>get_ “/&quot; index</code>. That method also returns an <code>app</code> type, which
+finds its way at the end of <code>get_ “/about&quot; about</code>, and so on and so forth. We
+now have ourselves a beautiful, type-safe chain of functions that map to the
+chainable express API.</p>
+<pre><code><span class="hljs-selector-tag">Express</span>()<span class="hljs-selector-class">.get</span>(<span class="hljs-string">"/"</span>, index)<span class="hljs-selector-class">.get</span>(<span class="hljs-string">"/about"</span>, about)<span class="hljs-selector-class">.listen</span>(<span class="hljs-number">1337</span>);</code></pre><h4 id="step-4-bucklescript-can-do-this-for-us">Step 4: BuckleScript can do this for us</h4>
+<p>Defining a <code>function_</code> for every <code>function</code> you bind to JavaScript-land doesn’t
+sound all that exciting, though. Wouldn’t it be great if <code>get</code> and <code>listen</code>
+could work like that for us? Well they can!</p>
+<p>The current bindings for <code>get</code> and <code>listen</code> are defined using the <code>@@bs.send</code>
+attribute as follows:</p>
+<pre><code><span class="hljs-function"><span class="hljs-title">external</span> listen : app -&gt;</span> <span class="hljs-function"><span class="hljs-title">int</span> -&gt;</span> unit = <span class="hljs-string">""</span> [@@bs.send]
+<span class="hljs-function"><span class="hljs-title">external</span> get : app -&gt;</span> <span class="hljs-function"><span class="hljs-title">string</span> -&gt;</span> (<span class="hljs-function"><span class="hljs-title">req</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">res</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">res</span>) -&gt;</span> app = <span class="hljs-string">""</span> [@@bs.send]</code></pre><p>However, BuckleScript also provides us with a <code>@@bs.send.pipe</code> which, you
+guessed it, allows us to define functions that work well with the <code>|&gt;</code> operator.
+<a href="https://bucklescript.github.io/">From the docs</a>:</p>
+<blockquote>
+<p><code>bs.send.pipe</code> is similar to <code>bs.send</code> except that the first argument, i.e,
+the object, is put in the position of last argument to help user write in a
+<em>chaining style</em>:</p>
+</blockquote>
+<p>Here’s a modified binding for <code>get</code>:</p>
+<pre><code><span class="hljs-function"><span class="hljs-title">external</span> get : string -&gt;</span> (<span class="hljs-function"><span class="hljs-title">req</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">res</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">res</span>) -&gt;</span> app = <span class="hljs-string">""</span> [@@bs.send.pipe: app]</code></pre><p>The difference here is that the first <code>app</code> in the type definition has been
+moved into the attribute, right after <code>@@bs.send.pipe:</code> . Here’s our new
+definition for <code>listen</code>:</p>
+<pre><code>external <span class="hljs-string">listen :</span> <span class="hljs-keyword">int</span> -&gt; unit = <span class="hljs-string">""</span> [@<span class="hljs-meta">@bs</span>.send.<span class="hljs-string">pipe:</span> app]</code></pre><p>Now, we can swap out <code>get_</code> and <code>listen_</code> in favor of their original
+counterparts.</p>
+<pre><code>express () |&gt;
+
+<span class="hljs-keyword">get</span> "/" <span class="hljs-keyword">index</span> |&gt;
+<span class="hljs-keyword">get</span> "/about" about |&gt;
+
+<span class="hljs-keyword">listen</span> <span class="hljs-number">1337</span></code></pre><p>🎉🎉🎉🎉🎉🎉</p>
+<hr>
+<h3 id="closing-thoughts">Closing Thoughts</h3>
+<p>Okay so that was a lot of words to tell you how <code>@@bs.send.pipe</code> works, but I
+hope this post gave you a bit of intuition for why it exists and why you may
+want to use it. With that, here a few more questions to ponder on:</p>
+<ul>
+<li>You may have noticed that the type of the callback for <code>get</code> is <code>req -&gt; res -&gt;
+res</code>. Why the second <code>res</code>? Well, express has
+<a href="https://expressjs.com/en/4x/api.html#res.append">operations</a> on <code>res</code> like
+<code>send</code>, <code>status</code>, and <code>cookie</code> which are also chainable (they return a <code>res</code>
+type). <strong>Write chainable bindings for these methods.</strong></li>
+<li>Imagine <code>@@bs.send.pipe</code> did not exist and we were stuck with our old
+definitions of <code>get</code> and <code>listen</code>: could we create a function called
+<code>make_chainable</code> where <code>make_chainable get === get_</code> and <code>make_chainable
+listen === listen_</code>? <strong>Why or why not?</strong> <em>(As a hint: what if _<code>get</code></em> and
+<em><code>listen</code></em> both had three arguments, could we do it then?)_</li>
+</ul>
+
+  </section>
+
+  <footer class="more details">
+    --
+    <br><br>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9CTypesafe%20JavaScript%20Chaining%20with%20OCaml%20and%20BuckleScript%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fjs-ocaml-chaining" class="tweet">tweet this</a>
+    <a href="/">&laquo; back to home</a>
+  </footer>
+</article>
+
+
+        
+    </div>
+
+    <script src="/js/flasher.js"></script>
+    <script src="/js/demos/clicking.js"></script>
+    <script src="/js/demos/hover.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-60897046-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    
+</body>
+
+</html>

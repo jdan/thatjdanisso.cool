@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>
+        Seriously, The Reflog Isn&#39;t That Scary | jordan scales
+    </title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/tomorrow.min.css">
+    <link rel="stylesheet" href="/css/demos/clicking.css">
+    <link rel="stylesheet" href="/css/demos/hover.css">
+    <link rel="stylesheet" href="/css/demos/shared.css">
+    <link rel="stylesheet" href="/css/katex.min.css">
+
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=480">
+    <link rel="Shortcut Icon" type="image/x-icon"
+        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+
+    <meta property="og:title" content="Seriously, The Reflog Isn&#39;t That Scary | jordan scales" />
+    <meta property="og:description" content="demystifying git-reflog" />
+    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+
+</head>
+
+<body>
+    <div class="main">
+        <header>
+            <span class="flash" aria-hidden="true">////////</span>
+            <strong>jordan scales</strong>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/">home</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="/projects">projects</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="https://twitter.com/jdan">twitter</a>
+            <span class="sep" aria-hidden="true">.</span>
+            <a href="https://github.com/jdan">github</a>
+        </header>
+
+        <article class="article">
+  <header class="title">
+    
+      <p>
+        <strong>Note:</strong>
+        This article is hidden and is only available to those with a link.
+      </p>
+    
+
+    
+      <div class="date">
+        August 05, 2013
+      </div>
+    
+    <h1>Seriously, The Reflog Isn&#39;t That Scary</h1>
+
+    
+      <div>
+        <span class="posted-in">Posted in: </span>
+        <span>
+          
+            <a href="/tags/git">git</a>
+          
+        </span>
+      </div>
+    
+  </header>
+
+  <section class="content">
+    <p>I know, I know - changing history can be scary. Rebasing, squashing, and loads of force pushing can worry any junior engineer such as myself, but it really shouldn&#39;t. Truth is, these are powerful tools that you should have on your toolbelt and, contrary to what you may believe, it&#39;s very difficult to actually mess things up.</p>
+<p>This guide exhibits my own experience with using the reflog to fix stupid mistakes I&#39;ve made on the command line, and is divided into three sections.</p>
+<ul>
+<li><a href="#undo-amend">Undoing amended commits</a></li>
+<li><a href="#undo-merge">Reverting bad merges</a></li>
+<li><a href="#undo-hard-reset">Recovering hard resets</a></li>
+</ul>
+<h3 id="what-is-the-reflog">What is the reflog?</h3>
+<p>The <a href="https://www.kernel.org/pub/software/scm/git/docs/git-reflog.html">reflog</a> is a special mechanism (which acts very similarly to a branch) that contains any changes to the data in your repository. This includes commiting changes, creating and checking out branches, and even hard resets. It&#39;s a handy timeline, going a step further from the usual history tree, that you can use to recover any data you may have misplaced.</p>
+<p>Let&#39;s walk through a couple of use-cases on a <a href="https://github.com/jdan/reflog-example">real repository</a>.</p>
+<pre><code>$ git init
+Initialized empty Git repository <span class="hljs-keyword">in</span> /Users/jordan/Projects/reflog-example/.git/
+$ echo "Hello, world" &gt; hello.txt
+$ git <span class="hljs-keyword">add</span> .
+$ git <span class="hljs-keyword">commit</span> -m "initial commit."
+[master (root-<span class="hljs-keyword">commit</span>) <span class="hljs-number">9056e55</span>] initial <span class="hljs-keyword">commit</span>.
+ <span class="hljs-number">1</span> file changed, <span class="hljs-number">1</span> insertion(+)
+ <span class="hljs-keyword">create</span> mode <span class="hljs-number">100644</span> hello.txt</code></pre><p><a id="undo-amend"></a></p>
+<h3 id="example-a-undoing-an-amended-commit">Example A: Undoing an Amended Commit</h3>
+<p><code>git commit --amend</code> is a great way to consolidate your work. Missed a semicolon? No need to make an entirely new commit for that, just amend the previous one! But, what if we want to <strong>undo</strong> an amend to a commit? We can&#39;t revert a particular commit, since we only want to remove <em>some</em> of the changes in a commit. Seems tricky, but it really isn&#39;t. Let&#39;s start by amending our initial commit.</p>
+<pre><code>$ echo <span class="hljs-string">"Goodnight, moon"</span> <span class="hljs-meta">&gt;&gt; </span>hello.txt
+$ git add .
+$ git commit --amend
+[master e1a2208] initial commit.
+ <span class="hljs-number">1</span> file changed, <span class="hljs-number">2</span> insertions(+)
+ create mode <span class="hljs-number">100644</span> hello.txt</code></pre><p>Now if we view our commit, we&#39;ll see two additions at the bottom.</p>
+<pre><code>$ git show HEAD
+commit e1a22086fda87daff79fe2bf179372a46abc3044
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    initial commit.
+
+diff --git a/hello.txt b/hello.txt
+new file mode <span class="hljs-number">100644</span>
+index <span class="hljs-number">0000000.</span>.f48e806
+--- /dev/<span class="hljs-literal">null</span>
++++ b/hello.txt
+@@ <span class="hljs-number">-0</span>,<span class="hljs-number">0</span> +<span class="hljs-number">1</span>,<span class="hljs-number">2</span> @@
++Hello, world
++Goodnight, moon</code></pre><p>But what if we wanted to split this up into two commits? This example is trivial, but in the real world you may accidentally amend 100 changes to a previous commit (with 100 changes of its own!) We don&#39;t want them combined, so how can we separate them? <strong>This is where the reflog comes into play</strong>. Let&#39;s see what we get when we run <code>git reflog</code>.</p>
+<pre><code>$ git log
+commit e1a22086fda87daff79fe2bf179372a46abc3044
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    initial commit.
+$ git <span class="hljs-built_in">ref</span>log
+e1a2208 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">0</span>}: commit (amend): initial commit.
+<span class="hljs-number">9056e55</span> <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">1</span>}: commit (initial): initial commit.</code></pre><p>While <code>git log</code> only has one entry (which makes sense considering we only have one commit), <code>git reflog</code> actually consists of <em>two</em> entries. This is awesome, we now have some extra material to work with. Notice how the left column looks suspiciously similar to a log? Instead of commits, we&#39;re dealing with <strong>reflog entries</strong>, but they behave just like commits on a branch. To demonstrate this, let&#39;s go ahead and do a soft reset.</p>
+<pre><code>$ git reset --soft <span class="hljs-number">9056</span>e55
+$ git diff --staged
+diff --git a/hello<span class="hljs-selector-class">.txt</span> b/hello<span class="hljs-selector-class">.txt</span>
+index a5c1966.<span class="hljs-selector-class">.f48e806</span> <span class="hljs-number">100644</span>
+--- a/hello<span class="hljs-selector-class">.txt</span>
++++ b/hello<span class="hljs-selector-class">.txt</span>
+@@ -<span class="hljs-number">1</span> +<span class="hljs-number">1</span>,<span class="hljs-number">2</span> @@
+ Hello, world
++Goodnight, moon</code></pre><p>Awesome. Now our staged changes consist of just the second addition we made on the master branch. Let&#39;s verify that our first change is still in tact.</p>
+<pre><code>$ git show HEAD
+commit <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    initial commit.
+
+diff --git a/hello.txt b/hello.txt
+new file mode <span class="hljs-number">100644</span>
+index <span class="hljs-number">0000000.</span>.a5c1966
+--- /dev/<span class="hljs-literal">null</span>
++++ b/hello.txt
+@@ <span class="hljs-number">-0</span>,<span class="hljs-number">0</span> +<span class="hljs-number">1</span> @@
++Hello, world</code></pre><p>Now, let&#39;s go ahead and commit our changes.</p>
+<pre><code>$ git commit -m <span class="hljs-string">"Second commit"</span>
+[master d9b0af2] Second commit
+ <span class="hljs-number">1</span> file changed, <span class="hljs-number">1</span> insertion(+)
+$ git log
+commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    Second commit
+
+commit <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    initial commit.</code></pre><p>We&#39;ve successfully separated an amended commit into two separate commits.</p>
+<p>You&#39;ll notice that the reflog itself reflects the changes we&#39;ve just made, in case we want to go back yet again.</p>
+<pre><code>$ git <span class="hljs-built_in">ref</span>log
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">0</span>}: commit: Second commit
+<span class="hljs-number">9056e55</span> <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">1</span>}: reset: moving to <span class="hljs-number">9056e55</span>
+e1a2208 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">2</span>}: commit (amend): initial commit.
+<span class="hljs-number">9056e55</span> <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">3</span>}: commit (initial): initial commit.</code></pre><p><a id="undo-merge"></a></p>
+<h3 id="example-b-rolling-back-a-bad-merge">Example B: Rolling Back a Bad Merge</h3>
+<p>Let&#39;s say we&#39;ve merged some changes from a branch. If our correspondent worked alongside master for quite some time and never <a href="http://blog.steveklabnik.com/posts/2012-11-08-how-to-squash-commits-in-a-github-pull-request">cleaned up</a> his or her changes, we could be dealing with a messy rollback. Let&#39;s see how we would resolve this issue using the reflog.</p>
+<pre><code>$ git merge my-awesome-branch
+Updating d9b0af2.<span class="hljs-number">.29</span>ef6ec
+Fast-forward
+ hello.txt | <span class="hljs-number">3</span> +++
+ <span class="hljs-number">1</span> file changed, <span class="hljs-number">3</span> insertions(+)
+$ git log
+commit <span class="hljs-number">29</span>ef6ec17401576b7be9ecfd3cf8eeecb8e26288
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">23</span>:<span class="hljs-number">07</span>:<span class="hljs-number">41</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    Changes on another branch
+    ...</code></pre><p>Looking at reflog we should see a nice summary of our recent activity.</p>
+<pre><code>$ git branch -D my-awesome-branch
+Deleted branch my-awesome-branch (was <span class="hljs-number">29</span>ef6ec).
+$ git <span class="hljs-built_in">ref</span>log
+<span class="hljs-number">29</span>ef6ec <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">0</span>}: merge my-awesome-branch: Fast-forward
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">1</span>}: checkout: moving <span class="hljs-keyword">from</span> my-awesome-branch to master
+<span class="hljs-number">29</span>ef6ec <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">2</span>}: commit: Changes on another branch
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">3</span>}: checkout: moving <span class="hljs-keyword">from</span> master to my-awesome-branch
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">4</span>}: commit: Second commit
+<span class="hljs-number">9056e55</span> <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">5</span>}: reset: moving to <span class="hljs-number">9056e55</span>
+e1a2208 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">6</span>}: commit (amend): initial commit.
+<span class="hljs-number">9056e55</span> <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">7</span>}: commit (initial): initial commit.</code></pre><p>We have a few options here. We can revert back to a time before the branch was even created, when the commit was made on the branch, or just before we merged into master. For our use-case, we simply want to undo our merge. <code>d9b0af2</code> looks promising (but there are other equally good choices here). This time, we&#39;ll do a <em>hard</em> reset, since we don&#39;t need to stage any changes before a merge.</p>
+<pre><code>$ git reset --hard d9b0af2
+HEAD <span class="hljs-keyword">is</span> now at d9b0af2 Second commit
+$ git log
+commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    Second commit
+
+commit <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    initial commit.</code></pre><p>Looks good! But now, what if we wanted to go back to our deleted branch?</p>
+<pre><code>$ git branch
+* master
+$ git co my-awesome-branch
+<span class="hljs-keyword">error: </span>pathspec 'my-awesome-branch' did not match any file(s) known to git.</code></pre><p>Well that&#39;s kind of a bummer. According to our previous example, we expect the reflog to indicate a point in time where we were working on a separate unmerged branch. What gives? Let&#39;s take another gander at the reflog.</p>
+<pre><code>$ git <span class="hljs-built_in">ref</span>log
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">0</span>}: reset: moving to d9b0af2
+<span class="hljs-number">29</span>ef6ec <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">1</span>}: merge my-awesome-branch: Fast-forward
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">2</span>}: checkout: moving <span class="hljs-keyword">from</span> my-awesome-branch to master
+<span class="hljs-number">29</span>ef6ec <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">3</span>}: commit: Changes on another branch
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">4</span>}: checkout: moving <span class="hljs-keyword">from</span> master to my-awesome-branch
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">5</span>}: commit: Second commit
+<span class="hljs-number">9056e55</span> <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">6</span>}: reset: moving to <span class="hljs-number">9056e55</span>
+e1a2208 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">7</span>}: commit (amend): initial commit.
+<span class="hljs-number">9056e55</span> <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">8</span>}: commit (initial): initial commit.</code></pre><p>Hm, <code>29ef6ec</code> indicates a commit on our branch. Let&#39;s explore.</p>
+<pre><code>$ git co <span class="hljs-number">29</span>ef6ec
+Note: checking <span class="hljs-keyword">out</span> <span class="hljs-string">'29ef6ec'</span>.
+  ...
+HEAD <span class="hljs-keyword">is</span> now at <span class="hljs-number">29</span>ef6ec... Changes on another branch
+$ git log
+commit <span class="hljs-number">29</span>ef6ec17401576b7be9ecfd3cf8eeecb8e26288
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">23</span>:<span class="hljs-number">07</span>:<span class="hljs-number">41</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    Changes on another branch
+    ...</code></pre><p>This looks promising! Let&#39;s go ahead and make a branch here.</p>
+<pre><code>$ git co -b my-awesome-branch
+Switched to a new branch <span class="hljs-string">'my-awesome-branch'</span>
+$ git log
+commit <span class="hljs-number">29</span>ef6ec17401576b7be9ecfd3cf8eeecb8e26288
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">23</span>:<span class="hljs-number">07</span>:<span class="hljs-number">41</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    Changes on another branch
+    ...</code></pre><p>Success! We&#39;ve now successfully recovered our branch. How about master? Is our rogue commit still separate from the master branch?</p>
+<pre><code>$ git co master
+Switched to branch <span class="hljs-string">'master'</span>
+$ git log
+commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    Second commit</code></pre><p>Yep.</p>
+<p><a id="undo-hard-reset"></a></p>
+<h3 id="example-c-recovering-from-a-hard-reset">Example C: Recovering from a Hard Reset</h3>
+<p>At this point you should be fairly comfortable with the reflog, and can now apply it to many different situations. To really nail it down, let&#39;s go through one more common example: recovering the data from a hard reset. Just as a refresher, consider the state of our master branch.</p>
+<pre><code>$ git log
+commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    Second commit
+
+commit <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    initial commit.</code></pre><p>If we wanted to completely wipe the most recent commit - &quot;Second commit&quot; - we can do that rather easily.</p>
+<pre><code>$ git reset --hard <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
+HEAD <span class="hljs-keyword">is</span> now at <span class="hljs-number">9056e55</span> initial commit.
+$ git log
+commit <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    initial commit.</code></pre><p>And voilà, it&#39;s gone. But, what if that commit had some important data in it? What if we were careless with our hard resets, and accidentally removed important changes? Sometimes this really happens, and we can use the reflog to our advantage and recover the lost changes.</p>
+<p>Once again, let&#39;s consult the reflog.</p>
+<pre><code>$ git <span class="hljs-built_in">ref</span>log
+<span class="hljs-number">9056e55</span> <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">0</span>}: reset: moving to <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">1</span>}: checkout: moving <span class="hljs-keyword">from</span> save-branch to master
+<span class="hljs-number">29</span>ef6ec <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">2</span>}: checkout: moving <span class="hljs-keyword">from</span> <span class="hljs-number">29</span>ef6ec17401576b7be9ecfd3cf8eeecb8e26288 to save-branch
+<span class="hljs-number">29</span>ef6ec <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">3</span>}: checkout: moving <span class="hljs-keyword">from</span> master to <span class="hljs-number">29</span>ef6ec
+d9b0af2 <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">4</span>}: reset: moving to d9b0af2
+<span class="hljs-number">29</span>ef6ec <span class="hljs-symbol">HEAD@</span>{<span class="hljs-number">5</span>}: checkout: moving <span class="hljs-keyword">from</span> my-awesome-branch to master
+...</code></pre><p>Here we&#39;ll see lots of data, but we&#39;re only considered with the first two entries: the current state, and the previous checkout.</p>
+<blockquote>
+<p>As a sidenode, feel free to check out <a href="http://gitready.com/intermediate/2009/02/09/reflog-your-safety-net.html">reflog, your safety net</a> on git ready, which goes on to explain how to clean up old entries in your reflog.</p>
+</blockquote>
+<p>Now, all we need to do is trek back to that previous entry. Easy stuff.</p>
+<pre><code>$ git reset --hard d9b0af2
+HEAD <span class="hljs-keyword">is</span> now at d9b0af2 Second commit
+$ git log
+commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">58</span>:<span class="hljs-number">55</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    Second commit
+
+commit <span class="hljs-number">9056e55</span>e384cbae33a0aaf9b2a861cb20c20ace0
+Author: Jordan Scales &lt;<span class="hljs-symbol">scalesjordan@</span>gmail.com&gt;
+Date:   Sun Aug <span class="hljs-number">4</span> <span class="hljs-number">22</span>:<span class="hljs-number">46</span>:<span class="hljs-number">34</span> <span class="hljs-number">2013</span> <span class="hljs-number">-0700</span>
+
+    initial commit.</code></pre><p>And there you have it, we&#39;ve successfully recovered data from a hard reset.</p>
+<p><a id="closing-notes"></a></p>
+<h3 id="closing-notes">Closing Notes</h3>
+<p>I hope you found this little guide useful, and I bet you are now more than capable of solving a variety of problems using the reflog. You may have noticed that git tries really, <em>really</em> hard not to lose your data and includes <a href="https://www.kernel.org/pub/software/scm/git/docs/git-fsck.html">many other</a> beautiful utilities to recover lost changes (tools that exceed the scope of this introductory article).</p>
+<p>Once you start rebasing and changing history, recovering that seemingly lost data becomes more and more important. A good understanding of the reflog can relieve your headache when things go wrong.</p>
+<blockquote>
+<p>If you enjoyed this article, let me know! I appreciate all the feedback I can get. You can follow me on twitter at <a href="http://twitter.com/jdan">@jdan</a></p>
+</blockquote>
+
+  </section>
+
+  <footer class="more details">
+    --
+    <br><br>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9CSeriously%2C%20The%20Reflog%20Isn&#39;t%20That%20Scary%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fseriously-the-reflog-isnt-that-scary" class="tweet">tweet this</a>
+    <a href="/">&laquo; back to home</a>
+  </footer>
+</article>
+
+
+        
+    </div>
+
+    <script src="/js/flasher.js"></script>
+    <script src="/js/demos/clicking.js"></script>
+    <script src="/js/demos/hover.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-60897046-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    
+</body>
+
+</html>
