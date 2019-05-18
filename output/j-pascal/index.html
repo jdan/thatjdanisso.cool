@@ -1,124 +1,202 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>
-        J Notes - Pascal&#39;s Triangle | jordan scales
+      J Notes - Pascal&#39;s Triangle | jordan scales
     </title>
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/tomorrow.min.css">
-    <link rel="stylesheet" href="/css/demos/clicking.css">
-    <link rel="stylesheet" href="/css/demos/hover.css">
-    <link rel="stylesheet" href="/css/demos/shared.css">
-    <link rel="stylesheet" href="/css/katex.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/tomorrow.min.css" />
+    <link rel="stylesheet" href="/css/demos/clicking.css" />
+    <link rel="stylesheet" href="/css/demos/hover.css" />
+    <link rel="stylesheet" href="/css/demos/shared.css" />
+    <link rel="stylesheet" href="/css/katex.min.css" />
 
-    
+    <link
+      href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=480" />
+    <link
+      rel="Shortcut Icon"
+      type="image/x-icon"
+      href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif"
+    />
 
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=480">
-    <link rel="Shortcut Icon" type="image/x-icon"
-        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
-
-    <meta property="og:title" content="J Notes - Pascal&#39;s Triangle | jordan scales" />
+    <meta
+      property="og:title"
+      content="J Notes - Pascal&#39;s Triangle | jordan scales"
+    />
     <meta property="og:description" content="" />
-    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+    <meta
+      property="og:image"
+      content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif"
+    />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="main">
-        <header>
-            <span class="flash" aria-hidden="true">////////</span>
-            <strong>jordan scales</strong>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="/">home</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="/projects">projects</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="https://twitter.com/jdan">twitter</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="https://github.com/jdan">github</a>
+      <header>
+        <span class="flash" aria-hidden="true">////////</span>
+        <strong>jordan scales</strong>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="/">home</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="/projects">projects</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="https://twitter.com/jdan">twitter</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="https://github.com/jdan">github</a>
+      </header>
+
+      <article class="article">
+        <header class="title">
+          <div class="date">
+            February 10, 2018
+          </div>
+
+          <h1>J Notes - Pascal&#39;s Triangle</h1>
         </header>
 
-        <article class="article">
-  <header class="title">
-    
-
-    
-      <div class="date">
-        February 10, 2018
-      </div>
-    
-    <h1>J Notes - Pascal&#39;s Triangle</h1>
-
-    
-  </header>
-
-  <section class="content">
-    <p>Following <a href="/j-fibonacci">my previous post on the Fibonacci numbers</a>, here&#39;s a quick post on generating another famous mathematical sequence - <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal&#39;s Triangle</a>.</p>
-<pre><code>    <span class="hljs-number">1</span>
+        <section class="content">
+          <p>
+            Following
+            <a href="/j-fibonacci">my previous post on the Fibonacci numbers</a
+            >, here&#39;s a quick post on generating another famous mathematical
+            sequence -
+            <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle"
+              >Pascal&#39;s Triangle</a
+            >.
+          </p>
+          <pre><code>    <span class="hljs-number">1</span>
    <span class="hljs-number">1</span> <span class="hljs-number">1</span>
   <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span>
  <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span>
-<span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span></code></pre><h2 id="quick-background">Quick Background</h2>
-<p>Pascal&#39;s triangle contains numbers formed by binomial coefficients (often referred to as &quot;N choose K&quot;), but there&#39;s a simple and elegant way to generate it: <strong>each item is the sum of the two numbers above it</strong>.</p>
-<pre>
+<span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span></code></pre>
+          <h2 id="quick-background">Quick Background</h2>
+          <p>
+            Pascal&#39;s triangle contains numbers formed by binomial
+            coefficients (often referred to as &quot;N choose K&quot;), but
+            there&#39;s a simple and elegant way to generate it:
+            <strong>each item is the sum of the two numbers above it</strong>.
+          </p>
+          <pre>
  1 <span style="border:1px solid black">3 3</span> 1
 1 4 <u>6</u> 4 1
 </pre>
 
-<p>We see here that the underlined 6 is formed by adding the two threes above it.</p>
-<pre>
+          <p>
+            We see here that the underlined 6 is formed by adding the two threes
+            above it.
+          </p>
+          <pre>
  <span style="border:1px solid black">1 3</span> 3 <span style="border:1px solid black">1  </span> 
 1 <u>4</u> 6 4 <u>1</u>
 </pre>
 
-<p>Similarly, we see the 4 is formed by adding the 1 and 3, and the 1 is formed by adding 1 to nothing (0).</p>
-<h2 id="summing-pairs">Summing pairs</h2>
-<p>Before we get started go ahead and <a href="http://code.jsoftware.com/wiki/System/Installation/All-in-One">grab yourself a copy of the J runtime</a> if you haven&#39;t already.</p>
-<p>Let&#39;s start by grabbing the first 5 integers using the <a href="http://www.jsoftware.com/help/dictionary/didot.htm">&quot;integers&quot; verb <code>i.</code></a></p>
-<pre><code>  i. <span class="hljs-number">5</span>
-<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre><p>We can use the <a href="http://www.jsoftware.com/help/dictionary/d500.htm">&quot;same&quot; verb <code>]</code></a> to echo whatever we pass into it.</p>
-<pre><code>  ] <span class="hljs-number">10</span>
+          <p>
+            Similarly, we see the 4 is formed by adding the 1 and 3, and the 1
+            is formed by adding 1 to nothing (0).
+          </p>
+          <h2 id="summing-pairs">Summing pairs</h2>
+          <p>
+            Before we get started go ahead and
+            <a
+              href="http://code.jsoftware.com/wiki/System/Installation/All-in-One"
+              >grab yourself a copy of the J runtime</a
+            >
+            if you haven&#39;t already.
+          </p>
+          <p>
+            Let&#39;s start by grabbing the first 5 integers using the
+            <a href="http://www.jsoftware.com/help/dictionary/didot.htm"
+              >&quot;integers&quot; verb <code>i.</code></a
+            >
+          </p>
+          <pre><code>  i. <span class="hljs-number">5</span>
+<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre>
+          <p>
+            We can use the
+            <a href="http://www.jsoftware.com/help/dictionary/d500.htm"
+              >&quot;same&quot; verb <code>]</code></a
+            >
+            to echo whatever we pass into it.
+          </p>
+          <pre><code>  ] <span class="hljs-number">10</span>
 <span class="hljs-number">10</span>
   ] i<span class="hljs-number">.5</span>
-<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre><p>Our primary tool will be J&#39;s <a href="http://www.jsoftware.com/help/dictionary/d430.htm">infix adverb <code>\</code></a>. This single backslash allows us to scan through a list of numbers in groups and apply a function to them.</p>
-<p>Let&#39;s scan every 3 items and pass them to the &quot;same&quot; verb <code>]</code>.</p>
-<pre><code>  <span class="hljs-number">3</span> ]\ i<span class="hljs-number">.5</span>
+<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre>
+          <p>
+            Our primary tool will be J&#39;s
+            <a href="http://www.jsoftware.com/help/dictionary/d430.htm"
+              >infix adverb <code>\</code></a
+            >. This single backslash allows us to scan through a list of numbers
+            in groups and apply a function to them.
+          </p>
+          <p>
+            Let&#39;s scan every 3 items and pass them to the &quot;same&quot;
+            verb <code>]</code>.
+          </p>
+          <pre><code>  <span class="hljs-number">3</span> ]\ i<span class="hljs-number">.5</span>
 <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span>
 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>
-<span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre><p>We can see here that J looks through <code>0 1 2 3 4</code> in overlapping groups of 3. So we&#39;ll have <code>0 1 2</code>, followed by <code>1 2 3</code>, etc.</p>
-<p>By changing the number in front, we can scan in groups of 2.</p>
-<pre><code>  <span class="hljs-number">2</span> ]\ i<span class="hljs-number">.5</span>
+<span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre>
+          <p>
+            We can see here that J looks through <code>0 1 2 3 4</code> in
+            overlapping groups of 3. So we&#39;ll have <code>0 1 2</code>,
+            followed by <code>1 2 3</code>, etc.
+          </p>
+          <p>By changing the number in front, we can scan in groups of 2.</p>
+          <pre><code>  <span class="hljs-number">2</span> ]\ i<span class="hljs-number">.5</span>
 <span class="hljs-number">0</span> <span class="hljs-number">1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">2</span>
 <span class="hljs-number">2</span> <span class="hljs-number">3</span>
-<span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre><p>Let&#39;s swap out our boring <code>]</code> for something more interesting: <code>+/</code>, which sums a list of numbers.</p>
-<pre><code>  <span class="hljs-number">3</span> +/\ i<span class="hljs-number">.5</span>
+<span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre>
+          <p>
+            Let&#39;s swap out our boring <code>]</code> for something more
+            interesting: <code>+/</code>, which sums a list of numbers.
+          </p>
+          <pre><code>  <span class="hljs-number">3</span> +/\ i<span class="hljs-number">.5</span>
 <span class="hljs-number">3</span> <span class="hljs-number">6</span> <span class="hljs-number">9</span>
   +/ <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span>
 <span class="hljs-number">3</span>
   +/ <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>
 <span class="hljs-number">6</span>
   +/ <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>
-<span class="hljs-number">9</span></code></pre><p>Similarly, we can do this pairwise.</p>
-<pre><code>  <span class="hljs-number">2</span> +/\ i<span class="hljs-number">.5</span>
-<span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span> <span class="hljs-number">7</span></code></pre><p>Pretty nifty right?</p>
-<h2 id="row-after-row">Row after row</h2>
-<p>So why is this useful? Well, if we take another look at our triangle:</p>
-<pre><code>    <span class="hljs-number">1</span>
+<span class="hljs-number">9</span></code></pre>
+          <p>Similarly, we can do this pairwise.</p>
+          <pre><code>  <span class="hljs-number">2</span> +/\ i<span class="hljs-number">.5</span>
+<span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span> <span class="hljs-number">7</span></code></pre>
+          <p>Pretty nifty right?</p>
+          <h2 id="row-after-row">Row after row</h2>
+          <p>
+            So why is this useful? Well, if we take another look at our
+            triangle:
+          </p>
+          <pre><code>    <span class="hljs-number">1</span>
    <span class="hljs-number">1</span> <span class="hljs-number">1</span>
   <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span>
  <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span>
-<span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span></code></pre><p>We can see that the next row, <code>1 5 10 10 5 1</code> can be formed by this exact strategy: summing each pair of numbers to generate the number beneath it.</p>
-<pre><code>  <span class="hljs-number">2</span> +/\ <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span>
+<span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span></code></pre>
+          <p>
+            We can see that the next row, <code>1 5 10 10 5 1</code> can be
+            formed by this exact strategy: summing each pair of numbers to
+            generate the number beneath it.
+          </p>
+          <pre><code>  <span class="hljs-number">2</span> +/\ <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span>
 <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span>
   <span class="hljs-number">2</span> +/\ <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
-<span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span></code></pre><p>Well, almost. Our issue is that we&#39;re missing out on the 1s on either side! This is because our infix operator <code>\</code> starts with <code>+/ 1 4</code> to get 5 - skipping over the 1.</p>
-<p>To fix this, let&#39;s surround our row with 0s.</p>
-<pre><code>  <span class="hljs-number">2</span> ]\ <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
+<span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span></code></pre>
+          <p>
+            Well, almost. Our issue is that we&#39;re missing out on the 1s on
+            either side! This is because our infix operator
+            <code>\</code> starts with <code>+/ 1 4</code> to get 5 - skipping
+            over the 1.
+          </p>
+          <p>To fix this, let&#39;s surround our row with 0s.</p>
+          <pre><code>  <span class="hljs-number">2</span> ]\ <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
 <span class="hljs-number">0</span> <span class="hljs-number">1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">3</span>
 <span class="hljs-number">3</span> <span class="hljs-number">3</span>
@@ -127,63 +205,112 @@
   <span class="hljs-number">2</span> +/\ <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
   <span class="hljs-number">2</span> +/\ <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
-<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre><p>Much better. So how do we surround with 0s automatically?</p>
-<p>The <a href="http://www.jsoftware.com/help/dictionary/d320.htm">append verb <code>,</code></a> is used to join items and lists.</p>
-<pre><code>  <span class="hljs-number">0</span> , <span class="hljs-number">1</span>
+<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre>
+          <p>Much better. So how do we surround with 0s automatically?</p>
+          <p>
+            The
+            <a href="http://www.jsoftware.com/help/dictionary/d320.htm"
+              >append verb <code>,</code></a
+            >
+            is used to join items and lists.
+          </p>
+          <pre><code>  <span class="hljs-number">0</span> , <span class="hljs-number">1</span>
 <span class="hljs-number">0</span> <span class="hljs-number">1</span>
   <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> , <span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">9</span>
-<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">9</span></code></pre><p>The <a href="http://www.jsoftware.com/help/dictionary/d630n.htm">&quot;bond&quot; verb <code>&amp;</code></a> allows us to partially evaluate a verb that normally expects items on both sides.</p>
-<pre><code>  <span class="hljs-number">1</span> + <span class="hljs-number">2</span>
+<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">9</span></code></pre>
+          <p>
+            The
+            <a href="http://www.jsoftware.com/help/dictionary/d630n.htm"
+              >&quot;bond&quot; verb <code>&amp;</code></a
+            >
+            allows us to partially evaluate a verb that normally expects items
+            on both sides.
+          </p>
+          <pre><code>  <span class="hljs-number">1</span> + <span class="hljs-number">2</span>
 <span class="hljs-number">3</span>
   (<span class="hljs-number">1</span>&amp;+) <span class="hljs-number">2</span>
 <span class="hljs-number">3</span>
   <span class="hljs-number">4</span> % <span class="hljs-number">2</span>    NB. <span class="hljs-string">"%"</span> <span class="hljs-keyword">is</span> division!
 <span class="hljs-number">2</span>
   (%&amp;<span class="hljs-number">2</span>) <span class="hljs-number">4</span>
-<span class="hljs-number">2</span></code></pre><p>We can bind our append verb to add a 0 to either side.</p>
-<pre><code>  (<span class="hljs-number">0</span>&amp;,) <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>
+<span class="hljs-number">2</span></code></pre>
+          <p>We can bind our append verb to add a 0 to either side.</p>
+          <pre><code>  (<span class="hljs-number">0</span>&amp;,) <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>
 <span class="hljs-number">0</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>
   (,&amp;<span class="hljs-number">0</span>) <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>
-<span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">0</span></code></pre><p>We can also do both.</p>
-<pre><code>  (<span class="hljs-number">0</span>&amp;,) (,&amp;<span class="hljs-number">0</span>) <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>
+<span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">0</span></code></pre>
+          <p>We can also do both.</p>
+          <pre><code>  (<span class="hljs-number">0</span>&amp;,) (,&amp;<span class="hljs-number">0</span>) <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>
 <span class="hljs-number">0</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">0</span>
   (,&amp;<span class="hljs-number">0</span>) (<span class="hljs-number">0</span>&amp;,) <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>
-<span class="hljs-number">0</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">0</span></code></pre><p>Putting it all together: we can append 0 on either side of our row:</p>
-<pre><code>  (<span class="hljs-number">0</span>&amp;,) (,&amp;<span class="hljs-number">0</span>) <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
-<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span></code></pre><p>And sum each pair:</p>
-<pre><code>  <span class="hljs-number">2</span> +/\ (<span class="hljs-number">0</span>&amp;,) (,&amp;<span class="hljs-number">0</span>) <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
-<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre><h2 id="all-together-now">All together now</h2>
-<p>Let&#39;s wrap this in our own verb called <code>next</code>. &quot;<code>y</code>&quot; gives us access to the argument(s) passed in.</p>
-<pre><code>  next =: verb : <span class="hljs-string">'2 +/\ (0&amp;,) (,&amp;0) y'</span>
+<span class="hljs-number">0</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">0</span></code></pre>
+          <p>
+            Putting it all together: we can append 0 on either side of our row:
+          </p>
+          <pre><code>  (<span class="hljs-number">0</span>&amp;,) (,&amp;<span class="hljs-number">0</span>) <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
+<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span></code></pre>
+          <p>And sum each pair:</p>
+          <pre><code>  <span class="hljs-number">2</span> +/\ (<span class="hljs-number">0</span>&amp;,) (,&amp;<span class="hljs-number">0</span>) <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
+<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre>
+          <h2 id="all-together-now">All together now</h2>
+          <p>
+            Let&#39;s wrap this in our own verb called <code>next</code>.
+            &quot;<code>y</code>&quot; gives us access to the argument(s) passed
+            in.
+          </p>
+          <pre><code>  next =: verb : <span class="hljs-string">'2 +/\ (0&amp;,) (,&amp;0) y'</span>
   next <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
   next <span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span>
-<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre><p>Fortunately, <code>next</code> works just fine on the first row of our triangle: a single <code>1</code>.</p>
-<pre><code>  next <span class="hljs-number">1</span>
-<span class="hljs-number">1</span> <span class="hljs-number">1</span></code></pre><p>We can apply <code>next</code> multiple times.</p>
-<pre><code>  next <span class="hljs-number">1</span>
+<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre>
+          <p>
+            Fortunately, <code>next</code> works just fine on the first row of
+            our triangle: a single <code>1</code>.
+          </p>
+          <pre><code>  next <span class="hljs-number">1</span>
+<span class="hljs-number">1</span> <span class="hljs-number">1</span></code></pre>
+          <p>We can apply <code>next</code> multiple times.</p>
+          <pre><code>  next <span class="hljs-number">1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">1</span>
   next <span class="hljs-number">1</span> <span class="hljs-number">1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span>
   next next <span class="hljs-number">1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span>
   next next next next <span class="hljs-number">1</span>
-<span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span></code></pre><p>We can use the <a href="http://www.jsoftware.com/help/dictionary/d202n.htm">&quot;power&quot; verb <code>^:</code></a> to do this for us.</p>
-<pre><code>  (next^:<span class="hljs-number">0</span>) <span class="hljs-number">1</span>
+<span class="hljs-number">1</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">1</span></code></pre>
+          <p>
+            We can use the
+            <a href="http://www.jsoftware.com/help/dictionary/d202n.htm"
+              >&quot;power&quot; verb <code>^:</code></a
+            >
+            to do this for us.
+          </p>
+          <pre><code>  (next^:<span class="hljs-number">0</span>) <span class="hljs-number">1</span>
 <span class="hljs-number">1</span>
   (next^:<span class="hljs-number">1</span>) <span class="hljs-number">1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">1</span>
   (next^:<span class="hljs-number">5</span>) <span class="hljs-number">1</span>
-<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre><p>We can also pass a list to <code>^:</code> to generate multiple powers at the same time.</p>
-<pre><code>  (next^:(i<span class="hljs-number">.7</span>)) <span class="hljs-number">1</span>
+<span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span></code></pre>
+          <p>
+            We can also pass a list to <code>^:</code> to generate multiple
+            powers at the same time.
+          </p>
+          <pre><code>  (next^:(i<span class="hljs-number">.7</span>)) <span class="hljs-number">1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">1</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">2</span>  <span class="hljs-number">1</span>  <span class="hljs-number">0</span>  <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">3</span>  <span class="hljs-number">3</span>  <span class="hljs-number">1</span>  <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">4</span>  <span class="hljs-number">6</span>  <span class="hljs-number">4</span>  <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">5</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span>  <span class="hljs-number">5</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
-<span class="hljs-number">1</span> <span class="hljs-number">6</span> <span class="hljs-number">15</span> <span class="hljs-number">20</span> <span class="hljs-number">15</span> <span class="hljs-number">6</span> <span class="hljs-number">1</span></code></pre><p>We can store this as another verb to generate Pascal&#39;s Triangle. We’ll also simplify our definition of next using the <a href="http://www.jsoftware.com/help/dictionary/d620.htm">&quot;atop&quot; verb <code>@</code></a>.</p>
-<pre><code>  next =: <span class="hljs-number">2</span> +/\ (<span class="hljs-number">0</span>&amp;,) @ (,&amp;<span class="hljs-number">0</span>)
+<span class="hljs-number">1</span> <span class="hljs-number">6</span> <span class="hljs-number">15</span> <span class="hljs-number">20</span> <span class="hljs-number">15</span> <span class="hljs-number">6</span> <span class="hljs-number">1</span></code></pre>
+          <p>
+            We can store this as another verb to generate Pascal&#39;s Triangle.
+            We’ll also simplify our definition of next using the
+            <a href="http://www.jsoftware.com/help/dictionary/d620.htm"
+              >&quot;atop&quot; verb <code>@</code></a
+            >.
+          </p>
+          <pre><code>  next =: <span class="hljs-number">2</span> +/\ (<span class="hljs-number">0</span>&amp;,) @ (,&amp;<span class="hljs-number">0</span>)
   pascal =: verb : <span class="hljs-string">'(next^:(i.y)) 1'</span>
   NB. We can also inline `next` entirely
   pascal =: verb : <span class="hljs-string">'((2 +/\ (0&amp;,) @ (,&amp;0))^:(i.y)) 1'</span>
@@ -197,41 +324,62 @@
 <span class="hljs-number">1</span> <span class="hljs-number">6</span> <span class="hljs-number">15</span> <span class="hljs-number">20</span>  <span class="hljs-number">15</span>   <span class="hljs-number">6</span>  <span class="hljs-number">1</span>  <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">7</span> <span class="hljs-number">21</span> <span class="hljs-number">35</span>  <span class="hljs-number">35</span>  <span class="hljs-number">21</span>  <span class="hljs-number">7</span>  <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>
 <span class="hljs-number">1</span> <span class="hljs-number">8</span> <span class="hljs-number">28</span> <span class="hljs-number">56</span>  <span class="hljs-number">70</span>  <span class="hljs-number">56</span> <span class="hljs-number">28</span>  <span class="hljs-number">8</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>
-<span class="hljs-number">1</span> <span class="hljs-number">9</span> <span class="hljs-number">36</span> <span class="hljs-number">84</span> <span class="hljs-number">126</span> <span class="hljs-number">126</span> <span class="hljs-number">84</span> <span class="hljs-number">36</span> <span class="hljs-number">9</span> <span class="hljs-number">1</span></code></pre><p>🎉 🎉</p>
-<p>Thanks to the powers of <code>\</code> and <code>^:</code>, we can intuitively generate Pascal&#39;s Triangle in a few dozen characters.</p>
-<p>J makes operations on lists and matrices a breeze, and contains a number of interesting ideas for function composition and application. I hope you found this post interesting and give a look at what J has to offer.</p>
-<p>I think you&#39;ll be pleasantly surprised at how fun it is.</p>
-<p>Thanks for reading!</p>
+<span class="hljs-number">1</span> <span class="hljs-number">9</span> <span class="hljs-number">36</span> <span class="hljs-number">84</span> <span class="hljs-number">126</span> <span class="hljs-number">126</span> <span class="hljs-number">84</span> <span class="hljs-number">36</span> <span class="hljs-number">9</span> <span class="hljs-number">1</span></code></pre>
+          <p>🎉 🎉</p>
+          <p>
+            Thanks to the powers of <code>\</code> and <code>^:</code>, we can
+            intuitively generate Pascal&#39;s Triangle in a few dozen
+            characters.
+          </p>
+          <p>
+            J makes operations on lists and matrices a breeze, and contains a
+            number of interesting ideas for function composition and
+            application. I hope you found this post interesting and give a look
+            at what J has to offer.
+          </p>
+          <p>I think you&#39;ll be pleasantly surprised at how fun it is.</p>
+          <p>Thanks for reading!</p>
+        </section>
 
-  </section>
-
-  <footer class="more details">
-    --
-    <br><br>
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9CJ%20Notes%20-%20Pascal&#39;s%20Triangle%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fj-pascal" class="tweet">tweet this</a>
-    <a href="/">&laquo; back to home</a>
-  </footer>
-</article>
-
-
-        
+        <footer class="more details">
+          --
+          <br /><br />
+          <a
+            target="_blank"
+            href="https://twitter.com/intent/tweet?text=%E2%80%9CJ%20Notes%20-%20Pascal&#39;s%20Triangle%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fj-pascal"
+            class="tweet"
+            >tweet this</a
+          >
+          <a href="/">&laquo; back to home</a>
+        </footer>
+      </article>
     </div>
 
     <script src="/js/flasher.js"></script>
     <script src="/js/demos/clicking.js"></script>
     <script src="/js/demos/hover.js"></script>
     <script>
-        (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-60897046-1', 'auto');
-        ga('send', 'pageview');
+      ;(function(i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r
+        ;(i[r] =
+          i[r] ||
+          function() {
+            ;(i[r].q = i[r].q || []).push(arguments)
+          }),
+          (i[r].l = 1 * new Date())
+        ;(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
+        a.async = 1
+        a.src = g
+        m.parentNode.insertBefore(a, m)
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      )
+      ga("create", "UA-60897046-1", "auto")
+      ga("send", "pageview")
     </script>
-
-    
-</body>
-
+  </body>
 </html>

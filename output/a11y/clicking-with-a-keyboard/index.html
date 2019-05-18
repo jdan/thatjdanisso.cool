@@ -1,94 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>
-        Clicking with a Keyboard | jordan scales
+      Clicking with a Keyboard | jordan scales
     </title>
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/tomorrow.min.css">
-    <link rel="stylesheet" href="/css/demos/clicking.css">
-    <link rel="stylesheet" href="/css/demos/hover.css">
-    <link rel="stylesheet" href="/css/demos/shared.css">
-    <link rel="stylesheet" href="/css/katex.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/tomorrow.min.css" />
+    <link rel="stylesheet" href="/css/demos/clicking.css" />
+    <link rel="stylesheet" href="/css/demos/hover.css" />
+    <link rel="stylesheet" href="/css/demos/shared.css" />
+    <link rel="stylesheet" href="/css/katex.min.css" />
 
-    
+    <link
+      href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=480" />
+    <link
+      rel="Shortcut Icon"
+      type="image/x-icon"
+      href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif"
+    />
 
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=480">
-    <link rel="Shortcut Icon" type="image/x-icon"
-        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+    <meta
+      property="og:title"
+      content="Clicking with a Keyboard | jordan scales"
+    />
+    <meta
+      property="og:description"
+      content="The importance of semantic markup, and getting keyboard accessibility for free. After all, not everyone can use a mouse."
+    />
+    <meta
+      property="og:image"
+      content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif"
+    />
+  </head>
 
-    <meta property="og:title" content="Clicking with a Keyboard | jordan scales" />
-    <meta property="og:description" content="The importance of semantic markup, and getting keyboard accessibility for free. After all, not everyone can use a mouse." />
-    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
-
-</head>
-
-<body>
+  <body>
     <div class="main">
-        <header>
-            <span class="flash" aria-hidden="true">////////</span>
-            <strong>jordan scales</strong>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="/">home</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="/projects">projects</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="https://twitter.com/jdan">twitter</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="https://github.com/jdan">github</a>
+      <header>
+        <span class="flash" aria-hidden="true">////////</span>
+        <strong>jordan scales</strong>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="/">home</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="/projects">projects</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="https://twitter.com/jdan">twitter</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="https://github.com/jdan">github</a>
+      </header>
+
+      <article class="article">
+        <header class="title">
+          <div class="date">
+            March 28, 2015
+          </div>
+
+          <h1>Clicking with a Keyboard</h1>
+
+          <div>
+            <span class="posted-in">Posted in: </span>
+            <span>
+              <a href="/tags/a11y">a11y</a>
+            </span>
+          </div>
         </header>
 
-        <article class="article">
-  <header class="title">
-    
-
-    
-      <div class="date">
-        March 28, 2015
-      </div>
-    
-    <h1>Clicking with a Keyboard</h1>
-
-    
-      <div>
-        <span class="posted-in">Posted in: </span>
-        <span>
-          
-            <a href="/tags/a11y">a11y</a>
-          
-        </span>
-      </div>
-    
-  </header>
-
-  <section class="content">
-    <p>Not everyone can use a mouse.</p>
-<p>Across the spectrum of disabilities, different types of users rely on different
-mechanisms for navigating around a webpage. In many of these cases a pointing
-device such as a mouse or trackpad is simply not an option, due to either
-insufficient motor skills, or being unable to see.</p>
-<p>In fact, a <a href="http://www.microsoft.com/enable/research/phase1.aspx">2003 study of accessible technology potential</a>
-commissioned by Microsoft found that an estimated <em>&quot;7% (or 12 million) of
-working-age adults have a severe dexterity difficulty or impairment,&quot;</em> one that
-would likely prevent them from using a mouse or trackpad.</p>
-<p>It&#39;s tough to say how many are attempting use <em>your</em> website, of course, but
-there is also the power user who prefers to stick to their keyboard while
-using your website.</p>
-<p>Not everyone <em>wants</em> to use a mouse. Still, the web is full of interactive elements which require a mouse. Why is that?</p>
-<p>Let&#39;s talk about the most common offender - the <code>&lt;div&gt;</code>. Now, the <code>&lt;div&gt;</code>
-itself is very useful, but it&#39;s vague. It&#39;s a broad container of sorts. Not a
-button, not a navbar, not an image - just a big ol&#39; rectangle taking up a few
-rows in our webpage.</p>
-<p>Yet, many try to <em>make</em> it one of those things and, rather unfortunately, miss
-out on all the cool things that would happen if we had used the <strong>right tag
-for the job</strong>.</p>
-<h2 id="lets-talk-about-clicking">Let&#39;s talk about clicking</h2>
-<p>Consider the following <code>&lt;div&gt;</code> with an <code>onclick</code> event handler.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <section class="content">
+          <p>Not everyone can use a mouse.</p>
+          <p>
+            Across the spectrum of disabilities, different types of users rely
+            on different mechanisms for navigating around a webpage. In many of
+            these cases a pointing device such as a mouse or trackpad is simply
+            not an option, due to either insufficient motor skills, or being
+            unable to see.
+          </p>
+          <p>
+            In fact, a
+            <a href="http://www.microsoft.com/enable/research/phase1.aspx"
+              >2003 study of accessible technology potential</a
+            >
+            commissioned by Microsoft found that an estimated
+            <em
+              >&quot;7% (or 12 million) of working-age adults have a severe
+              dexterity difficulty or impairment,&quot;</em
+            >
+            one that would likely prevent them from using a mouse or trackpad.
+          </p>
+          <p>
+            It&#39;s tough to say how many are attempting use
+            <em>your</em> website, of course, but there is also the power user
+            who prefers to stick to their keyboard while using your website.
+          </p>
+          <p>
+            Not everyone <em>wants</em> to use a mouse. Still, the web is full
+            of interactive elements which require a mouse. Why is that?
+          </p>
+          <p>
+            Let&#39;s talk about the most common offender - the
+            <code>&lt;div&gt;</code>. Now, the <code>&lt;div&gt;</code> itself
+            is very useful, but it&#39;s vague. It&#39;s a broad container of
+            sorts. Not a button, not a navbar, not an image - just a big ol&#39;
+            rectangle taking up a few rows in our webpage.
+          </p>
+          <p>
+            Yet, many try to <em>make</em> it one of those things and, rather
+            unfortunately, miss out on all the cool things that would happen if
+            we had used the <strong>right tag for the job</strong>.
+          </p>
+          <h2 id="lets-talk-about-clicking">Let&#39;s talk about clicking</h2>
+          <p>
+            Consider the following <code>&lt;div&gt;</code> with an
+            <code>onclick</code> event handler.
+          </p>
+          <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
   <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>)
@@ -101,53 +130,75 @@ for the job</strong>.</p>
     }, <span class="hljs-number">1000</span>)
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<span class="sr-only">
-    Depicted below is a demo of the code above interacting with a mouse
-    pointer. The button works as expected.
-</span>
-<div class="a11y-onclick demo flex" aria-hidden="true">
-    <div class="button">Display</div>
-    <div class="mouse-pointer">
-        <div class="head"></div>
-        <div class="tail"></div>
-    </div>
-    <div class="output">&nbsp;</div>
-</div>
+          <span class="sr-only">
+            Depicted below is a demo of the code above interacting with a mouse
+            pointer. The button works as expected.
+          </span>
+          <div class="a11y-onclick demo flex" aria-hidden="true">
+            <div class="button">Display</div>
+            <div class="mouse-pointer">
+              <div class="head"></div>
+              <div class="tail"></div>
+            </div>
+            <div class="output">&nbsp;</div>
+          </div>
 
-<p>This example does pretty much exactly what you&#39;d expect. We&#39;ve got a &quot;button&quot;
-and clicking it triggers some action - in this case, putting some text in a
-separate <code>&lt;div&gt;</code> before it disappears.</p>
-<h2 id="keyboard-accessible-divs">Keyboard-accessible <code>&lt;div&gt;</code>s</h2>
-<p>But what if we want to add keyboard access to this &quot;button&quot;? First, we&#39;ll need
-to understand that users access items with a keyboard through the <strong>tab order</strong>.
-Links (<code>&lt;a&gt;</code>) and inputs (<code>&lt;input&gt;</code>) will, as you probably already know,
-automatically be navigated to and from using the tab key.</p>
-<p>Our fancy <code>&lt;div&gt;</code>, on the other hand, can&#39;t - a <code>&lt;div&gt;</code> (and many other tags
-like <code>&lt;p&gt;</code>, <code>&lt;b&gt;</code>, etc) will not find themselves in the tab order, so we&#39;ll
-have to put in some extra work. We&#39;ll start by specifying <code>tabindex=&quot;0&quot;</code> on
-the tag.</p>
-<p>In the following example we&#39;ve tabbed to the button and focused it (as shown
-by the black outline), and now we&#39;ll attempt to activate the button using the
-enter key (just as we would on a hyperlink or form).</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-<span class="sr-only">
-    Depicted below is the same demo as before, this time interacting with
-    the enter key. The button does not seem to do anything.
-</span>
-<div class="a11y-onclick demo no-active no-output" aria-hidden="true">
-    <div class="row">
-        <div class="enter-key">enter</div>
-    </div>
-    <div class="flex">
-        <div class="button focused">Display</div>
-        <div class="output">&nbsp;</div>
-    </div>
-</div>
+          <p>
+            This example does pretty much exactly what you&#39;d expect.
+            We&#39;ve got a &quot;button&quot; and clicking it triggers some
+            action - in this case, putting some text in a separate
+            <code>&lt;div&gt;</code> before it disappears.
+          </p>
+          <h2 id="keyboard-accessible-divs">
+            Keyboard-accessible <code>&lt;div&gt;</code>s
+          </h2>
+          <p>
+            But what if we want to add keyboard access to this
+            &quot;button&quot;? First, we&#39;ll need to understand that users
+            access items with a keyboard through the <strong>tab order</strong>.
+            Links (<code>&lt;a&gt;</code>) and inputs
+            (<code>&lt;input&gt;</code>) will, as you probably already know,
+            automatically be navigated to and from using the tab key.
+          </p>
+          <p>
+            Our fancy <code>&lt;div&gt;</code>, on the other hand, can&#39;t - a
+            <code>&lt;div&gt;</code> (and many other tags like
+            <code>&lt;p&gt;</code>, <code>&lt;b&gt;</code>, etc) will not find
+            themselves in the tab order, so we&#39;ll have to put in some extra
+            work. We&#39;ll start by specifying
+            <code>tabindex=&quot;0&quot;</code> on the tag.
+          </p>
+          <p>
+            In the following example we&#39;ve tabbed to the button and focused
+            it (as shown by the black outline), and now we&#39;ll attempt to
+            activate the button using the enter key (just as we would on a
+            hyperlink or form).
+          </p>
+          <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+          <span class="sr-only">
+            Depicted below is the same demo as before, this time interacting
+            with the enter key. The button does not seem to do anything.
+          </span>
+          <div class="a11y-onclick demo no-active no-output" aria-hidden="true">
+            <div class="row">
+              <div class="enter-key">enter</div>
+            </div>
+            <div class="flex">
+              <div class="button focused">Display</div>
+              <div class="output">&nbsp;</div>
+            </div>
+          </div>
 
-<p>Unfortunately, nothing happens :( Our &quot;button&quot; is listening for a click event,
-but we&#39;re attempting to activate it with a keyboard.</p>
-<p>Let&#39;s try and fix this by adding a <code>keypress</code> event handler.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <p>
+            Unfortunately, nothing happens :( Our &quot;button&quot; is
+            listening for a click event, but we&#39;re attempting to activate it
+            with a keyboard.
+          </p>
+          <p>
+            Let&#39;s try and fix this by adding a <code>keypress</code> event
+            handler.
+          </p>
+          <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
   <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>)
@@ -168,34 +219,48 @@ but we&#39;re attempting to activate it with a keyboard.</p>
     }
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<span class="sr-only">
-    Depicted below is a demo of the code above interacting with the enter key.
-    The button now works similarly to the mouse pointer example before.
-</span>
-<div class="a11y-onclick demo no-active" aria-hidden="true">
-    <div class="row">
-        <div class="enter-key">enter</div>
-    </div>
-    <div class="flex">
-        <div class="button focused">Display</div>
-        <div class="output">&nbsp;</div>
-    </div>
-</div>
+          <span class="sr-only">
+            Depicted below is a demo of the code above interacting with the
+            enter key. The button now works similarly to the mouse pointer
+            example before.
+          </span>
+          <div class="a11y-onclick demo no-active" aria-hidden="true">
+            <div class="row">
+              <div class="enter-key">enter</div>
+            </div>
+            <div class="flex">
+              <div class="button focused">Display</div>
+              <div class="output">&nbsp;</div>
+            </div>
+          </div>
 
-<p>I&#39;ll call that a success, sort of! The code&#39;s a bit longer now (even after
-a bit of refactoring), but it definitely works - our &quot;button&quot; can be
-activated with both a mouse and a keyboard, just like a real button.</p>
-<p>But hold on a second, why don&#39;t we just <em>use</em> a real button?</p>
-<h2 id="semantic-buttons">Semantic buttons</h2>
-<p>As I briefly mentioned earlier, there&#39;s nothing special about a <code>&lt;div&gt;</code>. It
-doesn&#39;t have any magical behavior, it&#39;s just a container. We can shape it,
-paint it, and make it <em>look</em> like a button, but it&#39;s not a button.</p>
-<p>We can write some extra JavaScript to make it <em>act</em> like a button, but it&#39;s
-<strong>not a button</strong>.</p>
-<p>In fact, we&#39;re doing all this extra work (and often skipping it), when in
-reality we could just a real button, the semantic <code>&lt;button&gt;</code> tag. Let&#39;s try
-it.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+          <p>
+            I&#39;ll call that a success, sort of! The code&#39;s a bit longer
+            now (even after a bit of refactoring), but it definitely works - our
+            &quot;button&quot; can be activated with both a mouse and a
+            keyboard, just like a real button.
+          </p>
+          <p>
+            But hold on a second, why don&#39;t we just <em>use</em> a real
+            button?
+          </p>
+          <h2 id="semantic-buttons">Semantic buttons</h2>
+          <p>
+            As I briefly mentioned earlier, there&#39;s nothing special about a
+            <code>&lt;div&gt;</code>. It doesn&#39;t have any magical behavior,
+            it&#39;s just a container. We can shape it, paint it, and make it
+            <em>look</em> like a button, but it&#39;s not a button.
+          </p>
+          <p>
+            We can write some extra JavaScript to make it <em>act</em> like a
+            button, but it&#39;s <strong>not a button</strong>.
+          </p>
+          <p>
+            In fact, we&#39;re doing all this extra work (and often skipping
+            it), when in reality we could just a real button, the semantic
+            <code>&lt;button&gt;</code> tag. Let&#39;s try it.
+          </p>
+          <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"action-button"</span>&gt;</span>Display<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
   <span class="hljs-keyword">var</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"action-button"</span>)
@@ -208,76 +273,116 @@ it.</p>
     }, <span class="hljs-number">1000</span>)
   }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<span class="sr-only">
-    Depicted below is a demo of the code above interacting with both a mouse
-    pointer and the enter key. Both of these interactions work.
-</span>
-<div class="a11y-onclick demo flex" aria-hidden="true">
-    <div class="button">Display</div>
-    <div class="mouse-pointer">
-        <div class="head"></div>
-        <div class="tail"></div>
-    </div>
-    <div class="output">&nbsp;</div>
-</div>
+          <span class="sr-only">
+            Depicted below is a demo of the code above interacting with both a
+            mouse pointer and the enter key. Both of these interactions work.
+          </span>
+          <div class="a11y-onclick demo flex" aria-hidden="true">
+            <div class="button">Display</div>
+            <div class="mouse-pointer">
+              <div class="head"></div>
+              <div class="tail"></div>
+            </div>
+            <div class="output">&nbsp;</div>
+          </div>
 
-<div class="a11y-onclick demo no-active" aria-hidden="true" aria-label="an example with a div and an onkeypress event">
-    <div class="row">
-        <div class="enter-key">enter</div>
-    </div>
-    <div class="flex">
-        <div class="button focused">Display</div>
-        <div class="output">&nbsp;</div>
-    </div>
-</div>
+          <div
+            class="a11y-onclick demo no-active"
+            aria-hidden="true"
+            aria-label="an example with a div and an onkeypress event"
+          >
+            <div class="row">
+              <div class="enter-key">enter</div>
+            </div>
+            <div class="flex">
+              <div class="button focused">Display</div>
+              <div class="output">&nbsp;</div>
+            </div>
+          </div>
 
-<p>Excellent! Now that we are using the semantic <code>&lt;button&gt;</code> tag, <strong>we get a click
-event for free</strong>. No need to track both a <code>click</code> and <code>keypress</code> handler here,
-just a <code>click</code> will do.</p>
-<p><strong>It turns out that in order to make our button accessible, we don&#39;t have to
-do much.</strong> In fact, the <em>only</em> difference between our first example and this
-one is that we&#39;ve replaced the <code>&lt;div&gt;</code> with a <code>&lt;button&gt;</code> - seriously!</p>
-<h2 id="sane-markup-goes-a-long-way">Sane markup goes a long way</h2>
-<p>Beyond the obvious markup clarity and keyboard accessibility gains, we also
-unlock a few bonus features when we use a <code>&lt;button&gt;</code> instead of a <code>&lt;div&gt;</code>. For
-instance, a copy of VoiceOver on OSX will display the following:</p>
-<p><img src="/img/voiceover.png" alt="VoiceOver for Mac describing the button as &quot;Display, button&quot;"></p>
-<p>Letting users with screen readers know that &quot;Display&quot; corresponds to a button
-that can be activated with either their enter key or space bar.</p>
-<p>So go forth and prevent your contemporaries from skipping the semantic markup,
-make sure your buttons play nicely with the keyboard, and stop trying to copy
-browser behavior provided to you <strong>for free</strong>.</p>
-<p>It doesn&#39;t take much, but it makes a big difference.</p>
+          <p>
+            Excellent! Now that we are using the semantic
+            <code>&lt;button&gt;</code> tag,
+            <strong>we get a click event for free</strong>. No need to track
+            both a <code>click</code> and <code>keypress</code> handler here,
+            just a <code>click</code> will do.
+          </p>
+          <p>
+            <strong
+              >It turns out that in order to make our button accessible, we
+              don&#39;t have to do much.</strong
+            >
+            In fact, the <em>only</em> difference between our first example and
+            this one is that we&#39;ve replaced the
+            <code>&lt;div&gt;</code> with a <code>&lt;button&gt;</code> -
+            seriously!
+          </p>
+          <h2 id="sane-markup-goes-a-long-way">Sane markup goes a long way</h2>
+          <p>
+            Beyond the obvious markup clarity and keyboard accessibility gains,
+            we also unlock a few bonus features when we use a
+            <code>&lt;button&gt;</code> instead of a <code>&lt;div&gt;</code>.
+            For instance, a copy of VoiceOver on OSX will display the following:
+          </p>
+          <p>
+            <img
+              src="/img/voiceover.png"
+              alt='VoiceOver for Mac describing the button as "Display, button"'
+            />
+          </p>
+          <p>
+            Letting users with screen readers know that &quot;Display&quot;
+            corresponds to a button that can be activated with either their
+            enter key or space bar.
+          </p>
+          <p>
+            So go forth and prevent your contemporaries from skipping the
+            semantic markup, make sure your buttons play nicely with the
+            keyboard, and stop trying to copy browser behavior provided to you
+            <strong>for free</strong>.
+          </p>
+          <p>It doesn&#39;t take much, but it makes a big difference.</p>
+        </section>
 
-  </section>
-
-  <footer class="more details">
-    --
-    <br><br>
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9CClicking%20with%20a%20Keyboard%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fa11y%2Fclicking-with-a-keyboard" class="tweet">tweet this</a>
-    <a href="/">&laquo; back to home</a>
-  </footer>
-</article>
-
-
-        
+        <footer class="more details">
+          --
+          <br /><br />
+          <a
+            target="_blank"
+            href="https://twitter.com/intent/tweet?text=%E2%80%9CClicking%20with%20a%20Keyboard%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fa11y%2Fclicking-with-a-keyboard"
+            class="tweet"
+            >tweet this</a
+          >
+          <a href="/">&laquo; back to home</a>
+        </footer>
+      </article>
     </div>
 
     <script src="/js/flasher.js"></script>
     <script src="/js/demos/clicking.js"></script>
     <script src="/js/demos/hover.js"></script>
     <script>
-        (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-60897046-1', 'auto');
-        ga('send', 'pageview');
+      ;(function(i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r
+        ;(i[r] =
+          i[r] ||
+          function() {
+            ;(i[r].q = i[r].q || []).push(arguments)
+          }),
+          (i[r].l = 1 * new Date())
+        ;(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
+        a.async = 1
+        a.src = g
+        m.parentNode.insertBefore(a, m)
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      )
+      ga("create", "UA-60897046-1", "auto")
+      ga("send", "pageview")
     </script>
-
-    
-</body>
-
+  </body>
 </html>

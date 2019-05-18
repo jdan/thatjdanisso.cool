@@ -1,143 +1,166 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>
-        Focus vs. Hover | jordan scales
+      Focus vs. Hover | jordan scales
     </title>
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/tomorrow.min.css">
-    <link rel="stylesheet" href="/css/demos/clicking.css">
-    <link rel="stylesheet" href="/css/demos/hover.css">
-    <link rel="stylesheet" href="/css/demos/shared.css">
-    <link rel="stylesheet" href="/css/katex.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/tomorrow.min.css" />
+    <link rel="stylesheet" href="/css/demos/clicking.css" />
+    <link rel="stylesheet" href="/css/demos/hover.css" />
+    <link rel="stylesheet" href="/css/demos/shared.css" />
+    <link rel="stylesheet" href="/css/katex.min.css" />
 
-    
-
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=480">
-    <link rel="Shortcut Icon" type="image/x-icon"
-        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=480" />
+    <link
+      rel="Shortcut Icon"
+      type="image/x-icon"
+      href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif"
+    />
 
     <meta property="og:title" content="Focus vs. Hover | jordan scales" />
-    <meta property="og:description" content="Visual interactions should never require a mouse, but a common CSS pattern leaves many keyboard-wielding visitors in the dark." />
-    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+    <meta
+      property="og:description"
+      content="Visual interactions should never require a mouse, but a common CSS pattern leaves many keyboard-wielding visitors in the dark."
+    />
+    <meta
+      property="og:image"
+      content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif"
+    />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="main">
-        <header>
-            <span class="flash" aria-hidden="true">////////</span>
-            <strong>jordan scales</strong>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="/">home</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="/projects">projects</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="https://twitter.com/jdan">twitter</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="https://github.com/jdan">github</a>
+      <header>
+        <span class="flash" aria-hidden="true">////////</span>
+        <strong>jordan scales</strong>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="/">home</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="/projects">projects</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="https://twitter.com/jdan">twitter</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="https://github.com/jdan">github</a>
+      </header>
+
+      <article class="article">
+        <header class="title">
+          <div class="date">
+            April 03, 2015
+          </div>
+
+          <h1>Focus vs. Hover</h1>
+
+          <div>
+            <span class="posted-in">Posted in: </span>
+            <span>
+              <a href="/tags/a11y">a11y</a>
+            </span>
+          </div>
         </header>
 
-        <article class="article">
-  <header class="title">
-    
-
-    
-      <div class="date">
-        April 03, 2015
-      </div>
-    
-    <h1>Focus vs. Hover</h1>
-
-    
-      <div>
-        <span class="posted-in">Posted in: </span>
-        <span>
-          
-            <a href="/tags/a11y">a11y</a>
-          
-        </span>
-      </div>
-    
-  </header>
-
-  <section class="content">
-    <p>Visual interactions should never require a mouse.</p>
-<p>Consider the ever-popular <code>:hover</code> selector, which is used to declare styles
-on elements under a mouse cursor.</p>
-<pre><code class="language-css"><span class="hljs-selector-class">.nav-link</span> {
+        <section class="content">
+          <p>Visual interactions should never require a mouse.</p>
+          <p>
+            Consider the ever-popular <code>:hover</code> selector, which is
+            used to declare styles on elements under a mouse cursor.
+          </p>
+          <pre><code class="language-css"><span class="hljs-selector-class">.nav-link</span> {
   <span class="hljs-attribute">color</span>: <span class="hljs-number">#ffffff</span>;
 }
 
 <span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:hover</span> {
   <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.8</span>;
 }</code></pre>
-<span class="sr-only">
-    The following example shows a mouse cursor hovering over various items
-    in a navigation bar which highlight as the mouse passes over them.
-</span>
-<div class="demo hover-a11y" aria-hidden="true">
-    <div class="row flex">
-        <div class="mouse-pointer">
-            <div class="head"></div>
-            <div class="tail"></div>
-        </div>
-        <div class="button">Home</div>
-        <div class="button">About</div>
-        <div class="button">Products</div>
-    </div>
-</div>
+          <span class="sr-only">
+            The following example shows a mouse cursor hovering over various
+            items in a navigation bar which highlight as the mouse passes over
+            them.
+          </span>
+          <div class="demo hover-a11y" aria-hidden="true">
+            <div class="row flex">
+              <div class="mouse-pointer">
+                <div class="head"></div>
+                <div class="tail"></div>
+              </div>
+              <div class="button">Home</div>
+              <div class="button">About</div>
+              <div class="button">Products</div>
+            </div>
+          </div>
 
-<p>If we attempt to access these buttons with a keyboard, however, we&#39;re met
-with an unfortunate short-coming.</p>
-<p>Nothing happens.</p>
-<span class="sr-only">
-    The following example is just a navigation bar with three links and no
-    animation, because we did not declare our styles correctly.
-</span>
-<div class="demo hover-a11y no-active" aria-hidden="true">
-    <div class="row flex">
-        <div class="button">Home</div>
-        <div class="button">About</div>
-        <div class="button">Products</div>
-    </div>
-</div>
+          <p>
+            If we attempt to access these buttons with a keyboard, however,
+            we&#39;re met with an unfortunate short-coming.
+          </p>
+          <p>Nothing happens.</p>
+          <span class="sr-only">
+            The following example is just a navigation bar with three links and
+            no animation, because we did not declare our styles correctly.
+          </span>
+          <div class="demo hover-a11y no-active" aria-hidden="true">
+            <div class="row flex">
+              <div class="button">Home</div>
+              <div class="button">About</div>
+              <div class="button">Products</div>
+            </div>
+          </div>
 
-<p>Instead, we need to use the <code>:focus</code> selector, which is used to declare styles
-on focused elements - the items on the page that keyboards can highlight with
-subsequent presses of the tab key.</p>
-<p><strong>All we need to do is add the <code>:focus</code> selector</strong>, so that it is applied in
-addition to the hover styles.</p>
-<pre><code class="language-css"><span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:hover</span>,
+          <p>
+            Instead, we need to use the <code>:focus</code> selector, which is
+            used to declare styles on focused elements - the items on the page
+            that keyboards can highlight with subsequent presses of the tab key.
+          </p>
+          <p>
+            <strong
+              >All we need to do is add the <code>:focus</code> selector</strong
+            >, so that it is applied in addition to the hover styles.
+          </p>
+          <pre><code class="language-css"><span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:hover</span>,
 <span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:focus</span> {
   <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.8</span>;
 }</code></pre>
-<p>Ta-da, now we get the same effect even when we&#39;re using a keyboard instead of
-a mouse! <strong>This helps users keep track of their location in their page</strong>, and
-also presents the same information that a mouse-wielding user would receive.</p>
-<span class="sr-only">
-    The example below shows three links on a nav bar highlighting in sequence
-    as a theoretical keyboard tabs to each of them.
-</span>
-<div class="demo hover-a11y" aria-hidden="true">
-    <div class="row flex">
-        <div class="button">Home</div>
-        <div class="button">About</div>
-        <div class="button">Products</div>
-    </div>
-</div>
+          <p>
+            Ta-da, now we get the same effect even when we&#39;re using a
+            keyboard instead of a mouse!
+            <strong
+              >This helps users keep track of their location in their
+              page</strong
+            >, and also presents the same information that a mouse-wielding user
+            would receive.
+          </p>
+          <span class="sr-only">
+            The example below shows three links on a nav bar highlighting in
+            sequence as a theoretical keyboard tabs to each of them.
+          </span>
+          <div class="demo hover-a11y" aria-hidden="true">
+            <div class="row flex">
+              <div class="button">Home</div>
+              <div class="button">About</div>
+              <div class="button">Products</div>
+            </div>
+          </div>
 
-<p>We can do still do better, though. Many of your visitors will be unable to
-detect subtle color changes (and, in some cases, very obvious ones!), so we&#39;ll
-add an underline to the link.</p>
-<p>It&#39;s okay if you don&#39;t want this on hover - since a mouse cursor is a good
-visual indicator in and of itself - but it&#39;s pretty essential to do this on
-focus for visitors using the keyboard.</p>
-<pre><code class="language-css"><span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:hover</span>,
+          <p>
+            We can do still do better, though. Many of your visitors will be
+            unable to detect subtle color changes (and, in some cases, very
+            obvious ones!), so we&#39;ll add an underline to the link.
+          </p>
+          <p>
+            It&#39;s okay if you don&#39;t want this on hover - since a mouse
+            cursor is a good visual indicator in and of itself - but it&#39;s
+            pretty essential to do this on focus for visitors using the
+            keyboard.
+          </p>
+          <pre><code class="language-css"><span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:hover</span>,
 <span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:focus</span> {
   <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.8</span>;
 }
@@ -145,55 +168,72 @@ focus for visitors using the keyboard.</p>
 <span class="hljs-selector-class">.nav-link</span><span class="hljs-selector-pseudo">:focus</span> {
   <span class="hljs-attribute">text-decoration</span>: underline;
 }</code></pre>
-<span class="sr-only">
-    The following example is the same as the previous example, but the links
-    also have an underline when focused.
-</span>
-<div class="demo hover-a11y with-underline" aria-hidden="true">
-    <div class="row flex">
-        <div class="button">Home</div>
-        <div class="button">About</div>
-        <div class="button">Products</div>
-    </div>
-</div>
+          <span class="sr-only">
+            The following example is the same as the previous example, but the
+            links also have an underline when focused.
+          </span>
+          <div class="demo hover-a11y with-underline" aria-hidden="true">
+            <div class="row flex">
+              <div class="button">Home</div>
+              <div class="button">About</div>
+              <div class="button">Products</div>
+            </div>
+          </div>
 
-<p><strong>Side note</strong>: While browsers like Chrome <em>will</em> declare a
-<code>focus-ring-color</code> outline for focused elements by default (a glowing blue
-outline), it&#39;s far too easy to accidentally remove these - and sadly many do!</p>
-<p>Adding a <code>:focus</code> rule is a trivial change with a potentially great impact, so
-there&#39;s no real reason not make use of it. Always keep keyboard accessibility
-in mind when writing style rules for interactions, and try not to leave any of
-your users in the dark.</p>
+          <p>
+            <strong>Side note</strong>: While browsers like Chrome
+            <em>will</em> declare a <code>focus-ring-color</code> outline for
+            focused elements by default (a glowing blue outline), it&#39;s far
+            too easy to accidentally remove these - and sadly many do!
+          </p>
+          <p>
+            Adding a <code>:focus</code> rule is a trivial change with a
+            potentially great impact, so there&#39;s no real reason not make use
+            of it. Always keep keyboard accessibility in mind when writing style
+            rules for interactions, and try not to leave any of your users in
+            the dark.
+          </p>
+        </section>
 
-  </section>
-
-  <footer class="more details">
-    --
-    <br><br>
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9CFocus%20vs.%20Hover%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fa11y%2Ffocus-vs-hover" class="tweet">tweet this</a>
-    <a href="/">&laquo; back to home</a>
-  </footer>
-</article>
-
-
-        
+        <footer class="more details">
+          --
+          <br /><br />
+          <a
+            target="_blank"
+            href="https://twitter.com/intent/tweet?text=%E2%80%9CFocus%20vs.%20Hover%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fa11y%2Ffocus-vs-hover"
+            class="tweet"
+            >tweet this</a
+          >
+          <a href="/">&laquo; back to home</a>
+        </footer>
+      </article>
     </div>
 
     <script src="/js/flasher.js"></script>
     <script src="/js/demos/clicking.js"></script>
     <script src="/js/demos/hover.js"></script>
     <script>
-        (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-60897046-1', 'auto');
-        ga('send', 'pageview');
+      ;(function(i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r
+        ;(i[r] =
+          i[r] ||
+          function() {
+            ;(i[r].q = i[r].q || []).push(arguments)
+          }),
+          (i[r].l = 1 * new Date())
+        ;(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
+        a.async = 1
+        a.src = g
+        m.parentNode.insertBefore(a, m)
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      )
+      ga("create", "UA-60897046-1", "auto")
+      ga("send", "pageview")
     </script>
-
-    
-</body>
-
+  </body>
 </html>

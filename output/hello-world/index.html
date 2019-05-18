@@ -1,92 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>
-        Hello, World! | jordan scales
+      Hello, World! | jordan scales
     </title>
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/tomorrow.min.css">
-    <link rel="stylesheet" href="/css/demos/clicking.css">
-    <link rel="stylesheet" href="/css/demos/hover.css">
-    <link rel="stylesheet" href="/css/demos/shared.css">
-    <link rel="stylesheet" href="/css/katex.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/tomorrow.min.css" />
+    <link rel="stylesheet" href="/css/demos/clicking.css" />
+    <link rel="stylesheet" href="/css/demos/hover.css" />
+    <link rel="stylesheet" href="/css/demos/shared.css" />
+    <link rel="stylesheet" href="/css/katex.min.css" />
 
-    
-
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=480">
-    <link rel="Shortcut Icon" type="image/x-icon"
-        href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=480" />
+    <link
+      rel="Shortcut Icon"
+      type="image/x-icon"
+      href="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif"
+    />
 
     <meta property="og:title" content="Hello, World! | jordan scales" />
     <meta property="og:description" content="" />
-    <meta property="og:image" content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif" />
+    <meta
+      property="og:image"
+      content="https://s.gravatar.com/avatar/3517596df161030c3779c532f7844383?s=32.gif"
+    />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="main">
-        <header>
-            <span class="flash" aria-hidden="true">////////</span>
-            <strong>jordan scales</strong>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="/">home</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="/projects">projects</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="https://twitter.com/jdan">twitter</a>
-            <span class="sep" aria-hidden="true">.</span>
-            <a href="https://github.com/jdan">github</a>
+      <header>
+        <span class="flash" aria-hidden="true">////////</span>
+        <strong>jordan scales</strong>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="/">home</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="/projects">projects</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="https://twitter.com/jdan">twitter</a>
+        <span class="sep" aria-hidden="true">.</span>
+        <a href="https://github.com/jdan">github</a>
+      </header>
+
+      <article class="article">
+        <header class="title">
+          <p>
+            <strong>Note:</strong>
+            This article is hidden and is only available to those with a link.
+          </p>
+
+          <div class="date">
+            June 22, 2014
+          </div>
+
+          <h1>Hello, World!</h1>
         </header>
 
-        <article class="article">
-  <header class="title">
-    
-      <p>
-        <strong>Note:</strong>
-        This article is hidden and is only available to those with a link.
-      </p>
-    
-
-    
-      <div class="date">
-        June 22, 2014
-      </div>
-    
-    <h1>Hello, World!</h1>
-
-    
-  </header>
-
-  <section class="content">
-    <p>Tinman is a tiny static-ready blog engine based on the
-<a href="http://github.com/cloudhead/toto">toto</a> library.</p>
-<pre><code>npm <span class="hljs-keyword">install</span> -g tinman</code></pre><h2 id="what-is-tinman">What is Tinman?</h2>
-<p>A basic tinman blog looks like this:</p>
-<pre><code>example
+        <section class="content">
+          <p>
+            Tinman is a tiny static-ready blog engine based on the
+            <a href="http://github.com/cloudhead/toto">toto</a> library.
+          </p>
+          <pre><code>npm <span class="hljs-keyword">install</span> -g tinman</code></pre>
+          <h2 id="what-is-tinman">What is Tinman?</h2>
+          <p>A basic tinman blog looks like this:</p>
+          <pre><code>example
 ├── articles
 │   └── <span class="hljs-number">2014</span><span class="hljs-number">-06</span><span class="hljs-number">-22</span>-hello-world.md
 └── <span class="hljs-keyword">public</span>
-    └── style.css</code></pre><p>Some features include:</p>
-<ul>
-<li>Generate a simple blog with nothing but a few markdown files</li>
-<li>Serve anything static by placing it in the <em>public/</em> directory</li>
-<li>A comprehensive CLI to handle best-practices for you</li>
-<li>Customize templates to your heart&#39;s desire</li>
-<li>Run your blog as web server or export it as a static site</li>
-<li>Add any CSS or JavaScript and have it just work</li>
-</ul>
-<h4 id="what-do-i-get">What do I get?</h4>
-<p>Tinman generates a page for each article, and an index page listing your
-articles (sorted by filename). Naming your articles <code>YYYY-MM-DD-my-title.md</code>
-will sort them such that the most recent article is listed first. It
-will also set the article&#39;s date property for you.</p>
-<h2 id="usage">Usage</h2>
-<h4 id="create-a-new-blog">Create a new blog</h4>
-<pre><code class="language-bash">$ tinman create
+    └── style.css</code></pre>
+          <p>Some features include:</p>
+          <ul>
+            <li>
+              Generate a simple blog with nothing but a few markdown files
+            </li>
+            <li>
+              Serve anything static by placing it in the
+              <em>public/</em> directory
+            </li>
+            <li>A comprehensive CLI to handle best-practices for you</li>
+            <li>Customize templates to your heart&#39;s desire</li>
+            <li>Run your blog as web server or export it as a static site</li>
+            <li>Add any CSS or JavaScript and have it just work</li>
+          </ul>
+          <h4 id="what-do-i-get">What do I get?</h4>
+          <p>
+            Tinman generates a page for each article, and an index page listing
+            your articles (sorted by filename). Naming your articles
+            <code>YYYY-MM-DD-my-title.md</code> will sort them such that the
+            most recent article is listed first. It will also set the
+            article&#39;s date property for you.
+          </p>
+          <h2 id="usage">Usage</h2>
+          <h4 id="create-a-new-blog">Create a new blog</h4>
+          <pre><code class="language-bash">$ tinman create
 Blog title: myblog
 
   Your blog is ready! To get started:
@@ -98,55 +111,81 @@ $ tinman create myblog
 
 <span class="hljs-comment"># Generate example templates to play with as well</span>
 $ tinman create myblog --with-templates</code></pre>
-<h4 id="generate-a-new-article">Generate a new article</h4>
-<pre><code class="language-bash">$ tinman new
+          <h4 id="generate-a-new-article">Generate a new article</h4>
+          <pre><code class="language-bash">$ tinman new
 Title: This is my first blog post
 
   Article generated at: articles/2014-07-05-this-is-my-first-blog-post.md</code></pre>
-<h4 id="run-your-blog-on-a-local-webserver">Run your blog on a local webserver</h4>
-<pre><code class="language-bash">$ tinman server
+          <h4 id="run-your-blog-on-a-local-webserver">
+            Run your blog on a local webserver
+          </h4>
+          <pre><code class="language-bash">$ tinman server
 Server listening on port 3000...
 
 $ tinman server --port 1337
 Server listening on port 1337...</code></pre>
-<h4 id="build-your-blog-as-a-static-site">Build your blog as a static site</h4>
-<pre><code class="language-bash">$ tinman build
+          <h4 id="build-your-blog-as-a-static-site">
+            Build your blog as a static site
+          </h4>
+          <pre><code class="language-bash">$ tinman build
 
   Blog successfully built to: build/
 
 $ tinman build --output-dir www
 
   Blog successfully built to: www</code></pre>
-<h2 id="writing-articles">Writing Articles</h2>
-<p>Articles are written in <a href="http://daringfireball.net/projects/markdown/">Markdown</a>
-and use YAML Front Matter to set various options.</p>
-<pre><code class="language-markdown">---
+          <h2 id="writing-articles">Writing Articles</h2>
+          <p>
+            Articles are written in
+            <a href="http://daringfireball.net/projects/markdown/">Markdown</a>
+            and use YAML Front Matter to set various options.
+          </p>
+          <pre><code class="language-markdown">---
 title: Hello, World!
 <span class="hljs-section">date: 2014-06-22
 ---</span>
 
 Once upon a time...</code></pre>
-<p>This article will be accessible at the url <code>/hello-world</code> by default
-(based on the article&#39;s title). You can customize this option by either:</p>
-<ul>
-<li>Setting the <code>slug</code> property, making the article accessible at
-<code>/your-slug-here</code></li>
-<li>Setting the <code>route</code> property, and completely overriding the slug (i.e.
-<code>route: /2014/06/24/musings/my-article</code>)</li>
-</ul>
-<p>You can include any custom options you&#39;d like (i.e. <code>color: red</code>) in
-your YAML Front Matter, and recall it from a custom template.</p>
-<h2 id="templates">Templates</h2>
-<p>Tinman uses <a href="http://embeddedjs.com/">EJS</a> templates and includes the
-following:</p>
-<ul>
-<li><strong>article.ejs</strong> for templating an individual article</li>
-<li><strong>index.ejs</strong> for the article index page</li>
-<li><strong>layout.ejs</strong> which wraps around the other two and renders asset tags</li>
-</ul>
-<p>To customize these templates, pass the <code>--with-templates</code> option to
-<code>tinman create</code>:</p>
-<pre><code class="language-bash">$ tinman create myblog --with-templates
+          <p>
+            This article will be accessible at the url
+            <code>/hello-world</code> by default (based on the article&#39;s
+            title). You can customize this option by either:
+          </p>
+          <ul>
+            <li>
+              Setting the <code>slug</code> property, making the article
+              accessible at <code>/your-slug-here</code>
+            </li>
+            <li>
+              Setting the <code>route</code> property, and completely overriding
+              the slug (i.e. <code>route: /2014/06/24/musings/my-article</code>)
+            </li>
+          </ul>
+          <p>
+            You can include any custom options you&#39;d like (i.e.
+            <code>color: red</code>) in your YAML Front Matter, and recall it
+            from a custom template.
+          </p>
+          <h2 id="templates">Templates</h2>
+          <p>
+            Tinman uses <a href="http://embeddedjs.com/">EJS</a> templates and
+            includes the following:
+          </p>
+          <ul>
+            <li>
+              <strong>article.ejs</strong> for templating an individual article
+            </li>
+            <li><strong>index.ejs</strong> for the article index page</li>
+            <li>
+              <strong>layout.ejs</strong> which wraps around the other two and
+              renders asset tags
+            </li>
+          </ul>
+          <p>
+            To customize these templates, pass the
+            <code>--with-templates</code> option to <code>tinman create</code>:
+          </p>
+          <pre><code class="language-bash">$ tinman create myblog --with-templates
 
   Your blog is ready! To get started:
 
@@ -164,74 +203,122 @@ myblog
 │   ├── index.ejs
 │   └── layout.ejs
 └── tinman.json</code></pre>
-<p>Beyond the articles directory and sample stylesheet, the
-<code>--with-templates</code> option creates a templates directory and a
-<code>tinman.json</code> file, instructing Tinman to use these templates instead of the
-ones built into it.</p>
-<h4 id="what-data-do-my-templates-receive">What Data Do My Templates Receive?</h4>
-<p>The <strong>article template</strong> receives all properties of the article as defined in
-the YAML Front Matter. The content of the article is stored as <code>body</code>. Some
-extra fields include:</p>
-<ul>
-<li><strong>summary</strong>: the first paragraph of the rendered article</li>
-<li><strong>filename</strong>: self-explanatory</li>
-<li><strong>date</strong>: the date either extracted from the filename or from the
-<code>date</code> property of the article&#39;s Front Matter</li>
-</ul>
-<p>The <strong>index template</strong> has access to the array <code>articles</code>, which holds
-every article in your blog.</p>
-<p>The <strong>layout template</strong> receives the blog&#39;s title and a <code>body</code>, which
-contains the rendered HTML of the page it contains (either an article
-page or the index). This template also has access to two strings,
-<code>stylesheets</code> and <code>scripts</code>, which store the CSS/JS resource tags
-generated automatically based on the contents of your public directory.</p>
-<h2 id="static-files">Static Files</h2>
-<p>Tinman will automatically copy static assets (images, stylesheets,
-javascripts) from the &quot;public&quot; directory (default: <code>public/</code>).</p>
-<p>For instance, you can write the following to <strong>public/css/colors/main.css</strong>:</p>
-<pre><code class="language-css"><span class="hljs-selector-tag">body</span> {
+          <p>
+            Beyond the articles directory and sample stylesheet, the
+            <code>--with-templates</code> option creates a templates directory
+            and a <code>tinman.json</code> file, instructing Tinman to use these
+            templates instead of the ones built into it.
+          </p>
+          <h4 id="what-data-do-my-templates-receive">
+            What Data Do My Templates Receive?
+          </h4>
+          <p>
+            The <strong>article template</strong> receives all properties of the
+            article as defined in the YAML Front Matter. The content of the
+            article is stored as <code>body</code>. Some extra fields include:
+          </p>
+          <ul>
+            <li>
+              <strong>summary</strong>: the first paragraph of the rendered
+              article
+            </li>
+            <li><strong>filename</strong>: self-explanatory</li>
+            <li>
+              <strong>date</strong>: the date either extracted from the filename
+              or from the <code>date</code> property of the article&#39;s Front
+              Matter
+            </li>
+          </ul>
+          <p>
+            The <strong>index template</strong> has access to the array
+            <code>articles</code>, which holds every article in your blog.
+          </p>
+          <p>
+            The <strong>layout template</strong> receives the blog&#39;s title
+            and a <code>body</code>, which contains the rendered HTML of the
+            page it contains (either an article page or the index). This
+            template also has access to two strings,
+            <code>stylesheets</code> and <code>scripts</code>, which store the
+            CSS/JS resource tags generated automatically based on the contents
+            of your public directory.
+          </p>
+          <h2 id="static-files">Static Files</h2>
+          <p>
+            Tinman will automatically copy static assets (images, stylesheets,
+            javascripts) from the &quot;public&quot; directory (default:
+            <code>public/</code>).
+          </p>
+          <p>
+            For instance, you can write the following to
+            <strong>public/css/colors/main.css</strong>:
+          </p>
+          <pre><code class="language-css"><span class="hljs-selector-tag">body</span> {
   <span class="hljs-attribute">color</span>: <span class="hljs-number">#222222</span>;
 }</code></pre>
-<p>And access it like so:</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/css/colors/main.css"</span> /&gt;</span></code></pre>
-<p>You can follow the same pattern for including images in your articles,
-or even serving static HTML documents.</p>
-<p>In addition, Tinman scans for javascripts (<code>*.js</code>) and stylesheets (<code>*.css</code>)
-and automatically generates resource tags which are placed in the layout
-template (<em>layout.ejs</em> is sent both a <em>scripts</em> and <em>stylesheets</em>
-string). <strong>You do not need to edit any templates after writing
-javascripts or stylesheets.</strong></p>
-<p><a href="https://github.com/jdan/tinman/blob/master/LICENSE">MIT Licensed</a></p>
+          <p>And access it like so:</p>
+          <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/css/colors/main.css"</span> /&gt;</span></code></pre>
+          <p>
+            You can follow the same pattern for including images in your
+            articles, or even serving static HTML documents.
+          </p>
+          <p>
+            In addition, Tinman scans for javascripts (<code>*.js</code>) and
+            stylesheets (<code>*.css</code>) and automatically generates
+            resource tags which are placed in the layout template (<em
+              >layout.ejs</em
+            >
+            is sent both a <em>scripts</em> and <em>stylesheets</em> string).
+            <strong
+              >You do not need to edit any templates after writing javascripts
+              or stylesheets.</strong
+            >
+          </p>
+          <p>
+            <a href="https://github.com/jdan/tinman/blob/master/LICENSE"
+              >MIT Licensed</a
+            >
+          </p>
+        </section>
 
-  </section>
-
-  <footer class="more details">
-    --
-    <br><br>
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=%E2%80%9CHello%2C%20World!%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fhello-world" class="tweet">tweet this</a>
-    <a href="/">&laquo; back to home</a>
-  </footer>
-</article>
-
-
-        
+        <footer class="more details">
+          --
+          <br /><br />
+          <a
+            target="_blank"
+            href="https://twitter.com/intent/tweet?text=%E2%80%9CHello%2C%20World!%E2%80%9D%20by%20%40jdan%20%E2%80%93%20http%3A%2F%2Fthatjdanisso.cool%2Fhello-world"
+            class="tweet"
+            >tweet this</a
+          >
+          <a href="/">&laquo; back to home</a>
+        </footer>
+      </article>
     </div>
 
     <script src="/js/flasher.js"></script>
     <script src="/js/demos/clicking.js"></script>
     <script src="/js/demos/hover.js"></script>
     <script>
-        (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-60897046-1', 'auto');
-        ga('send', 'pageview');
+      ;(function(i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r
+        ;(i[r] =
+          i[r] ||
+          function() {
+            ;(i[r].q = i[r].q || []).push(arguments)
+          }),
+          (i[r].l = 1 * new Date())
+        ;(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
+        a.async = 1
+        a.src = g
+        m.parentNode.insertBefore(a, m)
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      )
+      ga("create", "UA-60897046-1", "auto")
+      ga("send", "pageview")
     </script>
-
-    
-</body>
-
+  </body>
 </html>
