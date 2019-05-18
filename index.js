@@ -21,9 +21,9 @@ glob("articles/*.md", (err, articles) => {
       return Promise.all(promises)
     })
     .then(
-      () => console.log("Pages built."),
+      () => console.log("Articles built."),
       err => {
-        console.log("Error building pages")
+        console.log("Error building articles")
         console.log(err)
       }
     )
@@ -37,7 +37,7 @@ glob("public/**/*.*", (err, staticFiles) => {
   Promise.all(staticFiles.map(saveStaticFile))
     //.then(save32x32)
     .then(
-      () => console.log("Static files saved."),
+      () => console.log("Static files built."),
       err => {
         console.log("Error saving static files")
         console.log(err)

@@ -4,19 +4,19 @@ var path = require("path")
 var saveIndex = require("./save-index.js")
 
 function generateTags(articles) {
-    return new Promise((resolve, reject) => {
-        var articlesByTag = {}
-        articles.forEach((article) => {
-            article.tags.forEach((tag) => {
-                if (!articlesByTag[tag]) {
-                    articlesByTag[tag] = [article]
-                } else {
-                    articlesByTag[tag].push(article)
-                }
-            })
+    var articlesByTag = {}
+    articles.forEach((article) => {
+        article.tags.forEach((tag) => {
+            if (!articlesByTag[tag]) {
+                articlesByTag[tag] = [article]
+            } else {
+                articlesByTag[tag].push(article)
+            }
         })
+    })
 
-        Object.keys(articlesByTag).forEach((tag) => {
+    const promises = Object.keys(articlesByTag).map((tag) =>
+        new Promise((resolve, reject) => {
             var articles = articlesByTag[tag]
             articles.sort((a, b) => {
                 return (b.rawDate || 0) - (a.rawDate || 0)
@@ -32,10 +32,13 @@ function generateTags(articles) {
                     articles.filter((article) => !article.hidden),
                     path.join(tagPath, "index.html"),
                     tag + " | jordan scales",
-                    "-- " + tag + " posts --"))
+                    "-- " + tag + " posts --"
+                ))
             })
         })
-    })
+    )
+
+    return Promise.all(promises)
 }
 
 module.exports = generateTags

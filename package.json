@@ -15,10 +15,14 @@
     "nodemon": "^1.19.0"
   },
   "scripts": {
-    "start": "node index.js",
     "build": "node index.js",
-    "publish": "./publish.sh",
+    "watch": "nodemon index.js",
     "editor": "nodemon editor/editor.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "output/*"
+    ]
   },
   "name": "thatjdanisso.cool",
   "description": "This is a collection of node scripts to build my blog - https://thatjdanisso.cool",

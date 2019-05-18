@@ -48,11 +48,7 @@ function loadArticle(filename) {
       var tweetUrl = makeTweetUrl(article)
       var defaults = { hidden: false, timeless: false }
 
-      var tags = []
-      if (article.attributes.tags) {
-        // Tags work but we don't need them yet
-        // tags = article.attributes.tags.split(", ")
-      }
+      const tags = article.attributes.tags ? article.attributes.tags.split(", ") : []
 
       resolve(
         Object.assign({}, defaults, article.attributes, {
