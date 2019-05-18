@@ -24,9 +24,8 @@ function loadArticle(filename) {
 
       const article = fm(data.toString())
       const body = marked(
-        article.body.replace(
-          /\$\$([^$]*)\$\$/g,
-          (_, tex) => katex.renderToString(tex)
+        article.body.replace(/\$\$([^$]*)\$\$/g, (_, tex) =>
+          katex.renderToString(tex)
         )
       )
 
@@ -54,7 +53,9 @@ function loadArticle(filename) {
       const tweetUrl = makeTweetUrl(article)
       const defaults = { hidden: false, timeless: false }
 
-      const tags = article.attributes.tags ? article.attributes.tags.split(", ") : []
+      const tags = article.attributes.tags
+        ? article.attributes.tags.split(", ")
+        : []
 
       resolve(
         Object.assign({}, defaults, article.attributes, {
