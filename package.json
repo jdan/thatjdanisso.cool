@@ -18,7 +18,8 @@
     "serve": "^11.0.0"
   },
   "scripts": {
-    "build": "node index.js && prettier --write output/**/*.{js,css,html}",
+    "build": "node index.js",
+    "build-prod": "node index.js && prettier --write output/**/*.{js,css,html}",
     "watch": "nodemon index.js",
     "serve": "cd output && serve -l 8080",
     "editor": "nodemon editor/editor.js"
