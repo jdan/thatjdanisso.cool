@@ -41,6 +41,10 @@ $title.addEventListener("keyup", e => {
 
 $content.addEventListener("keyup", e => {
   $outputContent.innerHTML = marked(e.target.value)
+
+  renderMathInElement(document.body, {
+    displayMode: true,
+  })
 })
 
 $content.addEventListener("keydown", e => {
