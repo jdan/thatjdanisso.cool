@@ -384,14 +384,17 @@ $$
 \dot D(\dot D(n)) &= 2 \uparrow \uparrow (2 \uparrow \uparrow n) \\
 \dot D(\dot D(\dot D(n))) &= 2 \uparrow \uparrow (2 \uparrow \uparrow (2 \uparrow \uparrow n)) \\
 \dot D^m(n) &= \underbrace{\dot D(\dot D( \cdots \dot D(n)))}_{\text{m copies of } \dot D} \\
-&= \underbrace{2 \uparrow \uparrow (2 \uparrow \uparrow (\cdots (2 \uparrow \uparrow n))}_{\text{m copies of 2}}
+&= \underbrace{2 \uparrow \uparrow (\cdots (2 \uparrow \uparrow n))}_{\text{m copies of 2}}
 \end{aligned}
 $$
 
 (and consolidate m and n):
 
 $$
-E(n) = \dot D^n(n) = \underbrace{2 \uparrow \uparrow (2 \uparrow \uparrow (\cdots (2 \uparrow \uparrow n))}_{\text{n copies of 2}}
+\begin{aligned}
+E(n) &= \dot D^n(n) \\
+&= \underbrace{2 \uparrow \uparrow (2 \uparrow \uparrow (\cdots (2 \uparrow \uparrow n))}_{\text{n copies of 2}}
+\end{aligned}
 $$
 
 Lastly, we'll want to get rid of that pesky "n" at the end and create a "little E" just as we did for "C" and "D".
