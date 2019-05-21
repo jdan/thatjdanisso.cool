@@ -9,6 +9,8 @@ $ npm install
 $ npm run build
 ```
 
+You can also run `npm run watch` to auto-build on relevant file changes.
+
 ### editing
 
 I shipped an editor for some reason. You can access it with:
