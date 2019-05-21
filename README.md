@@ -6,7 +6,7 @@ This is a collection of node scripts to build my blog - https://thatjdanisso.coo
 
 ```
 $ npm install
-$ npm build
+$ npm run build
 ```
 
 ### editing
