@@ -1,5 +1,5 @@
 ---
-title: Hello, J - The Fibonacci Numbers
+title: Hello, J! The Fibonacci Numbers
 route: /j-fibonacci
 date: 2018-01-07
 description: Today we're going to compute the Fibonacci numbers using a fun language called J.
