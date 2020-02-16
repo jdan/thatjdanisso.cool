@@ -6,8 +6,10 @@ This is a collection of node scripts to build my blog - https://thatjdanisso.coo
 
 ```
 $ npm install
-$ npm build
+$ npm run build
 ```
+
+You can also run `npm run watch` to auto-build on relevant file changes.
 
 ### editing
 

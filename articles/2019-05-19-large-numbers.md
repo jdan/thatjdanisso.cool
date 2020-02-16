@@ -355,7 +355,7 @@ $$
 
 In the previous section, we saw how `D(n-1)` dictated the **number of digits** for `D(n)`. Well, `D(D(n))` grows not on the level of _exponents_, but on the level of the _number of exponents in the tower_.
 
-**While `D(6)` was practically impossible to image, `D(D(6))` is pure nightmare fuel. Let's continue.**
+**While `D(6)` was practically impossible to imagine, `D(D(6))` is pure nightmare fuel. Let's continue.**
 
 Just as earlier, we can use a superscript to simplify things:
 
