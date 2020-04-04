@@ -198,9 +198,9 @@ img {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 480px) {
   body {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1.4;
   }
 
