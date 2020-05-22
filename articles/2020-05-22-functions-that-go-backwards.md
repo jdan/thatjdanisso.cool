@@ -76,7 +76,7 @@ Of course, Prolog can do much more than recall facts that we already entered! Th
 Color = yellow.
 ```
 
-By using a variable (we just need to begin a word with an uppercase letter), we're now asking Prolog to fill in the blank for us through a process called "**unification**." Which `Color` does `transition(green, wait, Color)` result in a fact? yellow!
+By using a variable (we just need to begin a word with an uppercase letter), we're now asking Prolog to fill in the blank for us through a process called "**unification**." Which `Color` does `transition(green, wait, Color)` result in a fact? `yellow`!
 
 Better yet, we can put this variable **wherever we want**. Our original question: *What color should the light be such that if I wait, it will turn red?* can be queried like so.
 
@@ -150,6 +150,6 @@ false.
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc1NzA4MTg0MiwxMzY1MzI0OTcsLTE1OD
-Y5NzA2ODcsMTgyODcxMDM2NCwtOTczMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbLTEwMzQ5OTEwMzAsMTM2NTMyNDk3LC0xNT
+g2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF19
 -->
