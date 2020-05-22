@@ -240,10 +240,24 @@ Actions = [wait, wait, wait, wait, wait, wait, wait, wait, wait|...] .
 
 We'll be here forever (and ever) so we can just hit `.` to stop.
 
-## More Than Waiting
- 
+## What are you waiting for?
+
+Up until now we've been dealing with a single action `wait`, which moves the traffic light from one color to another. Let's introduce two more.
+
+```
+% fsm.prolog
+transition(green, wait, yellow).
+transition(yellow, wait, red).
+transition(red, wait, green).
+
+transition(green, power_outage, blinking).
+transition(yellow, power_outage, blinking).
+transition(red, power_outage, blinking).
+
+transition(blinking, power_on, red).
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0OTAxMzI3NiwtNzExMTMyMjg1LC0xMD
+eyJoaXN0b3J5IjpbLTkzNzMxNTI0MSwtNzExMTMyMjg1LC0xMD
 M0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3MDY4NywxODI4NzEw
 MzY0LC05NzMwNTY1NzRdfQ==
 -->
