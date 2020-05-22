@@ -36,7 +36,9 @@ We're no longer asking a question in terms of its **input** (which is easy!), bu
 
 We'll use a fun language called [Prolog]([https://en.wikipedia.org/wiki/Prolog](https://en.wikipedia.org/wiki/Prolog)) (you can grab [SWI-Prolog]([https://www.swi-prolog.org/](https://www.swi-prolog.org/)) for free) to explore this concept.
 
-Instead of writing a function in terms of its inputs, we write _relationships_ between input and output. For example:
+Instead of writing a function in terms of its inputs, we write _relationships_ between input and output.
+
+An example of such a relation is **a valid transition turn
 
 ```prolog
 % fsm.prolog
@@ -46,9 +48,13 @@ transition(red, wait, green).
 ```
 
 ```prolog
-
+?- [fsm]. 	% load fsm.prolog
+?- transition(green, wait, yellow).
+true.
+?- transition(red, wait, yellow).
+false.
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTgxMjk5MzMsLTE1ODY5NzA2ODcsMT
-gyODcxMDM2NCwtOTczMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbMTYxNzE0ODg2NiwtMTU4Njk3MDY4NywxOD
+I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
