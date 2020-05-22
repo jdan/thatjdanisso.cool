@@ -32,7 +32,7 @@ This code answers the following question:
 
 > Given a light color and an action, what happens to the color of the light?
 
-We may choose to author our method 
+And it answers it well! We can test its behavior, give it some types, whatever we want - to get a solid answer. But if I authored
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTYzNTU2Mzk5XX0=
+eyJoaXN0b3J5IjpbNTgyMDM2MjAxXX0=
 -->
