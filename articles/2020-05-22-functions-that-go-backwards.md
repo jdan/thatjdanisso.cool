@@ -267,12 +267,28 @@ X = blinking.
 X = blinking.
 ```
 
-Now we can answer more interesting questions such as **What two events can occur to take us from green to 
+Now we can answer more interesting questions such as **What two events can occur to take us from green to red?**.
 
+```
+?- transition_multi(green, [A, B], red).
+A = B, B = wait <cursor>
+```
 
+We can wait twice, but Prolog asks if we want to keep going. We do, using `;`.
+
+```
+?- transition_multi(green, [A, B], red).
+A = B, B = wait ;
+A = power_outage,
+B = power_on.
+```
+
+So, we can go from `green` to `red` with two waits, or a `power_outage` and `power_on`. What if we give ourselves four steps?
+
+```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk2MjA4ODIyLC05MzczMTUyNDEsLTcxMT
-EzMjI4NSwtMTAzNDk5MTAzMCwxMzY1MzI0OTcsLTE1ODY5NzA2
-ODcsMTgyODcxMDM2NCwtOTczMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbMTUxNTgwODY2NiwtOTM3MzE1MjQxLC03MT
+ExMzIyODUsLTEwMzQ5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcw
+Njg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF19
 -->
