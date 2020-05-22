@@ -49,7 +49,26 @@ But if I asked another question:
 
 > What color should the light be such that if I wait, it will turn red?
 
+We're no longer asking a question in terms of its **input** (which is easy!), but its **output**. 
 
+We may intuit a diagram such as the following:
+
+```mermaid
+stateDiagram
+
+[*]  --> Still
+
+Still -->  [*]
+
+  
+
+Still --> Moving: lol
+
+Moving --> Still
+
+Moving --> Crash
+
+Crash -->  [*]
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgzNTgyODg3MV19
+eyJoaXN0b3J5IjpbMjExOTY4MzY2MF19
 -->
