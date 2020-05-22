@@ -304,9 +304,12 @@ Writing our program as a series of *relations* instead of instructions unlocks t
 
 When we combine this technique with more interesting data structures like lists, we can *generate* infinite sequences of inputs to get a desired output.
 
-This art of representing our functions with *constraints* makes an entire class of problems
+I hope you found this post enlightening, and encourage to fire up [SWI-Prolog]([https://www.swi-prolog.org/](https://www.swi-prolog.org/)) to see what other sorts of problems logic programming can help solve.
+
+Until then, see you around [on twitter](https://twitter.com/jdan).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEwNDk1MDI5NCwtOTM3MzE1MjQxLC03MT
-ExMzIyODUsLTEwMzQ5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcw
-Njg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbLTE3MTAxMzA5MzcsMjEwNDk1MDI5NCwtOT
+M3MzE1MjQxLC03MTExMzIyODUsLTEwMzQ5OTEwMzAsMTM2NTMy
+NDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF
+19
 -->
