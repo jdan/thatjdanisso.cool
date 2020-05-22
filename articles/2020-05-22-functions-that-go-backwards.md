@@ -55,7 +55,7 @@ transition(yellow, wait, red).
 transition(red, wait, green).
 ```
 
-We can then load up `swipl` in our terminal and test it out.
+We can then load up `swipl` in our terminal and test it out. After we load our facts with `[fsm].` we can begin "querying" them. 
 
 ```prolog
 ?- [fsm]. 	% load fsm.prolog
@@ -65,10 +65,12 @@ true.
 false.
 ```
 
-After we load our facts with `[fsm].` we can begin "querying" them. Our first query: `transition(green, wait, yellow).` is a fact
+Our first query: `transition(green, wait, yellow).` is a fact, because we defined it as such on the first line of `fsm.prolog`. Prolog tells us "true" - the thing we asked is `true`.
+
+The second query, `transition(red, wait, yellow)` does not appear in our database, so it is `false`.
 
 ## Improving Relations
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjUyMjAzMDY4LC0xNTg2OTcwNjg3LDE4Mj
-g3MTAzNjQsLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbMjA2NzQ2MTU2NCwtMTU4Njk3MDY4NywxOD
+I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
