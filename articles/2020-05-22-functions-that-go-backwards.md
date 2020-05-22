@@ -46,7 +46,7 @@ transition(green, wait, yellow).
 
 We can choose whatever order we want as long as we're consistent. We'll go with the one above since it matches the prose we translated into Prolog.
 
-Let's write a few more of these in a file calle
+Let's write a few more of these in a file called `fsm.prolog`.
 
 ```prolog
 % fsm.prolog
@@ -55,6 +55,8 @@ transition(yellow, wait, red).
 transition(red, wait, green).
 ```
 
+We can then load up `swipl` in our terminal and test it out.
+
 ```prolog
 ?- [fsm]. 	% load fsm.prolog
 ?- transition(green, wait, yellow).
@@ -62,7 +64,9 @@ true.
 ?- transition(red, wait, yellow).
 false.
 ```
+
+After we load our facts with `[fsm].`, we can begin "querying" Prolog. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI3NjI2NTQ5OCwtMTU4Njk3MDY4NywxOD
+eyJoaXN0b3J5IjpbMTU2NjE0Nzc0OCwtMTU4Njk3MDY4NywxOD
 I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
