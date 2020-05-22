@@ -170,7 +170,7 @@ false.
 
 We can set a list to a variable, or pattern-match on `[Var1, Var2, Etc...]` if the lengths are the same.
 
-If 
+If we want to match 
 
 ?- [A | Rest] = [1, 2, 3, 4].
 A = 1,
@@ -183,7 +183,7 @@ Rest = [].
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNjgwMzQ5ODMsLTEwMzQ5OTEwMzAsMT
-M2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1
-NjU3NF19
+eyJoaXN0b3J5IjpbLTcxMTEzMjI4NSwtMTAzNDk5MTAzMCwxMz
+Y1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcxMDM2NCwtOTczMDU2
+NTc0XX0=
 -->
