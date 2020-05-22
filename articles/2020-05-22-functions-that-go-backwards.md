@@ -105,10 +105,19 @@ Final = red.
 
 We left two blanks, `State1` and `Final`, and Prolog filled em both to find that **waiting twice at a green light results in a red light**. Of course this works backwards for free.
 
+```prolog
+?- transition(Start, wait, State1),
+|    transition(State1, wait, yellow).
+Start = red,
+State1 = green.
+```
 
+Want to wait twice for a yellow? You'll start at red.
 
 ## Improving Relations
+
+Just as we can define functions 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM4NjA1ODIzMiwtMTU4Njk3MDY4NywxOD
-I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbLTE3NDgxOTk5MTYsLTE1ODY5NzA2ODcsMT
+gyODcxMDM2NCwtOTczMDU2NTc0XX0=
 -->
