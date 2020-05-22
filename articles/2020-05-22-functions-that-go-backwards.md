@@ -146,10 +146,9 @@ X = red.
 false.
 ```
 
-
-
-
+Let's dive into something a little more coim
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzQ5OTEwMzAsMTM2NTMyNDk3LC0xNT
-g2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbMTcwMTczNjEzOSwtMTAzNDk5MTAzMCwxMz
+Y1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcxMDM2NCwtOTczMDU2
+NTc0XX0=
 -->
