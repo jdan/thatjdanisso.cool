@@ -155,9 +155,17 @@ We'll call this rule `transition_multi` and define it recursively - starting wit
 transition_multi(State, [], State).
 ```
 
-T
+For the recursive step it may help to see how Prolog's "unification" works with lists.
+
+```prolog
+?- A = [1, 2, 3, 4].
+A = [1, 2, 3, 4].
+?- [A | Rest] = [1, 2, 3, 4].
+A = 1,
+Rest = [2, 3, 4].
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExOTYyOTIyNDksLTEwMzQ5OTEwMzAsMT
-M2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1
-NjU3NF19
+eyJoaXN0b3J5IjpbMTA4NTUyOTYxMywtMTAzNDk5MTAzMCwxMz
+Y1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcxMDM2NCwtOTczMDU2
+NTc0XX0=
 -->
