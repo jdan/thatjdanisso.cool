@@ -300,9 +300,9 @@ We're left with two options:
 
 ## Closing
 
-From a few simple rules, we can construct 
+When we write our program as a series of *relations* instead of seque
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0NDY5ODc0MiwtOTM3MzE1MjQxLC03MT
+eyJoaXN0b3J5IjpbLTk0OTE5MDc4MiwtOTM3MzE1MjQxLC03MT
 ExMzIyODUsLTEwMzQ5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcw
 Njg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF19
 -->
