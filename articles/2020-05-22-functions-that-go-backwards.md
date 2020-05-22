@@ -36,15 +36,17 @@ We're no longer asking a question in terms of its **input** (which is easy!), bu
 
 We'll use a fun "logic programming" language called [Prolog]([https://en.wikipedia.org/wiki/Prolog](https://en.wikipedia.org/wiki/Prolog)) (you can grab [SWI-Prolog]([https://www.swi-prolog.org/](https://www.swi-prolog.org/)) for free) to explore this concept.
 
-Instead of writing a function in terms of its inputs, we write _relationships_ between input and output. An example of such a relation is **a valid transition for our traffic light turns `green` into `yellow` with a `wait` action**.
+Instead of writing a function in terms of its inputs, we write _relationships_ between input and output. An example of such a relation is **a valid transition for our traffic light turns `green` with a `wait` action into `yellow`**.
 
-All we care about are the `green`, `yellow`, and `wait` (these are known as "atoms" in Prolog), and we can use them to build a "**fact**".
+All we care about are the `green`, `wait`, and `yellow` (these are known as "atoms" in Prolog), and we can use them to build a "**fact**".
 
 ```prolog
 transition(green, wait, yellow).
 ```
 
-We can choose whatever order we want, but the one chosen above 
+We can choose whatever order we want as long as we're consistent. We'll go with the one above since it matches the prose we translated into Prolog.
+
+Let's write a few more of these in a file calle
 
 ```prolog
 % fsm.prolog
@@ -61,6 +63,6 @@ true.
 false.
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMjM3MzUzMTQsLTE1ODY5NzA2ODcsMT
-gyODcxMDM2NCwtOTczMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbMTI3NjI2NTQ5OCwtMTU4Njk3MDY4NywxOD
+I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
