@@ -3,7 +3,6 @@ title: Functions That Go Backwards
 route: /functions-that-go-backwards
 date: 2020-05-22
 description: A gentle introduction to logic programming with Prolog, exploring how to define programs in terms of relations instead of input and output.
-hidden: true
 ---
 
 In most programming languages, we may author a function that takes an **input** and produces some **output**. 
@@ -308,7 +307,7 @@ I hope you found this post enlightening, and encourage to fire up [SWI-Prolog]([
 
 Until then, see you around [on twitter](https://twitter.com/jdan).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MTAxMzA5MzcsMjEwNDk1MDI5NCwtOT
+eyJoaXN0b3J5IjpbLTExMjU4MTIxMDUsMjEwNDk1MDI5NCwtOT
 M3MzE1MjQxLC03MTExMzIyODUsLTEwMzQ5OTEwMzAsMTM2NTMy
 NDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF
 19
