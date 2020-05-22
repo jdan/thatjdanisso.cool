@@ -13,11 +13,11 @@ console.log(getTrafficLightColor("green", "wait"))
 // => "yellow"
 ```
 
-We can say that our code answers the following question: *Given a light color and an action, what happens to the color of the light?*
+We can say that our code answers the following question: **Given a light color and an action, what happens to the color of the light?**
 
 And it answers it well! We can test its behavior, give it some types, whatever we want - to get a solid answer. We can compose these questions to ask more interesting ones:
 
-*If I wait twice at a green light, what will the color of the light be?*
+**If I wait twice at a green light, what will the color of the light be?**
 
 ```js
 console.log(
@@ -28,7 +28,7 @@ console.log(
 ) // => "red"
 ```
 
-But if I asked another question: *What color should the light be such that if I wait, it will turn red?*
+But if I asked another question: **What color should the light be such that if I wait, it will turn red?**
 
 We're no longer asking a question in terms of its **input** (which is easy!), but its **output** (which makes us scratch our heads).
 
@@ -78,7 +78,7 @@ Color = yellow.
 
 By using a variable (we just need to begin a word with an uppercase letter), we're now asking Prolog to fill in the blank for us through a process called "**unification**." Which `Color` does `transition(green, wait, Color)` result in a fact? `yellow`!
 
-Better yet, we can put this variable **wherever we want**. Our original question: *What color should the light be such that if I wait, it will turn red?* can be queried like so.
+Better yet, we can put this variable **wherever we want**. Our original question: **What color should the light be such that if I wait, it will turn red?** can be queried like so.
 
 ```prolog
 ?- transition(X, wait, red).
@@ -202,9 +202,11 @@ Let's try it out.
 true
 ```
 
-Cool, so waiting twice at a green gets us red. 
+Groovy, so waiting twice on green gives us red.
+
+## 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI3ODM0NTk2MywtNzExMTMyMjg1LC0xMD
-M0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3MDY4NywxODI4NzEw
-MzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbOTExMzg2NjgwLC03MTExMzIyODUsLTEwMz
+Q5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAz
+NjQsLTk3MzA1NjU3NF19
 -->
