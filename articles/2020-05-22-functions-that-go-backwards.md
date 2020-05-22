@@ -87,10 +87,19 @@ X = yellow.
 
 Because transition does not work on input and output, we can swap 'em as we please.
 
-How about representing *multiple* transitions? We''
+```prolog
+?- transition(X, wait, purple).
+false.
+```
+
+Rather unfortunately, the traffic light we invented can never turn purple.
+
+How about representing *multiple* transitions? We can join queries with a comma to ask that Prolog fills in the blanks to satisfy both.
+
+
 
 ## Improving Relations
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MTY5MjIzNzYsLTE1ODY5NzA2ODcsMT
-gyODcxMDM2NCwtOTczMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbMTk2MDY1OTMwMSwtMTU4Njk3MDY4NywxOD
+I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
