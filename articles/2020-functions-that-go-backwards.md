@@ -1,9 +1,12 @@
 ---
-title: ASCII Mandelbrot Set
-route: /mandelbrot
-date: 2020-05-05
+title: Functions That Go Backwards
+route: /functions-that-go-backwards
+date: 2020-05-22
 description:
+hidden: true
 ---
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzk3MTI5MzI1XX0=
+eyJoaXN0b3J5IjpbLTg2MDk4MzUxNF19
 -->
