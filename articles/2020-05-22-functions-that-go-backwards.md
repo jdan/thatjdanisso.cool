@@ -34,8 +34,8 @@ We're no longer asking a question in terms of its **input** (which is easy!), bu
 
 ## Programming with Relations
 
-
+We'll use a fun language called [Prolog]([https://en.wikipedia.org/wiki/Prolog](https://en.wikipedia.org/wiki/Prolog)) (you can grab [SWI-Prolog]
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODY5NzA2ODcsMTgyODcxMDM2NCwtOT
-czMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbNjU5MjkwNzQxLC0xNTg2OTcwNjg3LDE4Mj
+g3MTAzNjQsLTk3MzA1NjU3NF19
 -->
