@@ -8,7 +8,7 @@ hidden: true
 tags: git
 ---
 
-I know, I know - changing history can be scary. Rebasing, squashing, and loads of force pushing can worry any junior engineer such as myself, but it really shouldn't. Truth is, these are powerful tools that you should have on your toolbelt and, contrary to what you may believe, it's very difficult to actually mess things up.
+I know, I know - changing history can be scary. Rebasing, squashing, and loads of force pushing can worry any junior engineer such as myself, but it really shouldn't. Truth is, these are powerful tools that you should have on your toolbelt and, contrary to what you may believe, it's very difficult to actually mess things up!
 
 This guide exhibits my own experience with using the reflog to fix stupid mistakes I've made on the command line, and is divided into three sections.
 
@@ -315,3 +315,6 @@ I hope you found this little guide useful, and I bet you are now more than capab
 Once you start rebasing and changing history, recovering that seemingly lost data becomes more and more important. A good understanding of the reflog can relieve your headache when things go wrong.
 
 > If you enjoyed this article, let me know! I appreciate all the feedback I can get. You can follow me on twitter at [@jdan](http://twitter.com/jdan)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbODI2NTUwNzc3XX0=
+-->
