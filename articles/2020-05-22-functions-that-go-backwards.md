@@ -65,8 +65,10 @@ true.
 false.
 ```
 
-After we load our facts with `[fsm].`, we can begin "querying" Prolog. 
+After we load our facts with `[fsm].` we can begin "querying" them. Our first query: `transition(green, wait, yellow).` is a fact
+
+## Improving Relations
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2NjE0Nzc0OCwtMTU4Njk3MDY4NywxOD
-I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbMjUyMjAzMDY4LC0xNTg2OTcwNjg3LDE4Mj
+g3MTAzNjQsLTk3MzA1NjU3NF19
 -->
