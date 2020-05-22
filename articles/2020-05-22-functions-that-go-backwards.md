@@ -125,9 +125,7 @@ wait_twice(Start, End) :-
 	transition(Middle, wait, End).
 ```
 
-This
-
-We use it like so:
+We've defined `wait_twice` such that we'll `transition` once from `Start` to `Middle`, then `Middle` to `End`. We can use it like so:
 
 ```prolog
 ?- [fsm].
@@ -172,8 +170,9 @@ false.
 
 We can set a list to a variable, or pattern-match on `[Var1, Var2, Etc...]` if the lengths are the same.
 
-If we want to match 
+If we want to match the "rest" of the list, we can use the `|` operator.
 
+```prolog
 ?- [A | Rest] = [1, 2, 3, 4].
 A = 1,
 Rest = [2, 3, 4].
@@ -183,9 +182,11 @@ B = 2,
 Rest = [].
 ```
 
+So, back to `transition_multi`. Our definition is going to look similar to `wait_twice`: We'll `transition` once to some state `Middle`, then **recurs
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTc0NjE5NDkzLC03MTExMzIyODUsLTEwMz
-Q5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAz
-NjQsLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbLTE5MzQyOTA2ODYsLTcxMTEzMjI4NSwtMT
+AzNDk5MTAzMCwxMzY1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcx
+MDM2NCwtOTczMDU2NTc0XX0=
 -->
