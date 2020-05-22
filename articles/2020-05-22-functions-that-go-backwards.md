@@ -116,8 +116,8 @@ Want to wait twice for a yellow? You'll start at red.
 
 ## Improving Relations
 
-Just as we can define functions 
+Just as we can define functions and compose them, we can build "**rules**"
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDgxOTk5MTYsLTE1ODY5NzA2ODcsMT
+eyJoaXN0b3J5IjpbLTE1NTc2NDYzNTgsLTE1ODY5NzA2ODcsMT
 gyODcxMDM2NCwtOTczMDU2NTc0XX0=
 -->
