@@ -146,9 +146,11 @@ X = red.
 false.
 ```
 
-Let's dive into something a little more coim
+Let's dive into something a little more complicated, but much more rewarding. How about a rule that relates a start and end light color with a **list** of actions?
+
+We'll call this rule `
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcwMTczNjEzOSwtMTAzNDk5MTAzMCwxMz
-Y1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcxMDM2NCwtOTczMDU2
-NTc0XX0=
+eyJoaXN0b3J5IjpbLTEzODgyNDI2MDgsLTEwMzQ5OTEwMzAsMT
+M2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1
+NjU3NF19
 -->
