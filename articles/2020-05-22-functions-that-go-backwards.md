@@ -34,8 +34,21 @@ We're no longer asking a question in terms of its **input** (which is easy!), bu
 
 ## Programming with Relations
 
-We'll use a fun language called [Prolog]([https://en.wikipedia.org/wiki/Prolog](https://en.wikipedia.org/wiki/Prolog)) (you can grab [SWI-Prolog]
+We'll use a fun language called [Prolog]([https://en.wikipedia.org/wiki/Prolog](https://en.wikipedia.org/wiki/Prolog)) (you can grab [SWI-Prolog]([https://www.swi-prolog.org/](https://www.swi-prolog.org/)) for free) to explore this concept.
+
+Instead of writing a function in terms of its inputs, we write _relationships_ between input and output. For example:
+
+```prolog
+% fsm.prolog
+transition(green, wait, yellow).
+transition(yellow, wait, red).
+transition(red, wait, green).
+```
+
+```prolog
+
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjU5MjkwNzQxLC0xNTg2OTcwNjg3LDE4Mj
-g3MTAzNjQsLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbLTIwNTgxMjk5MzMsLTE1ODY5NzA2ODcsMT
+gyODcxMDM2NCwtOTczMDU2NTc0XX0=
 -->
