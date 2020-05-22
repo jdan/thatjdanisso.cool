@@ -256,8 +256,23 @@ transition(red, power_outage, blinking).
 
 transition(blinking, power_on, red).
 ```
+
+And query with them like so:
+
+```
+?- [fsm].
+?- transition_multi(green, [power_outage], X).
+X = blinking.
+?- transition_multi(green, [wait, power_outage], X).
+X = blinking.
+```
+
+Now we can answer more interesting questions such as **What two events can occur to take us from green to 
+
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzNzMxNTI0MSwtNzExMTMyMjg1LC0xMD
-M0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3MDY4NywxODI4NzEw
-MzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbMTk2MjA4ODIyLC05MzczMTUyNDEsLTcxMT
+EzMjI4NSwtMTAzNDk5MTAzMCwxMzY1MzI0OTcsLTE1ODY5NzA2
+ODcsMTgyODcxMDM2NCwtOTczMDU2NTc0XX0=
 -->
