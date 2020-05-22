@@ -286,9 +286,17 @@ B = power_on.
 So, we can go from `green` to `red` with two waits, or a `power_outage` and `power_on`. What if we give ourselves four steps?
 
 ```
+?- transition_multi(green, [A, B, C, D], red).
+A = B, B = wait,
+C = power_outage,
+D = power_on ;
+A = C, C = power_outage,
+B = D, D = power_on.
+```
 
+This is a bit hard to read, but we can clean it up 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUxNTgwODY2NiwtOTM3MzE1MjQxLC03MT
+eyJoaXN0b3J5IjpbLTg3Mzc3MzYxNSwtOTM3MzE1MjQxLC03MT
 ExMzIyODUsLTEwMzQ5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcw
 Njg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF19
 -->
