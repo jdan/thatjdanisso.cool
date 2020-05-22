@@ -125,6 +125,8 @@ wait_twice(Start, End) :-
 	transition(Middle, wait, End).
 ```
 
+This
+
 We use it like so:
 
 ```prolog
@@ -183,7 +185,7 @@ Rest = [].
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcxMTEzMjI4NSwtMTAzNDk5MTAzMCwxMz
-Y1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcxMDM2NCwtOTczMDU2
-NTc0XX0=
+eyJoaXN0b3J5IjpbNTc0NjE5NDkzLC03MTExMzIyODUsLTEwMz
+Q5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAz
+NjQsLTk3MzA1NjU3NF19
 -->
