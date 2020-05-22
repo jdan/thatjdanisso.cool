@@ -202,9 +202,9 @@ Let's try it out.
 true
 ```
 
-
+Cool, so waiting twice at a green gets us red. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODEyNDUzMzcyLC03MTExMzIyODUsLTEwMz
-Q5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAz
-NjQsLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbMTI3ODM0NTk2MywtNzExMTMyMjg1LC0xMD
+M0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3MDY4NywxODI4NzEw
+MzY0LC05NzMwNTY1NzRdfQ==
 -->
