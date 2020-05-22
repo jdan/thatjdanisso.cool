@@ -54,21 +54,8 @@ We're no longer asking a question in terms of its **input** (which is easy!), bu
 We may intuit a diagram such as the following:
 
 ```mermaid
-stateDiagram
-
-[*]  --> Still
-
-Still -->  [*]
-
-  
-
-Still --> Moving: lol
-
-Moving --> Still
-
-Moving --> Crash
-
-Crash -->  [*]
+A --> B
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjExOTY4MzY2MF19
+eyJoaXN0b3J5IjpbMTI1MDA5MTc0XX0=
 -->
