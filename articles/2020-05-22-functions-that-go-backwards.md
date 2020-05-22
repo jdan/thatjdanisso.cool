@@ -125,8 +125,21 @@ wait_twice(Start, End) :-
 	transition(Middle, wait, End).
 ```
 
-We can us
+We can query with this rule like so:
+
+```prolog
+?- [fsm].
+?- wait_twice(green, red).
+true.
+?- wait_twice(green, yellow).
+false.
+```
+
+Waiting twice at a green does in fact give us a red light, while it is _not true_ that waiting twice at a green light gives us a yellow light. Similar to before, we can query with variables:
+
+```prolog
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkwNTA5NTEyOSwtMTU4Njk3MDY4NywxOD
+eyJoaXN0b3J5IjpbMTI5NTE1MTc0MCwtMTU4Njk3MDY4NywxOD
 I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
