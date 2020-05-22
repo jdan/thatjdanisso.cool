@@ -138,8 +138,12 @@ false.
 Waiting twice at a green does in fact give us a red light, while it is _not true_ that waiting twice at a green light gives us a yellow light. Similar to before, we can query with variables:
 
 ```prolog
-
+?- wait_twice(green, X).
+X = red.
+?- wait_twice(X, purple).
+false.
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI5NTE1MTc0MCwtMTU4Njk3MDY4NywxOD
-I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbNTI1MjU0NjIsLTE1ODY5NzA2ODcsMTgyOD
+cxMDM2NCwtOTczMDU2NTc0XX0=
 -->
