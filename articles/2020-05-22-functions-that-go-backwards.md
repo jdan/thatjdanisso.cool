@@ -2,7 +2,7 @@
 title: Functions That Go Backwards
 route: /functions-that-go-backwards
 date: 2020-05-22
-description:
+description: A 
 hidden: true
 ---
 
@@ -32,8 +32,10 @@ But if I asked another question: *What color should the light be such that if I 
 
 We're no longer asking a question in terms of its **input** (which is easy!), but its **output** (which makes us scratch our heads).
 
+## Programming with Relations
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg2MTE1MTAyMiwxODI4NzEwMzY0LC05Nz
-MwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbNDY0MDgyMTI5LDE4Mjg3MTAzNjQsLTk3Mz
+A1NjU3NF19
 -->
