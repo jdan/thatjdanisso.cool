@@ -21,6 +21,7 @@
 .hljs-built_in,
 .hljs-literal,
 .hljs-params,
+.language-prolog .hljs-symbol,
 .hljs-constant {
   color: #f5871f;
 }
@@ -34,7 +35,6 @@
 .hljs-header,
 .hljs-name,
 .ruby .hljs-symbol,
-.language-prolog .hljs-symbol,
 .xml .hljs-cdata {
   color: #718c00;
 }
