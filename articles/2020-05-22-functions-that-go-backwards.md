@@ -211,15 +211,26 @@ X = yellow
 X = green .
 ```
 
-How about the array in the middle?
+How about the array in the middle? We can make that a variable too.
 
 ```prolog
 ?- transition_multi(green, Actions, red).
+Actions = [wait, wait] <cursor>
 ```
+
+Prolog tells us that `[wait, wait]` will work, then - interestingly - waits for input. We can hit `Enter` to get back to the original prompt, or hit `;` to **keep it going**.
+
+```prolog
+?- transition_multi(green, Actions, red).
+Actions = [wait, wait] ;
+Actions = [wait, wait, wait, wait, wait] <cursor>
+```
+
+It appears that not only will `[
 
 ## 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDQxOTYyNDMsLTcxMTEzMjI4NSwtMT
-AzNDk5MTAzMCwxMzY1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcx
-MDM2NCwtOTczMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbLTUyOTY0NDA4MSwtNzExMTMyMjg1LC0xMD
+M0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3MDY4NywxODI4NzEw
+MzY0LC05NzMwNTY1NzRdfQ==
 -->
