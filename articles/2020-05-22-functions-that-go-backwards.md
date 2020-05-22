@@ -76,10 +76,12 @@ Of course, Prolog can do much more than recall facts that we already entered! Th
 Color = yellow.
 ```
 
-By using a variable (we just need to begin a word with an uppercase letter), we're now asking Prolog to "
+By using a variable (we just need to begin a word with an uppercase letter), we're now asking Prolog to "fill in the blank for us". Which `Color` does `transition(green, wait, Color)` result in a fact? yellow!
+
+Better yet, we can put this variable **wherever we want**.
 
 ## Improving Relations
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTQ3MDk2NjUwLC0xNTg2OTcwNjg3LDE4Mj
-g3MTAzNjQsLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbMTEzOTgxNjcxOCwtMTU4Njk3MDY4NywxOD
+I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
