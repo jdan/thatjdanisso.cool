@@ -298,13 +298,15 @@ We're left with two options:
 * [wait, wait, power_outage, power_on]
 * [power_outage, power_on, power_outage, power_on]
 
-## Closing
+## Closing notes
 
 Writing our program as a series of *relations* instead of instructions unlocks the ability to flip our code upside down. Not only can we feed it input and get output, but we can feed it "output" to determine what "input" we require to produce facts. 
 
-When we combine this technique with more interesting data structures like lists, we can *generate* infinite sequ
+When we combine this technique with more interesting data structures like lists, we can *generate* infinite sequences of inputs to get a desired output.
+
+This art of representing our functions with *constraints* makes an entire class of problems
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDI5MDUwOTg3LC05MzczMTUyNDEsLTcxMT
-EzMjI4NSwtMTAzNDk5MTAzMCwxMzY1MzI0OTcsLTE1ODY5NzA2
-ODcsMTgyODcxMDM2NCwtOTczMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbMjEwNDk1MDI5NCwtOTM3MzE1MjQxLC03MT
+ExMzIyODUsLTEwMzQ5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcw
+Njg3LDE4Mjg3MTAzNjQsLTk3MzA1NjU3NF19
 -->
