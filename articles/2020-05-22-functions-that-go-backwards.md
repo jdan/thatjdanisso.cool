@@ -148,9 +148,16 @@ false.
 
 Let's dive into something a little more complicated, but much more rewarding. How about a rule that relates a start and end light color with a **list** of actions?
 
-We'll call this rule `
+We'll call this rule `transition_multi` and define it recursively - starting with an empty list. If we have an initial `State` and an empty list of actions `[]`, what should our final state be? Right where we started.
+
+```prolog
+% fsm.prolog
+transition_multi(State, [], State).
+```
+
+T
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODgyNDI2MDgsLTEwMzQ5OTEwMzAsMT
+eyJoaXN0b3J5IjpbLTExOTYyOTIyNDksLTEwMzQ5OTEwMzAsMT
 M2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1
 NjU3NF19
 -->
