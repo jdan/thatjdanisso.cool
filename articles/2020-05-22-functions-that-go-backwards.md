@@ -182,20 +182,22 @@ B = 2,
 Rest = [].
 ```
 
-So, back to `transition_multi`. Our definition is going to look similar to `wait_twice`: We'll `transition` once to some state `Middle`, then **recursively transition from `Middle` to `End`**.
+So, back to `transition_multi`. Our definition looks pretty similar to `wait_twice`.
 
 ```prolog
 % fsm.prolog
 transition_multi(State, [], State).
-transition_multi(State, [Action | Rest], FinalState) :-
+transition_multi(State, [Action | Rest], End) :-
 	transition(State, Action, Middle),
-	transition_multi(Middle, Rest, FinalState).
+	transition_multi(Middle, Rest, End).
 ```
 
-We unify the list of actions into `Action` and `Rest`, then transition fro
+We unify the list of actions into `Action` and `Rest`, then transition from `State` to `Middle` before recursively `transition_multi`'ing from `Middle` to `End`.
+
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ0NjE5MzMxNSwtNzExMTMyMjg1LC0xMD
-M0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3MDY4NywxODI4NzEw
-MzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbOTQyNTQ2NjU4LC03MTExMzIyODUsLTEwMz
+Q5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAz
+NjQsLTk3MzA1NjU3NF19
 -->
