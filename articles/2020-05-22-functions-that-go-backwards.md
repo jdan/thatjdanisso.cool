@@ -38,7 +38,13 @@ We'll use a fun "logic programming" language called [Prolog]([https://en.wikiped
 
 Instead of writing a function in terms of its inputs, we write _relationships_ between input and output. An example of such a relation is **a valid transition for our traffic light turns `green` into `yellow` with a `wait` action**.
 
-All we care about are the `green`, `yellow`, and `wait` (these are known as "atoms" in Prolog), and we can use them to build a series of "**facts**"
+All we care about are the `green`, `yellow`, and `wait` (these are known as "atoms" in Prolog), and we can use them to build a "**fact**".
+
+```prolog
+transition(green, wait, yellow).
+```
+
+We can choose whatever order we want, but the one chosen above 
 
 ```prolog
 % fsm.prolog
@@ -55,6 +61,6 @@ true.
 false.
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNTYzNDQ3NzIsLTE1ODY5NzA2ODcsMT
+eyJoaXN0b3J5IjpbLTExMjM3MzUzMTQsLTE1ODY5NzA2ODcsMT
 gyODcxMDM2NCwtOTczMDU2NTc0XX0=
 -->
