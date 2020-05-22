@@ -65,12 +65,14 @@ true.
 false.
 ```
 
-Our first query: `transition(green, wait, yellow).` is a fact, because we defined it as such on the first line of `fsm.prolog`. Prolog tells us "true" - the thing we asked is `true`.
+Our first query `transition(green, wait, yellow).` is a fact, because we defined it as such on the first line of `fsm.prolog`. Prolog tells us "true" - the thing we asked is `true`.
 
 The second query, `transition(red, wait, yellow)` does not appear in our database, so it is `false`.
 
+Of course, Prolog can do much more than recall facts that we already entered! The magic happens when we query with v
+
 ## Improving Relations
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2NzQ2MTU2NCwtMTU4Njk3MDY4NywxOD
+eyJoaXN0b3J5IjpbMTk5MjQ3MDg3NSwtMTU4Njk3MDY4NywxOD
 I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
