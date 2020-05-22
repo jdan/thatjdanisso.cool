@@ -116,8 +116,17 @@ Want to wait twice for a yellow? You'll start at red.
 
 ## Improving Relations
 
-Just as we can define functions and compose them, we can build "**rules**"
+Just as we can define functions and compose them in ordinary programming languages, we can build "**rules**" out of facts and variables. For example, if we wanted an easier way to query for "waiting twice":
+
+```prolog
+% fsm.prolog
+wait_twice(Start, End) :-
+	transition(Start, wait, Middle),
+	transition(Middle, wait, End).
+```
+
+We can us
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NTc2NDYzNTgsLTE1ODY5NzA2ODcsMT
-gyODcxMDM2NCwtOTczMDU2NTc0XX0=
+eyJoaXN0b3J5IjpbLTkwNTA5NTEyOSwtMTU4Njk3MDY4NywxOD
+I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
