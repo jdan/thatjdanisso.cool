@@ -194,10 +194,17 @@ transition_multi(State, [Action | Rest], End) :-
 
 We unify the list of actions into `Action` and `Rest`, then transition from `State` to `Middle` before recursively `transition_multi`'ing from `Middle` to `End`.
 
+Let's try it out.
+
+```prolog
+?- [fsm].
+?- transition_multi(green, [wait, wait], red).
+true
+```
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTQyNTQ2NjU4LC03MTExMzIyODUsLTEwMz
+eyJoaXN0b3J5IjpbODEyNDUzMzcyLC03MTExMzIyODUsLTEwMz
 Q5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAz
 NjQsLTk3MzA1NjU3NF19
 -->
