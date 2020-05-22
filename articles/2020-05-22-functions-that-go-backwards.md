@@ -94,12 +94,21 @@ false.
 
 Rather unfortunately, the traffic light we invented can never turn purple.
 
-How about representing *multiple* transitions? We can join queries with a comma to ask that Prolog fills in the blanks to satisfy both.
+How about representing *multiple* transitions? We can join queries with a comma to ask that Prolog fills in the blanks to satisfy both. Let's start at `green` and `wait` twice.
+
+```prolog
+?- transition(green, wait, State1), 
+|    transition(State1, wait, Final).
+State1 = yellow,
+Final = red.
+```
+
+We left two blanks, `State1` and `Final`, and Prolog filled em both to find that **waiting twice at a green light results in a red light**. Of course this works backwards for free.
 
 
 
 ## Improving Relations
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk2MDY1OTMwMSwtMTU4Njk3MDY4NywxOD
+eyJoaXN0b3J5IjpbLTM4NjA1ODIzMiwtMTU4Njk3MDY4NywxOD
 I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
