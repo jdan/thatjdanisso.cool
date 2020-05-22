@@ -300,9 +300,11 @@ We're left with two options:
 
 ## Closing
 
-Writing our program as a series of *relations* instead of instructions allows us to see how the logic behaves not just with different outputs, but 
+Writing our program as a series of *relations* instead of instructions unlocks the ability to flip our code upside down. Not only can we feed it input and get output, but we can feed it "output" to determine what "input" we require to produce facts. 
+
+When we combine this technique with more interesting data structures like lists, we can *generate* infinite sequ
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MzEyNDQzODMsLTkzNzMxNTI0MSwtNz
-ExMTMyMjg1LC0xMDM0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3
-MDY4NywxODI4NzEwMzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbNDI5MDUwOTg3LC05MzczMTUyNDEsLTcxMT
+EzMjI4NSwtMTAzNDk5MTAzMCwxMzY1MzI0OTcsLTE1ODY5NzA2
+ODcsMTgyODcxMDM2NCwtOTczMDU2NTc0XX0=
 -->
