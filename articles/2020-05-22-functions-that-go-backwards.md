@@ -114,7 +114,7 @@ State1 = green.
 
 Want to wait twice for a yellow? You'll start at red.
 
-## Improving Relations
+## Improving relations
 
 Just as we can define functions and compose them in ordinary programming languages, we can build "**rules**" out of facts and variables. For example, if we wanted an easier way to query for "waiting twice":
 
@@ -211,7 +211,7 @@ X = yellow
 X = green .
 ```
 
-## Many Answers
+## Many answers
 
 How about the array in the middle? We can make that a variable too.
 
@@ -228,7 +228,7 @@ Actions = [wait, wait] ;
 Actions = [wait, wait, wait, wait, wait] <cursor>
 ```
 
-It appears that not only do two waits bring us from red to green, but so do five. This is because waiting three times brings us back to green (then two more for red). We can keep going with another press of `;`.
+It appears that not only do two `wait`s bring us from green to red, but so do five. This is because waiting three times brings us back to green (then two more for red). We can keep going with another press of `;`.
 
 ```
 ?- transition_multi(green, Actions, red).
@@ -240,10 +240,10 @@ Actions = [wait, wait, wait, wait, wait, wait, wait, wait, wait|...] .
 
 We'll be here forever (and ever) so we can just hit `.` to stop.
 
-##
+## More Than Waiting
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2MjYwNTAwOSwtNzExMTMyMjg1LC0xMD
+eyJoaXN0b3J5IjpbMTY0OTAxMzI3NiwtNzExMTMyMjg1LC0xMD
 M0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3MDY4NywxODI4NzEw
 MzY0LC05NzMwNTY1NzRdfQ==
 -->
