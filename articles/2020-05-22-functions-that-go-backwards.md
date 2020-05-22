@@ -32,9 +32,24 @@ We can say that our code answers the following question:
 
 > Given a light color and an action, what happens to the color of the light?
 
-And it answers it well! We can test its behavior, give it some types, whatever we want - to get a solid answer. But if I asked another question:
+And it answers it well! We can test its behavior, give it some types, whatever we want - to get a solid answer. We can compose these questions to ask more interesting ones:
 
-> What color should the light be suc
+> If I wait twice at a green light, what will the color of the light be?
+
+```js
+console.log(
+	getLightColor(
+		getLightColor("green", "wait"),
+		"wait"
+	)
+) // => "red"
+```
+
+But if I asked another question:
+
+> What color should the light be such that if I wait, it will turn red?
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2ODA2MjMxMV19
+eyJoaXN0b3J5IjpbMTgzNTgyODg3MV19
 -->
