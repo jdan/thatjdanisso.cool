@@ -32,13 +32,13 @@ But if I asked another question: *What color should the light be such that if I 
 
 We're no longer asking a question in terms of its **input** (which is easy!), but its **output** (which makes us scratch our heads).
 
-## Programming with Relations
+## Logically speaking
 
-We'll use a fun language called [Prolog]([https://en.wikipedia.org/wiki/Prolog](https://en.wikipedia.org/wiki/Prolog)) (you can grab [SWI-Prolog]([https://www.swi-prolog.org/](https://www.swi-prolog.org/)) for free) to explore this concept.
+We'll use a fun "logic programming" language called [Prolog]([https://en.wikipedia.org/wiki/Prolog](https://en.wikipedia.org/wiki/Prolog)) (you can grab [SWI-Prolog]([https://www.swi-prolog.org/](https://www.swi-prolog.org/)) for free) to explore this concept.
 
 Instead of writing a function in terms of its inputs, we write _relationships_ between input and output.
 
-An example of such a relation is **a valid transition turn
+An example of such a relation is **a valid transition 
 
 ```prolog
 % fsm.prolog
@@ -55,6 +55,6 @@ true.
 false.
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYxNzE0ODg2NiwtMTU4Njk3MDY4NywxOD
+eyJoaXN0b3J5IjpbLTk1NTEyMzM1NiwtMTU4Njk3MDY4NywxOD
 I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
 -->
