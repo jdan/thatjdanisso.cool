@@ -211,6 +211,8 @@ X = yellow
 X = green .
 ```
 
+## Many Answers
+
 How about the array in the middle? We can make that a variable too.
 
 ```prolog
@@ -218,7 +220,7 @@ How about the array in the middle? We can make that a variable too.
 Actions = [wait, wait] <cursor>
 ```
 
-Prolog tells us that `[wait, wait]` will work, then - interestingly - waits for input. We can hit `Enter` to get back to the original prompt, or hit `;` to **keep it going**.
+Prolog tells us that `[wait, wait]` will work, then - interestingly - waits for input. We can hit `Enter` to get back to the original prompt, or hit semicolon `;` to **keep it going**.
 
 ```prolog
 ?- transition_multi(green, Actions, red).
@@ -226,11 +228,22 @@ Actions = [wait, wait] ;
 Actions = [wait, wait, wait, wait, wait] <cursor>
 ```
 
-It appears that not only will `[
+It appears that not only do two waits bring us from red to green, but so do five. This is because waiting three times brings us back to green (then two more for red). We can keep going with another press of `;`.
 
-## 
+```
+?- transition_multi(green, Actions, red).
+Actions = [wait, wait] ;
+Actions = [wait, wait, wait, wait, wait] ;
+Actions = [wait, wait, wait, wait, wait, wait, wait, wait] ;
+Actions = [wait, wait, wait, wait, wait, wait, wait, wait, wait|...] .
+```
+
+We'll be here forever (and ever) so we can just hit `.` to stop.
+
+##
+ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUyOTY0NDA4MSwtNzExMTMyMjg1LC0xMD
+eyJoaXN0b3J5IjpbMjA2MjYwNTAwOSwtNzExMTMyMjg1LC0xMD
 M0OTkxMDMwLDEzNjUzMjQ5NywtMTU4Njk3MDY4NywxODI4NzEw
 MzY0LC05NzMwNTY1NzRdfQ==
 -->
