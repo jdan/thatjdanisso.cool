@@ -28,11 +28,13 @@ console.log(getLightColor("yellow", "wait"))  // => "red"
 console.log(getLightColor("red", "wait"))     // => "green"
 ```
 
-This code answers the following question:
+We can say that our code answers the following question:
 
 > Given a light color and an action, what happens to the color of the light?
 
-And it answers it well! We can test its behavior, give it some types, whatever we want - to get a solid answer. But if I authored
+And it answers it well! We can test its behavior, give it some types, whatever we want - to get a solid answer. But if I asked another question:
+
+> What color should the light be suc
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTgyMDM2MjAxXX0=
+eyJoaXN0b3J5IjpbMTU2ODA2MjMxMV19
 -->
