@@ -78,10 +78,19 @@ Color = yellow.
 
 By using a variable (we just need to begin a word with an uppercase letter), we're now asking Prolog to "fill in the blank for us". Which `Color` does `transition(green, wait, Color)` result in a fact? yellow!
 
-Better yet, we can put this variable **wherever we want**.
+Better yet, we can put this variable **wherever we want**. Our original question: *What color should the light be such that if I wait, it will turn red?* can be queried like so.
+
+```prolog
+?- transition(X, wait, red).
+X = yellow.
+```
+
+Because transition does not work on input and output, we can swap 'em as we please.
+
+How about representing *multiple* transitions? We''
 
 ## Improving Relations
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEzOTgxNjcxOCwtMTU4Njk3MDY4NywxOD
-I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbLTE5MTY5MjIzNzYsLTE1ODY5NzA2ODcsMT
+gyODcxMDM2NCwtOTczMDU2NTc0XX0=
 -->
