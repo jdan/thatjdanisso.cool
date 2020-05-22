@@ -2,7 +2,7 @@
 title: Functions That Go Backwards
 route: /functions-that-go-backwards
 date: 2020-05-22
-description: A 
+description: A gentle introduction to logic programming with Prolog, exploring how to define programs in terms of relations instead of input and output.
 hidden: true
 ---
 
@@ -36,6 +36,6 @@ We're no longer asking a question in terms of its **input** (which is easy!), bu
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDY0MDgyMTI5LDE4Mjg3MTAzNjQsLTk3Mz
-A1NjU3NF19
+eyJoaXN0b3J5IjpbLTE1ODY5NzA2ODcsMTgyODcxMDM2NCwtOT
+czMDU2NTc0XX0=
 -->
