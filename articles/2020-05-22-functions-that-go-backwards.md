@@ -54,9 +54,12 @@ We're no longer asking a question in terms of its **input** (which is easy!), bu
 We may intuit a diagram such as the following:
 
 ```mermaid
-stateDiagram
-A --> B
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbMTgyODcxMDM2NCwtOTczMDU2NTc0XX0=
 -->
