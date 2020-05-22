@@ -202,11 +202,24 @@ Let's try it out.
 true
 ```
 
-Groovy, so waiting twice on green gives us red.
+Groovy, so Prolog can confirm that `wait`ing twice at a green light gets us a red light. We can put a few variables in to flex a bit.
+
+```prolog
+?- transition_multi(yellow, [wait, wait, wait], X).
+X = yellow
+?- transition_multi(X, [wait, wait, wait, wait], yellow).
+X = green .
+```
+
+How about the array in the middle?
+
+```prolog
+?- transition_multi(green, Actions, red).
+```
 
 ## 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTExMzg2NjgwLC03MTExMzIyODUsLTEwMz
-Q5OTEwMzAsMTM2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAz
-NjQsLTk3MzA1NjU3NF19
+eyJoaXN0b3J5IjpbLTIwMDQxOTYyNDMsLTcxMTEzMjI4NSwtMT
+AzNDk5MTAzMCwxMzY1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcx
+MDM2NCwtOTczMDU2NTc0XX0=
 -->
