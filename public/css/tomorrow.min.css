@@ -34,7 +34,7 @@
 .hljs-header,
 .hljs-name,
 .ruby .hljs-symbol,
-.prolog .hljs-symbol,
+.language-prolog .hljs-symbol,
 .xml .hljs-cdata {
   color: #718c00;
 }
