@@ -160,12 +160,30 @@ For the recursive step it may help to see how Prolog's "unification" works with 
 ```prolog
 ?- A = [1, 2, 3, 4].
 A = [1, 2, 3, 4].
+?- [A, B, C] = [1, 2, 3].
+A = 1,
+B = 2,
+C = 3.
+?- [A, B] = [1, 2, 3].
+false.
+```
+
+We can set a list to a variable, or pattern-match on `[Var1, Var2, Etc...]` if the lengths are the same.
+
+If 
+
 ?- [A | Rest] = [1, 2, 3, 4].
 A = 1,
 Rest = [2, 3, 4].
+?- [A, B | Rest] = [1, 2].
+A = 1,
+B = 2,
+Rest = [].
 ```
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA4NTUyOTYxMywtMTAzNDk5MTAzMCwxMz
-Y1MzI0OTcsLTE1ODY5NzA2ODcsMTgyODcxMDM2NCwtOTczMDU2
-NTc0XX0=
+eyJoaXN0b3J5IjpbLTEyNjgwMzQ5ODMsLTEwMzQ5OTEwMzAsMT
+M2NTMyNDk3LC0xNTg2OTcwNjg3LDE4Mjg3MTAzNjQsLTk3MzA1
+NjU3NF19
 -->
