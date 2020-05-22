@@ -69,10 +69,17 @@ Our first query `transition(green, wait, yellow).` is a fact, because we defined
 
 The second query, `transition(red, wait, yellow)` does not appear in our database, so it is `false`.
 
-Of course, Prolog can do much more than recall facts that we already entered! The magic happens when we query with v
+Of course, Prolog can do much more than recall facts that we already entered! The magic happens when we query with variables.
+
+```prolog
+?- transition(green, wait, Color).
+Color = yellow.
+```
+
+By using a variable (we just need to begin a word with an uppercase letter), we're now asking Prolog to "
 
 ## Improving Relations
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5MjQ3MDg3NSwtMTU4Njk3MDY4NywxOD
-I4NzEwMzY0LC05NzMwNTY1NzRdfQ==
+eyJoaXN0b3J5IjpbNTQ3MDk2NjUwLC0xNTg2OTcwNjg3LDE4Mj
+g3MTAzNjQsLTk3MzA1NjU3NF19
 -->
