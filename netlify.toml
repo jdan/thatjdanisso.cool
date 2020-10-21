@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/notes/*"
+  from = "https://notes.thatjdanisso.cool/*"
   to = "https://jot-ten.vercel.app/:splat"
   status = 200
   force = true
