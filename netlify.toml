@@ -1,0 +1,7 @@
+[[redirects]]
+  from = "/notes/*"
+  to = "https://jot-ten.vercel.app/:splat"
+  status = 200
+  force = true
+  [redirects.headers]
+    X-From = "Netlify"
