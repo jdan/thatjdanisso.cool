@@ -33,7 +33,7 @@ We're no longer asking a question in terms of its **input** (which is easy!), bu
 
 ## Logically speaking
 
-We'll use a fun "logic programming" language called [Prolog]([https://en.wikipedia.org/wiki/Prolog](https://en.wikipedia.org/wiki/Prolog)) (you can grab [SWI-Prolog]([https://www.swi-prolog.org/](https://www.swi-prolog.org/)) for free) to explore this concept.
+We'll use a fun "logic programming" language called [Prolog](https://en.wikipedia.org/wiki/Prolog) (you can grab [SWI-Prolog](https://www.swi-prolog.org/) for free) to explore this concept.
 
 Instead of writing a function in terms of its inputs, we write _relationships_ between input and output. An example of such a relation is **a valid transition for our traffic light turns `green` with a `wait` action into `yellow`**.
 
