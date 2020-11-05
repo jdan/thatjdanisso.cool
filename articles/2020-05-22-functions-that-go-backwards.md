@@ -303,7 +303,7 @@ Writing our program as a series of *relations* instead of instructions unlocks t
 
 When we combine this technique with more interesting data structures like lists, we can *generate* infinite sequences of inputs to get a desired output.
 
-I hope you found this post enlightening, and encourage to fire up [SWI-Prolog]([https://www.swi-prolog.org/](https://www.swi-prolog.org/)) to see what other sorts of problems logic programming can help solve.
+I hope you found this post enlightening, and encourage to fire up [SWI-Prolog](https://www.swi-prolog.org/) to see what other sorts of problems logic programming can help solve.
 
 Until then, see you around [on twitter](https://twitter.com/jdan).
 <!--stackedit_data:
