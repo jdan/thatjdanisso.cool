@@ -3,7 +3,7 @@
     "ejs": "^2.4.1",
     "front-matter": "^3.0.2",
     "glob": "^7.1.4",
-    "highlight.js": "^9.3.0",
+    "highlight.js": "^10.1.2",
     "katex": "^0.10.2",
     "marked": "^0.6.2",
     "mkdirp": "^0.5.1",
