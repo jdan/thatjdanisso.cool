@@ -310,9 +310,3 @@ And there you have it, we've successfully recovered data from a hard reset.
 I hope you found this little guide useful, and I bet you are now more than capable of solving a variety of problems using the reflog. You may have noticed that git tries really, _really_ hard not to lose your data and includes [many other](https://www.kernel.org/pub/software/scm/git/docs/git-fsck.html) beautiful utilities to recover lost changes (tools that exceed the scope of this introductory article).
 
 Once you start rebasing and changing history, recovering that seemingly lost data becomes more and more important. A good understanding of the reflog can relieve your headache when things go wrong.
-
-> If you enjoyed this article, let me know! I appreciate all the feedback I can get. You can follow me on twitter at [@jdan](http://twitter.com/jdan)
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbODI2NTUwNzc3XX0=
--->
