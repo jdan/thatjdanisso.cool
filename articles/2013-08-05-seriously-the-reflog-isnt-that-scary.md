@@ -24,7 +24,7 @@ Let's walk through a couple of use-cases on a [real repository](https://github.c
     $ echo "Hello, world" > hello.txt
     $ git add .
     $ git commit -m "initial commit."
-    [master (root-commit) 9056e55] initial commit.
+    [main (root-commit) 9056e55] initial commit.
      1 file changed, 1 insertion(+)
      create mode 100644 hello.txt
 
@@ -37,7 +37,7 @@ Let's walk through a couple of use-cases on a [real repository](https://github.c
     $ echo "Goodnight, moon" >> hello.txt
     $ git add .
     $ git commit --amend
-    [master e1a2208] initial commit.
+    [main e1a2208] initial commit.
      1 file changed, 2 insertions(+)
      create mode 100644 hello.txt
 
@@ -83,7 +83,7 @@ While `git log` only has one entry (which makes sense considering we only have o
      Hello, world
     +Goodnight, moon
 
-Awesome. Now our staged changes consist of just the second addition we made on the master branch. Let's verify that our first change is still in tact.
+Awesome. Now our staged changes consist of just the second addition we made on the main branch. Let's verify that our first change is still in tact.
 
     $ git show HEAD
     commit 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
@@ -103,7 +103,7 @@ Awesome. Now our staged changes consist of just the second addition we made on t
 Now, let's go ahead and commit our changes.
 
     $ git commit -m "Second commit"
-    [master d9b0af2] Second commit
+    [main d9b0af2] Second commit
      1 file changed, 1 insertion(+)
     $ git log
     commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
@@ -132,7 +132,7 @@ You'll notice that the reflog itself reflects the changes we've just made, in ca
 
 ### Example B: Rolling Back a Bad Merge
 
-Let's say we've merged some changes from a branch. If our correspondent worked alongside master for quite some time and never [cleaned up](http://blog.steveklabnik.com/posts/2012-11-08-how-to-squash-commits-in-a-github-pull-request) his or her changes, we could be dealing with a messy rollback. Let's see how we would resolve this issue using the reflog.
+Let's say we've merged some changes from a branch. If our correspondent worked alongside main for quite some time and never [cleaned up](http://blog.steveklabnik.com/posts/2012-11-08-how-to-squash-commits-in-a-github-pull-request) his or her changes, we could be dealing with a messy rollback. Let's see how we would resolve this issue using the reflog.
 
     $ git merge my-awesome-branch
     Updating d9b0af2..29ef6ec
@@ -153,15 +153,15 @@ Looking at reflog we should see a nice summary of our recent activity.
     Deleted branch my-awesome-branch (was 29ef6ec).
     $ git reflog
     29ef6ec HEAD@{0}: merge my-awesome-branch: Fast-forward
-    d9b0af2 HEAD@{1}: checkout: moving from my-awesome-branch to master
+    d9b0af2 HEAD@{1}: checkout: moving from my-awesome-branch to main
     29ef6ec HEAD@{2}: commit: Changes on another branch
-    d9b0af2 HEAD@{3}: checkout: moving from master to my-awesome-branch
+    d9b0af2 HEAD@{3}: checkout: moving from main to my-awesome-branch
     d9b0af2 HEAD@{4}: commit: Second commit
     9056e55 HEAD@{5}: reset: moving to 9056e55
     e1a2208 HEAD@{6}: commit (amend): initial commit.
     9056e55 HEAD@{7}: commit (initial): initial commit.
 
-We have a few options here. We can revert back to a time before the branch was even created, when the commit was made on the branch, or just before we merged into master. For our use-case, we simply want to undo our merge. `d9b0af2` looks promising (but there are other equally good choices here). This time, we'll do a _hard_ reset, since we don't need to stage any changes before a merge.
+We have a few options here. We can revert back to a time before the branch was even created, when the commit was made on the branch, or just before we merged into main. For our use-case, we simply want to undo our merge. `d9b0af2` looks promising (but there are other equally good choices here). This time, we'll do a _hard_ reset, since we don't need to stage any changes before a merge.
 
     $ git reset --hard d9b0af2
     HEAD is now at d9b0af2 Second commit
@@ -181,7 +181,7 @@ We have a few options here. We can revert back to a time before the branch was e
 Looks good! But now, what if we wanted to go back to our deleted branch?
 
     $ git branch
-    * master
+    * main
     $ git co my-awesome-branch
     error: pathspec 'my-awesome-branch' did not match any file(s) known to git.
 
@@ -190,9 +190,9 @@ Well that's kind of a bummer. According to our previous example, we expect the r
     $ git reflog
     d9b0af2 HEAD@{0}: reset: moving to d9b0af2
     29ef6ec HEAD@{1}: merge my-awesome-branch: Fast-forward
-    d9b0af2 HEAD@{2}: checkout: moving from my-awesome-branch to master
+    d9b0af2 HEAD@{2}: checkout: moving from my-awesome-branch to main
     29ef6ec HEAD@{3}: commit: Changes on another branch
-    d9b0af2 HEAD@{4}: checkout: moving from master to my-awesome-branch
+    d9b0af2 HEAD@{4}: checkout: moving from main to my-awesome-branch
     d9b0af2 HEAD@{5}: commit: Second commit
     9056e55 HEAD@{6}: reset: moving to 9056e55
     e1a2208 HEAD@{7}: commit (amend): initial commit.
@@ -224,10 +224,10 @@ This looks promising! Let's go ahead and make a branch here.
         Changes on another branch
         ...
 
-Success! We've now successfully recovered our branch. How about master? Is our rogue commit still separate from the master branch?
+Success! We've now successfully recovered our branch. How about main? Is our rogue commit still separate from the main branch?
 
-    $ git co master
-    Switched to branch 'master'
+    $ git co main
+    Switched to branch 'main'
     $ git log
     commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
     Author: Jordan Scales <scalesjordan@gmail.com>
@@ -241,7 +241,7 @@ Yep.
 
 ### Example C: Recovering from a Hard Reset
 
-At this point you should be fairly comfortable with the reflog, and can now apply it to many different situations. To really nail it down, let's go through one more common example: recovering the data from a hard reset. Just as a refresher, consider the state of our master branch.
+At this point you should be fairly comfortable with the reflog, and can now apply it to many different situations. To really nail it down, let's go through one more common example: recovering the data from a hard reset. Just as a refresher, consider the state of our main branch.
 
     $ git log
     commit d9b0af228fa2f4e9ac0c453faf5a652b5ccfa55e
@@ -273,11 +273,11 @@ Once again, let's consult the reflog.
 
     $ git reflog
     9056e55 HEAD@{0}: reset: moving to 9056e55e384cbae33a0aaf9b2a861cb20c20ace0
-    d9b0af2 HEAD@{1}: checkout: moving from save-branch to master
+    d9b0af2 HEAD@{1}: checkout: moving from save-branch to main
     29ef6ec HEAD@{2}: checkout: moving from 29ef6ec17401576b7be9ecfd3cf8eeecb8e26288 to save-branch
-    29ef6ec HEAD@{3}: checkout: moving from master to 29ef6ec
+    29ef6ec HEAD@{3}: checkout: moving from main to 29ef6ec
     d9b0af2 HEAD@{4}: reset: moving to d9b0af2
-    29ef6ec HEAD@{5}: checkout: moving from my-awesome-branch to master
+    29ef6ec HEAD@{5}: checkout: moving from my-awesome-branch to main
     ...
 
 Here we'll see lots of data, but we're only considered with the first two entries: the current state, and the previous checkout.
