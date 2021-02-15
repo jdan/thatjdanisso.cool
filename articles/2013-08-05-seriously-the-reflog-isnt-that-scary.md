@@ -1,10 +1,8 @@
 ---
 title: Seriously, The Reflog Isn't That Scary
 date: 2013-08-05
-route: /seriously-the-reflog-isnt-that-scary
-color: green
-description: demystifying git-reflog
-hidden: true
+route: /git-reflog
+description: Demystifying git-reflog, the command that can get you out of most git jams.
 tags: git
 ---
 
@@ -315,6 +313,7 @@ I hope you found this little guide useful, and I bet you are now more than capab
 Once you start rebasing and changing history, recovering that seemingly lost data becomes more and more important. A good understanding of the reflog can relieve your headache when things go wrong.
 
 > If you enjoyed this article, let me know! I appreciate all the feedback I can get. You can follow me on twitter at [@jdan](http://twitter.com/jdan)
+
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbODI2NTUwNzc3XX0=
 -->
