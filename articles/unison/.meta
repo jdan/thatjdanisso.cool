@@ -1,6 +1,6 @@
 ucm -codebase /tmp/codebase init
 ucm -codebase /tmp/codebase
 
-> pull https://github.com/unisonweb/base:.releases._M1m .base
+.> pull https://github.com/unisonweb/base:.releases._M1m .base
 
 ucm -codebase /tmp/codebase transcript.fork 2021-02-18-scratchpad-driven-development.md

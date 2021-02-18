@@ -11,22 +11,28 @@ glob("articles/*.md", (err, articles) => {
     throw err
   }
 
-  Promise.all(articles.map(loadArticle))
-    .then(articles => {
-      const promises = articles.map(saveArticle)
+  glob("articles/unison/*.output.md", (err, unisonArticles) => {
+    if (err) {
+      throw err
+    }
 
-      promises.push(saveIndex(articles, "output/index.html"))
-      promises.push(generateTags(articles))
+    Promise.all(articles.concat(unisonArticles).map(loadArticle))
+      .then(articles => {
+        const promises = articles.map(saveArticle)
 
-      return Promise.all(promises)
-    })
-    .then(
-      () => console.log("Articles built."),
-      err => {
-        console.log("Error building articles")
-        console.log(err)
-      }
-    )
+        promises.push(saveIndex(articles, "output/index.html"))
+        promises.push(generateTags(articles))
+
+        return Promise.all(promises)
+      })
+      .then(
+        () => console.log("Articles built."),
+        err => {
+          console.log("Error building articles")
+          console.log(err)
+        }
+      )
+  })
 })
 
 glob("public/**/*.*", (err, staticFiles) => {

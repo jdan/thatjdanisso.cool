@@ -9,8 +9,18 @@ const strftime = require("strftime")
 marked.setOptions({
   gfm: true,
   highlight: (code, lang) => {
-    return lang
-      ? hljs.highlight(lang, code).value
+    function swapLang(lang) {
+      if (lang === "unison") {
+        return "haskell";
+      } else if (lang === "ucm") {
+        return "md";
+      } else {
+        return lang;
+      }
+    }
+
+    return swapLang(lang)
+      ? hljs.highlight(swapLang(lang), code).value
       : hljs.highlightAuto(code).value
   },
 })
@@ -47,7 +57,7 @@ function loadArticle(filename) {
           rawDate["set" + field](rawDate["getUTC" + field]())
         })
 
-        date = strftime("%B %d, %Y", rawDate)
+        date = strftime("%b %d, %Y", rawDate)
       }
 
       const tweetUrl = makeTweetUrl(article)
