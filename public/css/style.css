@@ -1,12 +1,13 @@
 body {
   color: #222;
   background-color: #ffffff;
-  font-size: 20px;
+  font-size: 19px;
 }
 
 body,
 code {
-  font-family: "Inconsolata", monospace;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
 }
 
 h1,
