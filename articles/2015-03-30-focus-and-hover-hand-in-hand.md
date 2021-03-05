@@ -6,6 +6,8 @@ description: Visual interactions should never require a mouse, but a common CSS 
 tags: a11y
 ---
 
+<script async src="/js/demos/hover.js"></script>
+
 Visual interactions should never require a mouse.
 
 Consider the ever-popular `:hover` selector, which is used to declare styles

@@ -6,6 +6,8 @@ description: The importance of semantic markup, and getting keyboard accessibili
 tags: a11y
 ---
 
+<script async src="/js/demos/clicking.js"></script>
+
 Not everyone can use a mouse.
 
 Across the spectrum of disabilities, different types of users rely on different
@@ -44,9 +46,9 @@ Consider the following `<div>` with an `onclick` event handler.
   var btn = document.getElementById("action-button")
   var display = document.getElementById("output")
 
-  btn.onclick = function() {
+  btn.onclick = function () {
     display.innerHTML = "Clicked!"
-    setTimeout(function() {
+    setTimeout(function () {
       display.innerHTML = ""
     }, 1000)
   }
@@ -116,15 +118,15 @@ Let's try and fix this by adding a `keypress` event handler.
   var btn = document.getElementById("action-button")
   var display = document.getElementById("output")
 
-  var activate = function() {
+  var activate = function () {
     display.innerHTML = "Clicked!"
-    setTimeout(function() {
+    setTimeout(function () {
       display.innerHTML = ""
     }, 1000)
   }
 
   btn.onclick = activate
-  btn.onkeypress = function(e) {
+  btn.onkeypress = function (e) {
     // enter key
     if (e.keyCode === 13) {
       activate()
@@ -173,9 +175,9 @@ it.
   var btn = document.getElementById("action-button")
   var display = document.getElementById("output")
 
-  btn.onclick = function() {
+  btn.onclick = function () {
     display.innerHTML = "Clicked!"
-    setTimeout(function() {
+    setTimeout(function () {
       display.innerHTML = ""
     }, 1000)
   }
