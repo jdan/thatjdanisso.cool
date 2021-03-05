@@ -5,6 +5,8 @@ route: /katex-test
 hidden: true
 ---
 
+<link rel="stylesheet" href="/css/katex.min.css">
+
 Just testing server-side https://katex.org/.
 
 $$

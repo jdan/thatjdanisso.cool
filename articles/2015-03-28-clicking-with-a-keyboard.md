@@ -6,6 +6,8 @@ description: The importance of semantic markup, and getting keyboard accessibili
 tags: a11y
 ---
 
+<link rel="stylesheet" href="/css/demos/shared.css">
+<link rel="stylesheet" href="/css/demos/clicking.css">
 <script async src="/js/demos/clicking.js"></script>
 
 Not everyone can use a mouse.

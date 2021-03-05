@@ -5,6 +5,8 @@ date: 2019-05-19
 description: Let's generate numbers that can't fit in the observable universe.
 ---
 
+<link rel="stylesheet" href="/css/katex.min.css">
+
 Consider a modest function "A," which takes a number and adds one to it.
 
 $$

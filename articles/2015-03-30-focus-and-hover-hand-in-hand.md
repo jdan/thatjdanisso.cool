@@ -6,6 +6,8 @@ description: Visual interactions should never require a mouse, but a common CSS 
 tags: a11y
 ---
 
+<link rel="stylesheet" href="/css/demos/shared.css">
+<link rel="stylesheet" href="/css/demos/hover.css">
 <script async src="/js/demos/hover.js"></script>
 
 Visual interactions should never require a mouse.
