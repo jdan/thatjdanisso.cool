@@ -12,9 +12,10 @@ description: An experiment in scoring random bowling games.
     <div id="stats"></div>
     <div id="scoreboard"></div>
     <div id="controls">
-        <button id="throw">Generate throw</button>
-        <button id="game">Generate game</button>
-        <button id="many-games">Generate 100 games</button>
+        <button id="throw">Throw</button>
+        <button id="game">Game</button>
+        <button id="many-games">Game &times; 100</button>
+        <button id="inf-games">Game &times; &infin;</button>
     </div>
     <script src="/js/bowling.js"></script>
 </div>

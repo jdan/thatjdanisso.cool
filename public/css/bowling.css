@@ -100,14 +100,13 @@ button:hover {
   display: flex;
 }
 
-#throw,
-#game {
-  flex-grow: 3;
+#controls button {
+  flex-grow: 1;
   margin-right: 10px;
 }
 
-#many-games {
-  flex-grow: 4;
+#controls button:last-of-type {
+  margin-right: 0;
 }
 
 .mobile-spacer {

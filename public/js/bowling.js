@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   var graph = document.getElementById("graph")
   var stats = document.getElementById("stats")
   var scoreboard = document.getElementById("scoreboard")
@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var frame = document.createElement("div")
     frame.classList.add("frame")
 
-    contents.forEach(function(formattedThrow) {
+    contents.forEach(function (formattedThrow) {
       var square = document.createElement("div")
       square.classList.add("square")
       square.innerHTML = formattedThrow
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function() {
       distribution[i] = scores[i] || 0
     }
 
-    var numGames = distribution.reduce(function(a, b) {
+    var numGames = distribution.reduce(function (a, b) {
       return a + b
     })
 
@@ -336,9 +336,14 @@ document.addEventListener("DOMContentLoaded", function() {
   var throwButton = document.getElementById("throw")
   var gameButton = document.getElementById("game")
   var manyGamesButton = document.getElementById("many-games")
+  var infGamesButton = document.getElementById("inf-games")
 
   function handleThrowClick(e) {
     e.preventDefault()
+
+    // Stop the infinite game running (oh boy)
+    infRunning = false
+    renderInfButtonText()
 
     if (game.isComplete) {
       game = generateEmptyGame()
@@ -371,12 +376,18 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function handleGameClick(e) {
+    infRunning = false
+    renderInfButtonText()
+
     e.preventDefault()
     simulateGame()
     renderStats(stats)
   }
 
   function handleManyClick(e) {
+    infRunning = false
+    renderInfButtonText()
+
     e.preventDefault()
     var simulations = 0
 
@@ -385,8 +396,33 @@ document.addEventListener("DOMContentLoaded", function() {
       simulateGame()
       renderStats(stats)
 
-      if (simulations < 100) {
-        setTimeout(run, 5)
+      if (simulations < 100 && !infRunning) {
+        setTimeout(run, 0)
+      }
+    })()
+  }
+
+  let infRunning = false
+
+  function renderInfButtonText() {
+    if (infRunning) {
+      infGamesButton.innerHTML = "Stop"
+    } else {
+      infGamesButton.innerHTML = "Game &times; &infin;"
+    }
+  }
+
+  function handleInfClick(e) {
+    e.preventDefault()
+
+    infRunning = !infRunning
+    renderInfButtonText()
+    ;(function run() {
+      simulateGame()
+      renderStats(stats)
+
+      if (infRunning) {
+        setTimeout(run, 0)
       }
     })()
   }
@@ -399,4 +435,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   manyGamesButton.addEventListener("click", handleManyClick)
   manyGamesButton.addEventListener("touchend", handleManyClick)
+
+  infGamesButton.addEventListener("click", handleInfClick)
+  infGamesButton.addEventListener("touchend", handleInfClick)
 })
