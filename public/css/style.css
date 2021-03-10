@@ -117,6 +117,22 @@ img {
   width: 100%;
 }
 
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+li:before {
+  content: "*";
+  padding-right: 1ch;
+}
+
 .flex {
   display: -webkit-flex;
   display: -moz-box;
