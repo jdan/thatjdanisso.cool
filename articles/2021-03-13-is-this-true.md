@@ -237,7 +237,7 @@ That's correct.
 
 > I believe these are called [Perfect numbers](https://en.wikipedia.org/wiki/Perfect_number). But I don't understand why we start at 3 and increment by 2.
 
-We're only interested in finding an odd perfect number, if there is one.
+We're only interested in finding an odd perfect number, [if there is one](https://en.wikipedia.org/wiki/Perfect_number#Odd_perfect_numbers).
 
 > You're losing me. Look, I'm not interested in solving your silly math problems. You said I exist, so while I don't know if this function is true or not, I know I can figure it out and give you a yes or no answer.
 
