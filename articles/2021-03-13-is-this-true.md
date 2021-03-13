@@ -269,7 +269,7 @@ function halts(program) {
 
 I just did.
 
-> But this is the [Halting program](https://en.wikipedia.org/wiki/Halting_problem) and the Halting problem cannot be solved.
+> But this is the [Halting problem](https://en.wikipedia.org/wiki/Halting_problem) and the Halting problem cannot be solved.
 
 I just did. Thank you.
 
