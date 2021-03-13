@@ -3,7 +3,6 @@ title: Is this true?
 route: /is-this-true
 date: 2021-03-13
 description: "A conversation on unit tests, computation, and existential crises stemming from the question: does this function return true?"
-hidden: true
 ---
 
 You’re writing some code - maybe building out some new features - and it’s time to test your work. For some reason, you named your function `fn` and, for some reason, you want the result to be `true`.
@@ -268,6 +267,14 @@ function halts(program) {
 > Wait, you can't write `halts`.
 
 I just did.
+
+> It won't work. Nice try.
+
+Of course it will. I give you a function and we determined you can always tell me if that function returns true or not.
+
+> What if the program loops forever?
+
+Many of our programs above looped forever. You can do anything.
 
 > But this is the [Halting problem](https://en.wikipedia.org/wiki/Halting_problem) and the Halting problem cannot be solved.
 
