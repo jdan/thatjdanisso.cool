@@ -217,8 +217,12 @@ li:before {
 
 @media (max-width: 480px) {
   body {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.4;
+  }
+
+  blockquote {
+    margin-right: 0;
   }
 
   .main {
