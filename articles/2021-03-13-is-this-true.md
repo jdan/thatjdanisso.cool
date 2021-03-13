@@ -49,7 +49,7 @@ function fn() {
 
 > Yes. I know how to count, and I know that 5 is greater than 3, so I know that `fn()` is true.
 
-So if statements are fair game then. Is this true?
+So if-statements are fair game then. Is this true?
 
 ```js
 function fn() {
