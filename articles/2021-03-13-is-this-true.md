@@ -95,7 +95,9 @@ Excellent observation. Is this true?
 
 ```js
 function fn() {
-  for (let i = 0; i > -1; i++) {}
+  for (let i = 0; i > -1; i++) {
+    // Do nothing
+  }
   return true
 }
 ```
