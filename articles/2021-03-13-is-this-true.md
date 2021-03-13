@@ -78,7 +78,7 @@ function fn() {
 
 Correct again. A lot of things aren’t true.
 
-> Let’s trying something a little different - is this true?
+Let’s trying something a little different - is this true?
 
 ```js
 function fn() {
