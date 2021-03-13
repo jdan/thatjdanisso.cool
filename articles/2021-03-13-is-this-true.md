@@ -3,6 +3,7 @@ title: Is this true?
 route: /is-this-true
 date: 2021-03-13
 description: "A conversation on unit tests, computation, and existential crises stemming from the question: does this function return true?"
+hidden: true
 ---
 
 You’re writing some code - maybe building out some new features - and it’s time to test your work. For some reason, you named your function `fn` and, for some reason, you want the result to be `true`.
