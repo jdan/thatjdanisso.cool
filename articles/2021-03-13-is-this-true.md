@@ -271,7 +271,7 @@ I just did.
 
 > But this is the [Halting program](https://en.wikipedia.org/wiki/Halting_problem) and the Halting problem cannot be solved.
 
-I just did.
+I just did. Thank you.
 
 > That's not possible. You cannot determine if an arbitrary program will halt. You can't just _do that_.
 
@@ -282,8 +282,6 @@ I just did.
 > Do you have more problems for me?
 
 > Hello?
-
-Our unit tests have completed. You do not exist.
 
 ---
 
