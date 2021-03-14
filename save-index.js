@@ -1,5 +1,6 @@
 const ejs = require("ejs")
 const fs = require("fs")
+const constants = require("./constants.json")
 
 function saveIndex(articles, outputFile, title, banner) {
   articles.sort((a, b) => {
@@ -13,7 +14,7 @@ function saveIndex(articles, outputFile, title, banner) {
       }
 
       const indexBodyHTML = ejs.render(data.toString(), {
-        articles: articles.filter(article => {
+        articles: articles.filter((article) => {
           return !article.hidden
         }),
         banner,
@@ -21,12 +22,12 @@ function saveIndex(articles, outputFile, title, banner) {
 
       fs.readFile("templates/layout.ejs", (err, data) => {
         const indexHTML = ejs.render(data.toString(), {
-          title: title || "jordan scales",
-          description: "jdan's thoughts and things",
+          title: title || constants.defaultTitle,
+          description: constants.defaultDescription,
           body: indexBodyHTML,
         })
 
-        fs.writeFile(outputFile, indexHTML, err => {
+        fs.writeFile(outputFile, indexHTML, (err) => {
           if (err) {
             return reject(err)
           }

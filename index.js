@@ -4,7 +4,7 @@ const loadArticle = require("./load-article.js")
 const saveArticle = require("./save-article.js")
 const saveIndex = require("./save-index.js")
 const saveStaticFile = require("./save-static-file.js")
-const save32x32 = require("./save-32x32.js")
+const saveFeed = require("./save-feed.js")
 
 glob("articles/*.md", (err, articles) => {
   if (err) {
@@ -12,17 +12,18 @@ glob("articles/*.md", (err, articles) => {
   }
 
   Promise.all(articles.map(loadArticle))
-    .then(articles => {
+    .then((articles) => {
       const promises = articles.map(saveArticle)
 
       promises.push(saveIndex(articles, "output/index.html"))
+      promises.push(saveFeed(articles))
       promises.push(generateTags(articles))
 
       return Promise.all(promises)
     })
     .then(
       () => console.log("Articles built."),
-      err => {
+      (err) => {
         console.log("Error building articles")
         console.log(err)
       }
@@ -38,7 +39,7 @@ glob("public/**/*.*", (err, staticFiles) => {
     //.then(save32x32)
     .then(
       () => console.log("Static files built."),
-      err => {
+      (err) => {
         console.log("Error saving static files")
         console.log(err)
       }

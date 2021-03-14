@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "ejs": "^3.1.6",
+    "feed": "^4.2.2",
     "front-matter": "^4.0.2",
     "glob": "^7.1.4",
     "highlight.js": "^10.6.0",
