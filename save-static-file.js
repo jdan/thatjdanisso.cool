@@ -3,22 +3,14 @@ const path = require("path")
 const mkdirp = require("mkdirp")
 
 function saveStaticFile(filePath) {
-  return new Promise((resolve, reject) => {
-    const relativePath = path.relative("public", filePath)
-    const destination = path.join("output", relativePath)
+  const relativePath = path.relative("public", filePath)
+  const destination = path.join("output", relativePath)
 
-    mkdirp(path.dirname(destination), err => {
+  return mkdirp(path.dirname(destination)).then((_) => {
+    ncp(filePath, destination, (err) => {
       if (err) {
-        return reject(err)
+        throw err
       }
-
-      ncp(filePath, destination, err => {
-        if (err) {
-          return reject(err)
-        }
-
-        resolve("ok")
-      })
     })
   })
 }
