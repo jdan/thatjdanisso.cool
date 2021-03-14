@@ -1,4 +1,6 @@
+const fs = require("fs")
 const glob = require("glob")
+const path = require("path")
 const generateTags = require("./generate-tags.js")
 const loadArticle = require("./load-article.js")
 const saveArticle = require("./save-article.js")
@@ -11,11 +13,15 @@ glob("articles/*.md", (err, articles) => {
     throw err
   }
 
+  fs.mkdirSync(path.join(__dirname, "output"))
+
   Promise.all(articles.map(loadArticle))
     .then((articles) => {
       const promises = articles.map(saveArticle)
 
-      promises.push(saveIndex(articles, "output/index.html"))
+      promises.push(
+        saveIndex(articles, path.join(__dirname, "output", "index.html"))
+      )
       promises.push(saveFeed(articles))
       promises.push(generateTags(articles))
 

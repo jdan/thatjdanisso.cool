@@ -43,5 +43,8 @@ module.exports = (articles) => {
       })
     })
 
-  return fs.promises.writeFile(path.join("output", "feed.atom"), feed.atom1())
+  return fs.promises.writeFile(
+    path.join(__dirname, "output", "feed.atom"),
+    feed.atom1()
+  )
 }
