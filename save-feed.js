@@ -10,11 +10,13 @@ const me = {
   link: "https://jordanscales.com",
 }
 
+const filename = "feed.atom"
+
 module.exports = (articles) => {
   const feed = new Feed({
     title: constants.defaultTitle,
     description: constants.defaultDescription,
-    id: constants.url,
+    id: constants.url + "/",
     link: constants.url,
     language: "en",
     image: `${constants.url}/img/me.png`,
@@ -22,8 +24,7 @@ module.exports = (articles) => {
     copyright: "CC BY-NC 4.0 Jordan Scales",
     generator: "awesome",
     feedLinks: {
-      json: `${constants.url}/json`,
-      atom: `${constants.url}/atom`,
+      atom: `${constants.url}/${filename}`,
     },
     author: me,
   })
@@ -44,7 +45,7 @@ module.exports = (articles) => {
     })
 
   return fs.promises.writeFile(
-    path.join(__dirname, "output", "feed.atom"),
+    path.join(__dirname, "output", filename),
     feed.atom1()
   )
 }
