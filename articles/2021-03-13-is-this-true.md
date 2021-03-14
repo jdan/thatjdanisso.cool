@@ -276,7 +276,7 @@ Of course it will. I give you a function and we determined you can always tell m
 
 > What if the program loops forever?
 
-Many of our programs above looped forever. You can do anything.
+Then you know the function will not return true. Many of our programs above looped forever. You can do anything.
 
 > But this is the [Halting problem](https://en.wikipedia.org/wiki/Halting_problem) and the Halting problem cannot be solved.
 
