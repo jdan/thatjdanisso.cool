@@ -13,7 +13,9 @@ glob("articles/*.md", (err, articles) => {
     throw err
   }
 
-  fs.mkdirSync(path.join(__dirname, "output"))
+  if (!fs.existsSync(path.join(__dirname, "output"))) {
+    fs.mkdirSync(path.join(__dirname, "output"))
+  }
 
   Promise.all(articles.map(loadArticle))
     .then((articles) => {
