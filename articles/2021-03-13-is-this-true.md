@@ -314,4 +314,4 @@ function f() {
 }
 ```
 
-Does `f()` halt? If it does, then `halts(f)` is true so we enter an infinite loop (which does not halt). If `f` does _not_ halt, then we skip the loop and return immediately in which case it _does_ halt. We've worked ourselves into a contradiction, and the only way out is if `halts(f)` does not exist.
+Does `f()` halt? If it does, then `halts(f)` is true so we enter an infinite loop (which does not halt). If `f` does _not_ halt, then we skip the loop and return immediately in which case it _does_ halt. We've worked ourselves into a contradiction, and the only way out is if `halts(f)` does not exist as in our assumption.
