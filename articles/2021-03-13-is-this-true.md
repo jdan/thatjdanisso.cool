@@ -266,7 +266,7 @@ function halts(program) {
 }
 ```
 
-> Wait, you can't write `halts`.
+> Wait, you can't write `halts`. This is the [Halting problem](https://en.wikipedia.org/wiki/Halting_problem) and the Halting problem cannot be solved<sup><a id="halting-footnote-src" href="#halting-footnote">1</a></sup>.
 
 I just did.
 
@@ -278,7 +278,7 @@ Of course it will. I give you a function and we determined you can always tell m
 
 Then you know the function will not return true. Many of our programs above looped forever. You can do anything.
 
-> But this is the [Halting problem](https://en.wikipedia.org/wiki/Halting_problem) and the Halting problem [cannot be solved](https://en.wikipedia.org/wiki/Halting_problem#Proof_concept).
+> But... you... you can't do that.
 
 I just did. Thank you.
 
@@ -297,3 +297,21 @@ I just did. Thank you.
 This article is a retelling of [Tom Stuart's "Impossible Programs" talk](https://www.youtube.com/watch?v=hN63FOa_Gp4) from 2015. It was very much a mind-blown moment for me and I've been thinking about it ever since. Tom's also written a book called [Understanding Computation](https://computationbook.com/) which you should check out.
 
 Thanks for reading.
+
+---
+
+<p class="footnote">
+  <sup><a id="halting-footnote" href="#halting-footnote-src">1</a></sup> Wikipedia gives a <a href="https://en.wikipedia.org/wiki/Halting_problem#Proof_concept">nice, 1000-foot proof by contradiction</a> to this problem. Imagine <code>halts(f)</code> exists and returns true or false for all functions. We could then use it to write a function such as:
+</p>
+
+```js
+function f() {
+  if (halts(f)) {
+    while (true) {
+      // Do nothing
+    }
+  }
+}
+```
+
+Does `f()` halt? If it does, then `halts(f)` is true so we enter an infinite loop (which does not halt). If `f` does _not_ halt, then we skip the loop and return immediately in which case it _does_ halt. We've worked ourselves into a contradiction, and the only way out is if `halts(f)` does not exist.

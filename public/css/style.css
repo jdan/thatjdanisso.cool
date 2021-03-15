@@ -170,6 +170,10 @@ li:before {
   width: 1px;
 }
 
+.footnote {
+  text-indent: -2ch;
+}
+
 @keyframes flash {
   0% {
     opacity: 1;
