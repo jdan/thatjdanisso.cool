@@ -278,11 +278,11 @@ Of course it will. I give you a function and we determined you can always tell m
 
 Then you know the function will not return true. Many of our programs above looped forever. You can do anything.
 
-> But... you... you can't do that.
+> But... you can't determine if an arbitrary program will halt.
 
 I just did. Thank you.
 
-> That's not possible. You cannot determine if an arbitrary program will halt. You can't just _do that_.
+> That's not possible. You can't just _do that_.
 
 > Hello?
 
