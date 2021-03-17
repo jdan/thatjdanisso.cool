@@ -3,6 +3,7 @@ title: Seriously, The Reflog Isn't That Scary
 date: 2013-08-05
 route: /git-reflog
 description: Demystifying git-reflog, the command that can get you out of most git jams.
+hidden: true
 ---
 
 I know, I know - changing history can be scary. Rebasing, squashing, and loads of force pushing can worry any junior engineer such as myself, but it really shouldn't. Truth is, these are powerful tools that you should have on your toolbelt and, contrary to what you may believe, it's very difficult to actually mess things up!
