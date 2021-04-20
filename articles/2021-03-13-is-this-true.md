@@ -31,7 +31,7 @@ So far so good. Is this true?
 
 ```
 function fn() {
-  return true || false;
+  return true || false
 }
 ```
 
