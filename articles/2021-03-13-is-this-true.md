@@ -294,7 +294,7 @@ I just did. Thank you.
 
 ---
 
-This article is a retelling of [Tom Stuart's "Impossible Programs" talk](https://www.youtube.com/watch?v=hN63FOa_Gp4) from 2015. It was very much a mind-blown moment for me and I've been thinking about it ever since. Tom's also written a book called [Understanding Computation](https://computationbook.com/) which you should check out.
+This article is a retelling of [Tom Stuart's "Impossible Programs" talk](https://www.youtube.com/watch?v=hN63FOa_Gp4) from 2015. It was very much a mind-blown moment for me and I've been thinking about it ever since. Tom's also written a book called [Understanding Computation](https://computationbook.com/) which you should check out. You may also enjoy learning more about [Rice's theorem](https://en.wikipedia.org/wiki/Rice%27s_theorem#Proof_by_reduction_from_the_halting_problem) on Wikipedia.
 
 Thanks for reading.
 
