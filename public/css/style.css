@@ -152,11 +152,26 @@ li:before {
   padding: 40px 0;
 }
 
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+}
+
 .flash-item {
   animation: flash 8s linear 0s infinite;
-  -webkit-animation: flash 8s linear 0s infinite;
-  -moz-animation: flash 8s linear 0s infinite;
-  -o-animation: flash 8s linear 0s infinite;
+}
+
+@media (prefers-reduced-motion) {
+  .flash-item {
+    animation: none;
+  }
 }
 
 .sr-only {
@@ -172,51 +187,6 @@ li:before {
 
 .footnote {
   text-indent: -2ch;
-}
-
-@keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 0.1;
-  }
-  20% {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 0.1;
-  }
-  20% {
-    opacity: 1;
-  }
-}
-@-moz-keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 0.1;
-  }
-  20% {
-    opacity: 1;
-  }
-}
-@-o-keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 0.1;
-  }
-  20% {
-    opacity: 1;
-  }
 }
 
 @media (max-width: 480px) {
