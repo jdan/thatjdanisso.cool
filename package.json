@@ -12,17 +12,22 @@
     "strftime": "^0.10.0"
   },
   "devDependencies": {
+    "cheerio": "^1.0.0-rc.10",
     "express": "^4.16.2",
     "multer": "^1.3.0",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
-    "serve": "^11.3.2"
+    "prompt": "^1.1.0",
+    "serve": "^11.3.2",
+    "turndown": "^7.0.0"
   },
   "scripts": {
     "build": "node index.js",
     "build-prod": "node index.js",
     "watch": "nodemon index.js",
     "serve": "cd output && serve -l 8080",
-    "editor": "nodemon editor/editor.js"
+    "editor": "nodemon editor/editor.js",
+    "import": "node scripts/medium-import.js"
   },
   "nodemonConfig": {
     "ignore": [

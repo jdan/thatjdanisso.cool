@@ -19,6 +19,14 @@ I shipped an editor for some reason. You can access it with:
 $ npm run editor
 ```
 
+### importing
+
+I like Medium's editor a lot (way better than my own) so I built an importer
+
+```
+$ npm run import
+```
+
 ### license
 
 The contents of this blog (articles, code snippets) are licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/). The code powering the blog itself is MIT licensed, see [LICENSE.txt](/LICENSE.txt) for details.
