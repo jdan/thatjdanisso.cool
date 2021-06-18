@@ -19,6 +19,18 @@ I shipped an editor for some reason. You can access it with:
 $ npm run editor
 ```
 
+I'm also working on a new editor using [Trix](https://trix-editor.org/)
+with `npm run trix-editor`.
+
+### all of the above
+
+I typically write with my editor, watcher, and server running simultaneously. You
+can do this with
+
+```
+$ npm run suite
+```
+
 ### importing
 
 I like Medium's editor a lot (way better than my own) so I built an importer

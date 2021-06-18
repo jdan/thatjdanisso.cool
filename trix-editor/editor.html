@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <title>Editor</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/vendor/trix.css">
+  <style>
+    .field {
+      padding: 10px;
+    }
+
+    form {
+      max-width: 900px;
+      margin: 80px auto;
+    }
+
+    input {
+      width: 240px;
+    }
+  </style>
+  <script type="text/javascript" src="/vendor/trix.js"></script>
+</head>
+<body>
+  <form method="POST" action="/create">
+    <div class="field">
+      <label>
+        Title:
+        <input name="title" />
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        Date:&nbsp;
+        <input name="date" />
+        (yyyy-mm-dd)
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        Route:
+        <input name="route" />
+        (/example)
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        Slug:&nbsp;
+        <input name="slug" />
+        (will be used for filename)
+      </label>
+    </div>
+
+    <div class="field">
+      <input id="trix-content" type="hidden" name="content">
+      <trix-editor input="trix-content"></trix-editor>
+    </div>
+
+    <div class="field">
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
+
+  <script src="/upload.js"></script>
+</body>
+</html>

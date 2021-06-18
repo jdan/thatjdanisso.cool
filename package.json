@@ -13,12 +13,14 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.10",
+    "concurrently": "^6.2.0",
     "express": "^4.16.2",
-    "multer": "^1.3.0",
+    "multer": "^1.4.2",
     "node-fetch": "^2.6.1",
     "nodemon": "^2.0.7",
     "prompt": "^1.1.0",
     "serve": "^11.3.2",
+    "trix": "^1.3.1",
     "turndown": "^7.0.0"
   },
   "scripts": {
@@ -27,6 +29,8 @@
     "watch": "nodemon index.js",
     "serve": "cd output && serve -l 8080",
     "editor": "nodemon editor/editor.js",
+    "trix-editor": "node trix-editor/server.js",
+    "suite": "concurrently --kill-others \"npm run watch\" \"npm run serve\" \"npm run trix-editor\"",
     "import": "node scripts/medium-import.js"
   },
   "nodemonConfig": {
