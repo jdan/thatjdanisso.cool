@@ -446,7 +446,7 @@ H(n) &= 2 \uparrow \uparrow \uparrow \uparrow \uparrow \uparrow n \\
 \end{aligned}
 $$
 
-Eventually the arrows themselves will become unweildy:
+Eventually the arrows themselves will become unwieldy:
 
 $$
 Z(n) = \underbrace{2 \uparrow \uparrow \cdots \uparrow n}_\text{25 arrows}
