@@ -505,7 +505,5 @@ I'll also go ahead and plug some of my favorite resources on Programming Languag
 
 That's all for now. If you liked this article feel free to share it and follow me on Twitter while you're at it: [@jdan](https://twitter.com/jdan).
 
-You should also come work with me at [Stripe](https://stripe.com/jobs). We're hiring all over the place.
-
 Thanks again for reading,<br />
 Jordan
